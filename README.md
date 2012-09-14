@@ -7,4 +7,4 @@ This repository will contain documentation for the systems architecture and depl
 Documentation
 =============
 
-[Systems Architecture](cidvbi/PATRIC/wiki/Systems_Architecture)
+[Systems Architecture](cidvbi/PATRIC/wiki/Systems-Architecture)
