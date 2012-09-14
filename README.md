@@ -7,4 +7,4 @@ This repository will contain documentation for the systems architecture and depl
 Documentation
 =============
 
-[Systems Architecture](./wiki/Systems-Architecture)
+[Systems Architecture](../wiki/Systems-Architecture)
