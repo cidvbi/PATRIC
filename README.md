@@ -4,6 +4,9 @@ PATRIC is the Bacterial Bioinformatics Resource Center, an information system de
 
 This repository will contain documentation for the PATRIC systems architecture, deployment documentation, source code and links to external information and dependencies.
 
+To clone this respository and any linked repositores.
+
+    git clone --recursive https://github.com/cidvbi/PATRIC 
 
 ## Documentation
 
