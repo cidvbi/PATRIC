@@ -6,7 +6,7 @@ This repository will contain documentation for the PATRIC systems architecture, 
 
 To clone this respository and any linked repositores.
 
-    git clone --recursive https://github.com/cidvbi/PATRIC 
+    git clone --recursive https://github.com/cidvbi/PATRIC.git
 
 ## Documentation
 
