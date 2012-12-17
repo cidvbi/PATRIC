@@ -7,7 +7,7 @@ This repository will contain documentation for the PATRIC systems architecture, 
 
 ## Documentation
 
-- [Documentation](/cidvbi/PATRIC/wiki/Home)
+- [Documentation Home](/cidvbi/PATRIC/wiki/Home)
     - [Introduction](/cidvbi/PATRIC/wiki/Introduction)
     - [Systems Architecture](/cidvbi/PATRIC/wiki/Systems-Architecture)
     - [Database Architecture](/cidvbi/PATRIC/wiki/Database-Architecture)
