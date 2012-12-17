@@ -8,7 +8,7 @@ This repository will contain documentation for the PATRIC systems architecture, 
 ## Documentation
 
 - [[Documentation|Home]]
-    - [[Introduction]]
+    - [[Introduction|Introduction]]
     - [[Systems Architecture]]
     - [[Database Architecture]]
     - [[Data Models]]
