@@ -14,5 +14,5 @@ To clone this respository and any linked repositores:
     - [Introduction](/cidvbi/PATRIC/wiki/Introduction)
     - [Systems Architecture](/cidvbi/PATRIC/wiki/Systems-Architecture)
     - [Database Architecture](/cidvbi/PATRIC/wiki/Database-Architecture)
-    - [Software Design Overview](/cidvbi/PATRIC/wiki/Software-Design-Overview)
+    - [Component Architecture Overview](/cidvbi/PATRIC/wiki/Component-Architecture-Overview)
 - [Deployment](/cidvbi/PATRIC/wiki/Deployment)
