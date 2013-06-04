@@ -9,5 +9,5 @@ To clone this respository and any linked repositores:
     git clone --recursive https://github.com/cidvbi/PATRIC.git
 
 
-[Systems Documentation Home](/cidvbi/PATRIC/wiki/Home)
+[Systems Documentation Home](https://github.com/cidvbi/PATRIC/wiki)
    
