@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2013 Virginia Polytechnic Institute and State University
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<portlet-app version="" xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" 
+	xmlns:xml="http://www.w3.org/XML/1998/namespace" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd 
+							http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd ">
+	<portlet>
+		<portlet-name>GenomeBrowser</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.GenomeBrowser</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+			<window-state>normal</window-state>
+		</supports>
+		<portlet-info>
+			<title>Genome Browser</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>CompareRegionViewer</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.CompareRegionViewer</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+			<window-state>normal</window-state>
+		</supports>
+		<portlet-info>
+			<title>Compare Region Viewer</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>feature_id</supported-public-render-parameter>
+		<supported-public-render-parameter>window</supported-public-render-parameter>
+		<supported-public-render-parameter>regions</supported-public-render-parameter>
+	</portlet>
+	<!-- public render parameters -->
+	<public-render-parameter>
+		<identifier>context_type</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:context_type</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>context_id</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:context_id</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>feature_id</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:feature_id</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>window</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:window</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>regions</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:regions</qname>
+	</public-render-parameter>
+</portlet-app>

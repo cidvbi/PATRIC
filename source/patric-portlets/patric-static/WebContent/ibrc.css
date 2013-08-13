@@ -1,0 +1,97 @@
+#fp {
+	margin: 0px;
+	padding: 10px;
+	min-height: 580px;
+	background-color: #fff;
+}
+
+#fp h2 {
+	color: #bb881f;
+	font-weight: normal;
+	font-size: 1.6em;
+	line-height: 1.3em;
+	margin: 17px 0 0;
+	padding: 0;
+}
+
+#fp p {
+	font-size: 1em;
+	line-height: 1.6em;
+	margin: 5px 0px 9px;
+	padding: 0px;
+}
+
+.table-container {
+	background-color: #e5e8ee;
+	border: 0px;
+	padding: 5px;
+	margin: 0px;
+}
+
+.with-border {
+	border: 1px solid #a6abb5;
+}
+
+.table-container h2, .table-container h3 {
+	color: #1b2c49;
+	font-size: 1em;
+	font-weight: bold;
+	margin: 0px 0px 8px;
+}
+
+table.data-table, .table-container table {
+	margin: 0px;
+}
+
+.table-container table td, table.data-table td, .table-container table th, table.data-table  th {
+	background-color: #fff;
+	border-right: 1px solid #e5e8ee;
+	border-bottom: 1px solid #e5e8ee;
+	padding: 6px 8px;
+	line-height: 1.2em;
+	font-size: 1em;
+	text-align: left;
+}
+
+table.data-table th.th-row {
+	text-align: left;
+}
+
+table.data-table th[scope=row] {
+	text-align: left;
+}
+
+table.data-table th.left {
+	text-align: left;
+}
+
+td {
+	line-height: .9em;
+	font-size: 1em;
+}
+
+table.data-table td.center {
+	text-align: center;
+}
+
+table.data-table td.left {
+	text-align: left;
+}
+
+table.data-table td.right {
+	text-align: right;
+}
+
+table.data-table th {
+	text-align: center;
+}
+
+table.data-table th.th-col {
+	text-align: right;
+}
+
+.clear {
+	height: 0px;
+	overflow: hidden;
+	clear: both;
+}

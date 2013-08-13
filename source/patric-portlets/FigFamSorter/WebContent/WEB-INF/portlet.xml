@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2013 Virginia Polytechnic Institute and State University
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+version="2.0">
+	<portlet>
+		<portlet-name>FigFamSorter</portlet-name>
+		<portlet-class>figfamGroups.edu.vt.vbi.Sorter</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Protein Family Sorter</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>display_mode</supported-public-render-parameter>
+		<supported-public-render-parameter>param_key</supported-public-render-parameter>
+		<supported-public-render-parameter>portlet_type</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>SingleFigFam</portlet-name>
+		<portlet-class>figfamGroups.edu.vt.vbi.SingleView</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Protein Family Members</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>param_key</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>TreeAligner</portlet-name>
+		<portlet-class>figfamGroups.edu.vt.vbi.TreeAligner</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Protein Alignment</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>figfam_names</supported-public-render-parameter>
+		<supported-public-render-parameter>feature_ids</supported-public-render-parameter>
+		<supported-public-render-parameter>param_key</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>FigFamSorterB</portlet-name>
+		<portlet-class>figfamGroups.edu.vt.vbi.Sorter</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Protein Family Sorter</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>display_mode</supported-public-render-parameter>
+		<supported-public-render-parameter>param_key</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>SingleFigFamB</portlet-name>
+		<portlet-class>figfamGroups.edu.vt.vbi.SingleView</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Protein Family Members</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>figfam</supported-public-render-parameter>
+		<supported-public-render-parameter>param_key</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>TreeAlignerB</portlet-name>
+		<portlet-class>figfamGroups.edu.vt.vbi.TreeAligner</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Protein Alignment</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>figfam_names</supported-public-render-parameter>
+		<supported-public-render-parameter>feature_ids</supported-public-render-parameter>
+		<supported-public-render-parameter>param_key</supported-public-render-parameter>
+	</portlet>
+	<public-render-parameter>
+		<identifier>context_type</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:context_type</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>context_id</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:context_id</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>figfam_names</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:figfam_names</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>figfam_ids</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:figfam_ids</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>ec_names</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:ec_names</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>genome_ids</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:genome_ids</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>portlet_type</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:portlet_type</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>genome_ids</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:feature_ids</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>display_mode</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:display_mode</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>param_key</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:param_key</qname>
+	</public-render-parameter>
+</portlet-app>

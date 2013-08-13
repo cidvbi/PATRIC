@@ -1,0 +1,503 @@
+{
+	"download": {
+		"content": "<p>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don&#8217;t look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn&#8217;t anything embarrassing hidden in the middle of text. All the Lorem Ipsum generators on the Internet tend to repeat predefined chunks as necessary, making this the first true generator on the Internet. It uses a dictionary of over 200 Latin words, combined with a handful of model sentence structures, to generate Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.</p>\n",
+		"subtitle": "",
+		"tab_title": "",
+		"title": "Download Data",
+		"tools": [],
+		"workflows": []
+	},
+	"genomeStatus": {
+		"chart_title": "Genome Status",
+		"data": [
+			{
+				"label": "Whole Shotgun Sequence",
+				"m_label": "gsc_shotgun_sequence",
+				"reported": "70.36%",
+				"value": 70.36
+			}, {
+				"label": "Complete",
+				"m_label": "gsc_complete",
+				"reported": "24.93%",
+				"value": 24.93
+			}, {
+				"label": "Plasmid",
+				"m_label": "gsc_plasmid",
+				"reported": "4.71%",
+				"value": 4.71
+			}
+		]
+	},
+	"genomes": {
+		"content": "",
+		"subtitle": "An optional subtitle goes here.",
+		"tab_title": "Download",
+		"title": "5,161 Genomes",
+		"tools": [],
+		"workflows": []
+	},
+	"numberGenomes": {
+		"chart_title": "Number of Bacterial Genomes",
+		"data": [
+			{
+				"sequenced": 0,
+				"total": 0,
+				"year": 2006
+			}, {
+				"sequenced": 20,
+				"total": 20,
+				"year": 2007
+			}, {
+				"sequenced": 100,
+				"total": 120,
+				"year": 2008
+			}, {
+				"sequenced": 375,
+				"total": 495,
+				"year": 2009
+			}, {
+				"sequenced": 200,
+				"total": 695,
+				"year": 2010
+			}, {
+				"sequenced": 420,
+				"total": 1115,
+				"year": 2011
+			}, {
+				"sequenced": 600,
+				"total": 1715,
+				"year": 2012
+			}
+		]
+	},
+	"popularGenomes": {
+		"popularList": [
+			{
+				"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/Genome?cType=genome&cId=87468",
+				"popularData": [
+					{
+						"data": 3203,
+						"description": "Protein Families",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/FIGfamSorterB?cType=genome&cId=87468&dm=result",
+						"picture": "/patric/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 32,
+						"description": "Transcriptomic Experiments",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/ExperimentList?cType=genome&cId=87468",
+						"picture": "/patric/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 137,
+						"description": "Pathways",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/CompPathwayTable?cType=genome&cId=87468&algorithm=PATRIC&ec_number=",
+						"picture": "/patric/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 4301,
+						"description": "Features",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/FeatureTable?cType=genome&cId=87468&featuretype=&annotation=PATRIC&filtertype=",
+						"picture": "/patric/images/icon-popular-genome-sample.png"
+					}
+				],
+				"popularName": "Mycobacterium tuberculosis H37Rv"
+			}, {
+				"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/Genome?cType=genome&cId=129921",
+				"popularData": [
+					{
+						"data": 3864,
+						"description": "Protein Families",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/FIGfamSorterB?cType=genome&cId=129921&dm=result",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 94,
+						"description": "Transcriptomic Experiments",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/ExperimentList?cType=genome&cId=129921",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 135,
+						"description": "Pathways",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/CompPathwayTable?cType=genome&cId=129921&algorithm=PATRIC&ec_number=",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 4549,
+						"description": "Features",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/FeatureTable?cType=genome&cId=129921&featuretype=&annotation=PATRIC&filtertype=",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}
+				],
+				"popularName": "Escherichia coli str. K-12 substr. MG1655"
+			}, {
+				"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/Genome?cType=genome&cId=20916",
+				"popularData": [
+					{
+						"data": 4034,
+						"description": "Protein Families",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/FIGfamSorterB?cType=genome&cId=20916&dm=result",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 39,
+						"description": "Transcriptomic Experiments",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/ExperimentList?cType=genome&cId=20916",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 133,
+						"description": "Pathways",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/CompPathwayTable?cType=genome&cId=31049&algorithm=PATRIC&ec_number=",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 4972,
+						"description": "Features",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/FeatureTable?cType=genome&cId=31049&featuretype=&annotation=PATRIC&filtertype=",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}
+				],
+				"popularName": "Salmonella enterica subsp. enterica serovar Typhimurium str. LT2"
+			}, {
+				"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/Genome?cType=genome&cId=31049",
+				"popularData": [
+					{
+						"data": 3579,
+						"description": "Protein Families",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/FIGfamSorterB?cType=genome&cId=7843&dm=result",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 1,
+						"description": "Transcriptomic Experiments",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/ExperimentList?cType=genome&cId=7843",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 135,
+						"description": "Pathways",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/CompPathwayTable?cType=genome&cId=7843&algorithm=PATRIC&ec_number=",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 5131,
+						"description": "Features",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/FeatureTable?cType=genome&cId=7843&featuretype=&annotation=PATRIC&filtertype=",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}
+				],
+				"popularName": "Shigella flexneri 2a str. 2457T"
+			}, {
+				"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/Genome?cType=genome&cId=7843",
+				"popularData": [
+					{
+						"data": 3414,
+						"description": "Protein Families",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/FIGfamSorterB?cType=genome&cId=7843&dm=result",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 1,
+						"description": "Transcriptomic Experiments",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/ExperimentList?cType=genome&cId=7843",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 135,
+						"description": "Pathways",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/CompPathwayTable?cType=genome&cId=7843&algorithm=PATRIC&ec_number=",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 4820,
+						"description": "Features",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/FeatureTable?cType=genome&cId=7843&featuretype=&annotation=PATRIC&filtertype=",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}
+				],
+				"popularName": "Yersinia pestis CO92"
+			}, {
+				"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/Genome?cType=genome&cId=69206",
+				"popularData": [
+					{
+						"data": 23,
+						"description": "Protein Families",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/FIGfamSorterB?cType=genome&cId=69206&dm=result",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 9,
+						"description": "Transcriptomic Experiments",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/ExperimentList?cType=genome&cId=69206",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 128,
+						"description": "Pathways",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/CompPathwayTable?cType=genome&cId=69206&algorithm=PATRIC&ec_number=",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 2927,
+						"description": "Features",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/FeatureTable?cType=genome&cId=69206&featuretype=&annotation=PATRIC&filtertype=",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}
+				],
+				"popularName": "Listeria monocytogenes EGD-e"
+			}, {
+				"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/Genome?cType=genome&cId=116463",
+				"popularData": [
+					{
+						"data": 23,
+						"description": "Protein Families",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/FIGfamSorterB?cType=genome&cId=116463&dm=result",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 1,
+						"description": "Transcriptomic Experiments",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/ExperimentList?cType=genome&cId=116463",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 131,
+						"description": "Pathways",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/CompPathwayTable?cType=genome&cId=116463&algorithm=PATRIC&ec_number=",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 2734,
+						"description": "Features",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/FeatureTable?cType=genome&cId=116463&featuretype=&annotation=PATRIC&filtertype=",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}
+				],
+				"popularName": "Staphylococcus aureus subsp. aureus N315"
+			}, {
+				"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/Genome?cType=genome&cId=27904",
+				"popularData": [
+					{
+						"data": 23,
+						"description": "Protein Families",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/FIGfamSorterB?cType=genome&cId=27904&dm=result",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 15,
+						"description": "Transcriptomic Experiments",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/ExperimentList?cType=genome&cId=27904",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 126,
+						"description": "Pathways",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/CompPathwayTable?cType=genome&cId=27904&algorithm=PATRIC&ec_number=",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 2205,
+						"description": "Features",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/FeatureTable?cType=genome&cId=27904&featuretype=&annotation=PATRIC&filtertype=",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}
+				],
+				"popularName": "Streptococcus pneumoniae D39"
+			}, {
+				"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/Genome?cType=genome&cId=92729",
+				"popularData": [
+					{
+						"data": 23,
+						"description": "Protein Families",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/FIGfamSorterB?cType=genome&cId=92729&dm=result",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 5,
+						"description": "Transcriptomic Experiments",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/ExperimentList?cType=genome&cId=92729",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 133,
+						"description": "Pathways",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/CompPathwayTable?cType=genome&cId=92729&algorithm=PATRIC&ec_number=",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 3499,
+						"description": "Features",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/FeatureTable?cType=genome&cId=92729&featuretype=&annotation=PATRIC&filtertype=",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}
+				],
+				"popularName": "Brucella melitensis bv. 1 str. 16M"
+			}, {
+				"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/Genome?cType=genome&cId=33062",
+				"popularData": [
+					{
+						"data": 1262,
+						"description": "Protein Families",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/FIGfamSorterB?cType=genome&cId=33062&dm=result",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 6,
+						"description": "Transcriptomic Experiments",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/ExperimentList?cType=genome&cId=33062",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 126,
+						"description": "Pathways",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/CompPathwayTable?cType=genome&cId=33062&algorithm=PATRIC&ec_number=",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}, {
+						"data": 1674,
+						"description": "Features",
+						"link": "http://patricbrc-dev.vbi.vt.edu/portal/portal/patric/FeatureTable?cType=genome&cId=33062&featuretype=&annotation=PATRIC&filtertype=",
+						"picture": "/images/icon-popular-genome-sample.png"
+					}
+				],
+				"popularName": "Helicobacter pylori 26695"
+			}
+		],
+		"popularTitle": "Popular Genomes Box"
+	},
+	"process": {
+		"content": "<p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using &#8216;Content here, content here&#8217;, making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for &#8216;lorem ipsum&#8217; will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>\n",
+		"image": "http://patricenews-dev.vbi.vt.edu/wp-content/uploads/2012/08/flowchart-process.png",
+		"subtitle": "This is a subtitle for this tab",
+		"tab_title": "Data",
+		"title": "How do we process and clean up our data?",
+		"tools": [],
+		"workflows": []
+	},
+	"tools": {
+		"content": "<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#8217;s standard dummy text ever since the 1500s, <a title=\"Johannes Gutenberg\" href=\"http://en.wikipedia.org/wiki/Johannes_Gutenberg\" onclick=\"javascript:pageTracker._trackPageview('/outbound/article/en.wikipedia.org');\">when an unknown printer</a> took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>\n",
+		"subtitle": "This is an optional tab subtitle. ",
+		"tab_title": "Tools",
+		"title": "Analyze genomic data with Patric Tools",
+		"tools": [
+			{
+				"category": "Specialized Search",
+				"content": "<p>asdouhalhsd</p>\n",
+				"image": "http://patricenews-dev.vbi.vt.edu/wp-content/uploads/2012/09/31801700.jpeg",
+				"subtitle": "",
+				"title": "ID Mapping",
+				"url": ""
+			}, {
+				"category": "Comparative Genomics",
+				"content": "<p>text about this goes here</p>\n",
+				"image": "http://patricenews-dev.vbi.vt.edu/wp-content/uploads/2012/03/u18490450.jpeg",
+				"subtitle": "",
+				"title": "Comparative Pathways",
+				"url": "http://ww.example.com"
+			}, {
+				"category": "Specialized Search",
+				"content": "<p>Unde ea voluptatem maxime in laudantium occaecati dolorem nihil perferendis ducimus iste a unde aspernatur. Praesentium repellendus minima ut dolor. Sequi et velit blanditiis at eius tempora</p>\n",
+				"image": "http://patricenews-dev.vbi.vt.edu/wp-content/uploads/2012/09/u11859962.jpeg",
+				"subtitle": "",
+				"title": "Protein Family Sorter",
+				"url": ""
+			}, {
+				"category": "Specialized Search",
+				"content": "<p>Sunt et neque id et nesciunt debitis dolorem quia quia laboriosam accusantium alias recusandae. Enim deleniti tempore omnis sed qui. Nobis sapiente autem eum sunt recusandae odio perferendis doloremque repellat nam ducimus voluptatibus ea</p>\n",
+				"image": "http://patricenews-dev.vbi.vt.edu/wp-content/uploads/2012/09/k5305989.jpeg",
+				"subtitle": "",
+				"title": "Metadata",
+				"url": ""
+			}
+		],
+		"workflows": [
+			{
+				"bottom_left_headline": "Dig Deeper Tools Headline",
+				"bottom_right_headline": "Sample Bottom Right Headline",
+				"content": "",
+				"headline": "<b>this is</b> the workflow headline. <i>Testing tags!</i>",
+				"image": "http://patricenews-dev.vbi.vt.edu/wp-content/uploads/2012/03/bg-workflow-title-ecoli.png",
+				"subtitle": "",
+				"summary": "!!Summary text goes here. This <strong><em>may need</em></strong> to be html format instead of text, including the headline below.",
+				"title": "Example Workflow",
+				"url": "http://www.patricbrc.org/portal/portal/patric/Workflow?page=new-e-coli-strain-virulence-analysis-via-genomic-island"
+			}
+		]
+	},
+	"top5_1": {
+		"chart_desc": "Top 5 Bacterial Host",
+		"chart_title": "Bacterial Host",
+		"data": [
+			{
+				"icon": "/patric/images/hosts/human.png",
+				"label": "Homo sapiens",
+				"m_label": "sapiens",
+				"reported": 22,
+				"value": 1241
+			}, {
+				"icon": "/patric/images/hosts/cow.png",
+				"label": "Cow",
+				"m_label": "cow",
+				"value": 18
+			}, {
+				"icon": "/patric/images/hosts/pig.png",
+				"label": "Pig",
+				"m_label": "pig",
+				"value": 18
+			}, {
+				"icon": "/patric/images/hosts/tick.png",
+				"label": "Tick",
+				"m_label": "tick",
+				"value": 12
+			}, {
+				"icon": "/patric/images/hosts/sheep.png",
+				"label": "Sheep",
+				"m_label": "sheep",
+				"value": 11
+			}
+		],
+		"tab_title": "Host"
+	},
+	"top5_2": {
+		"chart_desc": "Top 5 Isolation Countries",
+		"chart_title": "Isolation Country",
+		"data": [
+			{
+				"icon": "/patric/images/flags/United-States.png",
+				"label": "USA",
+				"m_label": "vikesland",
+				"reported": 200,
+				"value": 711
+			}, {
+				"icon": "/patric/images/flags/China.png",
+				"label": "China",
+				"m_label": "china",
+				"value": 124
+			}, {
+				"icon": "/patric/images/flags/Brazil.png",
+				"label": "Brazil",
+				"m_label": "brazil",
+				"value": 103
+			}, {
+				"icon": "/patric/images/flags/Japan.png",
+				"label": "Japan",
+				"m_label": "japan",
+				"value": 62
+			}, {
+				"icon": "/patric/images/flags/Australia.png",
+				"label": "Australia",
+				"m_label": "australia",
+				"value": 47
+			}
+		],
+		"tab_title": "Isolation Country"
+	},
+	"top5_3": {
+		"chart_desc": "Top 5 sequencing platforms",
+		"chart_title": "Seq. Platform",
+		"data": [
+			{
+				"label": "HiSeq",
+				"m_label": "hiseq",
+				"value": 32657
+			}, {
+				"label": "HiScanSQ",
+				"m_label": "hiscan",
+				"value": 30120
+			}, {
+				"label": "Genome Analyzer IIx",
+				"m_label": "genome_analyzer",
+				"value": 28667
+			}, {
+				"label": "MySEQ",
+				"m_label": "myseq",
+				"value": 16000
+			}, {
+				"label": "UnderpaidPostdoc mk II",
+				"m_label": "postdoc",
+				"value": 15795
+			}
+		],
+		"tab_title": "Seq. Platform"
+	},
+	"topline": {
+		"content": "<p>Genomes are received on a regular basis from a multitude of sources (GenBank, XXX), and are subsequently made available via PATRIC&#8217;s searches and tools. We offer several annotations for our genomes, including those from RefSeq, Legacy BRC programs, and collaborating communities (e.g., TB). Our signature PATRIC annotation is generated via the RAST (Rapid Annotation Subsystems Technologies) Pipeline, resulting in a consistently annotated set of genomes in which meaningful comparisons can be made on a number of different levels (e.g,. function, pathways, protein families, etc.).</p>\n",
+		"image": "http://patricenews-dev.vbi.vt.edu/wp-content/uploads/2012/08/flowchart-process.png",
+		"subtitle": "Subtitle subtitle yay",
+		"tab_title": "Process",
+		"title": "Patric offers 5161 genomes distributed across Y bacterial organisms.",
+		"tools": [],
+		"workflows": []
+	}
+}

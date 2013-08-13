@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js' lang='en'>
+	<!--<![endif]-->
+	<head>
+		<!-- Always force the latest IE rendering engine (even in intranet) & Chrome Frame -->
+		<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible' />
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+		<meta http-equiv="Content-Language" content="en-US"/>
+		<title>PATRIC</title>
+
+		<!-- Mobile viewport optimized -->
+		<meta content='width=device-width, initial-scale=1.0' name='viewport' />
+		<link href='http://fonts.googleapis.com/css?family=Didact+Gothic' rel='stylesheet' type='text/css' />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js" type="text/javascript"></script>
+		<script src="/patric/js/libs/modernizr-1.6.min.js" type="text/javascript"></script>
+		<script src="/patric/js/plugins.min.js" type="text/javascript"></script>
+		<script src="/patric/js/script.js" type="text/javascript"></script>
+		<script src="http://cdn.sencha.io/ext-4.1.1-gpl/ext-all.js" type="text/javascript"></script>
+		<link href="http://cdn.sencha.io/ext-4.1.1-gpl/resources/css/ext-all.css" media="screen" rel="stylesheet" type="text/css" />
+		<link href="/patric/css/main.css" media="screen" rel="stylesheet" type="text/css" />
+		<!-- PATRIC CSS & JS -->
+		<script src="/patric/js/patric.min.js" type="text/javascript"></script>
+		<link href="/patric/css/patric.css" media="screen" rel="stylesheet" type="text/css" />
+		<script src="/portal-core/layouts/patric/modal.min.js" type="text/javascript"></script>
+	</head>
+	<body class='normal home'>
+	<div id="login-modal" style="display:none">
+		<div id="login-modal-msg" style="display:none;width:255px;height:109px">
+			<div id="loginIframe" class="login-content"></div>
+		</div>
+	</div>
+
+	<header class='main-header no-underline-links'>
+	<div class='masthead'>
+        <div class='wrapper'>
+          <a class="logo" href="/portal/portal/patric/Home">PATRIC Home</a>
+          <ul class='main-nav no-decoration'>
+            <li class='first active'><a class="home active" href="/portal/portal/patric/Home">Home</a></li>
+          </ul>
+	<!--
+          <div class='login'>
+		<div id='dashboardnav'>
+		<script type="text/javascript">
+		//<![CDATA[
+		function doLogin() {
+			alertModal('login-modal','login-modal-msg', 'http://www.patricbrc.org/portal/auth/portal/patric/Home');
+			return false;
+		}
+		//]]>
+		</script>
+		<span class='logged-in smallest'>
+			
+			<a class="button" href="javascript:void(0)" onclick="doLogin()">Login</a>
+			Not Registered? <a class="arrow-slate-e" href="https://www.patricbrc.org/portal/portal/patric/MyAccount/PATRICUserPortletWindow?_jsfBridgeViewId=%2Fjsf%2Findex.xhtml&amp;action=1">Sign Up</a>
+			
+			<br/><a href="http://enews.patricbrc.org/workspace-faqs/registration-faqs/" target="_blank">Learn About Registering</a>
+		</span>
+		</div>	
+          </div>
+	-->
+        </div>
+      </div>
+      <div class='toolbar ondark linkstyle-highlight-c'>
+        <div class='container'>
+	<!--
+          <form class='search' action="post" onsubmit="return false;">
+            <input placeholder='Search' type='text' id="global_search_keyword" name="global_search_keyword" />
+            <input type='submit' onclick="search_all_header()" />
+          </form>
+	-->
+	  <div style="float:left;margin-right: 17px;width: 311px;">&nbsp;</div>
+          <div class='workspace smallest'>
+              <span class='upper'>My workspace:</span>
+              <a class='arrow-white-e' href='#'><span id="cart" /></a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class='container'>
+        <section class='main' role='main'>
+		<script type="text/javascript">
+		//<![CDATA[
+		var fSet1 = {
+			name: "S enterica OM",
+			desc: "Salmonella enterica Outer Membrane Identified Proteins",
+			type: "Feature",
+			members:"32388190,32388421,32378453,32378663,32378735,32378955,32379157,32379341,32379363,32379435,32379485,32379515,32379627,32379647,32379861,32379865,32380013,32380035,32380041,32380167,32380411,32380477,32380577,32380705,32380801,32380803,32380807,32380809,32380815,32380947,32381049,32381135,32381137,32381141,32381233,32381375,32381415,32381429,32381441,32381495,32381554,32381646,32381676,32381977,32382119,32382161,32382423,32382435,32382477,32382497,32382501,32382553,32382993,32383143,32383197,32383401,32383403,32383409,32383525,32383607,32383669,32383803,32383983,32384030,32384430,32384434,32384436,32384484,32384535,32384589,32384695,32384705,32384817,32384979,32385143,32385321,32385771,32386049,32386117,32386261,32386293,32386477,32386693,32386779,32387142,32387367,32387389,32387425,32387591,32387745,32388125",
+			tags: "SysBEP,Salmonella,enterica,OM"
+		}
+			
+		function addFeaturesToGroup(featureSet) {
+			Ext.Ajax.request({
+				method:'POST',
+				params:{
+					group_name: featureSet.name,
+					group_desc: featureSet.desc,
+					group_type: featureSet.type,
+					tracks: featureSet.members,
+					tags: featureSet.tags
+				},
+				url: '/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=groupAction&action=create',
+				success: function(response, opts) {
+					updateCartInfo();
+				}
+			});
+		}
+		//]]>
+		</script>
+		
+		<br/><br/>
+		<h3 class="section-title normal-case close2x">
+			Salmonella enterica Outer Membrane Identified Proteins
+		</h3>
+		<div class="close2x" style="float:right">
+			<input type="button" value="Add to Workspace" onclick="addFeaturesToGroup(fSet1)">
+		</div>
+		<table class="basic stripe far2x">
+			<tr>
+				<th>
+					Genome
+				</th>
+				<th>
+					Locus Tag
+				</th>
+				<th>
+					RefSeq Locus Tag
+				</th>
+				<th>
+					Product Description
+				</th>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4854
+				</td>
+				<td>
+					PSLT009
+				</td>
+				<td>
+					Attachment invasion locus protein precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4970
+				</td>
+				<td>
+					PSLT103
+				</td>
+				<td>
+					IncF plasmid conjugative transfer surface exclusion protein TraT
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0096
+				</td>
+				<td>
+					STM0093
+				</td>
+				<td>
+					Outer membrane protein Imp, required for envelope biogenesis / Organic solvent tolerance protein precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0201
+				</td>
+				<td>
+					STM0191
+				</td>
+				<td>
+					Ferric hydroxamate outer membrane receptor FhuA
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0237
+				</td>
+				<td>
+					STM0224
+				</td>
+				<td>
+					Outer membrane protein assembly factor YaeT precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0340
+				</td>
+				<td>
+					STM0320
+				</td>
+				<td>
+					Outer membrane pore protein E precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0440
+				</td>
+				<td>
+					STM0413
+				</td>
+				<td>
+					Nucleoside-specific channel-forming protein Tsx precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0532
+				</td>
+				<td>
+					STM0498
+				</td>
+				<td>
+					Lead, cadmium, zinc and mercury transporting ATPase (EC 3.6.3.3) (EC 3.6.3.5); Copper-translocating P-type ATPase (EC 3.6.3.4)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0543
+				</td>
+				<td>
+					STM0509
+				</td>
+				<td>
+					Putative outer membrane protein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0579
+				</td>
+				<td>
+					STM0546
+				</td>
+				<td>
+					Outer membrane usher protein SfmD
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0602
+				</td>
+				<td>
+					STM0570
+				</td>
+				<td>
+					Outer membrane esterase
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0617
+				</td>
+				<td>
+					STM0585
+				</td>
+				<td>
+					TonB-dependent receptor; Outer membrane receptor for ferric enterobactin and colicins B, D
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0673
+				</td>
+				<td>
+					STM0638
+				</td>
+				<td>
+					Rare lipoprotein A precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0683
+				</td>
+				<td>
+					STM0647
+				</td>
+				<td>
+					LPS-assembly lipoprotein RlpB precursor (Rare lipoprotein B)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0783
+				</td>
+				<td>
+					STM0747
+				</td>
+				<td>
+					TolA protein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0785
+				</td>
+				<td>
+					STM0749
+				</td>
+				<td>
+					18K peptidoglycan-associated outer membrane lipoprotein; Peptidoglycan-associated lipoprotein precursor; Outer membrane protein P6; OmpA/MotB precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0854
+				</td>
+				<td>
+					STM0820
+				</td>
+				<td>
+					ATP-dependent RNA helicase RhlE
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0865
+				</td>
+				<td>
+					STM0831
+				</td>
+				<td>
+					Non-specific DNA-binding protein Dps / Iron-binding ferritin-like antioxidant protein / Ferroxidase (EC 1.16.3.1)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0868
+				</td>
+				<td>
+					STM0833
+				</td>
+				<td>
+					Outer membrane protein X precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0931
+				</td>
+				<td>
+					STM0892
+				</td>
+				<td>
+					probable lipoprotein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1052
+				</td>
+				<td>
+					STM0999
+				</td>
+				<td>
+					Outer membrane protein F precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1085
+				</td>
+				<td>
+					STM1025
+				</td>
+				<td>
+					Putative lipoprotein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1135
+				</td>
+				<td>
+					STM1070
+				</td>
+				<td>
+					Outer membrane protein A precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1198
+				</td>
+				<td>
+					STM1131
+				</td>
+				<td>
+					N-acetylneuraminic acid outer membrane channel protein NanC
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1245
+				</td>
+				<td>
+					STM1177
+				</td>
+				<td>
+					Flagellar hook protein FlgE
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1246
+				</td>
+				<td>
+					STM1178
+				</td>
+				<td>
+					Flagellar basal-body rod protein FlgF
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1248
+				</td>
+				<td>
+					STM1180
+				</td>
+				<td>
+					Flagellar L-ring protein FlgH
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1249
+				</td>
+				<td>
+					STM1181
+				</td>
+				<td>
+					Flagellar P-ring protein FlgI
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1252
+				</td>
+				<td>
+					STM1184
+				</td>
+				<td>
+					Flagellar hook-associated protein FlgL
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1318
+				</td>
+				<td>
+					STM1246
+				</td>
+				<td>
+					Attachment invasion locus protein precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1367
+				</td>
+				<td>
+					STM1286
+				</td>
+				<td>
+					MltA-interacting protein MipA
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1410
+				</td>
+				<td>
+					STM1327
+				</td>
+				<td>
+					Putative outer membrane protein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1411
+				</td>
+				<td>
+					STM1328
+				</td>
+				<td>
+					putative outer membrane protein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1413
+				</td>
+				<td>
+					STM1330
+				</td>
+				<td>
+					Nuclease precursor (EC 3.1.30.2)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1459
+				</td>
+				<td>
+					STM1376
+				</td>
+				<td>
+					major outer membrane lipoprotein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1528
+				</td>
+				<td>
+					STM1445
+				</td>
+				<td>
+					Outer membrane lipoprotein pcp precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1548
+				</td>
+				<td>
+					STM1466
+				</td>
+				<td>
+					Putative GTP-binding protein YdgA
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1555
+				</td>
+				<td>
+					STM1473
+				</td>
+				<td>
+					Outer membrane protein N precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1561
+				</td>
+				<td>
+					STM1478
+				</td>
+				<td>
+					Protein ydgH precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1588
+				</td>
+				<td>
+					STM1503
+				</td>
+				<td>
+					putative secreted protein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1617
+				</td>
+				<td>
+					STM1530
+				</td>
+				<td>
+					Outer membrane protein C precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1663
+				</td>
+				<td>
+					STM1572
+				</td>
+				<td>
+					Outer membrane porin protein NmpC precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1678
+				</td>
+				<td>
+					STM1587
+				</td>
+				<td>
+					Probable tonB-dependent receptor yncD precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1828
+				</td>
+				<td>
+					STM1732
+				</td>
+				<td>
+					Outer membrane protein W precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1898
+				</td>
+				<td>
+					STM1799
+				</td>
+				<td>
+					Membrane-bound lytic murein transglycosylase E (EC 3.2.1.-)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1919
+				</td>
+				<td>
+					STM1819
+				</td>
+				<td>
+					Starvation lipoprotein Slp paralog
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2050
+				</td>
+				<td>
+					STM1934
+				</td>
+				<td>
+					FIG00638267: hypothetical protein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2056
+				</td>
+				<td>
+					STM1940
+				</td>
+				<td>
+					Putative exported protein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2074
+				</td>
+				<td>
+					STM1959
+				</td>
+				<td>
+					Flagellar biosynthesis protein FliC
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2084
+				</td>
+				<td>
+					STM1968
+				</td>
+				<td>
+					Flagellar hook-basal body complex protein FliE
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2086
+				</td>
+				<td>
+					STM1969
+				</td>
+				<td>
+					Flagellar M-ring protein FliF
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2112
+				</td>
+				<td>
+					STM1995
+				</td>
+				<td>
+					Outer membrane protein C precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2327
+				</td>
+				<td>
+					STM2199
+				</td>
+				<td>
+					Colicin I receptor precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2401
+				</td>
+				<td>
+					STM2267
+				</td>
+				<td>
+					Outer membrane protein C precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2428
+				</td>
+				<td>
+					STM2294
+				</td>
+				<td>
+					Uncharacterized protein YfaZ precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2530
+				</td>
+				<td>
+					STM2391
+				</td>
+				<td>
+					Long-chain fatty acid transport protein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2531
+				</td>
+				<td>
+					STM2392
+				</td>
+				<td>
+					Lipoprotein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2533
+				</td>
+				<td>
+					STM2395
+				</td>
+				<td>
+					Protease VII (Omptin) precursor (EC 3.4.23.49)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2585
+				</td>
+				<td>
+					STM2447
+				</td>
+				<td>
+					Predicted outer membrane lipoprotein YfeY
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2626
+				</td>
+				<td>
+					STM2488
+				</td>
+				<td>
+					Outer membrane protein NlpB, lipoprotein component of the protein assembly complex (forms a complex with YaeT, YfiO, and YfgL); Lipoprotein-34 precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2657
+				</td>
+				<td>
+					STM2520
+				</td>
+				<td>
+					Outer membrane protein YfgL, lipoprotein component of the protein assembly complex (forms a complex with YaeT, YfiO, and NlpB)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2724
+				</td>
+				<td>
+					STM2583
+				</td>
+				<td>
+					Translation elongation factor LepA
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2809
+				</td>
+				<td>
+					STM2663
+				</td>
+				<td>
+					Probable component of the lipoprotein assembly complex (forms a complex with YaeT, YfgL, and NlpB)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2832
+				</td>
+				<td>
+					STM2687
+				</td>
+				<td>
+					Putative oligoketide cyclase/dehydratase or lipid transport protein YfjG
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3027
+				</td>
+				<td>
+					STM2871
+				</td>
+				<td>
+					Type III secretion bridge between inner and outermembrane lipoprotein (YscJ,HrcJ,EscJ, PscJ)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3029
+				</td>
+				<td>
+					STM2873
+				</td>
+				<td>
+					Type III secretion cytoplasmic protein (YscF)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3030
+				</td>
+				<td>
+					STM2874
+				</td>
+				<td>
+					Type III secretion protein EprH
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3054
+				</td>
+				<td>
+					STM2898
+				</td>
+				<td>
+					Protein InvG precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3079
+				</td>
+				<td>
+					STM2925
+				</td>
+				<td>
+					Lipoprotein NlpD
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3106
+				</td>
+				<td>
+					STM2945
+				</td>
+				<td>
+					Secreted protein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3159
+				</td>
+				<td>
+					STM2983
+				</td>
+				<td>
+					probable lipoprotein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3164
+				</td>
+				<td>
+					STM2988
+				</td>
+				<td>
+					Membrane-bound lytic murein transglycosylase A precursor (EC 3.2.1.-)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3217
+				</td>
+				<td>
+					STM3038
+				</td>
+				<td>
+					Uncharacterized lipoprotein YgeR precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3298
+				</td>
+				<td>
+					STM3112
+				</td>
+				<td>
+					Membrane-bound lytic murein transglycosylase C precursor (EC 3.2.1.-)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3379
+				</td>
+				<td>
+					STM3186
+				</td>
+				<td>
+					Type I secretion outer membrane protein, TolC precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3466
+				</td>
+				<td>
+					STM3267
+				</td>
+				<td>
+					21 kDa hemolysin precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3683
+				</td>
+				<td>
+					STM3485
+				</td>
+				<td>
+					DamX, an inner membrane protein involved in bile resistance
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3822
+				</td>
+				<td>
+					STM3616
+				</td>
+				<td>
+					Cellulose synthase operon protein C
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3855
+				</td>
+				<td>
+					STM3645
+				</td>
+				<td>
+					Outer membrane protein A precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3927
+				</td>
+				<td>
+					STM3713
+				</td>
+				<td>
+					Oligosaccharide repeat unit polymerase Wzy; O-antigen ligase
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3943
+				</td>
+				<td>
+					STM3727
+				</td>
+				<td>
+					LSU ribosomal protein L33p
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4034
+				</td>
+				<td>
+					STM3810
+				</td>
+				<td>
+					Outer membrane lipoprotein YidQ
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4136
+				</td>
+				<td>
+					STM3914
+				</td>
+				<td>
+					ATP-dependent RNA helicase RhlB
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4175
+				</td>
+				<td>
+					STM3957
+				</td>
+				<td>
+					Phospholipase A1 precursor (EC 3.1.1.32, EC 3.1.1.4); Outer membrane phospholipase A
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4351
+				</td>
+				<td>
+					STM4130
+				</td>
+				<td>
+					Outer membrane vitamin B12 receptor BtuB
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4451
+				</td>
+				<td>
+					STM4231
+				</td>
+				<td>
+					Maltoporin (maltose/maltodextrin high-affinity receptor, phage lambda receptor protein)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4462
+				</td>
+				<td>
+					STM4242
+				</td>
+				<td>
+					Putative exported protein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4480
+				</td>
+				<td>
+					STM4259
+				</td>
+				<td>
+					Agglutination protein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4562
+				</td>
+				<td>
+					STM4336
+				</td>
+				<td>
+					Entericidin B precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4636
+				</td>
+				<td>
+					STM4409
+				</td>
+				<td>
+					Uncharacterized protein YtfM precursor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4822
+				</td>
+				<td>
+					STM4579
+				</td>
+				<td>
+					DNA repair protein RadA
+				</td>
+			</tr>
+		</table>        </section>
+    </div>
+
+    <footer class='ondark linkstyle-highlight-c smallest no-underline-links main-footer'>
+      <div class='container'>
+        <div class='column' style="border:0px">
+          <div class='wrapper'>
+            <h4 class='close2x normal-weight'>PATRIC</h4>
+            <p class="close">Virginia Bioinformatics Institute</p>
+            <p class='close'>Washington Street</p>
+            <p>Blacksburg, VA 24060</p>
+            <a class="button" href="http://enews.patricbrc.org/contact-us/">Contact Us</a>
+          </div>
+        </div>
+        <div class='column'>
+          <div class='wrapper'>
+            <h4 class='normal-weight close2x'>How to Cite PATRIC</h4>
+            <p>If you use PATRIC web resources to assist in research publications or proposals please cite as:</p>
+            <a class="button" href="http://enews.patricbrc.org/citing-patric/">How to cite PATRIC</a>
+          </div>
+        </div>
+        <div class='column'>
+          <div class='wrapper'>
+            <h4 class='normal-weight close2x'>Funding Statement</h4>
+            <p>This project has been funded in whole or in part with Federal funds from the 
+               National Institute of Allergy and Infectious Diseases, National Institutes of Health,
+               Department of Health and Human Services,
+               under Contract No. HHSN272200900040C, awarded to BWS Sobral</p>
+          </div>
+        </div>
+        <div class='column last bold'>
+          <div class='wrapper'>
+            <h4 class='normal-weight close'>Follow Us:</h4>
+            <ul class='left no-decoration'>
+              <li><a class="footer-icons sprite-icon-subscribe" href="http://enews.patricbrc.org/subscribe/">Subscribe</a></li>
+              <li><a class="footer-icons sprite-icon-twitter" href="http://twitter.com/PATRICBRC">Twitter</a></li>
+              <li><a class="footer-icons sprite-icon-facebook" href="http://www.facebook.com/pages/Pathosystems-Resource-Integration-Center-PATRIC/117100971687823">Facebook</a></li>
+              
+            </ul>
+            <ul class='left no-decoration'>
+              <li><a class="footer-icons sprite-icon-enews" href="http://enews.patricbrc.org/">eNews</a></li>
+              <li><a class="footer-icons sprite-icon-rss" href="http://enews.patricbrc.org/feed/">RSS</a></li>
+              <li><a class="footer-icons sprite-icon-youtube" href="http://www.youtube.com/user/PATRICBRC">YouTube</a></li>
+              <li><a class="footer-icons sprite-icon-share" href="http://www.addthis.com/bookmark.php?v=250&username=xa-4c40660c515875dc">Share This</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+	<script type="text/javascript">
+	//<![CDATA[
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-11736060-1']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	//]]>
+	</script>
+</html>
+

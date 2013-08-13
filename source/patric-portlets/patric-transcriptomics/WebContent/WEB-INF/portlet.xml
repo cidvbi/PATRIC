@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2013 Virginia Polytechnic Institute and State University
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<portlet-app version="" xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" 
+	xmlns:xml="http://www.w3.org/XML/1998/namespace" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd 
+							http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd ">
+	<portlet>
+		<portlet-name>TestFileUploader</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.TestFileUploader</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Test File Uploader,a</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>SingleExperiment</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.SingleExperiment</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Single Experiment</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>eid</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>TranscriptomicsGene</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.TranscriptomicsGene</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Transcriptomics Gene List</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>display_mode</supported-public-render-parameter>
+		<supported-public-render-parameter>param_key</supported-public-render-parameter>
+		<supported-public-render-parameter>expId</supported-public-render-parameter>
+		<supported-public-render-parameter>sampleId</supported-public-render-parameter>
+		<supported-public-render-parameter>colId</supported-public-render-parameter>
+		<supported-public-render-parameter>log_ratio</supported-public-render-parameter>
+		<supported-public-render-parameter>zscore</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>TranscriptomicsGeneFeature</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.TranscriptomicsGeneFeature</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Transcriptomics Feature</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>param_key</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>TranscriptomicsEnrichment</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.TranscriptomicsEnrichment</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Pathway Summary</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>param_key</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>TranscriptomicsGeneExp</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.TranscriptomicsGeneExp</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Transcriptomics Gene Level Expression</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>sampleId</supported-public-render-parameter>
+		<supported-public-render-parameter>log_ratio</supported-public-render-parameter>
+		<supported-public-render-parameter>zscore</supported-public-render-parameter>
+		<supported-public-render-parameter>start</supported-public-render-parameter>
+		<supported-public-render-parameter>end</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>TranscriptomicsGeneCorrelated</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.TranscriptomicsGeneCorrelated</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Transcriptomics Correlated Gene List</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+	</portlet>	
+	<public-render-parameter>
+		<identifier>context_type</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:context_type</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>context_id</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:context_id</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>display_mode</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:display_mode</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>param_key</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:param_key</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>expId</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:expId</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>sampleId</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:sampleId</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>colId</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:colId</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>log_ratio</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:log_ratio</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>zscore</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:zscore</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>start</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:start</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>end</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:end</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>eid</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:eid</qname>
+	</public-render-parameter>
+</portlet-app>

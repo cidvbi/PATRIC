@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js' lang='en'>
+	<!--<![endif]-->
+	<head>
+		<!-- Always force the latest IE rendering engine (even in intranet) & Chrome Frame -->
+		<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible' />
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+		<meta http-equiv="Content-Language" content="en-US"/>
+		<title>PATRIC</title>
+
+		<!-- Mobile viewport optimized -->
+		<meta content='width=device-width, initial-scale=1.0' name='viewport' />
+		<link href='http://fonts.googleapis.com/css?family=Didact+Gothic' rel='stylesheet' type='text/css' />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js" type="text/javascript"></script>
+		<script src="/patric/js/libs/modernizr-1.6.min.js" type="text/javascript"></script>
+		<script src="/patric/js/plugins.min.js" type="text/javascript"></script>
+		<script src="/patric/js/script.js" type="text/javascript"></script>
+		<script src="http://cdn.sencha.io/ext-4.1.1-gpl/ext-all.js" type="text/javascript"></script>
+		<link href="http://cdn.sencha.io/ext-4.1.1-gpl/resources/css/ext-all.css" media="screen" rel="stylesheet" type="text/css" />
+		<link href="/patric/css/main.css" media="screen" rel="stylesheet" type="text/css" />
+		<!-- PATRIC CSS & JS -->
+		<script src="/patric/js/patric.min.js" type="text/javascript"></script>
+		<link href="/patric/css/patric.css" media="screen" rel="stylesheet" type="text/css" />
+		<script src="/portal-core/layouts/patric/modal.min.js" type="text/javascript"></script>
+	</head>
+	<body class='normal home'>
+	<div id="login-modal" style="display:none">
+		<div id="login-modal-msg" style="display:none;width:255px;height:109px">
+			<div id="loginIframe" class="login-content"></div>
+		</div>
+	</div>
+
+	<header class='main-header no-underline-links'>
+	<div class='masthead'>
+        <div class='wrapper'>
+          <a class="logo" href="/portal/portal/patric/Home">PATRIC Home</a>
+          <ul class='main-nav no-decoration'>
+            <li class='first active'><a class="home active" href="/portal/portal/patric/Home">Home</a></li>
+          </ul>
+	<!--
+          <div class='login'>
+		<div id='dashboardnav'>
+		<script type="text/javascript">
+		//<![CDATA[
+		function doLogin() {
+			alertModal('login-modal','login-modal-msg', 'http://www.patricbrc.org/portal/auth/portal/patric/Home');
+			return false;
+		}
+		//]]>
+		</script>
+		<span class='logged-in smallest'>
+			
+			<a class="button" href="javascript:void(0)" onclick="doLogin()">Login</a>
+			Not Registered? <a class="arrow-slate-e" href="https://www.patricbrc.org/portal/portal/patric/MyAccount/PATRICUserPortletWindow?_jsfBridgeViewId=%2Fjsf%2Findex.xhtml&amp;action=1">Sign Up</a>
+			
+			<br/><a href="http://enews.patricbrc.org/workspace-faqs/registration-faqs/" target="_blank">Learn About Registering</a>
+		</span>
+		</div>	
+          </div>
+	-->
+        </div>
+      </div>
+      <div class='toolbar ondark linkstyle-highlight-c'>
+        <div class='container'>
+	<!--
+          <form class='search' action="post" onsubmit="return false;">
+            <input placeholder='Search' type='text' id="global_search_keyword" name="global_search_keyword" />
+            <input type='submit' onclick="search_all_header()" />
+          </form>
+	-->
+	  <div style="float:left;margin-right: 17px;width: 311px;">&nbsp;</div>
+          <div class='workspace smallest'>
+              <span class='upper'>My workspace:</span>
+              <a class='arrow-white-e' href='#'><span id="cart" /></a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class='container'>
+        <section class='main' role='main'>
+<h1>EHEC 2011 Outbreak</h1>	
+<script type="text/javascript">
+//<![CDATA[
+
+	var fSet1 = {
+		name:'Unique proteins in E coli TY-2482',
+		desc:'Proteins with no hits to E. coli protein database (e value <= 1e-5)', 
+		members:'48367664,48368816,48373145,48374516,48364657,48368417,48364909,48372870,48373511,48369630,48373627,48367261,48374880,48366462,48371672,48368256,48366765,48365429,48374368,48368390,48365831,48374565,48374830,48368350,48369530,48364781,48365114,48364163,48365988,48374888,48372411,48374578,48368693,48374260,48371466,48371462,48367804,48365641,48367378,48369678,48369681,48373210,48371226,48367672,48369856,48366590,48370156,48370166,48365278,48365283,48367309,48374586'
+	}
+
+	var fSet2 = {
+		name:'Unique proteins in E coli O104:H4 str. LB226692',
+		desc:'Proteins with no hits to E. coli protein database (e value <= 1e-5)', 
+		members:'48464381,48476111,48465329,48469281,48465628,48465926,48470878,48476008,48476492,48469841,48469965,48470280,48472973,48475531,48467742,48468203,48468256,48473847,48473860,48471430,48464851,48476230,48466767,48471661,48471852,48471990,48472364,48472554,48474293,48474489,48474491,48476433,48475231,48464058,48465774,48465776,48466357,48466397,48466438,48476044,48466265,48475747,48475321,48474745,48474903,48468928,48475012,48475025,48467684,48473458,48473643,48467032,48473308,48466255'
+	}
+
+function addFeaturesToGroup(featureSet) {
+	
+	Ext.Ajax.request({
+		url:'/portal/portal/patric/BreadCrumb/PersistentCartWindow?action=b&cacheability=PAGE',
+		params: {
+			action_type:'groupAction',
+			action:'add',
+			group_name:featureSet.name,
+			group_desc:featureSet.desc,
+			fid:featureSet.members
+		},
+		method:'POST',
+		success: function(rs, opts) {
+			Ext.getDom("cart").innerHTML = rs.responseText;
+		}
+	});
+}
+
+//]]>
+</script>
+
+<a name="GOS1"></a>
+<div class="table-container">
+<h2 class="section-title normal-case close2x">Unique proteins in Escherichia coli GOS1</h2>
+<table class="basic stripe far2x">
+	<tr><th>Locus Tag</th><th>Length</th><th>Product Description</th><th>Top Ab Resistance Gene ID</th><th>Top Ab Resistance Gene Product</th><th>Top Virulence Factor ID</th><th>Top Virulence Factor Product</th></tr>
+	<tr><td>EcoGOS1_00005</td><td>38</td><td>FIG00640380: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_00266</td><td>50</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_00304</td><td>42</td><td>FIG00643779: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_00320</td><td>39</td><td>FIG00639962: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_00336</td><td>38</td><td>FIG00639131: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_00340</td><td>83</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_00441</td><td>45</td><td>FIG00638457: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_00866</td><td>38</td><td>FIG00640305: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_00931</td><td>42</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_00950</td><td>51</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_01239</td><td>44</td><td>FIG00640227: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_01240</td><td>137</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_01346</td><td>53</td><td>Arylsulfatase (EC 3.1.6.1)</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_01394</td><td>80</td><td>YjbE secreted protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_01399</td><td>42</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_01530</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_01610</td><td>38</td><td>FIG00641394: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_01734</td><td>39</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_01835</td><td>44</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_01888</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_02074</td><td>44</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_02113</td><td>51</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_02150</td><td>44</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_02193</td><td>91</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_02197</td><td>83</td><td>Phage protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_02305</td><td>44</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_02482</td><td>39</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_02484</td><td>37</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_02496</td><td>84</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_02532</td><td>111</td><td>Acid shock protein 1 precursor</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_03053</td><td>37</td><td>Hypothetical lipoprotein yajI</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_03179</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_03358</td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_03360</td><td>41</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_03451</td><td>45</td><td>FIG00640011: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_03655</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_03689</td><td>46</td><td>FIG00640585: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_03711</td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_04130</td><td>43</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_04403</td><td>245</td><td>conserved hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_04404</td><td>44</td><td>FIG00641818: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_04650</td><td>41</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_04682</td><td>38</td><td>FIG00643940: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_04684</td><td>37</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_04695</td><td>39</td><td>FIG00644081: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_04720</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_04759</td><td>45</td><td>IncF plasmid conjugative transfer DNA-nicking and unwinding protein TraI</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_04920</td><td>53</td><td>probable exported protein YPO0432</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_04987</td><td>45</td><td>FIG00642631: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_04989</td><td>64</td><td>Transposase</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_05012</td><td>59</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_05075</td><td>101</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS1_05137</td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+</table>
+</div>
+<br/><br/>
+<a name="GOS2"></a>
+<div class="table-container">
+<h2 class="section-title normal-case close2x">Unique proteins in Escherichia coli GOS2</h2>
+<table class="basic stripe far2x">
+	<tr><th>Locus Tag</th><th>Length</th><th>Product Description</th><th>Top Ab Resistance Gene ID</th><th>Top Ab Resistance Gene Product</th><th>Top Virulence Factor ID</th><th>Top Virulence Factor Product</th></tr>
+	<tr><td>EcoGOS2_00225</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_00509</td><td>44</td><td>FIG00641818: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_00510</td><td>245</td><td>conserved hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_00538</td><td>45</td><td>FIG00640011: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_00630</td><td>41</td><td>Entericidin A precursor</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_00727</td><td>50</td><td>hypothetical protein</td><td>-</td><td>-</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=26371">MVirDB:26371</a></td><td>cryptopsoridial_mucin,_large_thr_stre</td></tr>
+	<tr><td>EcoGOS2_00761</td><td>84</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_00798</td><td>111</td><td>Acid shock protein 1 precursor</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_00953</td><td>64</td><td>Transposase</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_01400</td><td>37</td><td>Hypothetical lipoprotein yajI</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_01526</td><td>39</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_01605</td><td>46</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_01651</td><td>44</td><td>FIG00641645: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_01674</td><td>41</td><td>FIG00642497: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_01761</td><td>45</td><td>FIG00638457: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_01945</td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_02210</td><td>66</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_02471</td><td>42</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_02512</td><td>91</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_02515</td><td>83</td><td>Phage protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_02885</td><td>41</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_02956</td><td>59</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_02995</td><td>101</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_03017</td><td>45</td><td>IncF plasmid conjugative transfer DNA-nicking and unwinding protein TraI</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_03216</td><td>60</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_03248</td><td>44</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_03279</td><td>39</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_03280</td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_03436</td><td>43</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_03446</td><td>45</td><td>Transposase</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_03453</td><td>42</td><td>FIG00643779: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_03471</td><td>39</td><td>FIG00639962: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_03487</td><td>38</td><td>FIG00639131: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_03631</td><td>114</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_03744</td><td>46</td><td>FIG00640585: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_03761</td><td>38</td><td>FIG00643940: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_03763</td><td>37</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_03769</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_03774</td><td>39</td><td>FIG00644081: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_03937</td><td>38</td><td>FIG00641394: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_04017</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_04164</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_04243</td><td>137</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_04244</td><td>44</td><td>FIG00640227: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_04733</td><td>44</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_04982</td><td>38</td><td>FIG00640305: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_05004</td><td>44</td><td>hypothetical protein</td><td>-</td><td>-</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=26407">MVirDB:26407</a></td><td>ROP8_[Toxoplasma_gondii]|ROP</td></tr>
+	<tr><td>EcoGOS2_05011</td><td>45</td><td>FIG00642631: hypothetical protein</td><td>-</td><td>-</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=10876">MVirDB:10876</a></td><td>tr|Q95VP0|Q95VP0_GIALA_Alpha-3_giardi</td></tr>
+	<tr><td>EcoGOS2_05141</td><td>39</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_05143</td><td>37</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_05160</td><td>83</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_05246</td><td>53</td><td>Arylsulfatase (EC 3.1.6.1)</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_05321</td><td>42</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoGOS2_05326</td><td>80</td><td>YjbE secreted protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+</table>
+</div>
+
+<br/><br/>
+<a name="H112180280"></a>
+<div class="table-container">
+<h2 class="section-title normal-case close2x">Unique proteins in Escherichia coli H112180280</h2>
+<table class="basic stripe far2x">
+	<tr><th>Locus Tag</th><th>Length</th><th>Product Description</th><th>Top Ab Resistance Gene ID</th><th>Top Ab Resistance Gene Product</th><th>Top Virulence Factor ID</th><th>Top Virulence Factor Product</th></tr>
+	<tr><td>EcoH112_00147</td><td>41</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_00257</td><td>39</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_00310</td><td>44</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_00394</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_00460</td><td>53</td><td>Arylsulfatase (EC 3.1.6.1)</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_00522</td><td>45</td><td>IncF plasmid conjugative transfer DNA-nicking and unwinding protein TraI</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_00559</td><td>59</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_00703</td><td>71</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_00715</td><td>67</td><td>FIG00643008: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_00776</td><td>45</td><td>FIG00638457: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_00863</td><td>41</td><td>FIG00642497: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_00963</td><td>45</td><td>FIG00640011: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_01291</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_01369</td><td>38</td><td>FIG00641394: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_01535</td><td>40</td><td>FIG00641387: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_01548</td><td>39</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_01558</td><td>66</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_01592</td><td>43</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_01755</td><td>42</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_01760</td><td>80</td><td>YjbE secreted protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_01974</td><td>37</td><td>Hypothetical lipoprotein yajI</td><td>-</td><td>-</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=23650">MVirDB:23650</a></td><td>RecName:_Full=Macrolide_export_ATP-bi</td></tr>
+	<tr><td>EcoH112_02103</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_02340</td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_02503</td><td>37</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_02510</td><td>45</td><td>FIG00642631: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_02568</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_02610</td><td>38</td><td>FIG00640380: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_02611</td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_03403</td><td>46</td><td>FIG00640585: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_03513</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_03566</td><td>44</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_03942</td><td>245</td><td>conserved hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_03947</td><td>67</td><td>FIG00639919: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_04170</td><td>101</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_04236</td><td>44</td><td>FIG00641645: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_04259</td><td>83</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_04262</td><td>38</td><td>FIG00639131: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_04278</td><td>39</td><td>FIG00639962: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_04295</td><td>42</td><td>FIG00643779: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_04299</td><td>64</td><td>Transposase</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_04316</td><td>38</td><td>FIG00643940: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_04318</td><td>37</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_04319</td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td><a target="_blank" href="http://www.ncbi.nlm.nih.gov/protein/16763823">Victor:NP_45943</a></td><td>cytochrome o ubiquinol oxidase subunit I [Salmonella enterica subsp. enterica serovar Typhimurium str. LT2]</td></tr>
+	<tr><td>EcoH112_04325</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_04331</td><td>39</td><td>FIG00644081: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_04346</td><td>42</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_04519</td><td>101</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_04630</td><td>43</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_04947</td><td>91</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_04950</td><td>83</td><td>Phage protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_04970</td><td>39</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_04973</td><td>37</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_04985</td><td>84</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_05021</td><td>111</td><td>Acid shock protein 1 precursor</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_05300</td><td>38</td><td>FIG00640305: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH112_05364</td><td>66</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+</table>
+</div>
+
+<br/><br/>
+<a name="H112180282"></a>
+<div class="table-container">
+<h2 class="section-title normal-case close2x">Unique proteins in Escherichia coli H112180282</h2>
+<table class="basic stripe far2x">
+	<tr><th>Locus Tag</th><th>Length</th><th>Product Description</th><th>Top Ab Resistance Gene ID</th><th>Top Ab Resistance Gene Product</th><th>Top Virulence Factor ID</th><th>Top Virulence Factor Product</th></tr>
+	<tr><td>EcoH282_00003</td><td>46</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_00076</td><td>256</td><td>Lipoprotein releasing system transmembrane protein LolE</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_00277</td><td>111</td><td>Acid shock protein 1 precursor</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_00313</td><td>84</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_00582</td><td>45</td><td>FIG00640011: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_00617</td><td>137</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_00618</td><td>44</td><td>FIG00640227: hypothetical protein</td><td>-</td><td>-</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=7654">MVirDB:7654</a></td><td>hypothetical_protein_c2429_[Escherichia</td></tr>
+	<tr><td>EcoH282_00620</td><td>51</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_00863</td><td>44</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_00915</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_01251</td><td>65</td><td>Single-stranded DNA-binding protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_01269</td><td>39</td><td>FIG00644081: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_01276</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_01281</td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_01282</td><td>37</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_01285</td><td>38</td><td>FIG00643940: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_01310</td><td>46</td><td>FIG00640585: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_01351</td><td>39</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_01353</td><td>37</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_01469</td><td>42</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_01575</td><td>39</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_01640</td><td>53</td><td>probable exported protein YPO0432</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_01739</td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_01741</td><td>41</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_02161</td><td>91</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_02202</td><td>42</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_02511</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_02529</td><td>38</td><td>FIG00640380: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_02530</td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_02570</td><td>38</td><td>FIG00639131: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_02586</td><td>39</td><td>FIG00639962: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_02602</td><td>42</td><td>FIG00643779: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_02808</td><td>41</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_02917</td><td>45</td><td>IncF plasmid conjugative transfer DNA-nicking and unwinding protein TraI</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_02929</td><td>64</td><td>Transposase</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_02938</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_03232</td><td>113</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_03334</td><td>44</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_03347</td><td>83</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_03394</td><td>40</td><td>FIG00641387: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_03438</td><td>45</td><td>FIG00642631: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_03444</td><td>41</td><td>FIG00642497: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_03529</td><td>45</td><td>FIG00638457: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_03600</td><td>43</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_03725</td><td>69</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_03758</td><td>53</td><td>Arylsulfatase (EC 3.1.6.1)</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_03825</td><td>59</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_03953</td><td>66</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_04092</td><td>37</td><td>Hypothetical lipoprotein yajI</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_04193</td><td>43</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_04399</td><td>50</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_04406</td><td>42</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_04470</td><td>38</td><td>FIG00640305: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_04648</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_04725</td><td>38</td><td>FIG00641394: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_04877</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_04883</td><td>245</td><td>conserved hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_04898</td><td>83</td><td>Phage protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH282_05094</td><td>63</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+</table>
+</div>
+
+<br/><br/>
+<a name="H112180283"></a>
+<div class="table-container">
+<h2 class="section-title normal-case close2x">Unique proteins in Escherichia coli H112180283</h2>
+<table class="basic stripe far2x">
+	<tr><th>Locus Tag</th><th>Length</th><th>Product Description</th><th>Top Ab Resistance Gene ID</th><th>Top Ab Resistance Gene Product</th><th>Top Virulence Factor ID</th><th>Top Virulence Factor Product</th></tr>
+	<tr><td>EcoH283_00025</td><td>46</td><td>FIG00640585: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_00113</td><td>111</td><td>Acid shock protein 1 precursor</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_00150</td><td>84</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_00165</td><td>137</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_00167</td><td>41</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_00169</td><td>51</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_00360</td><td>83</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_00406</td><td>39</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_00599</td><td>63</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_00785</td><td>44</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_00796</td><td>45</td><td>FIG00642631: hypothetical protein</td><td>-</td><td>-</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=10876">MVirDB:10876</a></td><td>tr|Q95VP0|Q95VP0_GIALA_Alpha-3_giardi</td></tr>
+	<tr><td>EcoH283_00810</td><td>38</td><td>FIG00643940: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_00812</td><td>37</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_00818</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_00826</td><td>39</td><td>FIG00644081: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_00853</td><td>41</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_01001</td><td>38</td><td>FIG00641394: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_01077</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_01114</td><td>38</td><td>FIG00639131: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_01287</td><td>43</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_01327</td><td>45</td><td>FIG00640011: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_01485</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_01501</td><td>45</td><td>IncF plasmid conjugative transfer DNA-nicking and unwinding protein TraI</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_01517</td><td>41</td><td>Entericidin A precursor</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_01874</td><td>64</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_02071</td><td>83</td><td>Phage protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_02073</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_02075</td><td>91</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_02117</td><td>42</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_02178</td><td>40</td><td>FIG00641387: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_02304</td><td>38</td><td>FIG00640305: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_02368</td><td>42</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_02406</td><td>80</td><td>YjbE secreted protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_02411</td><td>42</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_02800</td><td>50</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_02867</td><td>245</td><td>conserved hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_03055</td><td>114</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_03200</td><td>53</td><td>probable exported protein YPO0432</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_03300</td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_03553</td><td>45</td><td>FIG00638457: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_03639</td><td>41</td><td>FIG00642497: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_03754</td><td>64</td><td>Transposase</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_03762</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_03789</td><td>37</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_03791</td><td>39</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_03972</td><td>59</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_04100</td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_04101</td><td>38</td><td>FIG00640380: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_04177</td><td>101</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_04301</td><td>58</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_04302</td><td>55</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_04440</td><td>37</td><td>Hypothetical lipoprotein yajI</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_04594</td><td>53</td><td>Arylsulfatase (EC 3.1.6.1)</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_04669</td><td>44</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_04817</td><td>44</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH283_05060</td><td>41</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+</table>
+</div>
+
+<br/><br/>
+<a name="H112180540"></a>
+<div class="table-container">
+<h2 class="section-title normal-case close2x">Unique proteins in Escherichia coli H112180540</h2>
+<table class="basic stripe far2x">
+	<tr><th>Locus Tag</th><th>Length</th><th>Product Description</th><th>Top Ab Resistance Gene ID</th><th>Top Ab Resistance Gene Product</th><th>Top Virulence Factor ID</th><th>Top Virulence Factor Product</th></tr>
+	<tr><td>EcoH540_00008</td><td>59</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_00012</td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_00057</td><td>83</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_00180</td><td>45</td><td>FIG00642631: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_00188</td><td>65</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_00283</td><td>37</td><td>Hypothetical lipoprotein yajI</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_00422</td><td>66</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_00514</td><td>45</td><td>FIG00640011: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_00782</td><td>41</td><td>FIG00642497: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_00813</td><td>46</td><td>FIG00640585: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_00950</td><td>38</td><td>FIG00641394: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_01027</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_01061</td><td>83</td><td>Phage protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_01063</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_01065</td><td>91</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_01323</td><td>64</td><td>Transposase</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_01332</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_01454</td><td>42</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_01459</td><td>80</td><td>YjbE secreted protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_01760</td><td>45</td><td>IncF plasmid conjugative transfer DNA-nicking and unwinding protein TraI</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_01947</td><td>44</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_02313</td><td>101</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_02566</td><td>114</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_02677</td><td>44</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_02682</td><td>84</td><td>hypothetical protein</td><td>-</td><td>-</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=18994">MVirDB:18994</a></td><td>regulatory_protein_KorSA_[Streptomyce</td></tr>
+	<tr><td>EcoH540_02720</td><td>111</td><td>Acid shock protein 1 precursor</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_02887</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_03158</td><td>38</td><td>FIG00639131: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_03189</td><td>42</td><td>FIG00643779: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_03308</td><td>40</td><td>FIG00641387: hypothetical protein</td><td>-</td><td>-</td><td><a target="_blank" href="http://www.ncbi.nlm.nih.gov/protein/70984154">Victor:XP_74759</a></td><td>para-aminobenzoate synthase PabaA [Aspergillus fumigatus Af293]</td></tr>
+	<tr><td>EcoH540_03642</td><td>39</td><td>FIG00644081: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_03650</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_03655</td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_03656</td><td>37</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_03657</td><td>38</td><td>FIG00643940: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_03802</td><td>41</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_03910</td><td>45</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_03915</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_03929</td><td>39</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_03931</td><td>37</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_03983</td><td>38</td><td>FIG00640305: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_04047</td><td>42</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_04082</td><td>53</td><td>Arylsulfatase (EC 3.1.6.1)</td><td>-</td><td>-</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=8313">MVirDB:8313</a></td><td>putative_flagellar_basal-body_rod_prot</td></tr>
+	<tr><td>EcoH540_04198</td><td>53</td><td>probable exported protein YPO0432</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_04299</td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_04718</td><td>43</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_04755</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_04984</td><td>256</td><td>Lipoprotein releasing system transmembrane protein LolE</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_05167</td><td>41</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_05168</td><td>44</td><td>FIG00640227: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_05169</td><td>137</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_05303</td><td>44</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH540_05315</td><td>39</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+</table>
+</div>
+
+<br/><br/>
+<a name="H112180541"></a>
+<div class="table-container">
+<h2 class="section-title normal-case close2x">Unique proteins in Escherichia coli H112180541</h2>
+<table class="basic stripe far2x">
+	<tr><th>Locus Tag</th><th>Length</th><th>Product Description</th><th>Top Ab Resistance Gene ID</th><th>Top Ab Resistance Gene Product</th><th>Top Virulence Factor ID</th><th>Top Virulence Factor Product</th></tr>
+	<tr><td>EcoH541_00034</td><td>45</td><td>FIG00640011: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_00137</td><td>39</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_00139</td><td>37</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_00228</td><td>40</td><td>FIG00641387: hypothetical protein</td><td>-</td><td>-</td><td><a target="_blank" href="http://www.ncbi.nlm.nih.gov/protein/23500514">Victor:NP_69995</a></td><td>glucose-6-phosphate 1-dehydrogenase [Brucella suis 1330]</td></tr>
+	<tr><td>EcoH541_00233</td><td>45</td><td>Transposase</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_00256</td><td>46</td><td>FIG00640585: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_00265</td><td>37</td><td>hypothetical protein</td><td>-</td><td>-</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=15224">MVirDB:15224</a></td><td>sp|Q8FXM5|MGTC_BRUSU_Protein_mgtC_OS=</td></tr>
+	<tr><td>EcoH541_00284</td><td>51</td><td>FIG00642625: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_00321</td><td>101</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_00351</td><td>39</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_00510</td><td>114</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_00737</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_00805</td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_00806</td><td>38</td><td>FIG00640380: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_00967</td><td>44</td><td>FIG00640227: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_00968</td><td>137</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_00974</td><td>65</td><td>Single-stranded DNA-binding protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_00977</td><td>45</td><td>IncF plasmid conjugative transfer DNA-nicking and unwinding protein TraI</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_00982</td><td>38</td><td>FIG00639131: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_00998</td><td>39</td><td>FIG00639962: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_01045</td><td>41</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_01210</td><td>41</td><td>Entericidin A precursor</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_01559</td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_01678</td><td>61</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_01729</td><td>45</td><td>FIG00638457: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_01890</td><td>41</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_02047</td><td>40</td><td>Protein NinG</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_02060</td><td>64</td><td>Transposase</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_02095</td><td>80</td><td>YjbE secreted protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_02100</td><td>42</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_02320</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_02370</td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_02400</td><td>59</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_02570</td><td>44</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_02759</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_02827</td><td>84</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_02866</td><td>111</td><td>Acid shock protein 1 precursor</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_03052</td><td>44</td><td>FIG00641645: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_03062</td><td>83</td><td>Phage protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_03065</td><td>91</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_03105</td><td>42</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_03445</td><td>52</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_03462</td><td>66</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_03607</td><td>37</td><td>Hypothetical lipoprotein yajI</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_03663</td><td>38</td><td>FIG00644023: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_03679</td><td>47</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_03695</td><td>42</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_03763</td><td>83</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_03919</td><td>50</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_03966</td><td>44</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_04049</td><td>41</td><td>FIG00642631: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_04063</td><td>66</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_04127</td><td>38</td><td>FIG00640305: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_04265</td><td>38</td><td>FIG00641394: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_04342</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_04415</td><td>53</td><td>Arylsulfatase (EC 3.1.6.1)</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_04573</td><td>38</td><td>FIG00643940: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_04576</td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_04586</td><td>39</td><td>FIG00644081: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_04714</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_04719</td><td>69</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_04819</td><td>90</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_05064</td><td>46</td><td>hypothetical protein</td><td>-</td><td>-</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=23561">MVirDB:23561</a></td><td>dimethyladenosine_transferase_[Salmon</td></tr>
+	<tr><td>EcoH541_05158</td><td>43</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoH541_05307</td><td>42</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+</table>
+</div>
+
+<br/><br/>
+<a name="LB226692"></a>
+<div class="table-container">
+<h2 class="section-title normal-case close2x">Unique proteins in Escherichia coli LB226692</h2>
+<table class="basic stripe far2x">
+	<tr><th>Locus Tag</th><th>Length</th><th>Product Description</th><th>Top Ab Resistance Gene ID</th><th>Top Ab Resistance Gene Product</th><th>Top Virulence Factor ID</th><th>Top Virulence Factor Product</th></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476318">VBIEscCol200960_5667</a></td><td>91</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48475097">VBIEscCol200960_5182</a></td><td>87</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48464529">VBIEscCol200960_0296</a></td><td>66</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48464563">VBIEscCol200960_0312</a></td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48464675">VBIEscCol200960_0365</a></td><td>43</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48465926">VBIEscCol200960_0945</a></td><td>39</td><td>putative transport system permease protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48466163">VBIEscCol200960_1059</a></td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48470878">VBIEscCol200960_3227</a></td><td>41</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48475779">VBIEscCol200960_5470</a></td><td>54</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476561">VBIEscCol200960_5765</a></td><td>41</td><td>Phage tail assembly protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476008">VBIEscCol200960_5527</a></td><td>46</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48469620">VBIEscCol200960_2650</a></td><td>47</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476492">VBIEscCol200960_5737</a></td><td>37</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476496">VBIEscCol200960_5739</a></td><td>39</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48469841">VBIEscCol200960_2749</a></td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48469965">VBIEscCol200960_2806</a></td><td>44</td><td>hypothetical protein</td><td>-</td><td>-</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=12495">MVirDB:12495</a></td><td>sp|P72640|LEP4_SYNY3_Type_4_prepilin-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476105">VBIEscCol200960_5570</a></td><td>71</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48472899">VBIEscCol200960_4173</a></td><td>51</td><td>ADP-heptose--lipooligosaccharide heptosyltransferase II (EC 2.4.1.-)</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48472973">VBIEscCol200960_4209</a></td><td>69</td><td>Sodium/glutamate symport protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48475531">VBIEscCol200960_5377</a></td><td>45</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48471128">VBIEscCol200960_3344</a></td><td>58</td><td>hypothetical protein</td><td>-</td><td>-</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=6290">MVirDB:6290</a></td><td>P08560|VGH3_HCMVA_Glycoprotein_H301_-_Hu</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476449">VBIEscCol200960_5718</a></td><td>83</td><td>Phage protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48467742">VBIEscCol200960_1774</a></td><td>111</td><td>Acid shock protein 1 precursor</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48467856">VBIEscCol200960_1828</a></td><td>50</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48468203">VBIEscCol200960_1991</a></td><td>43</td><td>Putative inner membrane protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48468256">VBIEscCol200960_2017</a></td><td>38</td><td>FIG00640305: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48473847">VBIEscCol200960_4602</a></td><td>80</td><td>YjbE secreted protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48473860">VBIEscCol200960_4608</a></td><td>42</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48474058">VBIEscCol200960_4702</a></td><td>47</td><td>Sensor protein basS/pmrB (EC 2.7.3.-)</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48471430">VBIEscCol200960_3484</a></td><td>45</td><td>FIG00640011: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48471455">VBIEscCol200960_3496</a></td><td>50</td><td>Zinc transporter ZupT</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476127">VBIEscCol200960_5580</a></td><td>59</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48475870">VBIEscCol200960_5483</a></td><td>51</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48475874">VBIEscCol200960_5485</a></td><td>43</td><td>FIG00639568: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48464851">VBIEscCol200960_0449</a></td><td>37</td><td>Hypothetical lipoprotein yajI</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48474238">VBIEscCol200960_4788</a></td><td>45</td><td>Transposase</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476230">VBIEscCol200960_5629</a></td><td>37</td><td>Periplasmic mercury(+2) binding protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48466477">VBIEscCol200960_1191</a></td><td>43</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48466767">VBIEscCol200960_1331</a></td><td>114</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48471661">VBIEscCol200960_3592</a></td><td>41</td><td>FIG00642497: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48471806">VBIEscCol200960_3660</a></td><td>38</td><td>UDP-N-acetylglucosamine 1-carboxyvinyltransferase (EC 2.5.1.7)</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48471852">VBIEscCol200960_3683</a></td><td>45</td><td>FIG00638457: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48471990">VBIEscCol200960_3742</a></td><td>40</td><td>FIG00641387: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48472181">VBIEscCol200960_3835</a></td><td>42</td><td>Protein containing an Alanine Racemase Domain</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48472364">VBIEscCol200960_3921</a></td><td>38</td><td>FIG00641394: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48472554">VBIEscCol200960_4012</a></td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48474293">VBIEscCol200960_4813</a></td><td>41</td><td>Entericidin A precursor</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48474489">VBIEscCol200960_4904</a></td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48474491">VBIEscCol200960_4905</a></td><td>38</td><td>FIG00640380: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48474552">VBIEscCol200960_4934</a></td><td>49</td><td>FIG000906: Predicted Permease</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476433">VBIEscCol200960_5711</a></td><td>38</td><td>Baseplate assembly protein V</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476444">VBIEscCol200960_5716</a></td><td>52</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48475231">VBIEscCol200960_5246</a></td><td>45</td><td>IncF plasmid conjugative transfer DNA-nicking and unwinding protein TraI</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48464023">VBIEscCol200960_0062</a></td><td>37</td><td>L-arabinose isomerase (EC 5.3.1.4)</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48464032">VBIEscCol200960_0066</a></td><td>51</td><td>DedA family inner membrane protein YabI</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48464058">VBIEscCol200960_0079</a></td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48464471">VBIEscCol200960_0269</a></td><td>37</td><td>Flagellar motor rotation protein MotB</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48465774">VBIEscCol200960_0873</a></td><td>296</td><td>hypothetical protein</td><td>-</td><td>-</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=17989">MVirDB:17989</a></td><td>two-component_sensor_histidine_kinase</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48465776">VBIEscCol200960_0874</a></td><td>44</td><td>FIG00641818: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48471203">VBIEscCol200960_3376</a></td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48475374">VBIEscCol200960_5309</a></td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48466357">VBIEscCol200960_1138</a></td><td>101</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48466397">VBIEscCol200960_1157</a></td><td>38</td><td>FIG00639131: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48466403">VBIEscCol200960_1160</a></td><td>51</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48466438">VBIEscCol200960_1176</a></td><td>39</td><td>FIG00639962: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476038">VBIEscCol200960_5541</a></td><td>39</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476044">VBIEscCol200960_5544</a></td><td>39</td><td>FIG00644081: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48466265">VBIEscCol200960_1103</a></td><td>37</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48475747">VBIEscCol200960_5460</a></td><td>83</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48475321">VBIEscCol200960_5285</a></td><td>38</td><td>FIG00643940: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48475968">VBIEscCol200960_5509</a></td><td>84</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48474745">VBIEscCol200960_5020</a></td><td>45</td><td>FIG00642631: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48474903">VBIEscCol200960_5093</a></td><td>53</td><td>probable exported protein YPO0432</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48468928">VBIEscCol200960_2325</a></td><td>63</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48475402">VBIEscCol200960_5322</a></td><td>37</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476293">VBIEscCol200960_5656</a></td><td>44</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48475012">VBIEscCol200960_5143</a></td><td>46</td><td>FIG00640585: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48475025">VBIEscCol200960_5149</a></td><td>92</td><td>Phage DNA transfer protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476084">VBIEscCol200960_5561</a></td><td>64</td><td>Transposase</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48467684">VBIEscCol200960_1751</a></td><td>43</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48473458">VBIEscCol200960_4427</a></td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48473534">VBIEscCol200960_4463</a></td><td>43</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48473643">VBIEscCol200960_4515</a></td><td>44</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48467032">VBIEscCol200960_1450</a></td><td>65</td><td>Phage minor tail protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476051">VBIEscCol200960_5547</a></td><td>41</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48473250">VBIEscCol200960_4335</a></td><td>46</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48473308">VBIEscCol200960_4359</a></td><td>53</td><td>Arylsulfatase (EC 3.1.6.1)</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+</table>
+</div>
+
+<br/><br/>
+<a name="TY2482"></a>
+<div class="table-container">
+<h2 class="section-title normal-case close2x">Unique proteins in Escherichia coli TY2482</h2>
+<table class="basic stripe far2x">
+	<tr><th>Locus Tag</th><th>Length</th><th>Product Description</th><th>Top Ab Resistance Gene ID</th><th>Top Ab Resistance Gene Product</th><th>Top Virulence Factor ID</th><th>Top Virulence Factor Product</th></tr>
+	<tr><td>EcoTyV4_00064</td><td>46</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_00101</td><td>38</td><td>FIG00643940: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_00103</td><td>37</td><td>hypothetical protein</td><td>-</td><td>-</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=20611">MVirDB:20611</a></td><td>putative_phage-related_protein_[Vibri</td></tr>
+	<tr><td>EcoTyV4_00109</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_00115</td><td>39</td><td>FIG00644081: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_00302</td><td>114</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_00416</td><td>43</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_00452</td><td>44</td><td>FIG00640227: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_00742</td><td>91</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_00745</td><td>83</td><td>Phage protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_00765</td><td>39</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_00768</td><td>37</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_00780</td><td>84</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_00818</td><td>111</td><td>Acid shock protein 1 precursor</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_01096</td><td>38</td><td>FIG00640305: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_01160</td><td>42</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_01709</td><td>37</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_01740</td><td>46</td><td>FIG00640585: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_01849</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_01902</td><td>44</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_02294</td><td>41</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_02441</td><td>41</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_02546</td><td>45</td><td>FIG00640011: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_02648</td><td>41</td><td>FIG00642497: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_02792</td><td>40</td><td>FIG00641387: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_02958</td><td>38</td><td>FIG00641394: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_03036</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_03229</td><td>46</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_03230</td><td>46</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_03419</td><td>53</td><td>Arylsulfatase (EC 3.1.6.1)</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_03568</td><td>44</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_03649</td><td>80</td><td>YjbE secreted protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_03654</td><td>42</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_03788</td><td>39</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_03827</td><td>41</td><td>Entericidin A precursor</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_03917</td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_03918</td><td>38</td><td>FIG00640380: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_04026</td><td>45</td><td>FIG00642631: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_04092</td><td>53</td><td>probable exported protein YPO0432</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_04194</td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_04197</td><td>41</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_04418</td><td>66</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_04431</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_04560</td><td>37</td><td>Hypothetical lipoprotein yajI</td><td>-</td><td>-</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=10105">MVirDB:10105</a></td><td>tr|Q9RTE3|Q9RTE3_DEIRA_Protein-export</td></tr>
+	<tr><td>EcoTyV4_04957</td><td>360</td><td>hypothetical protein</td><td>-</td><td>-</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=12340">MVirDB:12340</a></td><td>TATBPROTEIN4|RecName</td></tr>
+	<tr><td>EcoTyV4_04958</td><td>44</td><td>FIG00641818: hypothetical protein</td><td>-</td><td>-</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=10559">MVirDB:10559</a></td><td>sp|P28840|NEC1_RAT_Neuroendocrine_con</td></tr>
+	<tr><td>EcoTyV4_05247</td><td>44</td><td>FIG00641645: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_05270</td><td>83</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_05274</td><td>38</td><td>FIG00639131: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_05290</td><td>39</td><td>FIG00639962: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_05309</td><td>64</td><td>Transposase</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_05317</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_05447</td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_05451</td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_05488</td><td>45</td><td>IncF plasmid conjugative transfer DNA-nicking and unwinding protein TraI</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td>EcoTyV4_05522</td><td>59</td><td>hypothetical protein</td><td>-</td><td>-</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=12011">MVirDB:12011</a></td><td>sp|P10576|NTRC_BRASR_Nitrogen_assimil</td></tr>
+</table>
+</div>
+
+<a name="alignment"></a>
+<h2 class="section-title normal-case close2x">&nbsp; Multiple sequence alignment of beta-lactamase with close homologs</h2>
+<pre style="font-family:  'Courier New', Courier, monospace;">
+	CLUSTAL W (1.81) multiple sequence alignment
+
+	3431            ---MSIQHFRVALIPFFAAF--CLPVFAH-PETLVKVKDAEDQLGARVGYIELDL-NSGK
+	95.0941         ---MSIQHFRVALIPFFAAF--CLPVFAH-PETLVKVKDAEDQLGARVGYIELDL-NSGK
+	AA86            ---MSIQHFRVALIPFFAAF--CLPVFAH-PETLVKVKDAEDQLGARVGYIELDL-NSGK
+	H299            ---MSIQHFRVALIPFFAAF--CLPVFAH-PETLVKVKDAEDQLGARVGYIELDL-NSGK
+	GOS1            MVKKSLRQFTLMATATVTLLLGSVPLYAQTADVQQKLAELERQSGGRLGVALINTADNSQ
+	GOS2            MVKKSLRQFTLMATATVTLLLGSVPLYAQTADVQQKLAELERQSGGRLGVALINTADNSQ
+	H112180280      MVKKSLRQFTLMATATVTLLLGSVPLYAQTADVQQKLAELERQSGGRLGVALINTADNSQ
+	H112180282      MVKKSLRQFTLMATATVTLLLGSVPLYAQTADVQQKLAELERQSGGRLGVALINTADNSQ
+	H112180283      MVKKSLRQFTLMATATVTLLLGSVPLYAQTADVQQKLAELERQSGGRLGVALINTADNSQ
+	H112180540      MVKKSLRQFTLMATATVTLLLGSVPLYAQTADVQQKLAELERQSGGRLGVALINTADNSQ
+	H112180541      MVKKSLRQFTLMATATVTLLLGSVPLYAQTADVQQKLAELERQSGGRLGVALINTADNSQ
+	TY-2482         MVKKSLRQFTLMATATVTLLLGSVPLYAQTADVQQKLAELERQSGGRLGVALINTADNSQ
+	LB226692        MVKKSLRQFTLMATATVTLLLGSVPLYAQTADVQQKLAELERQSGGRLGVALINTADNSQ
+	                    *:.:* :   . .: :  .:*::*: .:.  *: : * * *.*:*   ::  :..:
+
+	3431            ILESFRPEERFPMMSTFKVLLCGAVLSRVDAGQEQLGRRIHYSQNDLVEYSPVTEKHLTD
+	95.0941         ILESFRPEERFPMMSTFKVLLCGAVLSRVDAGQEQLGRRIHYSQNDLVEYSPVTEKHLTD
+	AA86            ILESFRPEERFPMMSTFKVLLCGAVLSRVDAGQEQLGRRIHYSQNDLVEYSPVTEKHLTD
+	H299            ILESFRPEERFPMMSTFKVLLCGAVLSRVDAGQEQLGRRIHYSQNDLVEYSPVTEKHLTD
+	GOS1            IL--YRADERFAMCSTSKVMAAAAVLKKSESEPNLLNQRVEIKKSDLVNYNPIAEKHVNG
+	GOS2            IL--YRADERFAMCSTSKVMAAAAVLKKSESEPNLLNQRVEIKKSDLVNYNPIAEKHVNG
+	H112180280      IL--YRADERFAMCSTSKVMAAAAVLKKSESEPNLLNQRVEIKKSDLVNYNPIAEKHVNG
+	H112180282      IL--YRADERFAMCSTSKVMAAAAVLKKSESEPNLLNQRVEIKKSDLVNYNPIAEKHVNG
+	H112180283      IL--YRADERFAMCSTSKVMAAAAVLKKSESEPNLLNQRVEIKKSDLVNYNPIAEKHVNG
+	H112180540      IL--YRADERFAMCSTSKVMAAAAVLKKSESEPNLLNQRVEIKKSDLVNYNPIAEKHVNG
+	H112180541      IL--YRADERFAMCSTSKVMAAAAVLKKSESEPNLLNQRVEIKKSDLVNYNPIAEKHVNG
+	TY-2482         IL--YRADERFAMCSTSKVMAAAAVLKKSESEPNLLNQRVEIKKSDLVNYNPIAEKHVNG
+	LB226692        IL--YRADERFAMCSTSKVMAAAAVLKKSESEPNLLNQRVEIKKSDLVNYNPIAEKHVNG
+	                **  :*.:***.* ** **: ..***.. ::  : *..*:  .:.***:*.*::***:..
+
+	3431            GMTVRELCSAAITMSDNTAANLLLTTIGGPKELTAFLHNMGDHVTRLDRWEPELNEAIPN
+	95.0941         GMTVRELCSAAITMSDNTAANLLLTTIGGPKELTAFLHNMGDHVTRLDRWEPELNEAIPN
+	AA86            GMTVRELCSAAITMSDNTAANLLLTTIGGPKELTAFLHNMGDHVTRLDRWEPELNEAIPN
+	H299            GMTVRELCSAAITMSDNTAANLLLTTIGGPKELTAFLHNMGDHVTRLDRWEPELNEAIPN
+	GOS1            TMSLAELSAAALQYSDNVAMNKLIAHVGGPASVTAFARQLGDETFRLDRTEPTLNTAIPG
+	GOS2            TMSLAELSAAALQYSDNVAMNKLIAHVGGPASVTAFARQLGDETFRLDRTEPTLNTAIPG
+	H112180280      TMSLAELSAAALQYSDNVAMNKLIAHVGGPASVTAFARQLGDETFRLDRTEPTLNTAIPG
+	H112180282      TMSLAELSAAALQYSDNVAMNKLIAHVGGPASVTAFARQLGDETFRLDRTEPTLNTAIPG
+	H112180283      TMSLAELSAAALQYSDNVAMNKLIAHVGGPASVTAFARQLGDETFRLDRTEPTLNTAIPG
+	H112180540      TMSLAELSAAALQYSDNVAMNKLIAHVGGPASVTAFARQLGDETFRLDRTEPTLNTAIPG
+	H112180541      TMSLAELSAAALQYSDNVAMNKLIAHVGGPASVTAFARQLGDETFRLDRTEPTLNTAIPG
+	TY-2482         TMSLAELSAAALQYSDNVAMNKLIAHVGGPASVTAFARQLGDETFRLDRTEPTLNTAIPG
+	LB226692        TMSLAELSAAALQYSDNVAMNKLIAHVGGPASVTAFARQLGDETFRLDRTEPTLNTAIPG
+	                 *:: **.:**:  ***.* * *:: :*** .:*** .::** . **** ** ** ***.
+
+	3431            DERDTTMPAAMATTLRKLLTGELLTLASRQQLIDWMEADKVAGPLLRSALPAGWFIADKS
+	95.0941         DERDTTMPAAMATTLRKLLTGELLTLASRQQLIDWMEADKVAGPLLRSALPAGWFIADKS
+	AA86            DERDTTMPAAMATTLRKLLTGELLTLASRQQLIDWMEADKVAGPLLRSALPAGWFIADKS
+	H299            DERDTTMPAAMATTLRKLLTGELLTLASRQQLIDWMEADKVAGPLLRSALPAGWFIADKS
+	GOS1            DPRDTTSPRAMAQTLRNLTLGKALGDSQRAQLVTWMKGNTTGAASIQAGLPASWVVGDKT
+	GOS2            DPRDTTSPRAMAQTLRNLTLGKALGDSQRAQLVTWMKGNTTGAASIQAGLPASWVVGDKT
+	H112180280      DPRDTTSPRAMAQTLRNLTLGKALGDSQRAQLVTWMKGNTTGAASIQAGLPASWVVGDKT
+	H112180282      DPRDTTSPRAMAQTLRNLTLGKALGDSQRAQLVTWMKGNTTGAASIQAGLPASWVVGDKT
+	H112180283      DPRDTTSPRAMAQTLRNLTLGKALGDSQRAQLVTWMKGNTTGAASIQAGLPASWVVGDKT
+	H112180540      DPRDTTSPRAMAQTLRNLTLGKALGDSQRAQLVTWMKGNTTGAASIQAGLPASWVVGDKT
+	H112180541      DPRDTTSPRAMAQTLRNLTLGKALGDSQRAQLVTWMKGNTTGAASIQAGLPASWVVGDKT
+	TY-2482         DPRDTTSPRAMAQTLRNLTLGKALGDSQRAQLVTWMKGNTTGAASIQAGLPASWVVGDKT
+	LB226692        DPRDTTSPRAMAQTLRNLTLGKALGDSQRAQLVTWMKGNTTGAASIQAGLPASWVVGDKT
+	                * **** * *** ***:*  *: *  :.* **: **:.:..... :.:.***.*.:.**:
+
+	3431            GAGERGSRGIIAALGPDGKPSRIVVIYTTGSQATMDERNRQIAEIGASLIKHW
+	95.0941         GAGERGSRGIIAALGPDGKPSRIVVIYTTGSQATMDERNRQIAEIGASLIKHW
+	AA86            GAGERGSRGIIAALGPDGKPSRIVVIYTTGSQATMDERNRQIAEIGASLIKHW
+	H299            GAGERGSRGIIAALGPDGKPSRIVVIYTTGSQATMDERNRQIAEIGASLIKHW
+	GOS1            GSGGYGTTNDIAVIWPKDRAPLILVTYFTQPQPKAESRRDVLASAAKIVTDGL
+	GOS2            GSGGYGTTNDIAVIWPKDRAPLILVTYFTQPQPKAESRRDVLASAAKIVTDGL
+	H112180280      GSGGYGTTNDIAVIWPKDRAPLILVTYFTQPQPKAESRRDVLASAAKIVTDGL
+	H112180282      GSGGYGTTNDIAVIWPKDRAPLILVTYFTQPQPKAESRRDVLASAAKIVTDGL
+	H112180283      GSGGYGTTNDIAVIWPKDRAPLILVTYFTQPQPKAESRRDVLASAAKIVTDGL
+	H112180540      GSGGYGTTNDIAVIWPKDRAPLILVTYFTQPQPKAESRRDVLASAAKIVTDGL
+	H112180541      GSGGYGTTNDIAVIWPKDRAPLILVTYFTQPQPKAESRRDVLASAAKIVTDGL
+	TY-2482         GSGGYGTTNDIAVIWPKDRAPLILVTYFTQPQPKAESRRDVLASAAKIVTDGL
+	LB226692        GSGGYGTTNDIAVIWPKDRAPLILVTYFTQPQPKAESRRDVLASAAKIVTDGL
+	                *:*  *: . **.: *..... *:* * * .*.. :.*.  :*. .  : .  
+</pre>
+        </section>
+    </div>
+
+    <footer class='ondark linkstyle-highlight-c smallest no-underline-links main-footer'>
+      <div class='container'>
+        <div class='column' style="border:0px">
+          <div class='wrapper'>
+            <h4 class='close2x normal-weight'>PATRIC</h4>
+            <p class="close">Virginia Bioinformatics Institute</p>
+            <p class='close'>Washington Street</p>
+            <p>Blacksburg, VA 24060</p>
+            <a class="button" href="http://enews.patricbrc.org/contact-us/">Contact Us</a>
+          </div>
+        </div>
+        <div class='column'>
+          <div class='wrapper'>
+            <h4 class='normal-weight close2x'>How to Cite PATRIC</h4>
+            <p>If you use PATRIC web resources to assist in research publications or proposals please cite as:</p>
+            <a class="button" href="http://enews.patricbrc.org/citing-patric/">How to cite PATRIC</a>
+          </div>
+        </div>
+        <div class='column'>
+          <div class='wrapper'>
+            <h4 class='normal-weight close2x'>Funding Statement</h4>
+            <p>This project has been funded in whole or in part with Federal funds from the 
+               National Institute of Allergy and Infectious Diseases, National Institutes of Health,
+               Department of Health and Human Services,
+               under Contract No. HHSN272200900040C, awarded to BWS Sobral</p>
+          </div>
+        </div>
+        <div class='column last bold'>
+          <div class='wrapper'>
+            <h4 class='normal-weight close'>Follow Us:</h4>
+            <ul class='left no-decoration'>
+              <li><a class="footer-icons sprite-icon-subscribe" href="http://enews.patricbrc.org/subscribe/">Subscribe</a></li>
+              <li><a class="footer-icons sprite-icon-twitter" href="http://twitter.com/PATRICBRC">Twitter</a></li>
+              <li><a class="footer-icons sprite-icon-facebook" href="http://www.facebook.com/pages/Pathosystems-Resource-Integration-Center-PATRIC/117100971687823">Facebook</a></li>
+              
+            </ul>
+            <ul class='left no-decoration'>
+              <li><a class="footer-icons sprite-icon-enews" href="http://enews.patricbrc.org/">eNews</a></li>
+              <li><a class="footer-icons sprite-icon-rss" href="http://enews.patricbrc.org/feed/">RSS</a></li>
+              <li><a class="footer-icons sprite-icon-youtube" href="http://www.youtube.com/user/PATRICBRC">YouTube</a></li>
+              <li><a class="footer-icons sprite-icon-share" href="http://www.addthis.com/bookmark.php?v=250&username=xa-4c40660c515875dc">Share This</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+	<script type="text/javascript">
+	//<![CDATA[
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-11736060-1']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	//]]>
+	</script>
+</html>
+

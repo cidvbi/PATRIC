@@ -1,0 +1,4698 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js' lang='en'>
+	<!--<![endif]-->
+	<head>
+		<!-- Always force the latest IE rendering engine (even in intranet) & Chrome Frame -->
+		<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible' />
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+		<meta http-equiv="Content-Language" content="en-US"/>
+		<title>PATRIC</title>
+
+		<!-- Mobile viewport optimized -->
+		<meta content='width=device-width, initial-scale=1.0' name='viewport' />
+		<link href='http://fonts.googleapis.com/css?family=Didact+Gothic' rel='stylesheet' type='text/css' />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js" type="text/javascript"></script>
+		<script src="/patric/js/libs/modernizr-1.6.min.js" type="text/javascript"></script>
+		<script src="/patric/js/plugins.min.js" type="text/javascript"></script>
+		<script src="/patric/js/script.js" type="text/javascript"></script>
+		<script src="http://cdn.sencha.io/ext-4.1.1-gpl/ext-all.js" type="text/javascript"></script>
+		<link href="http://cdn.sencha.io/ext-4.1.1-gpl/resources/css/ext-all.css" media="screen" rel="stylesheet" type="text/css" />
+		<link href="/patric/css/main.css" media="screen" rel="stylesheet" type="text/css" />
+		<!-- PATRIC CSS & JS -->
+		<script src="/patric/js/patric.min.js" type="text/javascript"></script>
+		<link href="/patric/css/patric.css" media="screen" rel="stylesheet" type="text/css" />
+		<script src="/portal-core/layouts/patric/modal.min.js" type="text/javascript"></script>
+	</head>
+	<body class='normal home'>
+	<div id="login-modal" style="display:none">
+		<div id="login-modal-msg" style="display:none;width:255px;height:109px">
+			<div id="loginIframe" class="login-content"></div>
+		</div>
+	</div>
+
+	<header class='main-header no-underline-links'>
+	<div class='masthead'>
+        <div class='wrapper'>
+          <a class="logo" href="/portal/portal/patric/Home">PATRIC Home</a>
+          <ul class='main-nav no-decoration'>
+            <li class='first active'><a class="home active" href="/portal/portal/patric/Home">Home</a></li>
+          </ul>
+	<!--
+          <div class='login'>
+		<div id='dashboardnav'>
+		<script type="text/javascript">
+		//<![CDATA[
+		function doLogin() {
+			alertModal('login-modal','login-modal-msg', 'http://www.patricbrc.org/portal/auth/portal/patric/Home');
+			return false;
+		}
+		//]]>
+		</script>
+		<span class='logged-in smallest'>
+			
+			<a class="button" href="javascript:void(0)" onclick="doLogin()">Login</a>
+			Not Registered? <a class="arrow-slate-e" href="https://www.patricbrc.org/portal/portal/patric/MyAccount/PATRICUserPortletWindow?_jsfBridgeViewId=%2Fjsf%2Findex.xhtml&amp;action=1">Sign Up</a>
+			
+			<br/><a href="http://enews.patricbrc.org/workspace-faqs/registration-faqs/" target="_blank">Learn About Registering</a>
+		</span>
+		</div>	
+          </div>
+	-->
+        </div>
+      </div>
+      <div class='toolbar ondark linkstyle-highlight-c'>
+        <div class='container'>
+	<!--
+          <form class='search' action="post" onsubmit="return false;">
+            <input placeholder='Search' type='text' id="global_search_keyword" name="global_search_keyword" />
+            <input type='submit' onclick="search_all_header()" />
+          </form>
+	-->
+	  <div style="float:left;margin-right: 17px;width: 311px;">&nbsp;</div>
+          <div class='workspace smallest'>
+              <span class='upper'>My workspace:</span>
+              <a class='arrow-white-e' href='#'><span id="cart" /></a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class='container'>
+        <section class='main' role='main'>
+		<script type="text/javascript">
+		//<![CDATA[
+		var fSet1 = {
+			name: "S enterica CYT",
+			desc: "Salmonella enterica Cytoplasmic Identified Proteins",
+			type: "Feature",
+			members:"32378267,32378273,32378285,32378351,32378357,32378519,32378585,32378587,32378597,32378643,32378653,32378709,32378713,32378717,32378721,32378723,32378725,32378773,32378933,32378947,32379035,32379089,32379135,32379169,32379205,32379235,32379237,32379243,32379309,32379313,32379317,32379319,32379501,32379561,32379579,32379593,32379649,32379723,32379727,32379745,32379761,32379819,32379831,32379833,32379835,32379837,32379914,32379916,32379918,32379922,32380107,32380325,32380329,32380337,32380359,32380367,32380375,32380377,32380389,32380395,32380409,32380417,32380549,32380677,32380715,32380777,32380783,32380837,32380839,32380911,32380915,32380929,32381055,32381057,32381069,32381099,32381117,32381147,32381149,32381153,32381155,32381157,32381159,32381237,32381335,32381347,32381351,32381373,32381385,32381387,32381417,32381419,32381421,32381618,32381632,32381634,32381636,32381798,32381873,32381909,32381913,32381935,32381971,32381973,32381975,32382015,32382017,32382057,32382065,32382077,32382139,32382155,32382199,32382211,32382219,32382321,32382327,32382351,32382355,32382373,32382425,32382649,32382701,32382723,32382745,32382763,32382765,32382871,32382981,32383051,32383151,32383209,32383225,32383261,32383263,32383291,32383359,32383375,32383387,32383389,32383399,32383433,32383457,32383489,32383493,32383495,32383497,32383521,32383523,32383575,32383577,32383605,32383609,32383627,32383647,32383649,32383673,32383681,32383695,32383727,32383949,32383985,32383999,32384005,32384018,32384276,32384316,32384336,32384338,32384360,32384621,32384659,32384823,32384841,32384851,32384853,32384855,32384863,32384873,32384885,32384887,32384901,32384905,32384943,32385077,32385095,32385164,32385197,32385283,32385347,32385351,32385353,32385359,32385361,32385363,32385375,32385387,32385395,32385401,32385403,32385469,32385479,32385483,32385485,32385513,32385553,32385565,32385627,32385629,32385631,32385633,32385635,32385641,32385643,32385645,32385647,32385649,32385651,32385653,32385655,32385657,32385661,32385663,32385665,32385667,32385669,32385671,32385673,32385675,32385677,32385679,32385685,32385689,32385691,32385693,32385695,32385709,32385763,32385767,32385775,32385803,32385827,32385887,32385995,32386001,32386009,32386017,32386041,32386109,32386139,32386141,32386235,32386241,32386251,32386253,32386255,32386295,32386301,32386321,32386323,32386525,32386589,32386603,32386661,32386695,32386803,32386836,32386858,32386874,32386886,32386888,32386990,32387004,32387036,32387042,32387056,32387060,32387066,32387098,32387102,32387124,32387130,32387132,32387161,32387177,32387181,32387183,32387185,32387187,32387189,32387225,32387347,32387365,32387395,32387415,32387509,32387569,32387577,32387579,32387587,32387605,32387653,32387657,32387705,32387709,32387711,32387755,32387855,32387869,32387875,32387895,32387899,32387979,32387999,32388033,32388043,32388075,32388099,32388103,32388105,32388137",
+			tags: "SysBEP,Salmonella,enterica,CYT"
+		}
+		
+		function addFeaturesToGroup(featureSet) {
+			Ext.Ajax.request({
+				method:'POST',
+				params:{
+					group_name: featureSet.name,
+					group_desc: featureSet.desc,
+					group_type: featureSet.type,
+					tracks: featureSet.members,
+					tags: featureSet.tags
+				},
+				url: '/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=groupAction&action=create',
+				success: function(response, opts) {
+					updateCartInfo();
+				}
+			});
+		}
+		//]]>
+		</script>
+		
+		<br/><br/>
+		<h3 class="section-title normal-case close2x">
+			Salmonella enterica Cytoplasmic Identified Proteins
+		</h3>
+		<div class="close2x" style="float:right">
+			<input type="button" value="Add to Workspace" onclick="addFeaturesToGroup(fSet1)">
+		</div>
+		<table class="basic stripe far2x">
+			<tr>
+				<th>
+					Genome
+				</th>
+				<th>
+					Locus Tag
+				</th>
+				<th>
+					RefSeq Locus Tag
+				</th>
+				<th>
+					Product Description
+				</th>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0003
+				</td>
+				<td>
+					STM0004
+				</td>
+				<td>
+					Threonine synthase (EC 4.2.3.1)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0006
+				</td>
+				<td>
+					STM0007
+				</td>
+				<td>
+					Transaldolase (EC 2.2.1.2)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0012
+				</td>
+				<td>
+					STM0012
+				</td>
+				<td>
+					Chaperone protein DnaK
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0045
+				</td>
+				<td>
+					STM0043
+				</td>
+				<td>
+					SSU ribosomal protein S20p
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0048
+				</td>
+				<td>
+					STM0046
+				</td>
+				<td>
+					Isoleucyl-tRNA synthetase (EC 6.1.1.5)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0129
+				</td>
+				<td>
+					STM0123
+				</td>
+				<td>
+					UDP-N-acetylmuramoylalanyl-D-glutamate--2,6-diaminopimelate ligase (EC 6.3.2.13)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0162
+				</td>
+				<td>
+					STM0152
+				</td>
+				<td>
+					Pyruvate dehydrogenase E1 component (EC 1.2.4.1)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0163
+				</td>
+				<td>
+					STM0153
+				</td>
+				<td>
+					Dihydrolipoamide acetyltransferase component of pyruvate dehydrogenase complex (EC 2.3.1.12)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0168
+				</td>
+				<td>
+					STM0158
+				</td>
+				<td>
+					Aconitate hydratase 2 (EC 4.2.1.3) @ 2-methylisocitrate dehydratase (EC 4.2.1.99)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0191
+				</td>
+				<td>
+					STM0181
+				</td>
+				<td>
+					Pantoate--beta-alanine ligase (EC 6.3.2.1)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0196
+				</td>
+				<td>
+					STM0186
+				</td>
+				<td>
+					C4-type zinc finger protein, DksA/TraR family
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0224
+				</td>
+				<td>
+					STM0211
+				</td>
+				<td>
+					Chromosome segregation ATPase
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0226
+				</td>
+				<td>
+					STM0213
+				</td>
+				<td>
+					2,3,4,5-tetrahydropyridine-2,6-dicarboxylate N-succinyltransferase (EC 2.3.1.117)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0228
+				</td>
+				<td>
+					STM0215
+				</td>
+				<td>
+					Methionine aminopeptidase (EC 3.4.11.18)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0230
+				</td>
+				<td>
+					STM0217
+				</td>
+				<td>
+					Translation elongation factor Ts
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0231
+				</td>
+				<td>
+					STM0218
+				</td>
+				<td>
+					Uridylate kinase (EC 2.7.4.-)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0232
+				</td>
+				<td>
+					STM0219
+				</td>
+				<td>
+					Ribosome recycling factor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0256
+				</td>
+				<td>
+					STM0242
+				</td>
+				<td>
+					Prolyl-tRNA synthetase (EC 6.1.1.15)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0329
+				</td>
+				<td>
+					STM0310
+				</td>
+				<td>
+					Phosphoheptose isomerase 1 (EC 5.3.1.-)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0336
+				</td>
+				<td>
+					STM0316
+				</td>
+				<td>
+					Aminoacyl-histidine dipeptidase (Peptidase D) (EC 3.4.13.3)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0379
+				</td>
+				<td>
+					STM0358.S
+				</td>
+				<td>
+					Type III restriction-modification system StyLTI enzyme res (EC 3.1.21.5)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0406
+				</td>
+				<td>
+					STM0383
+				</td>
+				<td>
+					Cytoplasmic protein YaiB
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0429
+				</td>
+				<td>
+					STM0402
+				</td>
+				<td>
+					Alkyl hydroperoxide reductase subunit C-like protein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0446
+				</td>
+				<td>
+					STM0417
+				</td>
+				<td>
+					6,7-dimethyl-8-ribityllumazine synthase (EC 2.5.1.78)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0464
+				</td>
+				<td>
+					STM0435
+				</td>
+				<td>
+					UPF0234 protein YajQ
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0479
+				</td>
+				<td>
+					STM0447
+				</td>
+				<td>
+					Cell division trigger factor (EC 5.2.1.8)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0480
+				</td>
+				<td>
+					STM0448
+				</td>
+				<td>
+					ATP-dependent Clp protease proteolytic subunit (EC 3.4.21.92)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0483
+				</td>
+				<td>
+					STM0451
+				</td>
+				<td>
+					DNA-binding protein HU-beta
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0516
+				</td>
+				<td>
+					STM0483
+				</td>
+				<td>
+					Adenine phosphoribosyltransferase (EC 2.4.2.7)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0518
+				</td>
+				<td>
+					STM0485
+				</td>
+				<td>
+					FIG000557: hypothetical protein co-occurring with RecR
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0520
+				</td>
+				<td>
+					STM0487.S
+				</td>
+				<td>
+					Chaperone protein HtpG
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0521
+				</td>
+				<td>
+					STM0488
+				</td>
+				<td>
+					Adenylate kinase (EC 2.7.4.3)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0610
+				</td>
+				<td>
+					STM0578
+				</td>
+				<td>
+					Oxygen-insensitive NAD(P)H nitroreductase (EC 1.-.-.-) / Dihydropteridine reductase (EC 1.5.1.34)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0640
+				</td>
+				<td>
+					STM0608
+				</td>
+				<td>
+					Alkyl hydroperoxide reductase protein C (EC 1.6.4.-)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0649
+				</td>
+				<td>
+					STM0616
+				</td>
+				<td>
+					Regulator of nucleoside diphosphate kinase
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0656
+				</td>
+				<td>
+					STM0623
+				</td>
+				<td>
+					Citrate lyase gamma chain, acyl carrier protein (EC 4.1.3.6)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0684
+				</td>
+				<td>
+					STM0648
+				</td>
+				<td>
+					Leucyl-tRNA synthetase (EC 6.1.1.4)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0714
+				</td>
+				<td>
+					STM0684
+				</td>
+				<td>
+					Glucosamine-6-phosphate deaminase (EC 3.5.99.6)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0716
+				</td>
+				<td>
+					STM0686
+				</td>
+				<td>
+					Glutaminyl-tRNA synthetase (EC 6.1.1.18)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0725
+				</td>
+				<td>
+					STM0694
+				</td>
+				<td>
+					Flavodoxin 1
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0733
+				</td>
+				<td>
+					STM0701
+				</td>
+				<td>
+					Ornithine decarboxylase (EC 4.1.1.17)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0762
+				</td>
+				<td>
+					STM0730
+				</td>
+				<td>
+					Citrate synthase (si) (EC 2.3.3.1)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0768
+				</td>
+				<td>
+					STM0736
+				</td>
+				<td>
+					2-oxoglutarate dehydrogenase E1 component (EC 1.2.4.2)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0769
+				</td>
+				<td>
+					STM0737
+				</td>
+				<td>
+					Dihydrolipoamide succinyltransferase component (E2) of 2-oxoglutarate dehydrogenase complex (EC 2.3.1.61)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0770
+				</td>
+				<td>
+					STM0738
+				</td>
+				<td>
+					Succinyl-CoA ligase [ADP-forming] beta chain (EC 6.2.1.5)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0771
+				</td>
+				<td>
+					STM0739
+				</td>
+				<td>
+					Succinyl-CoA ligase [ADP-forming] alpha chain (EC 6.2.1.5)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0805
+				</td>
+				<td>
+					STM0772
+				</td>
+				<td>
+					Phosphoglycerate mutase (EC 5.4.2.1)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0806
+				</td>
+				<td>
+					STM0773
+				</td>
+				<td>
+					Aldose 1-epimerase (EC 5.1.3.3)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0807
+				</td>
+				<td>
+					STM0774
+				</td>
+				<td>
+					Galactokinase (EC 2.7.1.6)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0809
+				</td>
+				<td>
+					STM0776
+				</td>
+				<td>
+					UDP-N-acetylglucosamine 4-epimerase (EC 5.1.3.7) / UDP-glucose 4-epimerase (EC 5.1.3.2)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_0901
+				</td>
+				<td>
+					STM0862
+				</td>
+				<td>
+					Uncharacterized glutathione S-transferase-like protein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1009
+				</td>
+				<td>
+					STM0958
+				</td>
+				<td>
+					Thioredoxin reductase (EC 1.8.1.9)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1011
+				</td>
+				<td>
+					STM0959
+				</td>
+				<td>
+					Leucine-responsive regulatory protein, regulator for leucine (or lrp) regulon and high-affinity branched-chain amino acid transport system
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1015
+				</td>
+				<td>
+					STM0963
+				</td>
+				<td>
+					Seryl-tRNA synthetase (EC 6.1.1.11)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1026
+				</td>
+				<td>
+					STM0973
+				</td>
+				<td>
+					Pyruvate formate-lyase (EC 2.3.1.54)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1030
+				</td>
+				<td>
+					STM0977
+				</td>
+				<td>
+					Phosphoserine aminotransferase (EC 2.6.1.52)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1034
+				</td>
+				<td>
+					STM0981
+				</td>
+				<td>
+					SSU ribosomal protein S1p
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1035
+				</td>
+				<td>
+					STM0982
+				</td>
+				<td>
+					Integration host factor beta subunit
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1041
+				</td>
+				<td>
+					STM0988
+				</td>
+				<td>
+					3-deoxy-manno-octulosonate cytidylyltransferase (EC 2.7.7.38)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1044
+				</td>
+				<td>
+					STM0991
+				</td>
+				<td>
+					S-adenosylmethionine-dependent methyltransferase Functionally Coupled to the MukBEF Chromosome Partitioning Mechanism
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1051
+				</td>
+				<td>
+					STM0998
+				</td>
+				<td>
+					Biosynthetic Aromatic amino acid aminotransferase alpha (EC 2.6.1.57) @ Aspartate aminotransferase (EC 2.6.1.1)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1055
+				</td>
+				<td>
+					STM1000
+				</td>
+				<td>
+					Asparaginyl-tRNA synthetase (EC 6.1.1.22)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1121
+				</td>
+				<td>
+					STM1057
+				</td>
+				<td>
+					Membrane alanine aminopeptidase N (EC 3.4.11.2)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1184
+				</td>
+				<td>
+					STM1119
+				</td>
+				<td>
+					Flavoprotein wrbA
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1202
+				</td>
+				<td>
+					STM1135
+				</td>
+				<td>
+					Putative 2-hydroxyacid dehydrogenase YcdW (EC 1.-.-.-)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1233
+				</td>
+				<td>
+					STM1165
+				</td>
+				<td>
+					Glutaredoxin 2
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1236
+				</td>
+				<td>
+					STM1168
+				</td>
+				<td>
+					Protein of unknown function YceH
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1263
+				</td>
+				<td>
+					STM1194
+				</td>
+				<td>
+					Malonyl CoA-acyl carrier protein transacylase (EC 2.3.1.39)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1264
+				</td>
+				<td>
+					STM1195
+				</td>
+				<td>
+					3-oxoacyl-[acyl-carrier protein] reductase (EC 1.1.1.100)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1300
+				</td>
+				<td>
+					STM1229
+				</td>
+				<td>
+					FIG002776: hypothetical protein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1302
+				</td>
+				<td>
+					STM1231
+				</td>
+				<td>
+					Transcriptional regulatory protein PhoP
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1309
+				</td>
+				<td>
+					STM1238
+				</td>
+				<td>
+					Isocitrate dehydrogenase [NADP] (EC 1.1.1.42)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1370
+				</td>
+				<td>
+					STM1289
+				</td>
+				<td>
+					Aldose 1-epimerase family protein YeaD
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1371
+				</td>
+				<td>
+					STM1290
+				</td>
+				<td>
+					NAD-dependent glyceraldehyde-3-phosphate dehydrogenase (EC 1.2.1.12)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1377
+				</td>
+				<td>
+					STM1296
+				</td>
+				<td>
+					Protein ydjA
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1392
+				</td>
+				<td>
+					STM1310
+				</td>
+				<td>
+					NAD synthetase (EC 6.3.1.5)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1401
+				</td>
+				<td>
+					STM1318
+				</td>
+				<td>
+					Catalase (EC 1.11.1.6)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1416
+				</td>
+				<td>
+					STM1333
+				</td>
+				<td>
+					Threonyl-tRNA synthetase (EC 6.1.1.3)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1417
+				</td>
+				<td>
+					STM1334.c
+				</td>
+				<td>
+					Translation initiation factor 3
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1419
+				</td>
+				<td>
+					STM1336
+				</td>
+				<td>
+					LSU ribosomal protein L20p
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1420
+				</td>
+				<td>
+					STM1337
+				</td>
+				<td>
+					Phenylalanyl-tRNA synthetase alpha chain (EC 6.1.1.20)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1421
+				</td>
+				<td>
+					STM1338
+				</td>
+				<td>
+					Phenylalanyl-tRNA synthetase beta chain (EC 6.1.1.20)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1422
+				</td>
+				<td>
+					STM1339
+				</td>
+				<td>
+					Integration host factor alpha subunit
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1461
+				</td>
+				<td>
+					STM1378
+				</td>
+				<td>
+					Pyruvate kinase (EC 2.7.1.40)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1508
+				</td>
+				<td>
+					STM1426
+				</td>
+				<td>
+					Riboflavin synthase eubacterial/eukaryotic (EC 2.5.1.9)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1514
+				</td>
+				<td>
+					STM1431
+				</td>
+				<td>
+					Superoxide dismutase [Fe] (EC 1.15.1.1)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1516
+				</td>
+				<td>
+					STM1433
+				</td>
+				<td>
+					Probable monothiol glutaredoxin GrlA
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1527
+				</td>
+				<td>
+					STM1444
+				</td>
+				<td>
+					Transcriptional regulator SlyA
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1533
+				</td>
+				<td>
+					STM1450
+				</td>
+				<td>
+					Pyridoxal kinase (EC 2.7.1.35)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1534
+				</td>
+				<td>
+					STM1451
+				</td>
+				<td>
+					Glutathione S-transferase (EC 2.5.1.18)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1549
+				</td>
+				<td>
+					STM1467
+				</td>
+				<td>
+					Mannose-6-phosphate isomerase (EC 5.3.1.8)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1550
+				</td>
+				<td>
+					STM1468
+				</td>
+				<td>
+					Fumarate hydratase class I, aerobic (EC 4.2.1.2)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1551
+				</td>
+				<td>
+					STM1469
+				</td>
+				<td>
+					Fumarate hydratase class II (EC 4.2.1.2)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1649
+				</td>
+				<td>
+					STM1558
+				</td>
+				<td>
+					Glycogen debranching enzyme (EC 3.2.1.-)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1656
+				</td>
+				<td>
+					STM1565
+				</td>
+				<td>
+					Stationary-phase-induced ribosome-associated protein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1657
+				</td>
+				<td>
+					STM1566
+				</td>
+				<td>
+					NAD-dependent malic enzyme (EC 1.1.1.38)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1658
+				</td>
+				<td>
+					STM1567
+				</td>
+				<td>
+					Alcohol dehydrogenase (EC 1.1.1.1)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1739
+				</td>
+				<td>
+					STM1647
+				</td>
+				<td>
+					D-lactate dehydrogenase (EC 1.1.1.28)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1776
+				</td>
+				<td>
+					STM1682
+				</td>
+				<td>
+					Thiol peroxidase, Tpx-type (EC 1.11.1.15)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1794
+				</td>
+				<td>
+					STM1700
+				</td>
+				<td>
+					Enoyl-[acyl-carrier-protein] reductase [NADH] (EC 1.3.1.9)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1796
+				</td>
+				<td>
+					STM1702
+				</td>
+				<td>
+					Exoribonuclease II (EC 3.1.13.1)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1807
+				</td>
+				<td>
+					STM1712
+				</td>
+				<td>
+					Aconitate hydratase (EC 4.2.1.3) @ 2-methylisocitrate dehydratase (EC 4.2.1.99)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1825
+				</td>
+				<td>
+					STM1729
+				</td>
+				<td>
+					Protein yciF
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1826
+				</td>
+				<td>
+					STM1730
+				</td>
+				<td>
+					Protein YciE
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1827
+				</td>
+				<td>
+					STM1731
+				</td>
+				<td>
+					Manganese catalase (EC 1.11.1.6)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1847
+				</td>
+				<td>
+					STM1751
+				</td>
+				<td>
+					DNA-binding protein H-NS
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1848
+				</td>
+				<td>
+					STM1752
+				</td>
+				<td>
+					UTP--glucose-1-phosphate uridylyltransferase (EC 2.7.7.9)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1867
+				</td>
+				<td>
+					STM1772
+				</td>
+				<td>
+					2-Keto-3-deoxy-D-manno-octulosonate-8-phosphate synthase (EC 2.5.1.55)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1871
+				</td>
+				<td>
+					STM1776
+				</td>
+				<td>
+					Peptide chain release factor 1
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1877
+				</td>
+				<td>
+					STM1780
+				</td>
+				<td>
+					Ribose-phosphate pyrophosphokinase (EC 2.7.6.1)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1908
+				</td>
+				<td>
+					STM1809
+				</td>
+				<td>
+					Gns protein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1916
+				</td>
+				<td>
+					STM1816
+				</td>
+				<td>
+					Cell division topological specificity factor MinE
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1938
+				</td>
+				<td>
+					STM1837
+				</td>
+				<td>
+					Cold shock protein CspC
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1944
+				</td>
+				<td>
+					STM1842
+				</td>
+				<td>
+					Transcriptional regulator KdgR, KDG operon repressor
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1948
+				</td>
+				<td>
+					STM1846
+				</td>
+				<td>
+					ProQ: influences osmotic activation of compatible solute ProP
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_1999
+				</td>
+				<td>
+					STM1886
+				</td>
+				<td>
+					Glucose-6-phosphate 1-dehydrogenase (EC 1.1.1.49)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2002
+				</td>
+				<td>
+					STM1888
+				</td>
+				<td>
+					Pyruvate kinase (EC 2.7.1.40)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2014
+				</td>
+				<td>
+					STM1899
+				</td>
+				<td>
+					FIG000859: hypothetical protein YebC
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2016
+				</td>
+				<td>
+					STM1901
+				</td>
+				<td>
+					Aspartyl-tRNA synthetase (EC 6.1.1.12)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2025
+				</td>
+				<td>
+					STM1909
+				</td>
+				<td>
+					Arginyl-tRNA synthetase (EC 6.1.1.19)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2051
+				</td>
+				<td>
+					STM1935
+				</td>
+				<td>
+					Ferritin-like protein 2
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2155
+				</td>
+				<td>
+					STM2033
+				</td>
+				<td>
+					Cobalt-precorrin-8x methylmutase (EC 5.4.1.2)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2181
+				</td>
+				<td>
+					STM2059
+				</td>
+				<td>
+					UPF0265 protein YeeX
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2192
+				</td>
+				<td>
+					STM2070
+				</td>
+				<td>
+					Nucleoside-diphosphate-sugar epimerases
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2203
+				</td>
+				<td>
+					STM2081
+				</td>
+				<td>
+					6-phosphogluconate dehydrogenase, decarboxylating (EC 1.1.1.44)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2212
+				</td>
+				<td>
+					STM2090
+				</td>
+				<td>
+					CDP-4-dehydro-6-deoxy-D-glucose 3-dehydratase (EC 4.2.1.-)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2213
+				</td>
+				<td>
+					STM2091
+				</td>
+				<td>
+					Similar to CDP-glucose 4,6-dehydratase (EC 4.2.1.45)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2266
+				</td>
+				<td>
+					STM2141
+				</td>
+				<td>
+					Fructose-bisphosphate aldolase class I (EC 4.1.2.13)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2321
+				</td>
+				<td>
+					STM2194
+				</td>
+				<td>
+					S-formylglutathione hydrolase (EC 3.1.2.12)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2356
+				</td>
+				<td>
+					STM2224
+				</td>
+				<td>
+					LSU ribosomal protein L25p
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2405
+				</td>
+				<td>
+					STM2272
+				</td>
+				<td>
+					DNA gyrase subunit A (EC 5.99.1.3)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2434
+				</td>
+				<td>
+					STM2299
+				</td>
+				<td>
+					Polymyxin resistance protein ArnA_DH, UDP-glucuronic acid decarboxylase (EC 4.1.1.-) / Polymyxin resistance protein ArnA_FT, UDP-4-amino-4-deoxy-L-arabinose formylase (EC 2.1.2.-)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2442
+				</td>
+				<td>
+					STM2307
+				</td>
+				<td>
+					Naphthoate synthase (EC 4.1.3.36)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2460
+				</td>
+				<td>
+					STM2323.S
+				</td>
+				<td>
+					NADH-ubiquinone oxidoreductase chain G (EC 1.6.5.3)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2461
+				</td>
+				<td>
+					STM2324
+				</td>
+				<td>
+					NADH-ubiquinone oxidoreductase chain F (EC 1.6.5.3)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2475
+				</td>
+				<td>
+					STM2338
+				</td>
+				<td>
+					Phosphate acetyltransferase (EC 2.3.1.8)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2509
+				</td>
+				<td>
+					STM2370
+				</td>
+				<td>
+					Erythronate-4-phosphate dehydrogenase (EC 1.1.1.290)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2517
+				</td>
+				<td>
+					STM2378
+				</td>
+				<td>
+					3-oxoacyl-[acyl-carrier-protein] synthase, KASI (EC 2.3.1.41)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2523
+				</td>
+				<td>
+					STM2384
+				</td>
+				<td>
+					Chorismate synthase (EC 4.2.3.5)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2524
+				</td>
+				<td>
+					STM2385
+				</td>
+				<td>
+					Ribosomal protein L3 methyltransferase
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2529
+				</td>
+				<td>
+					STM2390
+				</td>
+				<td>
+					FIG00637865: hypothetical protein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2545
+				</td>
+				<td>
+					STM2403
+				</td>
+				<td>
+					Glucokinase (EC 2.7.1.2)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2555
+				</td>
+				<td>
+					STM2415
+				</td>
+				<td>
+					Glutamyl-tRNA synthetase (EC 6.1.1.17)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2567
+				</td>
+				<td>
+					STM2430
+				</td>
+				<td>
+					Cysteine synthase (EC 2.5.1.47)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2569
+				</td>
+				<td>
+					STM2431
+				</td>
+				<td>
+					Phosphotransferase system, phosphocarrier protein HPr
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2570
+				</td>
+				<td>
+					STM2432
+				</td>
+				<td>
+					Phosphoenolpyruvate-protein phosphotransferase of PTS system (EC 2.7.3.9)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2571
+				</td>
+				<td>
+					STM2433
+				</td>
+				<td>
+					PTS system, glucose-specific IIA component (EC 2.7.1.69)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2583
+				</td>
+				<td>
+					STM2445
+				</td>
+				<td>
+					3-oxoacyl-[acyl-carrier protein] reductase (EC 1.1.1.100)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2584
+				</td>
+				<td>
+					STM2446
+				</td>
+				<td>
+					Predicted iron-dependent peroxidase, Dyp-type family
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2610
+				</td>
+				<td>
+					STM2472
+				</td>
+				<td>
+					NADP-dependent malic enzyme (EC 1.1.1.40)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2611
+				</td>
+				<td>
+					STM2473
+				</td>
+				<td>
+					Transaldolase (EC 2.2.1.2)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2625
+				</td>
+				<td>
+					STM2487
+				</td>
+				<td>
+					Phosphoribosylaminoimidazole-succinocarboxamide synthase (EC 6.3.2.6)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2627
+				</td>
+				<td>
+					STM2489
+				</td>
+				<td>
+					Dihydrodipicolinate synthase (EC 4.2.1.52)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2636
+				</td>
+				<td>
+					STM2498
+				</td>
+				<td>
+					Uracil phosphoribosyltransferase (EC 2.4.2.9)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2646
+				</td>
+				<td>
+					STM2510
+				</td>
+				<td>
+					GMP synthase [glutamine-hydrolyzing] (EC 6.3.5.2)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2647
+				</td>
+				<td>
+					STM2511
+				</td>
+				<td>
+					Inosine-5'-monophosphate dehydrogenase (EC 1.1.1.205)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2659
+				</td>
+				<td>
+					STM2522
+				</td>
+				<td>
+					Histidyl-tRNA synthetase (EC 6.1.1.21)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2663
+				</td>
+				<td>
+					STM2526
+				</td>
+				<td>
+					Nucleoside diphosphate kinase (EC 2.7.4.6)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2670
+				</td>
+				<td>
+					STM2533
+				</td>
+				<td>
+					Thiosulfate sulfurtransferase, rhodanese (EC 2.8.1.1)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2686
+				</td>
+				<td>
+					STM2546
+				</td>
+				<td>
+					Inositol-1-monophosphatase (EC 3.1.3.25)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2796
+				</td>
+				<td>
+					STM2646
+				</td>
+				<td>
+					Pyruvate formate-lyase (EC 2.3.1.54)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2810
+				</td>
+				<td>
+					STM2665
+				</td>
+				<td>
+					Ribosome hibernation protein YfiA
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2817
+				</td>
+				<td>
+					STM2673
+				</td>
+				<td>
+					LSU ribosomal protein L19p
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2820
+				</td>
+				<td>
+					STM2676
+				</td>
+				<td>
+					SSU ribosomal protein S16p
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2826
+				</td>
+				<td>
+					STM2681
+				</td>
+				<td>
+					Heat shock protein GrpE
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2955
+				</td>
+				<td>
+					STM2799
+				</td>
+				<td>
+					DNA-binding protein stpA
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2975
+				</td>
+				<td>
+					STM2817
+				</td>
+				<td>
+					S-ribosylhomocysteine lyase (EC 4.4.1.21) / Autoinducer-2 production protein LuxS
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2980
+				</td>
+				<td>
+					STM2826
+				</td>
+				<td>
+					Carbon storage regulator
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2981
+				</td>
+				<td>
+					STM2827
+				</td>
+				<td>
+					Alanyl-tRNA synthetase (EC 6.1.1.7)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_2992
+				</td>
+				<td>
+					STM2838.S
+				</td>
+				<td>
+					Glucitol operon GutQ protein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3122
+				</td>
+				<td>
+					STM2952
+				</td>
+				<td>
+					Enolase (EC 4.2.1.11)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3141
+				</td>
+				<td>
+					STM2969
+				</td>
+				<td>
+					Decarboxylase family protein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3220
+				</td>
+				<td>
+					STM3040
+				</td>
+				<td>
+					Lysyl-tRNA synthetase (class II) (EC 6.1.1.6)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3229
+				</td>
+				<td>
+					STM3048
+				</td>
+				<td>
+					Folate-dependent protein for Fe/S cluster synthesis/repair in oxidative stress
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3234
+				</td>
+				<td>
+					STM3053
+				</td>
+				<td>
+					Glycine dehydrogenase [decarboxylating] (glycine cleavage system P protein) (EC 1.4.4.2)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3235
+				</td>
+				<td>
+					STM3054
+				</td>
+				<td>
+					Glycine cleavage system H protein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3236
+				</td>
+				<td>
+					STM3055
+				</td>
+				<td>
+					Aminomethyltransferase (glycine cleavage system T protein) (EC 2.1.2.10)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3240
+				</td>
+				<td>
+					STM3058
+				</td>
+				<td>
+					Xaa-Pro aminopeptidase (EC 3.4.11.9)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3245
+				</td>
+				<td>
+					STM3063
+				</td>
+				<td>
+					Ribose 5-phosphate isomerase A (EC 5.3.1.6)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3251
+				</td>
+				<td>
+					STM3068
+				</td>
+				<td>
+					Fructose-bisphosphate aldolase class II (EC 4.1.2.13)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3252
+				</td>
+				<td>
+					STM3069
+				</td>
+				<td>
+					Phosphoglycerate kinase (EC 2.7.2.3)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3259
+				</td>
+				<td>
+					STM3076
+				</td>
+				<td>
+					Transketolase (EC 2.2.1.1)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3261
+				</td>
+				<td>
+					STM3078
+				</td>
+				<td>
+					Agmatinase (EC 3.5.3.11)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3280
+				</td>
+				<td>
+					STM3095
+				</td>
+				<td>
+					Glutathione synthetase (EC 6.3.2.3)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3346
+				</td>
+				<td>
+					STM3157
+				</td>
+				<td>
+					Putative oxidoreductase
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3355
+				</td>
+				<td>
+					STM3165
+				</td>
+				<td>
+					Methylglyoxal reductase, acetol producing (EC 1.1.1.-) / 2,5-diketo-D-gluconate reductase A (EC 1.1.1.274)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3389
+				</td>
+				<td>
+					STM3195
+				</td>
+				<td>
+					3,4-dihydroxy-2-butanone 4-phosphate synthase (EC 4.1.99.12)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3405
+				</td>
+				<td>
+					STM3209
+				</td>
+				<td>
+					SSU ribosomal protein S21p
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3447
+				</td>
+				<td>
+					STM3248
+				</td>
+				<td>
+					2-hydroxy-3-oxopropionate reductase (EC 1.1.1.60)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3479
+				</td>
+				<td>
+					STM3280.S
+				</td>
+				<td>
+					Cold-shock DEAD-box protein A
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3481
+				</td>
+				<td>
+					STM3282
+				</td>
+				<td>
+					Polyribonucleotide nucleotidyltransferase (EC 2.7.7.8)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3482
+				</td>
+				<td>
+					STM3283
+				</td>
+				<td>
+					SSU ribosomal protein S15p (S13e)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3485
+				</td>
+				<td>
+					STM3286
+				</td>
+				<td>
+					Translation initiation factor 2
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3486
+				</td>
+				<td>
+					STM3287
+				</td>
+				<td>
+					Transcription termination protein NusA
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3487
+				</td>
+				<td>
+					STM3288
+				</td>
+				<td>
+					COG0779: clustered with transcription termination protein NusA
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3491
+				</td>
+				<td>
+					STM3294
+				</td>
+				<td>
+					Phosphoglucosamine mutase (EC 5.4.2.10)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3497
+				</td>
+				<td>
+					STM3299
+				</td>
+				<td>
+					Transcription elongation factor GreA
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3501
+				</td>
+				<td>
+					STM3301
+				</td>
+				<td>
+					GTP-binding protein Obg
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3504
+				</td>
+				<td>
+					STM3303
+				</td>
+				<td>
+					LSU ribosomal protein L27p
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3505
+				</td>
+				<td>
+					STM3304
+				</td>
+				<td>
+					LSU ribosomal protein L21p
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3538
+				</td>
+				<td>
+					STM3337
+				</td>
+				<td>
+					N-acetylmannosamine-6-phosphate 2-epimerase (EC 5.1.3.9)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3543
+				</td>
+				<td>
+					STM3342
+				</td>
+				<td>
+					Stringent starvation protein A
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3545
+				</td>
+				<td>
+					STM3344
+				</td>
+				<td>
+					SSU ribosomal protein S9p (S16e)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3546
+				</td>
+				<td>
+					STM3345
+				</td>
+				<td>
+					LSU ribosomal protein L13p (L13Ae)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3560
+				</td>
+				<td>
+					STM3359
+				</td>
+				<td>
+					Malate dehydrogenase (EC 1.1.1.37)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3580
+				</td>
+				<td>
+					STM3379
+				</td>
+				<td>
+					Biotin carboxyl carrier protein of acetyl-CoA carboxylase
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3586
+				</td>
+				<td>
+					STM3385
+				</td>
+				<td>
+					DNA-binding protein Fis
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3611
+				</td>
+				<td>
+					STM3414
+				</td>
+				<td>
+					LSU ribosomal protein L17p
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3612
+				</td>
+				<td>
+					STM3415
+				</td>
+				<td>
+					DNA-directed RNA polymerase alpha subunit (EC 2.7.7.6)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3613
+				</td>
+				<td>
+					STM3416
+				</td>
+				<td>
+					SSU ribosomal protein S4p (S9e)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3614
+				</td>
+				<td>
+					STM3417
+				</td>
+				<td>
+					SSU ribosomal protein S11p (S14e)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3615
+				</td>
+				<td>
+					STM3418
+				</td>
+				<td>
+					SSU ribosomal protein S13p (S18e)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3618
+				</td>
+				<td>
+					STM3421
+				</td>
+				<td>
+					LSU ribosomal protein L15p (L27Ae)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3619
+				</td>
+				<td>
+					STM3422
+				</td>
+				<td>
+					LSU ribosomal protein L30p (L7e)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3620
+				</td>
+				<td>
+					STM3423
+				</td>
+				<td>
+					SSU ribosomal protein S5p (S2e)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3621
+				</td>
+				<td>
+					STM3424
+				</td>
+				<td>
+					LSU ribosomal protein L18p (L5e)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3622
+				</td>
+				<td>
+					STM3425
+				</td>
+				<td>
+					LSU ribosomal protein L6p (L9e)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3623
+				</td>
+				<td>
+					STM3426
+				</td>
+				<td>
+					SSU ribosomal protein S8p (S15Ae)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3624
+				</td>
+				<td>
+					STM3427.S
+				</td>
+				<td>
+					SSU ribosomal protein S14p (S29e) @ SSU ribosomal protein S14p (S29e), zinc-independent
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3625
+				</td>
+				<td>
+					STM3428
+				</td>
+				<td>
+					LSU ribosomal protein L5p (L11e)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3626
+				</td>
+				<td>
+					STM3429
+				</td>
+				<td>
+					LSU ribosomal protein L24p (L26e)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3628
+				</td>
+				<td>
+					STM3431
+				</td>
+				<td>
+					SSU ribosomal protein S17p (S11e)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3629
+				</td>
+				<td>
+					STM3432
+				</td>
+				<td>
+					LSU ribosomal protein L29p (L35e)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3630
+				</td>
+				<td>
+					STM3433
+				</td>
+				<td>
+					LSU ribosomal protein L16p (L10e)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3631
+				</td>
+				<td>
+					STM3434
+				</td>
+				<td>
+					SSU ribosomal protein S3p (S3e)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3632
+				</td>
+				<td>
+					STM3435
+				</td>
+				<td>
+					LSU ribosomal protein L22p (L17e)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3633
+				</td>
+				<td>
+					STM3436
+				</td>
+				<td>
+					SSU ribosomal protein S19p (S15e)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3634
+				</td>
+				<td>
+					STM3437
+				</td>
+				<td>
+					LSU ribosomal protein L2p (L8e)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3635
+				</td>
+				<td>
+					STM3438
+				</td>
+				<td>
+					LSU ribosomal protein L23p (L23Ae)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3636
+				</td>
+				<td>
+					STM3439
+				</td>
+				<td>
+					LSU ribosomal protein L4p (L1e)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3637
+				</td>
+				<td>
+					STM3440
+				</td>
+				<td>
+					LSU ribosomal protein L3p (L3e)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3640
+				</td>
+				<td>
+					STM3443
+				</td>
+				<td>
+					Bacterioferritin
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3642
+				</td>
+				<td>
+					STM3445
+				</td>
+				<td>
+					Translation elongation factor Tu
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3643
+				</td>
+				<td>
+					STM3446
+				</td>
+				<td>
+					Translation elongation factor G
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3644
+				</td>
+				<td>
+					STM3447
+				</td>
+				<td>
+					SSU ribosomal protein S7p (S5e)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3645
+				</td>
+				<td>
+					STM3448
+				</td>
+				<td>
+					SSU ribosomal protein S12p (S23e)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3652
+				</td>
+				<td>
+					STM3455
+				</td>
+				<td>
+					FKBP-type peptidyl-prolyl cis-trans isomerase SlyD (EC 5.2.1.8)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3679
+				</td>
+				<td>
+					STM3481
+				</td>
+				<td>
+					Tryptophanyl-tRNA synthetase (EC 6.1.1.2)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3681
+				</td>
+				<td>
+					STM3483
+				</td>
+				<td>
+					Ribulose-phosphate 3-epimerase (EC 5.1.3.1)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3685
+				</td>
+				<td>
+					STM3487
+				</td>
+				<td>
+					Shikimate kinase I (EC 2.7.1.71)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3699
+				</td>
+				<td>
+					STM3500
+				</td>
+				<td>
+					Phosphoenolpyruvate carboxykinase [ATP] (EC 4.1.1.49)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3711
+				</td>
+				<td>
+					STM3511
+				</td>
+				<td>
+					NfuA Fe-S protein maturation
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3741
+				</td>
+				<td>
+					STM3539
+				</td>
+				<td>
+					Aspartate-semialdehyde dehydrogenase (EC 1.2.1.11)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3795
+				</td>
+				<td>
+					STM3591
+				</td>
+				<td>
+					Universal stress protein A
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3798
+				</td>
+				<td>
+					STM3594
+				</td>
+				<td>
+					Oligopeptidase A (EC 3.4.24.70)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3802
+				</td>
+				<td>
+					STM3597
+				</td>
+				<td>
+					Glutathione reductase (EC 1.8.1.7)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3806
+				</td>
+				<td>
+					STM3601
+				</td>
+				<td>
+					Putative phosphosugar-binding protein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3818
+				</td>
+				<td>
+					STM3612
+				</td>
+				<td>
+					2-dehydro-3-deoxygluconate kinase (EC 2.7.1.45)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3851
+				</td>
+				<td>
+					STM3642
+				</td>
+				<td>
+					DNA-3-methyladenine glycosylase (EC 3.2.2.20)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3866
+				</td>
+				<td>
+					STM3655
+				</td>
+				<td>
+					Glycyl-tRNA synthetase beta chain (EC 6.1.1.14)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3867
+				</td>
+				<td>
+					STM3656
+				</td>
+				<td>
+					Glycyl-tRNA synthetase alpha chain (EC 6.1.1.14)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3914
+				</td>
+				<td>
+					STM3701
+				</td>
+				<td>
+					Protein export cytoplasm chaperone protein (SecB, maintains protein to be exported in unfolded state)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3917
+				</td>
+				<td>
+					STM3704
+				</td>
+				<td>
+					2,3-bisphosphoglycerate-independent phosphoglycerate mutase (EC 5.4.2.1)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3922
+				</td>
+				<td>
+					STM3708
+				</td>
+				<td>
+					L-threonine 3-dehydrogenase (EC 1.1.1.103)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3923
+				</td>
+				<td>
+					STM3709
+				</td>
+				<td>
+					2-amino-3-ketobutyrate coenzyme A ligase (EC 2.3.1.29)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3924
+				</td>
+				<td>
+					STM3710
+				</td>
+				<td>
+					ADP-L-glycero-D-manno-heptose-6-epimerase (EC 5.1.3.20)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3944
+				</td>
+				<td>
+					STM3728
+				</td>
+				<td>
+					LSU ribosomal protein L28p
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3947
+				</td>
+				<td>
+					STM3731
+				</td>
+				<td>
+					Deoxyuridine 5'-triphosphate nucleotidohydrolase (EC 3.6.1.23)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3957
+				</td>
+				<td>
+					STM3740
+				</td>
+				<td>
+					Guanylate kinase (EC 2.7.4.8)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_3958
+				</td>
+				<td>
+					STM3741
+				</td>
+				<td>
+					DNA-directed RNA polymerase omega subunit (EC 2.7.7.6)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4058
+				</td>
+				<td>
+					STM3831
+				</td>
+				<td>
+					Hydrolase (HAD superfamily)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4090
+				</td>
+				<td>
+					STM3861
+				</td>
+				<td>
+					Glucosamine--fructose-6-phosphate aminotransferase [isomerizing] (EC 2.6.1.16)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4097
+				</td>
+				<td>
+					STM3868
+				</td>
+				<td>
+					ATP synthase delta chain (EC 3.6.3.14)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4120
+				</td>
+				<td>
+					STM3898
+				</td>
+				<td>
+					Protein yifE
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4137
+				</td>
+				<td>
+					STM3915
+				</td>
+				<td>
+					Thioredoxin
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4187
+				</td>
+				<td>
+					STM3968
+				</td>
+				<td>
+					Uridine phosphorylase (EC 2.4.2.3)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4203
+				</td>
+				<td>
+					STM3984
+				</td>
+				<td>
+					Xaa-Pro dipeptidase PepQ (EC 3.4.13.9)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4209
+				</td>
+				<td>
+					STM3995
+				</td>
+				<td>
+					Protein yihD
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4217
+				</td>
+				<td>
+					STM4003
+				</td>
+				<td>
+					Protein of unknown function DUF414
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4223
+				</td>
+				<td>
+					STM4007
+				</td>
+				<td>
+					Glutamine synthetase type I (EC 6.3.1.2)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4224
+				</td>
+				<td>
+					STM4009
+				</td>
+				<td>
+					GTP-binding protein TypA/BipA
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4275
+				</td>
+				<td>
+					STM4055
+				</td>
+				<td>
+					Manganese superoxide dismutase (EC 1.15.1.1)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4282
+				</td>
+				<td>
+					STM4062
+				</td>
+				<td>
+					6-phosphofructokinase (EC 2.7.1.11)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4298
+				</td>
+				<td>
+					STM4078
+				</td>
+				<td>
+					Autoinducer 2 (AI-2) aldolase LsrF (EC 4.2.1.-)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4301
+				</td>
+				<td>
+					STM4081
+				</td>
+				<td>
+					Triosephosphate isomerase (EC 5.3.1.1)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4308
+				</td>
+				<td>
+					STM4088
+				</td>
+				<td>
+					Putative cytoplasmic protein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4310
+				</td>
+				<td>
+					STM4089
+				</td>
+				<td>
+					Ribonuclease E inhibitor RraA
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4313
+				</td>
+				<td>
+					STM4092
+				</td>
+				<td>
+					ATP-dependent protease HslV (EC 3.4.25.-)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4329
+				</td>
+				<td>
+					STM4106
+				</td>
+				<td>
+					Catalase (EC 1.11.1.6) / Peroxidase (EC 1.11.1.7)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4331
+				</td>
+				<td>
+					STM4108
+				</td>
+				<td>
+					Glycerol dehydrogenase (EC 1.1.1.6)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4342
+				</td>
+				<td>
+					STM4120
+				</td>
+				<td>
+					Acetylornithine deacetylase (EC 3.5.1.16)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4345
+				</td>
+				<td>
+					STM4123
+				</td>
+				<td>
+					Argininosuccinate lyase (EC 4.3.2.1)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4346
+				</td>
+				<td>
+					STM4125
+				</td>
+				<td>
+					Hydrogen peroxide-inducible genes activator
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4355
+				</td>
+				<td>
+					STM4139
+				</td>
+				<td>
+					Pantothenate kinase (EC 2.7.1.33)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4360
+				</td>
+				<td>
+					STM4148
+				</td>
+				<td>
+					Transcription antitermination protein NusG
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4362
+				</td>
+				<td>
+					STM4150
+				</td>
+				<td>
+					LSU ribosomal protein L1p (L10Ae)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4363
+				</td>
+				<td>
+					STM4151
+				</td>
+				<td>
+					LSU ribosomal protein L10p (P0)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4364
+				</td>
+				<td>
+					STM4152
+				</td>
+				<td>
+					LSU ribosomal protein L7/L12 (P1/P2)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4365
+				</td>
+				<td>
+					STM4153
+				</td>
+				<td>
+					DNA-directed RNA polymerase beta subunit (EC 2.7.7.6)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4366
+				</td>
+				<td>
+					STM4154
+				</td>
+				<td>
+					DNA-directed RNA polymerase beta' subunit (EC 2.7.7.6)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4384
+				</td>
+				<td>
+					STM4170
+				</td>
+				<td>
+					DNA-binding protein HU-alpha
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4441
+				</td>
+				<td>
+					STM4221
+				</td>
+				<td>
+					Glucose-6-phosphate isomerase (EC 5.3.1.9)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4450
+				</td>
+				<td>
+					STM4230
+				</td>
+				<td>
+					Maltose/maltodextrin transport ATP-binding protein MalK (EC 3.6.3.19)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4465
+				</td>
+				<td>
+					STM4245
+				</td>
+				<td>
+					Quinone oxidoreductase (EC 1.6.5.5)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4475
+				</td>
+				<td>
+					STM4256
+				</td>
+				<td>
+					Single-stranded DNA-binding protein
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4522
+				</td>
+				<td>
+					STM4300
+				</td>
+				<td>
+					Fumarate hydratase class I, anaerobic (EC 4.2.1.2)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4551
+				</td>
+				<td>
+					STM4326
+				</td>
+				<td>
+					Aspartate ammonia-lyase (EC 4.3.1.1)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4555
+				</td>
+				<td>
+					STM4329
+				</td>
+				<td>
+					Heat shock protein 60 family co-chaperone GroES
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4556
+				</td>
+				<td>
+					STM4330
+				</td>
+				<td>
+					Heat shock protein 60 family chaperone GroEL
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4560
+				</td>
+				<td>
+					STM4334
+				</td>
+				<td>
+					Translation elongation factor P
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4569
+				</td>
+				<td>
+					STM4342
+				</td>
+				<td>
+					Succinate dehydrogenase iron-sulfur protein (EC 1.3.99.1)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4590
+				</td>
+				<td>
+					STM4366
+				</td>
+				<td>
+					Adenylosuccinate synthetase (EC 6.3.4.4)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4592
+				</td>
+				<td>
+					STM4368
+				</td>
+				<td>
+					3'-to-5' exoribonuclease RNase R
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4616
+				</td>
+				<td>
+					STM4391
+				</td>
+				<td>
+					SSU ribosomal protein S6p
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4618
+				</td>
+				<td>
+					STM4393
+				</td>
+				<td>
+					SSU ribosomal protein S18p @ SSU ribosomal protein S18p, zinc-independent
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4619
+				</td>
+				<td>
+					STM4394
+				</td>
+				<td>
+					LSU ribosomal protein L9p
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4641
+				</td>
+				<td>
+					STM4414
+				</td>
+				<td>
+					Inorganic pyrophosphatase (EC 3.6.1.1)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4691
+				</td>
+				<td>
+					STM4458
+				</td>
+				<td>
+					Endoribonuclease L-PSP
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4698
+				</td>
+				<td>
+					STM4465
+				</td>
+				<td>
+					Ornithine carbamoyltransferase (EC 2.1.3.3)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4701
+				</td>
+				<td>
+					STM4467
+				</td>
+				<td>
+					Arginine deiminase (EC 3.5.3.6)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4711
+				</td>
+				<td>
+					STM4475
+				</td>
+				<td>
+					Valyl-tRNA synthetase (EC 6.1.1.9)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4713
+				</td>
+				<td>
+					STM4477
+				</td>
+				<td>
+					Cytosol aminopeptidase PepA (EC 3.4.11.1)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4752
+				</td>
+				<td>
+					STM4512
+				</td>
+				<td>
+					Isoaspartyl dipeptidase (EC 3.4.19.5) @ Asp-X dipeptidase
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4762
+				</td>
+				<td>
+					STM4519
+				</td>
+				<td>
+					Succinate-semialdehyde dehydrogenase [NAD] (EC 1.2.1.24); Succinate-semialdehyde dehydrogenase [NADP+] (EC 1.2.1.16)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4779
+				</td>
+				<td>
+					STM4535
+				</td>
+				<td>
+					PTS system, mannose-specific IIA component (EC 2.7.1.69)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4784
+				</td>
+				<td>
+					STM4540.S
+				</td>
+				<td>
+					Putative glucosamine-fructose-6-phosphate aminotransferase
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4797
+				</td>
+				<td>
+					STM4556
+				</td>
+				<td>
+					Ribosomal RNA small subunit methyltransferase C (EC 2.1.1.52)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4809
+				</td>
+				<td>
+					STM4567
+				</td>
+				<td>
+					Deoxyribose-phosphate aldolase (EC 4.1.2.4)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4811
+				</td>
+				<td>
+					STM4569
+				</td>
+				<td>
+					Phosphopentomutase (EC 5.4.2.7)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4812
+				</td>
+				<td>
+					STM4570
+				</td>
+				<td>
+					Purine nucleoside phosphorylase (EC 2.4.2.1)
+				</td>
+			</tr>
+			<tr>
+				<td>
+					Salmonella enterica subsp. enterica serovar Typhimurium str. LT2
+				</td>
+				<td>
+					VBISalEnt20916_4828
+				</td>
+				<td>
+					STM4585
+				</td>
+				<td>
+					Phosphoglycerate mutase (EC 5.4.2.1)
+				</td>
+			</tr>
+		</table>
+        </section>
+    </div>
+
+    <footer class='ondark linkstyle-highlight-c smallest no-underline-links main-footer'>
+      <div class='container'>
+        <div class='column' style="border:0px">
+          <div class='wrapper'>
+            <h4 class='close2x normal-weight'>PATRIC</h4>
+            <p class="close">Virginia Bioinformatics Institute</p>
+            <p class='close'>Washington Street</p>
+            <p>Blacksburg, VA 24060</p>
+            <a class="button" href="http://enews.patricbrc.org/contact-us/">Contact Us</a>
+          </div>
+        </div>
+        <div class='column'>
+          <div class='wrapper'>
+            <h4 class='normal-weight close2x'>How to Cite PATRIC</h4>
+            <p>If you use PATRIC web resources to assist in research publications or proposals please cite as:</p>
+            <a class="button" href="http://enews.patricbrc.org/citing-patric/">How to cite PATRIC</a>
+          </div>
+        </div>
+        <div class='column'>
+          <div class='wrapper'>
+            <h4 class='normal-weight close2x'>Funding Statement</h4>
+            <p>This project has been funded in whole or in part with Federal funds from the 
+               National Institute of Allergy and Infectious Diseases, National Institutes of Health,
+               Department of Health and Human Services,
+               under Contract No. HHSN272200900040C, awarded to BWS Sobral</p>
+          </div>
+        </div>
+        <div class='column last bold'>
+          <div class='wrapper'>
+            <h4 class='normal-weight close'>Follow Us:</h4>
+            <ul class='left no-decoration'>
+              <li><a class="footer-icons sprite-icon-subscribe" href="http://enews.patricbrc.org/subscribe/">Subscribe</a></li>
+              <li><a class="footer-icons sprite-icon-twitter" href="http://twitter.com/PATRICBRC">Twitter</a></li>
+              <li><a class="footer-icons sprite-icon-facebook" href="http://www.facebook.com/pages/Pathosystems-Resource-Integration-Center-PATRIC/117100971687823">Facebook</a></li>
+              
+            </ul>
+            <ul class='left no-decoration'>
+              <li><a class="footer-icons sprite-icon-enews" href="http://enews.patricbrc.org/">eNews</a></li>
+              <li><a class="footer-icons sprite-icon-rss" href="http://enews.patricbrc.org/feed/">RSS</a></li>
+              <li><a class="footer-icons sprite-icon-youtube" href="http://www.youtube.com/user/PATRICBRC">YouTube</a></li>
+              <li><a class="footer-icons sprite-icon-share" href="http://www.addthis.com/bookmark.php?v=250&username=xa-4c40660c515875dc">Share This</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+	<script type="text/javascript">
+	//<![CDATA[
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-11736060-1']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	//]]>
+	</script>
+</html>
+

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2013 Virginia Polytechnic Institute and State University
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<portlet-app version="" xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" 
+	xmlns:xml="http://www.w3.org/XML/1998/namespace" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd 
+							http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd ">
+	<portlet>
+		<portlet-name>TaxonomyTreePortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.TaxonomyTreePortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+			<window-state>normal</window-state>
+		</supports>
+		<portlet-info>
+			<title>Taxonomy Tree</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+	</portlet>
+	<!-- taxon overview portlets -->
+	<portlet>
+		<portlet-name>TaxonSummaryPortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.TaxonSummaryPortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+			<window-state>normal</window-state>
+		</supports>
+		<portlet-info>
+			<title>Taxonomy Summary</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+	</portlet>
+	<!-- genome overview portlets -->
+	<portlet>
+		<portlet-name>SequenceSummaryPortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.SequenceSummaryPortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Genome Summary</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>GenomicFeatureSummaryPortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.GenomicFeatureSummaryPortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Genomic Feature Summary</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>ProteinFeatureSummaryPortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.ProteinFeatureSummaryPortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Protein Feature Summary</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+	</portlet>
+	<!-- feature overview portlets -->
+	<portlet>
+		<portlet-name>FeaturePropertiesPortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.FeaturePropertiesPortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Feature Properties</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>FeatureToolsPortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.FeatureToolsPortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title></title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>FunctionalPropertiesPortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.FunctionalPropertiesPortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Functional Properties</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>FeatureCommentsPortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.FeatureCommentsPortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Feature Comments</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+	</portlet>
+	<!-- genome list -->
+	<portlet>
+		<portlet-name>GenomeListPortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.GenomeListPortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Genome List</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>data_source</supported-public-render-parameter>
+		<supported-public-render-parameter>display_mode</supported-public-render-parameter>
+		<supported-public-render-parameter>param_key</supported-public-render-parameter>
+		<supported-public-render-parameter>keyword</supported-public-render-parameter>
+	</portlet>
+	<!-- experiment list -->
+	<portlet>
+		<portlet-name>ExperimentListPortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.ExperimentListPortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Experiment List</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>data_source</supported-public-render-parameter>
+		<supported-public-render-parameter>display_mode</supported-public-render-parameter>
+		<supported-public-render-parameter>keyword</supported-public-render-parameter>
+	</portlet>
+	<!-- experiment list -->
+	<portlet>
+		<portlet-name>ProteomicsListPortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.ProteomicsListPortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Proteomics List</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>keyword</supported-public-render-parameter>
+	</portlet>		
+	<!-- organism summary -->
+	<portlet>
+		<portlet-name>OrganismSummaryPortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.OrganismSummaryPortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Organisms We Study</title>
+		</portlet-info>
+	</portlet>
+	<!-- public render parameters -->
+	<public-render-parameter>
+		<identifier>context_type</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:context_type</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>context_id</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:context_id</qname>
+	</public-render-parameter>
+    <public-render-parameter>
+        <identifier>data_source</identifier>
+        <qname xmlns:x="http://patricbrc.org/params">x:data_source</qname>
+    </public-render-parameter>
+    <public-render-parameter>
+        <identifier>display_mode</identifier>
+        <qname xmlns:x="http://patricbrc.org/params">x:display_mode</qname>
+    </public-render-parameter>
+    <public-render-parameter>
+        <identifier>param_key</identifier>
+        <qname xmlns:x="http://patricbrc.org/params">x:param_key</qname>
+    </public-render-parameter>
+    <public-render-parameter>
+        <identifier>keyword</identifier>
+        <qname xmlns:x="http://patricbrc.org/params">x:keyword</qname>
+    </public-render-parameter>
+</portlet-app>

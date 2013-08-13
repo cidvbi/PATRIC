@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2013 Virginia Polytechnic Institute and State University
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<portlet-app version="" xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" 
+	xmlns:xml="http://www.w3.org/XML/1998/namespace" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd 
+							http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd ">
+	<portlet>
+		<portlet-name>ExperimentDataPortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.ExperimentDataPortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Experiment Data Overview</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+	</portlet>
+	<!-- Transcriptomics -->
+	<portlet>
+		<portlet-name>GEOPortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.GEOPortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>GEO</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>filter</supported-public-render-parameter>
+		<supported-public-render-parameter>keyword</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>ArrayExpressPortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.ArrayExpressPortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>ArrayExpress</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>keyword</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>PRCPortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.PRCPortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Proteomics Resource Center</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>filter</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>TranscriptomicsSummaryPortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.TranscriptomicsSummary</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Transcriptomics / Expression</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+	</portlet>
+	<!-- Proteomics -->
+	<portlet>
+		<portlet-name>PeptidomePortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.PeptidomePortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Peptidome</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>filter</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>PRIDEPortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.PRIDEPortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>PRIDE</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>ProteomicsSummaryPortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.ProteomicsSummary</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Proteomics / MassSpec</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+	</portlet>
+	<!-- Structure -->
+	<portlet>
+		<portlet-name>StructurePortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.StructurePortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Structure</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>filter</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>StructureSummary</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.StructureSummary</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Structure</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+	</portlet>
+	<!-- Protein Protein Interaction -->
+	<portlet>
+		<portlet-name>IntActPortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.IntActPortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>IntAct</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>PPISummary</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.PPISummary</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Protein Protein Interaction</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+	</portlet>
+	<!--  Literature / PubMed API -->
+	<portlet>
+		<portlet-name>PubMedPortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.PubMedPortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Literature</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>scope</supported-public-render-parameter>
+		<supported-public-render-parameter>time</supported-public-render-parameter>
+		<supported-public-render-parameter>keyword</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>PubMedPanel</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.PubMedPanel</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Recent PubMed Articles</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>keyword</supported-public-render-parameter>
+	</portlet>
+	<!-- KLEIO Interface -->
+	<portlet>
+		<portlet-name>KLEIOPortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.KLEIOPortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>KLEIO</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>keyword</supported-public-render-parameter>
+	</portlet>
+	<!-- 3D Structure Viewer -->
+	<portlet>
+		<portlet-name>JmolPortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.JmolPortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>3D Structure</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>pdb_id</supported-public-render-parameter>
+		<supported-public-render-parameter>chain_id</supported-public-render-parameter>
+	</portlet>
+	<!-- Summary for overview page -->
+	<portlet>
+		<portlet-name>ExperimentSummaryPortlet</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.ExperimentSummaryPortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Experiment Summary</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+	</portlet>
+	<!-- public render parameters -->
+	<public-render-parameter>
+		<identifier>context_type</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:context_type</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>context_id</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:context_id</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+        <identifier>filter</identifier>
+        <qname xmlns:x="http://patricbrc.org/params">x:filter</qname>
+    </public-render-parameter>
+    <public-render-parameter>
+        <identifier>keyword</identifier>
+        <qname xmlns:x="http://patricbrc.org/params">x:keyword</qname>
+    </public-render-parameter>
+    <public-render-parameter>
+        <identifier>scope</identifier>
+        <qname xmlns:x="http://patricbrc.org/params">x:scope</qname>
+    </public-render-parameter>
+    <public-render-parameter>
+        <identifier>time</identifier>
+        <qname xmlns:x="http://patricbrc.org/params">x:time</qname>
+    </public-render-parameter>
+        	<!-- used for jmol only -->
+    <public-render-parameter>
+        <identifier>pdb_id</identifier>
+        <qname xmlns:x="http://patricbrc.org/params">x:pdb_id</qname>
+    </public-render-parameter>
+    <public-render-parameter>
+        <identifier>chain_id</identifier>
+        <qname xmlns:x="http://patricbrc.org/params">x:chain_id</qname>
+    </public-render-parameter>
+</portlet-app>

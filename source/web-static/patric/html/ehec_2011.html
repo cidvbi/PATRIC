@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js' lang='en'>
+	<!--<![endif]-->
+	<head>
+		<!-- Always force the latest IE rendering engine (even in intranet) & Chrome Frame -->
+		<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible' />
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+		<meta http-equiv="Content-Language" content="en-US"/>
+		<title>PATRIC</title>
+
+		<!-- Mobile viewport optimized -->
+		<meta content='width=device-width, initial-scale=1.0' name='viewport' />
+		<link href='http://fonts.googleapis.com/css?family=Didact+Gothic' rel='stylesheet' type='text/css' />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js" type="text/javascript"></script>
+		<script src="/patric/js/libs/modernizr-1.6.min.js" type="text/javascript"></script>
+		<script src="/patric/js/plugins.min.js" type="text/javascript"></script>
+		<script src="/patric/js/script.js" type="text/javascript"></script>
+		<script src="http://cdn.sencha.io/ext-4.1.1-gpl/ext-all.js" type="text/javascript"></script>
+		<link href="http://cdn.sencha.io/ext-4.1.1-gpl/resources/css/ext-all.css" media="screen" rel="stylesheet" type="text/css" />
+		<link href="/patric/css/main.css" media="screen" rel="stylesheet" type="text/css" />
+		<!-- PATRIC CSS & JS -->
+		<script src="/patric/js/patric.min.js" type="text/javascript"></script>
+		<link href="/patric/css/patric.css" media="screen" rel="stylesheet" type="text/css" />
+		<script src="/portal-core/layouts/patric/modal.min.js" type="text/javascript"></script>
+	</head>
+	<body class='normal home'>
+	<div id="login-modal" style="display:none">
+		<div id="login-modal-msg" style="display:none;width:255px;height:109px">
+			<div id="loginIframe" class="login-content"></div>
+		</div>
+	</div>
+
+	<header class='main-header no-underline-links'>
+	<div class='masthead'>
+        <div class='wrapper'>
+          <a class="logo" href="/portal/portal/patric/Home">PATRIC Home</a>
+          <ul class='main-nav no-decoration'>
+            <li class='first active'><a class="home active" href="/portal/portal/patric/Home">Home</a></li>
+          </ul>
+	<!--
+          <div class='login'>
+		<div id='dashboardnav'>
+		<script type="text/javascript">
+		//<![CDATA[
+		function doLogin() {
+			alertModal('login-modal','login-modal-msg', 'http://www.patricbrc.org/portal/auth/portal/patric/Home');
+			return false;
+		}
+		//]]>
+		</script>
+		<span class='logged-in smallest'>
+			
+			<a class="button" href="javascript:void(0)" onclick="doLogin()">Login</a>
+			Not Registered? <a class="arrow-slate-e" href="https://www.patricbrc.org/portal/portal/patric/MyAccount/PATRICUserPortletWindow?_jsfBridgeViewId=%2Fjsf%2Findex.xhtml&amp;action=1">Sign Up</a>
+			
+			<br/><a href="http://enews.patricbrc.org/workspace-faqs/registration-faqs/" target="_blank">Learn About Registering</a>
+		</span>
+		</div>	
+          </div>
+	-->
+        </div>
+      </div>
+      <div class='toolbar ondark linkstyle-highlight-c'>
+        <div class='container'>
+	<!--
+          <form class='search' action="post" onsubmit="return false;">
+            <input placeholder='Search' type='text' id="global_search_keyword" name="global_search_keyword" />
+            <input type='submit' onclick="search_all_header()" />
+          </form>
+	-->
+	  <div style="float:left;margin-right: 17px;width: 311px;">&nbsp;</div>
+          <div class='workspace smallest'>
+              <span class='upper'>My workspace:</span>
+              <a class='arrow-white-e' href='#'><span id="cart" /></a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class='container'>
+        <section class='main' role='main'>
+<script type="text/javascript">
+//<![CDATA[
+
+	var fSet1 = {
+		name:'Unique proteins in E coli TY-2482',
+		desc:'Proteins with no hits to E. coli protein database (e value <= 1e-5)', 
+		members:'48367664,48368816,48373145,48374516,48364657,48368417,48364909,48372870,48373511,48369630,48373627,48367261,48374880,48366462,48371672,48368256,48366765,48365429,48374368,48368390,48365831,48374565,48374830,48368350,48369530,48364781,48365114,48364163,48365988,48374888,48372411,48374578,48368693,48374260,48371466,48371462,48367804,48365641,48367378,48369678,48369681,48373210,48371226,48367672,48369856,48366590,48370156,48370166,48365278,48365283,48367309,48374586'
+	}
+
+	var fSet2 = {
+		name:'Unique proteins in E coli O104:H4 str. LB226692',
+		desc:'Proteins with no hits to E. coli protein database (e value <= 1e-5)', 
+		members:'48464381,48476111,48465329,48469281,48465628,48465926,48470878,48476008,48476492,48469841,48469965,48470280,48472973,48475531,48467742,48468203,48468256,48473847,48473860,48471430,48464851,48476230,48466767,48471661,48471852,48471990,48472364,48472554,48474293,48474489,48474491,48476433,48475231,48464058,48465774,48465776,48466357,48466397,48466438,48476044,48466265,48475747,48475321,48474745,48474903,48468928,48475012,48475025,48467684,48473458,48473643,48467032,48473308,48466255'
+	}
+
+function addFeaturesToGroup(featureSet) {
+	
+	Ext.Ajax.request({
+		url:'/portal/portal/patric/BreadCrumb/PersistentCartWindow?action=b&cacheability=PAGE',
+		params: {
+			action_type:'groupAction',
+			action:'add',
+			group_name:featureSet.name,
+			group_desc:featureSet.desc,
+			fid:featureSet.members
+		},
+		method:'POST',
+		success: function(rs, opts) {
+			Ext.getDom("cart").innerHTML = rs.responseText;
+		}
+	});
+}
+
+//]]>
+</script>
+<h1>EHEC 2011 Outbreak</h1>
+<a name="TY"></a>
+<div class="table-container">
+<h2 class="section-title normal-case close2x">Unique proteins in Escherichia coli TY-2482</h2>
+<!--<div style="float:right"><input type="button" value="Add to Group" onclick="addFeaturesToGroup(fSet1)" /></div>-->
+<table class="basic stripe far2x">
+	<tr><th>Locus Tag</th><th>Length</th><th>Product Description</th><th>Identical Protein in E. coli O104:H4 str. LB226692</th><th>Top Ab Resistance Gene ID</th><th>Top Ab Resistance Gene Product</th><th>Top Virulence Factor ID</th><th>Top Virulence Factor Product</th></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48367664">VBIEscCol192592_1966</a></td><td>103</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48368816">VBIEscCol192592_2434</a></td><td>37</td><td>Anaerobic dimethyl sulfoxide reductase chain B (EC 1.8.99.-)</td><td>-</td><td>-</td><td>-</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=20009">MVirDB:20009</a></td><td>anaerobic_dimethyl_sulfoxide_reductas</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48373145">VBIEscCol192592_4340</a></td><td>41</td><td>NgrB</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48374516">VBIEscCol192592_4848</a></td><td>67</td><td>Twin-arginine translocation protein TatE</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48465329">VBIEscCol200960_0673</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48364657">VBIEscCol192592_0565</a></td><td>69</td><td>"Cytochrome c-type biogenesis protein CcmD, interacts with CcmCE"</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48469281">VBIEscCol200960_2490</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48368417">VBIEscCol192592_2264</a></td><td>49</td><td>Putative exported protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48465628">VBIEscCol200960_0802</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48364909">VBIEscCol192592_0682</a></td><td>38</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48473458">VBIEscCol200960_4427</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48372870">VBIEscCol192592_4249</a></td><td>38</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48472554">VBIEscCol200960_4012</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48373511">VBIEscCol192592_4467</a></td><td>43</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48467684">VBIEscCol200960_1751</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48369630">VBIEscCol192592_2800</a></td><td>39</td><td>FIG00644081: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476044">VBIEscCol200960_5544</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48373627">VBIEscCol192592_4509</a></td><td>44</td><td>FIG00642687: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48367261">VBIEscCol192592_1772</a></td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48374880">VBIEscCol192592_4999</a></td><td>47</td><td>RNA polymerase associated protein RapA (EC 3.6.1.-)</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48366462">VBIEscCol192592_1394</a></td><td>38</td><td>FIG00640305: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48468256">VBIEscCol200960_2017</a></td><td>-</td><td>-</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=10606">MVirDB:10606</a></td><td>sp|P47416|SECY_MYCGE_Preprotein_trans</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48371672">VBIEscCol192592_3710</a></td><td>65</td><td>Phage minor tail protein</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48368256">VBIEscCol192592_2209</a></td><td>38</td><td>FIG00643940: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48475321">VBIEscCol200960_5285</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48366765">VBIEscCol192592_1553</a></td><td>41</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48470878">VBIEscCol200960_3227</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48365429">VBIEscCol192592_0917</a></td><td>45</td><td>FIG00638457: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48471852">VBIEscCol200960_3683</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48374368">VBIEscCol192592_4798</a></td><td>40</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td><a target="_blank" href="http://www.ncbi.nlm.nih.gov/protein/15607568">Victor:NP_21494</a></td><td>exodeoxyribonuclease III protein [Mycobacterium tuberculosis H37Rv]</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48368390">VBIEscCol192592_2252</a></td><td>44</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48473643">VBIEscCol200960_4515</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48365831">VBIEscCol192592_1115</a></td><td>50</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48374565">VBIEscCol192592_4884</a></td><td>83</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48475747">VBIEscCol200960_5460</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48374830">VBIEscCol192592_4969</a></td><td>43</td><td>Putative inner membrane protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48468203">VBIEscCol200960_1991</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48368350">VBIEscCol192592_2236</a></td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48369530">VBIEscCol192592_2761</a></td><td>41</td><td>Entericidin A precursor</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48474293">VBIEscCol200960_4813</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48364781">VBIEscCol192592_0637</a></td><td>45</td><td>IncF plasmid conjugative transfer DNA-nicking and unwinding protein TraI</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48475231">VBIEscCol200960_5246</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48365114">VBIEscCol192592_0775</a></td><td>41</td><td>FIG00642497: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48471661">VBIEscCol200960_3592</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48364163">VBIEscCol192592_0357</a></td><td>45</td><td>FIG00642631: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48474745">VBIEscCol200960_5020</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48365988">VBIEscCol192592_1184</a></td><td>53</td><td>Arylsulfatase (EC 3.1.6.1)</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48473308">VBIEscCol200960_4359</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48374888">VBIEscCol192592_5001</a></td><td>37</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476492">VBIEscCol200960_5737</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48372411">VBIEscCol192592_4050</a></td><td>44</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48469965">VBIEscCol200960_2806</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48374578">VBIEscCol192592_4889</a></td><td>39</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48368693">VBIEscCol192592_2384</a></td><td>38</td><td>FIG00639131: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48466397">VBIEscCol200960_1157</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48374260">VBIEscCol192592_4749</a></td><td>39</td><td>FIG00639962: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48466438">VBIEscCol200960_1176</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48371466">VBIEscCol192592_3616</a></td><td>46</td><td>FIG00640585: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48475012">VBIEscCol200960_5143</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48371462">VBIEscCol192592_3622</a></td><td>92</td><td>Phage DNA transfer protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48475025">VBIEscCol200960_5149</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48367804">VBIEscCol192592_2018</a></td><td>53</td><td>probable exported protein YPO0432</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48474903">VBIEscCol200960_5093</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48365641">VBIEscCol192592_1018</a></td><td>37</td><td>Hypothetical lipoprotein yajI</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48464851">VBIEscCol200960_0449</a></td><td>-</td><td>-</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=23659">MVirDB:23659</a></td><td>macrolide_transporter_ATP-binding_/pe</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48367378">VBIEscCol192592_1828</a></td><td>40</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48464058">VBIEscCol200960_0079</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48369678">VBIEscCol192592_2818</a></td><td>40</td><td>ADP-ribose pyrophosphatase (EC 3.6.1.13)</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48369681">VBIEscCol192592_2825</a></td><td>45</td><td>FIG00640011: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48471430">VBIEscCol200960_3484</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48373210">VBIEscCol192592_4359</a></td><td>46</td><td>Phage head-to-tail joining protein</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48371226">VBIEscCol192592_3517</a></td><td>37</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48367672">VBIEscCol192592_1959</a></td><td>38</td><td>FIG00641394: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48472364">VBIEscCol200960_3921</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48369856">VBIEscCol192592_2900</a></td><td>44</td><td>FIG00641645: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476111">VBIEscCol200960_5573</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48366590">VBIEscCol192592_1460</a></td><td>101</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48466357">VBIEscCol200960_1138</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48370156">VBIEscCol192592_3027</a></td><td>42</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48473860">VBIEscCol200960_4608</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48370166">VBIEscCol192592_3032</a></td><td>80</td><td>YjbE secreted protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48473847">VBIEscCol200960_4602</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48365278">VBIEscCol192592_0857</a></td><td>38</td><td>FIG00640380: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48474491">VBIEscCol200960_4905</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48365283">VBIEscCol192592_0858</a></td><td>40</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48474489">VBIEscCol200960_4904</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48367309">VBIEscCol192592_1785</a></td><td>114</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48466767">VBIEscCol200960_1331</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48374586">VBIEscCol192592_4892</a></td><td>37</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+</table>
+</div>
+<br/><br/>
+<a name="LB"></a>
+<div class="table-container">
+<h2 class="section-title normal-case close2x">Unique proteins in Escherichia coli O104:H4 str. LB226692</h2>
+<!--<div style="float:right"><input type="button" value="Add to Group" onclick="addFeaturesToGroup(fSet2)" /></div>-->
+<table class="basic stripe far2x">
+	<tr><th>Locus Tag</th><th>Length</th><th>Product Description</th><th>Identical Protein in E. coli TY-2482</th><th>Top Ab Resistance Gene ID</th><th>Top Ab Resistance Gene Product</th><th>Top Virulence Factor ID</th><th>Top Virulence Factor Product</th></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48464381">VBIEscCol200960_0227</a></td><td>45</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476111">VBIEscCol200960_5573</a></td><td>44</td><td>FIG00641645: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48369856">VBIEscCol192592_2900</a></td><td>-</td><td>-</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=13504">MVirDB:13504</a></td><td>putative_P4-type_integrase_[Shigella_</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48465329">VBIEscCol200960_0673</a></td><td>67</td><td>Twin-arginine translocation protein TatE</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48374516">VBIEscCol192592_4848</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48469281">VBIEscCol200960_2490</a></td><td>69</td><td>"Cytochrome c-type biogenesis protein CcmD, interacts with CcmCE"</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48364657">VBIEscCol192592_0565</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48465628">VBIEscCol200960_0802</a></td><td>49</td><td>Putative exported protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48368417">VBIEscCol192592_2264</a></td><td><a target="_blank" href="http://www.ncbi.nlm.nih.gov/protein/83721001">YP_44123</a></td><td>hydrophobe/amphiphile efflux family protein [Burkholderia thailandensis E264]</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48465926">VBIEscCol200960_0945</a></td><td>39</td><td>putative transport system permease protein</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48470878">VBIEscCol200960_3227</a></td><td>41</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48366765">VBIEscCol192592_1553</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476008">VBIEscCol200960_5527</a></td><td>46</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476492">VBIEscCol200960_5737</a></td><td>37</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48374888">VBIEscCol192592_5001</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48469841">VBIEscCol200960_2749</a></td><td>38</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48469965">VBIEscCol200960_2806</a></td><td>44</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48372411">VBIEscCol192592_4050</a></td><td><a target="_blank" href="http://www.ncbi.nlm.nih.gov/protein/76810217">YP_33332</a></td><td>GTP-binding protein TypA [Burkholderia pseudomallei 1710b]</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=12495">MVirDB:12495</a></td><td>sp|P72640|LEP4_SYNY3_Type_4_prepilin-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48470280">VBIEscCol200960_2953</a></td><td>42</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48472973">VBIEscCol200960_4209</a></td><td>69</td><td>Sodium/glutamate symport protein</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48475531">VBIEscCol200960_5377</a></td><td>45</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48467742">VBIEscCol200960_1774</a></td><td>111</td><td>Acid shock protein 1 precursor</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48468203">VBIEscCol200960_1991</a></td><td>43</td><td>Putative inner membrane protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48374830">VBIEscCol192592_4969</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48468256">VBIEscCol200960_2017</a></td><td>38</td><td>FIG00640305: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48366462">VBIEscCol192592_1394</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48473847">VBIEscCol200960_4602</a></td><td>80</td><td>YjbE secreted protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48370166">VBIEscCol192592_3032</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48473860">VBIEscCol200960_4608</a></td><td>42</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48370156">VBIEscCol192592_3027</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48471430">VBIEscCol200960_3484</a></td><td>45</td><td>FIG00640011: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48369681">VBIEscCol192592_2825</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48464851">VBIEscCol200960_0449</a></td><td>37</td><td>Hypothetical lipoprotein yajI</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48365641">VBIEscCol192592_1018</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476230">VBIEscCol200960_5629</a></td><td>37</td><td>Periplasmic mercury(+2) binding protein</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48466767">VBIEscCol200960_1331</a></td><td>114</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48367309">VBIEscCol192592_1785</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48471661">VBIEscCol200960_3592</a></td><td>41</td><td>FIG00642497: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48365114">VBIEscCol192592_0775</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48471852">VBIEscCol200960_3683</a></td><td>45</td><td>FIG00638457: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48365429">VBIEscCol192592_0917</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48471990">VBIEscCol200960_3742</a></td><td>40</td><td>FIG00641387: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48472364">VBIEscCol200960_3921</a></td><td>38</td><td>FIG00641394: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48367672">VBIEscCol192592_1959</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48472554">VBIEscCol200960_4012</a></td><td>38</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48372870">VBIEscCol192592_4249</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48474293">VBIEscCol200960_4813</a></td><td>41</td><td>Entericidin A precursor</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48369530">VBIEscCol192592_2761</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48474489">VBIEscCol200960_4904</a></td><td>40</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48365283">VBIEscCol192592_0858</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48474491">VBIEscCol200960_4905</a></td><td>38</td><td>FIG00640380: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48365278">VBIEscCol192592_0857</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476433">VBIEscCol200960_5711</a></td><td>38</td><td>Baseplate assembly protein V</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48475231">VBIEscCol200960_5246</a></td><td>45</td><td>IncF plasmid conjugative transfer DNA-nicking and unwinding protein TraI</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48364781">VBIEscCol192592_0637</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48464058">VBIEscCol200960_0079</a></td><td>40</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48367378">VBIEscCol192592_1828</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48465774">VBIEscCol200960_0873</a></td><td>296</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=17989">MVirDB:17989</a></td><td>two-component_sensor_histidine_kinase</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48465776">VBIEscCol200960_0874</a></td><td>44</td><td>FIG00641818: hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48466357">VBIEscCol200960_1138</a></td><td>101</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48366590">VBIEscCol192592_1460</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48466397">VBIEscCol200960_1157</a></td><td>38</td><td>FIG00639131: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48368693">VBIEscCol192592_2384</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48466438">VBIEscCol200960_1176</a></td><td>39</td><td>FIG00639962: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48374260">VBIEscCol192592_4749</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48476044">VBIEscCol200960_5544</a></td><td>39</td><td>FIG00644081: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48369630">VBIEscCol192592_2800</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48466265">VBIEscCol200960_1103</a></td><td>37</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48475747">VBIEscCol200960_5460</a></td><td>83</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48374565">VBIEscCol192592_4884</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48475321">VBIEscCol200960_5285</a></td><td>38</td><td>FIG00643940: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48368256">VBIEscCol192592_2209</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48474745">VBIEscCol200960_5020</a></td><td>45</td><td>FIG00642631: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48364163">VBIEscCol192592_0357</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48474903">VBIEscCol200960_5093</a></td><td>53</td><td>probable exported protein YPO0432</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48367804">VBIEscCol192592_2018</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48468928">VBIEscCol200960_2325</a></td><td>63</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48475012">VBIEscCol200960_5143</a></td><td>46</td><td>FIG00640585: hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48371466">VBIEscCol192592_3616</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48475025">VBIEscCol200960_5149</a></td><td>92</td><td>Phage DNA transfer protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48371462">VBIEscCol192592_3622</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48467684">VBIEscCol200960_1751</a></td><td>43</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48373511">VBIEscCol192592_4467</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48473458">VBIEscCol200960_4427</a></td><td>38</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48364909">VBIEscCol192592_0682</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48473643">VBIEscCol200960_4515</a></td><td>44</td><td>hypothetical protein</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48368390">VBIEscCol192592_2252</a></td><td><a target="_blank" href="http://www.ncbi.nlm.nih.gov/protein/37527711">NP_93105</a></td><td>acriflavin resistance protein A precursor [Photorhabdus luminescens subsp. laumondii TTO1]</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48467032">VBIEscCol200960_1450</a></td><td>65</td><td>Phage minor tail protein</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48473308">VBIEscCol200960_4359</a></td><td>53</td><td>Arylsulfatase (EC 3.1.6.1)</td><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48365988">VBIEscCol192592_1184</a></td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+	<tr><td><a href="/portal/portal/patric/Feature?cType=feature&amp;cId=48466255">VBIEscCol200960_1101</a></td><td>52</td><td>hypothetical protein</td><td>-</td><td>-</td><td>-</td><td><a target="_blank" href="http://mvirdb1.llnl.gov/annotation/bin/virulence/virulenceCrawler.pl?chosenVirFactorID=2695">MVirDB:2695</a></td><td>intercellular_adhesion_protein_A_[Staphy</td></tr>
+</table>
+</div>
+
+
+
+<a name="alignment"></a>
+<h2 class="section-title normal-case close2x">Multiple sequence alignment of beta-lactamase with close homologs</h2>
+<pre style="font-family:  'Courier New', Courier, monospace;">
+	CLUSTAL W (1.81) multiple sequence alignment
+	Beta-lactamase proteins from E. coli
+
+	TY-2482  VBIEscCol192592_4301      MVKKSLRQFTLMATATVTLLLGSVPLYAQTADVQQKLAELERQSGGRLGVALINTADNSQ
+	LB226692 VBIEscCol200960_5317      MVKKSLRQFTLMATATVTLLLGSVPLYAQTADVQQKLAELERQSGGRLGVALINTADNSQ
+	3431     VBIEscCol139805_1822      ---MSIQHFRVALIPFFAAF--CLPVFAH-PETLVKVKDAEDQLGARVGYIELDL-NSGK
+	95.0941  VBIEscCol166827_0469      ---MSIQHFRVALIPFFAAF--CLPVFAH-PETLVKVKDAEDQLGARVGYIELDL-NSGK
+	AA86     VBIEscCol197370_4834      ---MSIQHFRVALIPFFAAF--CLPVFAH-PETLVKVKDAEDQLGARVGYIELDL-NSGK
+	H299     VBIEscCol147980_0003      ---MSIQHFRVALIPFFAAF--CLPVFAH-PETLVKVKDAEDQLGARVGYIELDL-NSGK
+	                                       *:.:* :   . .: :  .:*::*: .:.  *: : * * *.*:*   ::  :..:
+
+	TY-2482  VBIEscCol192592_4301      IL--YRADERFAMCSTSKVMAAAAVLKKSESEPNLLNQRVEIKKSDLVNYNPIAEKHVNG
+	LB226692 VBIEscCol200960_5317      IL--YRADERFAMCSTSKVMAAAAVLKKSESEPNLLNQRVEIKKSDLVNYNPIAEKHVNG
+	3431     VBIEscCol139805_1822      ILESFRPEERFPMMSTFKVLLCGAVLSRVDAGQEQLGRRIHYSQNDLVEYSPVTEKHLTD
+	95.0941  VBIEscCol166827_0469      ILESFRPEERFPMMSTFKVLLCGAVLSRVDAGQEQLGRRIHYSQNDLVEYSPVTEKHLTD
+	AA86     VBIEscCol197370_4834      ILESFRPEERFPMMSTFKVLLCGAVLSRVDAGQEQLGRRIHYSQNDLVEYSPVTEKHLTD
+	H299     VBIEscCol147980_0003      ILESFRPEERFPMMSTFKVLLCGAVLSRVDAGQEQLGRRIHYSQNDLVEYSPVTEKHLTD
+	                                   **  :*.:***.* ** **: ..***.. ::  : *..*:  .:.***:*.*::***:..
+
+	TY-2482  VBIEscCol192592_4301      TMSLAELSAAALQYSDNVAMNKLIAHVGGPASVTAFARQLGDETFRLDRTEPTLNTAIPG
+	LB226692 VBIEscCol200960_5317      TMSLAELSAAALQYSDNVAMNKLIAHVGGPASVTAFARQLGDETFRLDRTEPTLNTAIPG
+	3431     VBIEscCol139805_1822      GMTVRELCSAAITMSDNTAANLLLTTIGGPKELTAFLHNMGDHVTRLDRWEPELNEAIPN
+	95.0941  VBIEscCol166827_0469      GMTVRELCSAAITMSDNTAANLLLTTIGGPKELTAFLHNMGDHVTRLDRWEPELNEAIPN
+	AA86     VBIEscCol197370_4834      GMTVRELCSAAITMSDNTAANLLLTTIGGPKELTAFLHNMGDHVTRLDRWEPELNEAIPN
+	H299     VBIEscCol147980_0003      GMTVRELCSAAITMSDNTAANLLLTTIGGPKELTAFLHNMGDHVTRLDRWEPELNEAIPN
+	                                    *:: **.:**:  ***.* * *:: :*** .:*** .::** . **** ** ** ***.
+
+	TY-2482  VBIEscCol192592_4301      DPRDTTSPRAMAQTLRNLTLGKALGDSQRAQLVTWMKGNTTGAASIQAGLPASWVVGDKT
+	LB226692 VBIEscCol200960_5317      DPRDTTSPRAMAQTLRNLTLGKALGDSQRAQLVTWMKGNTTGAASIQAGLPASWVVGDKT
+	3431     VBIEscCol139805_1822      DERDTTMPAAMATTLRKLLTGELLTLASRQQLIDWMEADKVAGPLLRSALPAGWFIADKS
+	95.0941  VBIEscCol166827_0469      DERDTTMPAAMATTLRKLLTGELLTLASRQQLIDWMEADKVAGPLLRSALPAGWFIADKS
+	AA86     VBIEscCol197370_4834      DERDTTMPAAMATTLRKLLTGELLTLASRQQLIDWMEADKVAGPLLRSALPAGWFIADKS
+	H299     VBIEscCol147980_0003      DERDTTMPAAMATTLRKLLTGELLTLASRQQLIDWMEADKVAGPLLRSALPAGWFIADKS
+	                                   * **** * *** ***:*  *: *  :.* **: **:.:..... :.:.***.*.:.**:
+
+	TY-2482  VBIEscCol192592_4301      GSGGYGTTNDIAVIWPKDRAPLILVTYFTQPQPKAESRRDVLASAAKIVTDGL
+	LB226692 VBIEscCol200960_5317      GSGGYGTTNDIAVIWPKDRAPLILVTYFTQPQPKAESRRDVLASAAKIVTDGL
+	3431     VBIEscCol139805_1822      GAGERGSRGIIAALGPDGKPSRIVVIYTTGSQATMDERNRQIAEIGASLIKHW
+	95.0941  VBIEscCol166827_0469      GAGERGSRGIIAALGPDGKPSRIVVIYTTGSQATMDERNRQIAEIGASLIKHW
+	AA86     VBIEscCol197370_4834      GAGERGSRGIIAALGPDGKPSRIVVIYTTGSQATMDERNRQIAEIGASLIKHW
+	H299     VBIEscCol147980_0003      GAGERGSRGIIAALGPDGKPSRIVVIYTTGSQATMDERNRQIAEIGASLIKHW
+	                                   *:*  *: . **.: *..... *:* * * .*.. :.*.  :*. .  : .  
+</pre>
+        </section>
+    </div>
+
+    <footer class='ondark linkstyle-highlight-c smallest no-underline-links main-footer'>
+      <div class='container'>
+        <div class='column' style="border:0px">
+          <div class='wrapper'>
+            <h4 class='close2x normal-weight'>PATRIC</h4>
+            <p class="close">Virginia Bioinformatics Institute</p>
+            <p class='close'>Washington Street</p>
+            <p>Blacksburg, VA 24060</p>
+            <a class="button" href="http://enews.patricbrc.org/contact-us/">Contact Us</a>
+          </div>
+        </div>
+        <div class='column'>
+          <div class='wrapper'>
+            <h4 class='normal-weight close2x'>How to Cite PATRIC</h4>
+            <p>If you use PATRIC web resources to assist in research publications or proposals please cite as:</p>
+            <a class="button" href="http://enews.patricbrc.org/citing-patric/">How to cite PATRIC</a>
+          </div>
+        </div>
+        <div class='column'>
+          <div class='wrapper'>
+            <h4 class='normal-weight close2x'>Funding Statement</h4>
+            <p>This project has been funded in whole or in part with Federal funds from the 
+               National Institute of Allergy and Infectious Diseases, National Institutes of Health,
+               Department of Health and Human Services,
+               under Contract No. HHSN272200900040C, awarded to BWS Sobral</p>
+          </div>
+        </div>
+        <div class='column last bold'>
+          <div class='wrapper'>
+            <h4 class='normal-weight close'>Follow Us:</h4>
+            <ul class='left no-decoration'>
+              <li><a class="footer-icons sprite-icon-subscribe" href="http://enews.patricbrc.org/subscribe/">Subscribe</a></li>
+              <li><a class="footer-icons sprite-icon-twitter" href="http://twitter.com/PATRICBRC">Twitter</a></li>
+              <li><a class="footer-icons sprite-icon-facebook" href="http://www.facebook.com/pages/Pathosystems-Resource-Integration-Center-PATRIC/117100971687823">Facebook</a></li>
+              
+            </ul>
+            <ul class='left no-decoration'>
+              <li><a class="footer-icons sprite-icon-enews" href="http://enews.patricbrc.org/">eNews</a></li>
+              <li><a class="footer-icons sprite-icon-rss" href="http://enews.patricbrc.org/feed/">RSS</a></li>
+              <li><a class="footer-icons sprite-icon-youtube" href="http://www.youtube.com/user/PATRICBRC">YouTube</a></li>
+              <li><a class="footer-icons sprite-icon-share" href="http://www.addthis.com/bookmark.php?v=250&username=xa-4c40660c515875dc">Share This</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+	<script type="text/javascript">
+	//<![CDATA[
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-11736060-1']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	//]]>
+	</script>
+</html>
+

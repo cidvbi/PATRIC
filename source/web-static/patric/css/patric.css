@@ -1,0 +1,520 @@
+
+.zero_result_mask {
+	background-image: none;
+	padding: 5px 10px 5px 5px;
+}
+/*
+*	PATRIC customized checkbox
+*/
+.x-grid-checkheader {
+    height: 14px;
+    background-image: url('/patric/images/unchecked.gif');
+    background-position: 50% -2px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+}
+
+.x-grid-checkheader-checked {
+    background-image: url('/patric/images/checked.gif');
+}
+
+/*
+*	GenomeSelector
+*/
+#GenomeSelector .x-tree-checkbox {
+	position: relative;
+	background: url('/patric/images/checkboxes.gif') no-repeat top left;
+}
+#GenomeSelector .x-tree-checkbox-checked {
+	background-position: 0px -13px;
+}
+#GenomeSelector .x-tree-checkbox-partial {
+	background-position: 0px -26px;
+}
+#GenomeSelector .x-tree-noicon {
+	width:0px;
+}
+#GenomeSelector .x-grid-cell-inner {
+	padding: 0px;
+}
+
+/*
+*	GenericSelector: used for facet panel in genome list, experiment list
+*/
+#GenericSelector .x-tree-lines .x-tree-elbow-line {
+	height: 16px;
+	background-image: url('');
+}
+#GenericSelector .x-tree-lines .x-tree-elbow-end {
+	background-image: url('');
+}
+#GenericSelector .x-tree-lines .x-tree-elbow {
+        background-image: url('');
+}
+#GenericSelector .x-tree-checkbox {
+	margin: 0px;
+	position: relative;
+	background: url('/patric/images/checkboxes.gif') no-repeat top left;
+}
+#GenericSelector .x-tree-checkbox-checked {
+	background-position: 0px -13px;
+}
+#GenericSelector .x-tree-checkbox-partial {
+	background-position: 0px -26px;
+}
+#GenericSelector .x-tree-noicon{
+	width: 0px;
+}
+#GenericSelector .x-grid-cell-inner {
+	padding: 1px 5px;
+}
+/*
+*	css for search tools links
+*/
+.tools-icon {
+   display: inline-block;
+   line-height: 22px;
+   padding-left: 26px;
+   background-position: left center;
+   background-repeat: no-repeat;
+}
+
+.icon-genomefinder	{ background-image: url('/patric/images/genome_finder.png'); }
+.icon-featurefinder	{ background-image: url('/patric/images/feature_finder.png'); }
+.icon-comparativepathway{ background-image: url('/patric/images/comparative_pathway_tool.png'); }
+.icon-proteinfamily	{ background-image: url('/patric/images/protein_family_sorter.png'); }
+.icon-gosearch		{ background-image: url('/patric/images/go_search.png'); }
+.icon-ecsearch		{ background-image: url('/patric/images/ec_search.png'); }
+
+/*
+*	css for global search 
+*/
+#leftnav {
+	margin-left: 10px;
+	width: 200px!important;
+	background-color: #F4F4F4;
+}
+#leftnav li {
+	display: block;
+}
+.mitem > .kl, #ms > .kl, .msel {
+	font-size: 13px;
+}
+.msel {
+	color: #CC6600;
+	cursor: pointer;
+	font-weight: bold;
+}
+.mitem, #showmodes {
+	border-bottom: 1px solid transparent;
+	line-height: 28px;
+	opacity: 1.0;
+	padding-left: 26px;
+}
+#ab_name, #leftnav {
+	-webkit-transition: margin-left .1s ease-out;
+}
+#rcnt {
+}
+.mw {
+	/*max-width: 1250px;*/
+	height:1050px;
+}
+.mitem > .kl, #ms > .kl, .msel {
+	font-size: 13px;
+}
+.mitem > .kl, #ms > .kl {
+	color: #222;
+	display: block;
+}
+.mitem:hover, #showmodes:hover, #showmodes:hover {
+	opacity: 1.0;
+	background-color: #EEE;
+}
+.lnsep {
+	border-bottom: 1px solid #EFEFEF;
+	margin-bottom: 14px;
+	margin-left: 10px;
+	margin-right: 4px;
+	margin-top: 14px;
+}
+.sfbg {
+	background: white;
+	height: 71px;
+	left: 0;
+	position: absolute;
+	width: 100%;
+}
+.sfbgg {
+	background: whiteSmoke;
+	border-bottom: 1px solid #E5E5E5;
+	height: 71px;
+}
+.lst-td {
+	border: solid #999;
+	border-width: 0 0 1px 1px;
+}
+.lst-d {
+	background-color: white;
+	border: 1px solid #D9D9D9;
+	border-top-color: silver;
+	height: 27px;
+}
+.lst-t {
+	width: 100%;
+	height: 26px;
+	padding: 0;
+	background: white;
+}
+.gsib_a {
+	width: 100%;
+	vertical-align: middle;
+	padding: 4px 5px 0;
+}
+#searchform {
+	position: absolute;
+	top: 299px;
+	width: 100%;
+	z-index: 99;
+}
+#center_col{
+	margin-left: 220px;
+	margin-right: 45px;
+	padding: 0 8px;
+	padding: 0 8px 0 8px;
+}
+#resultStats {
+	color: #555;
+	font-size: 13px;
+	top: 23px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	padding-left: 80px;
+	padding-top:6px;
+	padding-bottom:6px;
+}
+.global_em {
+	font-weight: bold;
+}
+.x-tree-noicon{
+	width:0px;
+}
+/* end of global search */
+
+/*
+*	css for Disease view 
+*/
+#idvg-legend-edges {
+        margin-left: 8px;
+}
+
+#graph_legend  .idvg-legend {
+        background-color: transparent;
+}
+
+#graph_legend .idvg-legend-block {
+        float: left;
+        border: 1px #9EBEC8 solid;
+        padding: 5px;
+        margin:  2px;
+}
+
+#graph_legend .idvg-legend-title {
+        font-weight: bold;
+        color: #0E4771;
+        padding-bottom: 6px;
+}
+
+#graph_legend .idvg-legend-entry {
+        margin-left: 8px;
+        padding-bottom: 15px;
+        line-height: 22px;
+}
+
+#graph_legend .idvg-legend-entry-title {
+        padding-bottom: 2px;
+        font-style: italic;
+}
+
+#graph_legend .idvg-legend-symbol img {
+        height: 20px;
+        width:  20px;
+        padding-right: 4px;
+        vertical-align: middle;
+}
+
+#graph_legend .idvg-legend-label {
+        vertical-align: middle;
+}
+
+/*
+*	css for Literature panel
+*/
+#filter {
+        padding: 10px;
+	background-color: #E5E8EE;
+}
+
+#filter .curSel {
+        color: #fff;
+        background-image: none;
+        background-color: #1B2C49;
+        text-decoration: none;
+        display: block;
+}
+
+#filter h2 {
+        font-size: 1.2em;
+}
+
+#filter h3 {
+        margin: 0 0 2px;
+}
+
+#filter a {
+        text-decoration: none;
+        padding-left: 7px !important;
+}
+
+#filter a:hover {
+        text-decoration: underline;
+}
+
+/*
+*	css for layout. set position for breadcrumb portlet
+*/
+#regionTop {
+  width: 967px;
+  margin: 0 auto;
+  overflow: hidden;
+  *zoom: 1;
+  overflow: hidden;
+  *zoom: 1;
+  position: relative; }
+
+#fluid_page_wrapper {
+  padding: 0px 5px 3px 5px; 
+}
+
+.x-tab-bar-body {
+  border-style: none;
+}
+
+.msg-box-below-topnav {
+	width: 967px;
+	margin: 5px auto;
+	padding: 5px 10px;
+	border: 2px solid #444;
+	background: yellow;
+	border-radius: 4px;
+}
+
+/*
+*	css for workspace
+*/
+.x-browser-view{
+        font: 11px Arial, Helvetica, sans-serif;
+}
+.x-browser-view .thumb{
+        padding:3px;
+}
+.x-browser-view .title{
+        padding-top: 3px;
+        font-weight: bold;
+}
+.x-browser-view .type{
+        padding-top: 3px;
+        font-size: 10px;
+        font-style: italic;
+}
+.x-browser-view .updated{
+        padding-top: 3px;
+        font-size: 10px;
+}
+.x-browser-view .thumb-wrap{
+        text-align: center;
+        float: left;
+        margin: 4px;
+        margin-right: 0;
+        margin-bottom: 30px;
+        padding: 5px;
+        width: 160px;
+}
+.x-browser-view .x-item-selected .thumb {
+        background:#8db2e3;
+}
+.x-browser-view .loading-indicator {
+        font-size:8pt;
+        background-image:url(/patric/images/loading.gif);
+        background-repeat: no-repeat;
+        background-position: left;
+        padding-left:20px;
+        margin:10px;
+}
+#browser-toolbar .x-box-inner{
+        background-color: #ffffff;
+}
+.x-infoeditor-view img {
+	float: left;
+	padding-right: 3px;
+}
+.x-infoeditor-view .title {
+	float: left;
+	width: 110px;
+	font-size: 14px;
+	font-weight: bold;
+}
+.x-infoeditor-view .loading-indicator{
+        font-size:8pt;
+        background-image:url(/patric/images/loading.gif);
+        background-repeat: no-repeat;
+        background-position: left;
+        padding-left:20px;
+        margin:10px;
+}
+.x-infoeditor-view .x-panel-body b{
+        color: #000000;
+        font-weight: bold;
+}
+.x-btn-edit{
+        background-image:url(/patric/images/info-btn-edit.png) !important;
+}
+#group-viewer-toolbar .x-box-inner{
+        background-color: #ffffff;
+}
+/* end of workspace */
+
+/*
+*	css for blast result page
+*/
+#blast-landing {
+	/*padding: 10px;
+        line-height: 1.2em;*/
+}
+#blast-results-table {
+        padding:10px;
+}
+#blast-results-table pre {
+	font-family:  'Courier New', Courier, monospace;
+        /*font-size: 10pt;
+        line-height: 1em;*/
+}
+
+/* AddtoCart MessageBox 
+-------------------------- */
+
+#atc-msg-div {
+    position:absolute;
+    top:12px;
+    width:120px;
+    z-index:20000;
+}
+#atc-msg-div .msg {
+    border-radius: 8px;
+    -moz-border-radius: 8px;
+    background: #F6F6F6;
+    border: 2px solid #ccc;
+    margin-top: 2px;
+    padding: 5px 5px;
+    color: #555;
+}
+#atc-msg-div .msg h3 {
+    margin: 0 0 8px;
+    font-weight: bold;
+    font-size: 15px;
+}
+#atc-msg-div .msg p {
+    margin: 0;
+}
+/*
+*	css for enews
+*/
+.icon-publications { background-image: url('/patric/images/icon-publications.png');}
+.icon-website-updates {	background-image: url('/patric/images/icon-webupdates.png');}
+.icon-data-releases-updates { background-image: url('/patric/images/icon-datarelease.png');}
+.icon-news { background-image: url('/patric/images/icon-inthenews.png');}
+.icon-presentations { background-image: url('/patric/images/icon-meetings.png');}
+
+/*
+*	css sprites for footer icons
+*/
+.footer-icons{ 
+	background: url('/images/footer-icons.png') no-repeat top left; 
+	height: 16px;
+	display: inline-block;
+	line-height: 16px;
+	padding-left: 25px;
+}
+.sprite-icon-blogs { background-position: 0 0; } 
+.sprite-icon-enews{ background-position: 0 -17px; } 
+.sprite-icon-facebook{ background-position: 0 -34px; } 
+.sprite-icon-rss{ background-position: 0 -51px; } 
+.sprite-icon-share{ background-position: 0 -68px; } 
+.sprite-icon-subscribe{ background-position: 0 -85px; } 
+.sprite-icon-twitter{ background-position: 0 -102px; } 
+.sprite-icon-youtube{ background-position: 0 -119px; } 
+
+/*
+*	css for toggle button
+*	used in literature page
+*/
+.toggleButton {
+        height: 9px;
+        line-height: 9px;
+        border: 0px;
+        background-color: transparent;
+        background-image: url( /patric/images/expand.gif);
+        background-repeat: no-repeat;
+        cursor: pointer;
+        color: #1b2c49;
+}
+.toggleButtonHide { background-position: 0px 0px; }
+.toggleButtonShow { background-position: 0px -9px; }
+
+/*
+*	css for tab background icon
+*	used in transcriptomics tabl (gene-level-page)
+*/
+.icon-pie-chart {
+	background: url('/patric/images/icon-pie-chart.png') no-repeat;
+}
+.icon-bar-chart {
+	background: url('/patric/images/icon-bar-chart.png') no-repeat;
+}
+
+/*
+*	css for feature overview page
+*/
+#feature_box {
+	background-image: -webkit-gradient(
+		linear, 
+		left bottom, left top, 
+		color-stop(0.30, #E0E1E1), color-stop(0.70, #FFFFFF)
+	);
+	width: 100px;
+	height: 100px;
+	border-width: 3px;
+	border-style: solid;
+	border-color: rgb(171, 172, 172);
+	border-radius: 10px 10px;
+}
+#feature_box #gene_symbol {
+	font-size: 24px;
+	color: #225780;
+	font-weight: bold;
+	font-family: Courier;
+	font-style: italic;
+	padding: 15px 2px 10px 2px;
+	text-align: center;
+	height: 55px;
+}
+#feature_box #feature_type {
+	text-align: center;
+}
+#feature_box #strand {
+	padding: 0px 12px;
+}
+#iframe_rast {
+	width: 100%; 
+}

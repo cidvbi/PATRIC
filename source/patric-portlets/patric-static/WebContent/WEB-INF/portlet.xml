@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2013 Virginia Polytechnic Institute and State University
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<portlet-app version="" 
+	xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"  
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd 
+			http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd ">
+	<portlet>
+		<portlet-name>Home</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.Home</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Welcome to PATRIC</title>
+		</portlet-info>
+	</portlet>
+	<portlet>
+		<portlet-name>Workflow</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.Workflow</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Workflow</title>
+		</portlet-info>
+		<supported-public-render-parameter>page</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>IBRCs</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.IncumbentBRCs</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Incumbent BRCs</title>
+		</portlet-info>
+		<supported-public-render-parameter>page</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>RAST</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.RAST</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Rapid Annotation using Subsustem Technology (RAST)</title>
+		</portlet-info>
+	</portlet>
+	<portlet>
+		<portlet-name>MGRAST</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.MGRAST</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Meta Genome Rapid Annotation using Subsustem Technology (MG-RAST)</title>
+		</portlet-info>
+	</portlet>
+	<portlet>
+		<portlet-name>NACTEM</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.NaCTeM</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>The National Center for Text Mining</title>
+		</portlet-info>
+	</portlet>
+	<portlet>
+		<portlet-name>TB</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.TB</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>TB Landing</title>
+		</portlet-info>
+	</portlet>
+	<portlet>
+		<portlet-name>U2P</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.Upload2PATRIC</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Upload2PATRIC</title>
+		</portlet-info>
+		<supported-public-render-parameter>data_url</supported-public-render-parameter>
+	</portlet>
+<!-- landing pages -->
+	<portlet>
+		<portlet-name>Genomes</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.Genomes</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Genome Landing</title>
+		</portlet-info>
+	</portlet>
+	<portlet>
+		<portlet-name>ProteinFamilies</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.ProteinFamilies</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Protein Familiy Landing</title>
+		</portlet-info>
+	</portlet>
+	<public-render-parameter>
+		<identifier>page</identifier>
+		<qname xmlns:x="http://patric.vbi.vt.edu/params">x:page</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>data_url</identifier>
+		<qname xmlns:x="http://patric.vbi.vt.edu/params">x:data_url</qname>
+	</public-render-parameter>
+</portlet-app>

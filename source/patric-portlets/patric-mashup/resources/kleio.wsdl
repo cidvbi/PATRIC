@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="KleioService" targetNamespace="http://webservice.kleio.nactem.ac.uk/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://webservice.kleio.nactem.ac.uk/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+	<wsdl:types>
+		<schema xmlns="http://www.w3.org/2001/XMLSchema">
+			<import namespace="http://webservice.kleio.nactem.ac.uk/" schemaLocation="kleio_schema1.xsd"/>
+		</schema>
+	</wsdl:types>
+	<wsdl:message name="getDocument">
+		<wsdl:part name="parameters" element="tns:getDocument"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getFacetNamesResponse">
+		<wsdl:part name="parameters" element="tns:getFacetNamesResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getDocumentList">
+		<wsdl:part name="parameters" element="tns:getDocumentList"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getFacetNames">
+		<wsdl:part name="parameters" element="tns:getFacetNames"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getNamedEntitiesResponse">
+		<wsdl:part name="parameters" element="tns:getNamedEntitiesResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getFacetsResponse">
+		<wsdl:part name="parameters" element="tns:getFacetsResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getNamedEntities">
+		<wsdl:part name="parameters" element="tns:getNamedEntities"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getDocumentListResponse">
+		<wsdl:part name="parameters" element="tns:getDocumentListResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getFacets">
+		<wsdl:part name="parameters" element="tns:getFacets"></wsdl:part>
+	</wsdl:message>
+	<wsdl:message name="getDocumentResponse">
+		<wsdl:part name="parameters" element="tns:getDocumentResponse"></wsdl:part>
+	</wsdl:message>
+	<wsdl:portType name="KleioService">
+		<wsdl:operation name="getDocument">
+			<wsdl:input name="getDocument" message="tns:getDocument"></wsdl:input>
+			<wsdl:output name="getDocumentResponse" message="tns:getDocumentResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getNamedEntities">
+			<wsdl:input name="getNamedEntities" message="tns:getNamedEntities"></wsdl:input>
+			<wsdl:output name="getNamedEntitiesResponse" message="tns:getNamedEntitiesResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getFacetNames">
+			<wsdl:input name="getFacetNames" message="tns:getFacetNames"></wsdl:input>
+			<wsdl:output name="getFacetNamesResponse" message="tns:getFacetNamesResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getFacets">
+			<wsdl:input name="getFacets" message="tns:getFacets"></wsdl:input>
+			<wsdl:output name="getFacetsResponse" message="tns:getFacetsResponse"></wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getDocumentList">
+			<wsdl:input name="getDocumentList" message="tns:getDocumentList"></wsdl:input>
+			<wsdl:output name="getDocumentListResponse" message="tns:getDocumentListResponse"></wsdl:output>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="KleioServiceSoapBinding" type="tns:KleioService">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="getDocument">
+			<soap:operation soapAction="urn:GetDocument" style="document"/>
+			<wsdl:input name="getDocument">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getDocumentResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getNamedEntities">
+			<soap:operation soapAction="getNamedEntities" style="document"/>
+			<wsdl:input name="getNamedEntities">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getNamedEntitiesResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getFacetNames">
+			<soap:operation soapAction="urn:GetFacetNames" style="document"/>
+			<wsdl:input name="getFacetNames">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getFacetNamesResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getFacets">
+			<soap:operation soapAction="urn:GetFacets" style="document"/>
+			<wsdl:input name="getFacets">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getFacetsResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="getDocumentList">
+			<soap:operation soapAction="urn:GetDocumentList" style="document"/>
+			<wsdl:input name="getDocumentList">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="getDocumentListResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="KleioService">
+		<wsdl:port name="KleioPort" binding="tns:KleioServiceSoapBinding">
+			<soap:address location="http://nactem4.mc.man.ac.uk:18080/Kleio/services/KleioPort"/>
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>

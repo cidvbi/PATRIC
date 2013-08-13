@@ -1,0 +1,5 @@
+cat ../template.header.html > Brucella_Annotation_Protocol_Table_S1.html; cat sheet001.htm >> Brucella_Annotation_Protocol_Table_S1.html; cat ../template.footer.html >> Brucella_Annotation_Protocol_Table_S1.html 
+cat ../template.header.html > Brucella_Annotation_Protocol_Table_S2.html; cat sheet002.htm >> Brucella_Annotation_Protocol_Table_S2.html; cat ../template.footer.html >> Brucella_Annotation_Protocol_Table_S2.html 
+cat ../template.header.html > Brucella_Annotation_Protocol_Table_S3.html; cat sheet003.htm >> Brucella_Annotation_Protocol_Table_S3.html; cat ../template.footer.html >> Brucella_Annotation_Protocol_Table_S3.html 
+cat ../template.header.html > Brucella_Annotation_Protocol_Table_S4.html; cat sheet004.htm >> Brucella_Annotation_Protocol_Table_S4.html; cat ../template.footer.html >> Brucella_Annotation_Protocol_Table_S4.html 
+cat ../template.header.html > Brucella_Annotation_Protocol_Table_S5.html; cat sheet005.htm >> Brucella_Annotation_Protocol_Table_S5.html; cat ../template.footer.html >> Brucella_Annotation_Protocol_Table_S5.html 

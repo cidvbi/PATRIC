@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class='no-js' lang='en'>
+	<!--<![endif]-->
+	<head>
+		<!-- Always force the latest IE rendering engine (even in intranet) & Chrome Frame -->
+		<meta content='IE=edge,chrome=1' http-equiv='X-UA-Compatible' />
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+		<meta http-equiv="Content-Language" content="en-US"/>
+		<title>PATRIC</title>
+
+		<!-- Mobile viewport optimized -->
+		<meta content='width=device-width, initial-scale=1.0' name='viewport' />
+		<link href='http://fonts.googleapis.com/css?family=Didact+Gothic' rel='stylesheet' type='text/css' />
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" type="text/javascript"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1/jquery-ui.min.js" type="text/javascript"></script>
+		<script src="/patric/js/libs/modernizr-1.6.min.js" type="text/javascript"></script>
+		<script src="/patric/js/plugins.min.js" type="text/javascript"></script>
+		<script src="/patric/js/script.js" type="text/javascript"></script>
+		<script src="http://cdn.sencha.io/ext-4.1.1-gpl/ext-all.js" type="text/javascript"></script>
+		<link href="http://cdn.sencha.io/ext-4.1.1-gpl/resources/css/ext-all.css" media="screen" rel="stylesheet" type="text/css" />
+		<link href="/patric/css/main.css" media="screen" rel="stylesheet" type="text/css" />
+		<!-- PATRIC CSS & JS -->
+		<script src="/patric/js/patric.min.js" type="text/javascript"></script>
+		<link href="/patric/css/patric.css" media="screen" rel="stylesheet" type="text/css" />
+		<script src="/portal-core/layouts/patric/modal.min.js" type="text/javascript"></script>
+	</head>
+	<body class='normal home'>
+	<div id="login-modal" style="display:none">
+		<div id="login-modal-msg" style="display:none;width:255px;height:109px">
+			<div id="loginIframe" class="login-content"></div>
+		</div>
+	</div>
+
+	<header class='main-header no-underline-links'>
+	<div class='masthead'>
+        <div class='wrapper'>
+          <a class="logo" href="/portal/portal/patric/Home">PATRIC Home</a>
+          <ul class='main-nav no-decoration'>
+            <li class='first active'><a class="home active" href="/portal/portal/patric/Home">Home</a></li>
+          </ul>
+	<!--
+          <div class='login'>
+		<div id='dashboardnav'>
+		<script type="text/javascript">
+		//<![CDATA[
+		function doLogin() {
+			alertModal('login-modal','login-modal-msg', 'http://www.patricbrc.org/portal/auth/portal/patric/Home');
+			return false;
+		}
+		//]]>
+		</script>
+		<span class='logged-in smallest'>
+			
+			<a class="button" href="javascript:void(0)" onclick="doLogin()">Login</a>
+			Not Registered? <a class="arrow-slate-e" href="https://www.patricbrc.org/portal/portal/patric/MyAccount/PATRICUserPortletWindow?_jsfBridgeViewId=%2Fjsf%2Findex.xhtml&amp;action=1">Sign Up</a>
+			
+			<br/><a href="http://enews.patricbrc.org/workspace-faqs/registration-faqs/" target="_blank">Learn About Registering</a>
+		</span>
+		</div>	
+          </div>
+	-->
+        </div>
+      </div>
+      <div class='toolbar ondark linkstyle-highlight-c'>
+        <div class='container'>
+	<!--
+          <form class='search' action="post" onsubmit="return false;">
+            <input placeholder='Search' type='text' id="global_search_keyword" name="global_search_keyword" />
+            <input type='submit' onclick="search_all_header()" />
+          </form>
+	-->
+	  <div style="float:left;margin-right: 17px;width: 311px;">&nbsp;</div>
+          <div class='workspace smallest'>
+              <span class='upper'>My workspace:</span>
+              <a class='arrow-white-e' href='#'><span id="cart" /></a>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <div class='container'>
+        <section class='main' role='main'>
+<br/><br/>
+<h3 class="section-title normal-case close2x">Table S5 - Non-universal reactions functional roles</h3>
+
+<table class="basic stripe far2x">
+ <tr>
+  <th>Reaction ID</th>
+  <th>Functional Role(s)</th>
+  <th>Equation</th>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn00196&model=" target=_blank>rxn00196</a></td>
+  <td>Ketoglutarate semialdehyde dehydrogenase (EC 1.2.1.26)</td>
+  <td>H2O + TPN + 2,5-Dioxopentanoate &lt;=&gt; TPNH + 2-Oxoglutarate + 2 H+</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn00211&model=" target=_blank>rxn00211</a></td>
+  <td>UDP-glucose dehydrogenase (EC 1.1.1.22)</td>
+  <td>H2O + 2 NAD + UDPglucose &lt;=&gt; 2 NADH + 3 H+ + UDPglucuronate</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn00342&model=" target=_blank>rxn00342</a></td>
+  <td>L-asparaginase (EC 3.5.1.1)</td>
+  <td>H2O + L-Asparagine =&gt; NH3 + L-Aspartate</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn00347&model=" target=_blank>rxn00347</a></td>
+  <td>Aspartate ammonia-lyase (EC 4.3.1.1)</td>
+  <td>Aspartate &lt;=&gt; NH3 + Fumarate</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn00702&model=" target=_blank>rxn00702</a></td>
+  <td>Glucose-1-phosphate cytidylyltransferase (EC
+  2.7.7.33)</td>
+  <td>CTP + Cori ester &lt;=&gt; PPi + CDP-glucose</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn00744&model=" target=_blank>rxn00744</a></td>
+  <td>Dihydroxyacetone kinase, ATP-dependent (EC 2.7.1.29)</td>
+  <td>ATP + Glycerone &lt;=&gt; ADP + Glycerone phosphate</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn00756&model=" target=_blank>rxn00756</a></td>
+  <td>Choline-sulfatase (EC 3.1.6.6)</td>
+  <td>H2O + Choline sulfate &lt;=&gt; SLF + H+ + Choline</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn01080&model=" target=_blank>rxn01080</a></td>
+  <td>Uronate isomerase (EC 5.3.1.12)</td>
+  <td>Glucuronate &lt;=&gt; D-Fructuronate</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn01114&model=" target=_blank>rxn01114</a></td>
+  <td>D-ribulokinase (EC 2.7.1.47)</td>
+  <td>ATP + D-Ribulose &lt;=&gt; ADP +
+  D-Ribulose5-phosphate</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn01122&model=" target=_blank>rxn01122</a></td>
+  <td>Altronate hydrolase (EC 4.2.1.7)</td>
+  <td>D-Altronate &lt;=&gt; H2O + 2-keto-3-deoxygluconate</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn01203&model=" target=_blank>rxn01203</a></td>
+  <td>2,4-dihydroxyhept-2-ene-1,7-dioic acid aldolase (EC
+  4.1.2.-)</td>
+  <td>Pyruvate + 4-Oxobutanoate &lt;=&gt;
+  2,4-Dihydroxyhept-2-enedioate</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn01383&model=" target=_blank>rxn01383</a></td>
+  <td>Ribitol 2-dehydrogenase (EC 1.1.1.56)</td>
+  <td>NAD + Ribitol &lt;=&gt; NADH + H+ + D-Ribulose</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn01457&model=" target=_blank>rxn01457</a></td>
+  <td>Uronate isomerase (EC 5.3.1.12)</td>
+  <td>D-Galacturonate &lt;=&gt; D-Tagaturonate</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn01621&model=" target=_blank>rxn01621</a></td>
+  <td>Predicted lactaldehyde dehydrogenase (EC 1.2.1.22)</td>
+  <td>L-Rhamnulose 1-phosphate &lt;=&gt; Glycerone
+  phosphate + L-Lactaldehyde</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn01629&model=" target=_blank>rxn01629</a></td>
+  <td>Glutamate-1-semialdehyde aminotransferase (EC
+  5.4.3.8)</td>
+  <td>5-Aminolevulinate &lt;=&gt;
+  L-Glutamate1-semialdehyde</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn01675&model=" target=_blank>rxn01675</a></td>
+  <td>Glucose-1-phosphate thymidylyltransferase (EC
+  2.7.7.24)</td>
+  <td>Cori ester + TTP &lt;=&gt; PPi + dTDPglucose</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn01761&model=" target=_blank>rxn01761</a></td>
+  <td>L-rhamnose isomerase (EC 5.3.1.14)</td>
+  <td>L-Rhamnose &lt;=&gt; L-Rhamnulose</td>
+ </tr>
+ <tr class=xl27>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn01775&model=" target=_blank>rxn01775</a></td>
+  <td>D-mannonate oxidoreductase (EC 1.1.1.57)</td>
+  <td>NAD + D-Mannonate &lt;=&gt; NADH + H+ +
+  D-Fructuronate</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn01997&model=" target=_blank>rxn01997</a></td>
+  <td>dTDP-glucose 4,6-dehydratase (EC 4.2.1.46)</td>
+  <td>dTDPglucose &lt;=&gt; H2O +
+  dTDP-4-oxo-6-deoxy-D-glucose</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn02000&model=" target=_blank>rxn02000</a></td>
+  <td>dTDP-4-dehydrorhamnose 3,5-epimerase (EC 5.1.3.13)</td>
+  <td>dTDP-4-oxo-6-deoxy-D-glucose &lt;=&gt;
+  dTDP-4-oxo-L-rhamnose</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn02003&model=" target=_blank>rxn02003</a></td>
+  <td>dTDP-4-dehydrorhamnose reductase (EC 1.1.1.133)</td>
+  <td>TPN + dTDP-rhamnose &lt;=&gt; TPNH + H+ +
+  dTDP-4-oxo-L-rhamnose</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn02007&model=" target=_blank>rxn02007</a></td>
+  <td>Inosose dehydratase (EC 4.2.1.44)</td>
+  <td>2-Inosose &lt;=&gt; H2O + DKDI</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn02168&model=" target=_blank>rxn02168</a></td>
+  <td>3-hydroxybutyryl-CoA dehydratase (EC 4.2.1.55)</td>
+  <td>(R)-3-Hydroxybutanoyl-CoA &lt;=&gt; H2O +
+  Crotonyl-CoA</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn02883&model=" target=_blank>rxn02883</a></td>
+  <td>2-oxo-hepta-3-ene-1,7-dioic acid hydratase (EC
+  4.2.-.-)</td>
+  <td>H2O + 2-Oxohept-3-enedioate &lt;=&gt;
+  2,4-Dihydroxyhept-2-enedioate</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn02885&model=" target=_blank>rxn02885</a></td>
+  <td>2-hydroxyhepta-2,4-diene-1,7-dioate isomerase (EC
+  5.3.3.-)</td>
+  <td>2-Oxohept-3-enedioate &lt;=&gt;
+  2-Hydroxyhepta-2,4-dienedioate</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn02937&model=" target=_blank>rxn02937</a></td>
+  <td>Phosphoribosylformylglycinamidine cyclo-ligase (EC
+  6.3.3.1)</td>
+  <td>ATP + 5'-Phosphoribosylformylglycinamidine &lt;=&gt;
+  ADP + Phosphate + H+ + AIR</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn03004&model=" target=_blank>rxn03004</a></td>
+  <td>Phosphoribosylglycinamide formyltransferase (EC
+  2.1.2.2)</td>
+  <td>10-Formyl-THF + GAR &lt;=&gt; H+ + THF +
+  N-Formyl-GAR</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn03040&model=" target=_blank>rxn03040</a></td>
+  <td>5-carboxymethyl-2-hydroxymuconate delta-isomerase
+  (EC 5.3.3.10)</td>
+  <td>5-Carboxymethyl-2-hydroxymuconate &lt;=&gt;
+  5-Carboxy-2-oxohept-3-enedioate</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn03041&model=" target=_blank>rxn03041</a></td>
+  <td>5-carboxymethyl-2-oxo-hex-3- ene-1,7-dioate
+  decarboxylase (EC 4.1.1.68)</td>
+  <td>H+ + 5-Carboxy-2-oxohept-3-enedioate &lt;=&gt; CO2 +
+  2-Hydroxyhepta-2,4-dienedioate</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn03055&model=" target=_blank>rxn03055</a></td>
+  <td>5-carboxymethyl-2-hydroxymuconate semialdehyde
+  dehydrogenase (EC 1.2.1.60)</td>
+  <td>H2O + NAD + 5-Carboxymethyl-2-hydroxymuconic
+  semialdehyde &lt;=&gt; NADH + 2 H+ + 5-Carboxymethyl-2-hydroxymuconate</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn03236&model=" target=_blank>rxn03236</a></td>
+  <td>Pterin-4-alpha-carbinolamine dehydratase (EC
+  4.2.1.96)</td>
+  <td>4a-Hydroxytetrahydrobiopterin &lt;=&gt; H2O +
+  Dihydrobiopterin</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn03885&model=" target=_blank>rxn03885</a></td>
+  <td>Mannonate dehydratase (EC 4.2.1.8)</td>
+  <td>D-Mannonate &lt;=&gt; H2O + 2-keto-3-deoxygluconate</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn03962&model=" target=_blank>rxn03962</a></td>
+  <td>GDP-L-fucose synthetase (EC 1.1.1.271)</td>
+  <td>TPN + GDP-L-fucose &lt;=&gt; TPNH + H+ +
+  GDP-4-dehydro-D-rhamnose</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn05732&model=" target=_blank>rxn05732</a></td>
+  <td>Acyl-CoA dehydrogenase, short-chain specific (EC
+  1.3.99.2)</td>
+  <td>NAD + Palmitoyl-CoA &lt;=&gt; NADH + H+ +
+  (2E)-Hexadecenoyl-CoA</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn08040&model=" target=_blank>rxn08040</a></td>
+  <td>Undecaprenyl-phosphate N-acetylglucosaminyl
+  1-phosphate transferase (EC 2.7.8.-)</td>
+  <td>UDP-N-acetylglucosamine + Undecaprenylphosphate
+  &lt;=&gt; UMP + Undecaprenyl diphospho N-acetyl-glucosamine</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn10010&model=" target=_blank>rxn10010</a></td>
+  <td>Acyl-CoA dehydrogenase, short-chain specific (EC
+  1.3.99.2)</td>
+  <td>NADH + H+ + (2E)-Hexenoyl-CoA &lt;=&gt; NAD +
+  Hexanoyl-CoA</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn10011&model=" target=_blank>rxn10011</a></td>
+  <td>Acyl-CoA dehydrogenase, short-chain specific (EC
+  1.3.99.2)</td>
+  <td>NAD + Octanoyl-CoA &lt;=&gt; NADH + H+ +
+  (2E)-Octenoyl-CoA</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn10012&model=" target=_blank>rxn10012</a></td>
+  <td>Acyl-CoA dehydrogenase, short-chain specific (EC
+  1.3.99.2)</td>
+  <td>NAD + Decanoyl-CoA &lt;=&gt; NADH + H+ +
+  (2E)-Decenoyl-CoA</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn10013&model=" target=_blank>rxn10013</a></td>
+  <td>Acyl-CoA dehydrogenase, short-chain specific (EC
+  1.3.99.2)</td>
+  <td>NAD + ddcoa &lt;=&gt; NADH + H+ +
+  (2E)-Dodecenoyl-CoA</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn10014&model=" target=_blank>rxn10014</a></td>
+  <td>Acyl-CoA dehydrogenase, short-chain specific (EC
+  1.3.99.2)</td>
+  <td>NAD + Myristoyl-CoA &lt;=&gt; NADH + H+ +
+  (2E)-Tetradecenoyl-CoA</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn10160&model=" target=_blank>rxn10160</a></td>
+  <td>D-galactonate transporter</td>
+  <td>H+[e] + D-Galactonate[e] &lt;=&gt; H+ +
+  D-Galactonate</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn10307&model=" target=_blank>rxn10307</a></td>
+  <td>Undecaprenyl-phosphate N-acetylglucosaminyl
+  1-phosphate transferase (EC 2.7.8.-)</td>
+  <td>24 UDP-N-acetylglucosamine + Palmitoyllipoteichoic
+  acid (n=24), linked, unsubstituted =&gt; 24 UDP + Palmitoyllipoteichoic acid
+  (n=24), linked, N-acetyl-D-glucosamine</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn10308&model=" target=_blank>rxn10308</a></td>
+  <td>Undecaprenyl-phosphate N-acetylglucosaminyl
+  1-phosphate transferase (EC 2.7.8.-)</td>
+  <td>24 UDP-N-acetylglucosamine + Myristoyllipoteichoic
+  acid (n=24), linked, unsubstituted =&gt; 24 UDP + Myristoyllipoteichoic acid
+  (n=24), linked, N-acetyl-D-glucosamine</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn10309&model=" target=_blank>rxn10309</a></td>
+  <td>Undecaprenyl-phosphate N-acetylglucosaminyl
+  1-phosphate transferase (EC 2.7.8.-)</td>
+  <td>24 UDP-N-acetylglucosamine + Stearoyllipoteichoic
+  acid (n=24), linked, unsubstituted =&gt; 24 UDP + Stearoyllipoteichoic acid
+  (n=24), linked, N-acetyl-D-glucosamine</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn10310&model=" target=_blank>rxn10310</a></td>
+  <td>Undecaprenyl-phosphate N-acetylglucosaminyl
+  1-phosphate transferase (EC 2.7.8.-)</td>
+  <td>24 UDP-N-acetylglucosamine +
+  Isoheptadecanoyllipoteichoic acid (n=24), linked, unsubstituted =&gt; 24 UDP
+  + Isoheptadecanoyllipoteichoic acid (n=24), linked, N-acetyl-D-glucosamine</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn10311&model=" target=_blank>rxn10311</a></td>
+  <td>Undecaprenyl-phosphate N-acetylglucosaminyl
+  1-phosphate transferase (EC 2.7.8.-)</td>
+  <td>24 UDP-N-acetylglucosamine +
+  Anteisoheptadecanoyllipoteichoic acid (n=24), linked, unsubstituted =&gt; 24
+  UDP + Anteisoheptadecanoyllipoteichoic acid (n=24), linked,
+  N-acetyl-D-glucosamine</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn10312&model=" target=_blank>rxn10312</a></td>
+  <td>Undecaprenyl-phosphate N-acetylglucosaminyl
+  1-phosphate transferase (EC 2.7.8.-)</td>
+  <td>24 UDP-N-acetylglucosamine +
+  Isotetradecanoyllipoteichoic acid (n=24), linked, unsubstituted =&gt; 24 UDP
+  + Isotetradecanoyllipoteichoic acid (n=24), linked, N-acetyl-D-glucosamine</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn10313&model=" target=_blank>rxn10313</a></td>
+  <td>Undecaprenyl-phosphate N-acetylglucosaminyl 1-phosphate transferase (EC 2.7.8.-)</td>
+  <td>24 UDP-N-acetylglucosamine + Isopentadecanoyllipoteichoic acid (n=24), linked, unsubstituted =&gt; 24 UDP + Isopentadecanoyllipoteichoic acid (n=24), linked, N-acetyl-D-glucosamine</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn10314&model=" target=_blank>rxn10314</a></td>
+  <td>Undecaprenyl-phosphate N-acetylglucosaminyl 1-phosphate transferase (EC 2.7.8.-)</td>
+  <td>24 UDP-N-acetylglucosamine + Anteisopentadecanoyllipoteichoic acid (n=24), linked, unsubstituted =&gt; 24 UDP + Anteisopentadecanoyllipoteichoic acid (n=24), linked, N-acetyl-D-glucosamine</td>
+ </tr>
+ <tr>
+  <td><a href="http://seed-viewer.theseed.org/seedviewer.cgi?page=ReactionViewer&reaction=rxn10315&model=" target=_blank>rxn10315</a></td>
+  <td>Undecaprenyl-phosphate N-acetylglucosaminyl 1-phosphate transferase (EC 2.7.8.-)</td>
+  <td>24 UDP-N-acetylglucosamine + Isohexadecanoyllipoteichoic acid (n=24), linked, unsubstituted =&gt; 24 UDP + Isohexadecanoyllipoteichoic acid (n=24), linked, N-acetyl-D-glucosamine</td>
+ </tr>
+</table>
+        </section>
+    </div>
+
+    <footer class='ondark linkstyle-highlight-c smallest no-underline-links main-footer'>
+      <div class='container'>
+        <div class='column' style="border:0px">
+          <div class='wrapper'>
+            <h4 class='close2x normal-weight'>PATRIC</h4>
+            <p class="close">Virginia Bioinformatics Institute</p>
+            <p class='close'>Washington Street</p>
+            <p>Blacksburg, VA 24060</p>
+            <a class="button" href="http://enews.patricbrc.org/contact-us/">Contact Us</a>
+          </div>
+        </div>
+        <div class='column'>
+          <div class='wrapper'>
+            <h4 class='normal-weight close2x'>How to Cite PATRIC</h4>
+            <p>If you use PATRIC web resources to assist in research publications or proposals please cite as:</p>
+            <a class="button" href="http://enews.patricbrc.org/citing-patric/">How to cite PATRIC</a>
+          </div>
+        </div>
+        <div class='column'>
+          <div class='wrapper'>
+            <h4 class='normal-weight close2x'>Funding Statement</h4>
+            <p>This project has been funded in whole or in part with Federal funds from the 
+               National Institute of Allergy and Infectious Diseases, National Institutes of Health,
+               Department of Health and Human Services,
+               under Contract No. HHSN272200900040C, awarded to BWS Sobral</p>
+          </div>
+        </div>
+        <div class='column last bold'>
+          <div class='wrapper'>
+            <h4 class='normal-weight close'>Follow Us:</h4>
+            <ul class='left no-decoration'>
+              <li><a class="footer-icons sprite-icon-subscribe" href="http://enews.patricbrc.org/subscribe/">Subscribe</a></li>
+              <li><a class="footer-icons sprite-icon-twitter" href="http://twitter.com/PATRICBRC">Twitter</a></li>
+              <li><a class="footer-icons sprite-icon-facebook" href="http://www.facebook.com/pages/Pathosystems-Resource-Integration-Center-PATRIC/117100971687823">Facebook</a></li>
+              
+            </ul>
+            <ul class='left no-decoration'>
+              <li><a class="footer-icons sprite-icon-enews" href="http://enews.patricbrc.org/">eNews</a></li>
+              <li><a class="footer-icons sprite-icon-rss" href="http://enews.patricbrc.org/feed/">RSS</a></li>
+              <li><a class="footer-icons sprite-icon-youtube" href="http://www.youtube.com/user/PATRICBRC">YouTube</a></li>
+              <li><a class="footer-icons sprite-icon-share" href="http://www.addthis.com/bookmark.php?v=250&username=xa-4c40660c515875dc">Share This</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+	<script type="text/javascript">
+	//<![CDATA[
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-11736060-1']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+	//]]>
+	</script>
+</html>
+

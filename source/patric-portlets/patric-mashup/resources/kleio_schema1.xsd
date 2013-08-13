@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://webservice.kleio.nactem.ac.uk/" elementFormDefault="unqualified" targetNamespace="http://webservice.kleio.nactem.ac.uk/" version="1.0">
+	<xs:element name="getDocument" type="tns:getDocument"/>
+	<xs:element name="getDocumentList" type="tns:getDocumentList"/>
+	<xs:element name="getDocumentListResponse" type="tns:getDocumentListResponse"/>
+	<xs:element name="getDocumentResponse" type="tns:getDocumentResponse"/>
+	<xs:element name="getFacetNames" type="tns:getFacetNames"/>
+	<xs:element name="getFacetNamesResponse" type="tns:getFacetNamesResponse"/>
+	<xs:element name="getFacets" type="tns:getFacets"/>
+	<xs:element name="getFacetsResponse" type="tns:getFacetsResponse"/>
+	<xs:element name="getNamedEntities" type="tns:getNamedEntities"/>
+	<xs:element name="getNamedEntitiesResponse" type="tns:getNamedEntitiesResponse"/>
+	<xs:complexType name="getDocument">
+		<xs:sequence>
+			<xs:element name="key" type="xs:string"/>
+			<xs:element name="documentId" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getDocumentResponse">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="return" type="tns:shownAbstract"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="shownAbstract">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="authors">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="author" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="abstract" type="xs:string"/>
+			<xs:element minOccurs="0" name="title" type="xs:string"/>
+			<xs:element minOccurs="0" name="journalCite" type="xs:string"/>
+			<xs:element minOccurs="0" name="meshHeadings">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="meshHeading" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="pmid" type="xs:string"/>
+			<xs:element minOccurs="0" name="pubMedFilename" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getNamedEntities">
+		<xs:sequence>
+			<xs:element name="key" type="xs:string"/>
+			<xs:element name="documentId" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getNamedEntitiesResponse">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:annotation"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="annotation">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="externalReferences">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="externalReference" type="tns:externalReference"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="begin" type="xs:int"/>
+			<xs:element name="end" type="xs:int"/>
+			<xs:element minOccurs="0" name="expandedForm" type="xs:string"/>
+			<xs:element minOccurs="0" name="location" type="xs:string"/>
+			<xs:element minOccurs="0" name="namedEntity" type="tns:namedEntity"/>
+			<xs:element minOccurs="0" name="normalisedForm" type="xs:string"/>
+			<xs:element minOccurs="0" name="shortForm" type="xs:string"/>
+			<xs:element minOccurs="0" name="surfaceForm" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="externalReference">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="namespace" type="xs:string"/>
+			<xs:element minOccurs="0" name="id" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getFacetNames">
+		<xs:sequence>
+			<xs:element name="key" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getFacetNamesResponse">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getFacets">
+		<xs:sequence>
+			<xs:element name="key" type="xs:string"/>
+			<xs:element name="query" type="tns:query"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="query">
+		<xs:sequence>
+			<xs:element name="node" type="tns:node"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType abstract="true" name="node">
+		<xs:sequence/>
+	</xs:complexType>
+	<xs:complexType name="getFacetsResponse">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0" name="return" type="tns:facetList"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="facetList">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="facetName" type="xs:string"/>
+			<xs:element name="facetFreq" type="xs:long"/>
+			<xs:element minOccurs="0" name="facetValues">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="facetValue" type="tns:facetValue"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="facetValue">
+		<xs:sequence>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="freq" type="xs:long"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getDocumentList">
+		<xs:sequence>
+			<xs:element name="key" type="xs:string"/>
+			<xs:element name="query" type="tns:query"/>
+			<xs:element minOccurs="0" default="RELEVANCE" name="sortBy" type="tns:sortBy"/>
+			<xs:element minOccurs="0" default="false" name="noNullAbstract" type="xs:boolean"/>
+			<xs:element name="startAt" minOccurs="0" default="0">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="0"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="hitsPerPage" minOccurs="0" default="10">
+				<xs:simpleType>
+					<xs:restriction base="xs:int">
+						<xs:minInclusive value="1"/>
+						<xs:maxInclusive value="100"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="getDocumentListResponse">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="return" type="tns:documentList"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="documentList">
+		<xs:sequence>
+			<xs:element name="totalHits" type="xs:long"/>
+			<xs:element minOccurs="0" name="citations">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="100" minOccurs="0" name="citation" type="tns:citation"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="citation">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="authors">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" minOccurs="0" name="author" type="xs:string"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="dateString" type="xs:string"/>
+			<xs:element minOccurs="0" name="docSnippet" type="xs:string"/>
+			<xs:element minOccurs="0" name="journalCite" type="xs:string"/>
+			<xs:element minOccurs="0" name="pmid" type="xs:string"/>
+			<xs:element minOccurs="0" name="title" type="xs:string"/>
+			<xs:element minOccurs="0" name="url" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="notNode">
+		<xs:complexContent>
+			<xs:extension base="tns:node">
+				<xs:sequence>
+					<xs:element name="node" type="tns:node"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="stringNode">
+		<xs:complexContent>
+			<xs:extension base="tns:node">
+				<xs:sequence>
+					<xs:element name="value" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="facetNode">
+		<xs:complexContent>
+			<xs:extension base="tns:node">
+				<xs:sequence>
+					<xs:element name="facet" type="xs:string"/>
+					<xs:element name="value" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="orNode">
+		<xs:complexContent>
+			<xs:extension base="tns:node">
+				<xs:sequence>
+					<xs:element minOccurs="2" maxOccurs="unbounded" name="node" type="tns:node"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="acronym">
+		<xs:complexContent>
+			<xs:extension base="tns:annotation">
+				<xs:sequence>
+					<xs:element minOccurs="0" name="acronymType" type="tns:acronymType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="andNode">
+		<xs:complexContent>
+			<xs:extension base="tns:node">
+				<xs:sequence>
+					<xs:element minOccurs="2" maxOccurs="unbounded" name="node" type="tns:node"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:simpleType name="namedEntity">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DISEASE"/>
+			<xs:enumeration value="GENE"/>
+			<xs:enumeration value="METABOLITE"/>
+			<xs:enumeration value="DRUG"/>
+			<xs:enumeration value="ORGAN"/>
+			<xs:enumeration value="PROTEIN"/>
+			<xs:enumeration value="SYMPTOM"/>
+			<xs:enumeration value="HUMAN_PHENOM"/>
+			<xs:enumeration value="NATURAL_PHENOM"/>
+			<xs:enumeration value="GENERAL_PHENOM"/>
+			<xs:enumeration value="DIAG_PROC"/>
+			<xs:enumeration value="THERAPEUTIC_PROC"/>
+			<xs:enumeration value="INDICATOR"/>
+			<xs:enumeration value="PATHOLOGIC_FUNC"/>
+			<xs:enumeration value="BACTERIA"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="sortBy">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DATE"/>
+			<xs:enumeration value="RELEVANCE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="acronymType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="UNKNOWN"/>
+			<xs:enumeration value="LOCAL"/>
+			<xs:enumeration value="GLOBAL"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2013 Virginia Polytechnic Institute and State University
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<portlet-app version="" xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd" 
+	xmlns:xml="http://www.w3.org/XML/1998/namespace" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd 
+							http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd ">
+	<portlet>
+		<portlet-name>TutorialList</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.TutorialList</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Tutorial List</title>
+		</portlet-info>
+	</portlet>
+	<portlet>
+		<portlet-name>ToolList</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.ToolList</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Tool List</title>
+		</portlet-info>
+	</portlet>
+	<portlet>
+		<portlet-name>GenomeFinder</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.GenomeFinder</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Genome Finder</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>display_mode</supported-public-render-parameter>
+		<supported-public-render-parameter>param_key</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>GenomicFeature</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.GenomicFeature</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Feature Finder</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>display_mode</supported-public-render-parameter>
+		<supported-public-render-parameter>param_key</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>GlobalSearch</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.GlobalSearch</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>PATRIC Search</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>display_mode</supported-public-render-parameter>
+		<supported-public-render-parameter>param_key</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>GOSearch</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.GOSearch</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>GO Search</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>display_mode</supported-public-render-parameter>
+		<supported-public-render-parameter>param_key</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>ECSearch</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.ECSearch</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>EC Search</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>display_mode</supported-public-render-parameter>
+		<supported-public-render-parameter>param_key</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>GlobalTaxonomy</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.GlobalTaxonomy</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>GlobalTaxonomy</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>display_mode</supported-public-render-parameter>
+		<supported-public-render-parameter>param_key</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>Downloads</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.Downloads</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Downloads</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>IDMapping</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.IDMapping</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>ID Mapping</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>display_mode</supported-public-render-parameter>
+		<supported-public-render-parameter>param_key</supported-public-render-parameter>
+	</portlet>
+	<public-render-parameter>
+		<identifier>context_type</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:context_type</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>context_id</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:context_id</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>display_mode</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:display_mode</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>param_key</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:param_key</qname>
+	</public-render-parameter>
+</portlet-app>

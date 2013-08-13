@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2013 Virginia Polytechnic Institute and State University
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<portlet-app xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+	xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd 
+						http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+	version="">
+	<portlet>
+		<portlet-name>BreadCrumb</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.BreadCrumb</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>BreadCrumb</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>P2Management</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.P2Management</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>PATRIC BRC Management</title>
+		</portlet-info>
+		<supported-public-render-parameter>mode</supported-public-render-parameter>
+		<supported-public-render-parameter>dryrun</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>SearchToolsPanel</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.SearchToolsLink</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Search Tools</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>GroupManagement</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.GroupManagement</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Workspace</title>
+		</portlet-info>
+		<supported-public-render-parameter>mode</supported-public-render-parameter>
+		<supported-public-render-parameter>group_id</supported-public-render-parameter>
+		<supported-public-render-parameter>group_type</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>Workspace</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.WorkspacePortlet</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Workspace</title>
+		</portlet-info>
+	</portlet>
+	<portlet>
+		<portlet-name>TranscriptomicsUploader</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.TranscriptomicsUploader</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>TranscriptomicsUploader</title>
+		</portlet-info>
+	</portlet>
+	<portlet>
+		<portlet-name>FeatureTable</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.FeatureTable</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Feature Table</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
+		<supported-public-render-parameter>start</supported-public-render-parameter>
+		<supported-public-render-parameter>end</supported-public-render-parameter>
+		<supported-public-render-parameter>featuretype</supported-public-render-parameter>
+		<supported-public-render-parameter>annotation</supported-public-render-parameter>
+		<supported-public-render-parameter>filtertype</supported-public-render-parameter>
+	</portlet>
+	<public-render-parameter>
+		<identifier>context_type</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:context_type</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>context_id</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:context_id</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>mode</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:mode</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>dryrun</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:dryrun</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>group_id</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:group_id</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>group_type</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:group_type</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>start</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:start</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>end</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:end</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>featuretype</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:featuretype</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>annotation</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:annotation</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>filtertype</identifier>
+		<qname xmlns:x="http://patricbrc.org/params">x:filtertype</qname>
+	</public-render-parameter>
+</portlet-app>

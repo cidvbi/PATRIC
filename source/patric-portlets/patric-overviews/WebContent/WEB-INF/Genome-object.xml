@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Copyright 2013 Virginia Polytechnic Institute and State University
+  
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+  
+    http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+-->
+<!DOCTYPE deployments PUBLIC "-//JBoss Portal//DTD Portal Object 2.6//EN" "http://www.jboss.org/portal/dtd/portal-object_2_6.dtd">
+<deployments>
+	<deployment>
+		<parent-ref>patric</parent-ref>
+		<if-exists>overwrite</if-exists>
+		<page>
+			<page-name>Genome</page-name>
+			<properties>
+				<property>
+					<name>layout.id</name>
+					<value>patric-2col</value>
+				</property>
+			</properties>
+			<window>
+				<window-name>BreadCrumbWindow</window-name>
+				<content>
+					<content-type>portlet</content-type>
+					<content-uri>BreadCrumbInstance</content-uri>
+				</content>
+				<region>top</region>
+				<height>0</height>
+				<properties>
+					<property>
+						<name>theme.renderSetId</name>
+						<value>emptyRenderer</value>
+					</property>
+				</properties>
+			</window>
+			<window>
+				<window-name>SearchToolsPanelWindow</window-name>
+				<content>
+					<content-type>portlet</content-type>
+					<content-uri>SearchToolsPanelInstance</content-uri>
+				</content>
+				<region>left</region>
+				<height>1</height>
+			</window>
+			<window>
+				<window-name>ExperimentSummaryWindow</window-name>
+				<content>
+					<content-type>portlet</content-type>
+					<content-uri>ExperimentSummaryInstance</content-uri>
+				</content>
+				<region>left</region>
+				<height>2</height>
+			</window>
+			<window>
+				<window-name>PubMedPanelWindow</window-name>
+				<content>
+					<content-type>portlet</content-type>
+					<content-uri>PubMedPanelInstance</content-uri>
+				</content>
+				<region>left</region>
+				<height>3</height>
+			</window>
+			<!--
+			<window>
+			<window-name>GSearchPanelWindow</window-name>
+			<content>
+			<content-type>portlet</content-type>
+			<content-uri>GSearchPanelInstance</content-uri>
+			</content>
+			<region>left</region>
+			<height>3</height>
+			</window>
+			-->
+			<window>
+				<window-name>SequenceSummaryWindow</window-name>
+				<content>
+					<content-type>portlet</content-type>
+					<content-uri>SequenceSummaryInstance</content-uri>
+				</content>
+				<region>center</region>
+				<height>0</height>
+			</window>
+			<window>
+				<window-name>GenomicFeatureSummaryWindow</window-name>
+				<content>
+					<content-type>portlet</content-type>
+					<content-uri>GenomicFeatureSummaryInstance</content-uri>
+				</content>
+				<region>center</region>
+				<height>1</height>
+			</window>
+			<window>
+				<window-name>ProteinFeatureSummaryWindow</window-name>
+				<content>
+					<content-type>portlet</content-type>
+					<content-uri>ProteinFeatureSummaryInstance</content-uri>
+				</content>
+				<region>center</region>
+				<height>2</height>
+			</window>
+			<window>
+				<window-name>PathwayPanelWindow</window-name>
+				<content>
+					<content-type>portlet</content-type>
+					<content-uri>PathwayPanelInstance</content-uri>
+				</content>
+				<region>center</region>
+				<height>3</height>
+			</window>
+			<coordination>
+				<bindings>
+					<implicit-mode>FALSE</implicit-mode>
+					<alias-binding>
+						<id>cType</id>
+						<qname>{http://patricbrc.org/params}context_type</qname>
+					</alias-binding>
+					<alias-binding>
+						<id>cId</id>
+						<qname>{http://patricbrc.org/params}context_id</qname>
+					</alias-binding>
+				</bindings>
+			</coordination>
+		</page>
+	</deployment>
+</deployments>
