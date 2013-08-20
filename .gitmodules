@@ -1,3 +1,6 @@
 [submodule "documentation"]
 	path = documentation
 	url = git@github.com:cidvbi/PATRIC.wiki.git
+[submodule "source/web-static/patric/pig"]
+	path = source/web-static/patric/pig
+	url = git@github.com:cidvbi/pig_pub.git
