@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,9 +41,8 @@ public class DBPIG {
 
 	public ArrayList<ResultType> getGenomeInteractionTree() {
 
-		String sql = "select distinct  ps.taxon_id_a, ps.taxon_name_a, count(distinct ps.pig_id) "
-				+ "	from  pig.pig_summary ps " + "	group by  ps.taxon_id_a, ps.taxon_name_a "
-				+ "	order by ps.taxon_name_a asc";
+		String sql = "select distinct  ps.taxon_id_a, ps.taxon_name_a, count(distinct ps.pig_id) " + "	from  pig.pig_summary ps "
+				+ "	group by  ps.taxon_id_a, ps.taxon_name_a " + "	order by ps.taxon_name_a asc";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -252,16 +251,13 @@ public class DBPIG {
 			sql += "SELECT count(*) cnt ";
 		}
 		else if (where.equals("function")) {
-			sql += " SELECT ps.pig_id AS pig_id, " + " ps.source_mol_id AS source_mol_id,"
-					+ " ps.target_mol_id AS target_mol_id," + " ps.taxon_name_a AS taxon_name_a,"
-					+ " ps.taxon_name_b AS taxon_name_b," + " ps.label_a AS label_a," + " ps.label_b AS label_b,"
-					+ " ps.description_a AS description_a," + " ps.patric_source_id AS locus_tag,"
-					+ " ps.na_feature_id AS na_feature_id," + " ps.method_id," + " ps.method_name,"
-					+ " ps.method_source," + " ps.method_source_id," + " ps.source_id," + " ps.source_name,"
-					+ " ps.source_dbid," + " ps.type_id," + " ps.type_name," + " ps.type_source,"
-					+ " ps.type_source_id," + " ps.reference_id," + " ps.reference_source,"
-					+ " ps.reference_source_id," + " ps.interaction_score, " + " ps.taxon_id_a AS ncbi_tax_id_a,"
-					+ " ps.taxon_id_b AS ncbi_tax_id_b," + " ps.description_b AS description_b";
+			sql += " SELECT ps.pig_id AS pig_id, " + " ps.source_mol_id AS source_mol_id," + " ps.target_mol_id AS target_mol_id,"
+					+ " ps.taxon_name_a AS taxon_name_a," + " ps.taxon_name_b AS taxon_name_b," + " ps.label_a AS label_a,"
+					+ " ps.label_b AS label_b," + " ps.description_a AS description_a," + " ps.patric_source_id AS locus_tag,"
+					+ " ps.na_feature_id AS na_feature_id," + " ps.method_id," + " ps.method_name," + " ps.method_source," + " ps.method_source_id,"
+					+ " ps.source_id," + " ps.source_name," + " ps.source_dbid," + " ps.type_id," + " ps.type_name," + " ps.type_source,"
+					+ " ps.type_source_id," + " ps.reference_id," + " ps.reference_source," + " ps.reference_source_id," + " ps.interaction_score, "
+					+ " ps.taxon_id_a AS ncbi_tax_id_a," + " ps.taxon_id_b AS ncbi_tax_id_b," + " ps.description_b AS description_b";
 		}
 
 		String notin = null;
@@ -398,8 +394,7 @@ public class DBPIG {
 
 		String sql = "";
 		if (!taxids.equals("")) {
-			sql += "select distinct type_id, type_name from pig.pig_summary where taxon_id_a in (" + taxids
-					+ ") order by type_name";
+			sql += "select distinct type_id, type_name from pig.pig_summary where taxon_id_a in (" + taxids + ") order by type_name";
 		}
 		else {
 			sql += "select distinct type_id, type_name from pig.pig_types order by type_name";
@@ -437,8 +432,7 @@ public class DBPIG {
 
 		String sql = "";
 		if (!taxids.equals("")) {
-			sql += "select distinct method_id, method_name from pig.pig_summary where taxon_id_a in (" + taxids
-					+ ") order by method_name";
+			sql += "select distinct method_id, method_name from pig.pig_summary where taxon_id_a in (" + taxids + ") order by method_name";
 		}
 		else {
 			sql += "select distinct method_id, method_name from pig.pig_methods order by method_name";
@@ -472,8 +466,7 @@ public class DBPIG {
 
 		String sql = "";
 		if (!taxids.equals("")) {
-			sql += "select distinct source_id, source_name from pig.pig_summary where taxon_id_a in (" + taxids
-					+ ") order by source_name";
+			sql += "select distinct source_id, source_name from pig.pig_summary where taxon_id_a in (" + taxids + ") order by source_name";
 		}
 		else {
 			sql += "select distinct source_id, interaction_source_name from pig.pig_sources order by interaction_source_name";

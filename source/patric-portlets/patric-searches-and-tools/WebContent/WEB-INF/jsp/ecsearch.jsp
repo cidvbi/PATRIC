@@ -60,45 +60,47 @@ if(request.getUserPrincipal() == null){
 	</div>
 	<div class="left" style="width:25px">&nbsp;</div>
 	<div class="left" style="width:375px">
-		<h3><img src="/patric/images/number2.gif" alt="2" height="14" width="14" />
-		Enter keyword</h3><br />
+		<h3><img src="/patric/images/number2.gif" alt="2" height="14" width="14" /> Enter keyword</h3><br />
 		<form action="#" onsubmit="return false;">
-		<table>
+
+		<select class="left" id="search_on" name="search_on" size="1">
+			<option value="Keyword" >Keyword</option>
+			<option value="ec_number">EC Number</option>
+			<option value="ec_name" >EC Name</option>
+		</select>
+		<textarea class="right" id="keyword" name="keyword" rows="5" cols="30" title="keyword or EC Number or EC Name"><%=(key!=null && key.containsKey("keyword") && !key.get("keyword").equalsIgnoreCase(""))?key.get("keyword"):""%></textarea>
+		<div class="clear"></div>
+
+
+		<span class="small bold">Examples</span>
+		<table class="basic far">
+		<tbody>
 		<tr>
-			<td>
-				<select id="search_on" name="search_on" size="1">
-				 	<option value="Keyword" >Keyword</option>
-					<option value="ec_number">EC Number</option>
-					<option value="ec_name" >EC Name</option>
-				</select>
-				<br /><span class="small bold">Examples</span>
-				<br /><span class="small">Keyword:</span>
-				<br /><span class="small">EC Number:</span>
-				<br /><span class="small">EC Name:</span>
-			</td>
-			<td>
-				<input type="text" id="keyword" name="keyword" size="32" title="keyword or EC Number or EC Name" />
-				<br />
-				<br /><span class="small">ligase</span>
-				<br /><span class="small">1.1.1.1</span>
-				<br /><span class="small">Alcohol dehydrogenase</span>
-			</td>
+			<th width=125 scope="row">Keyword:</th>
+			<td>ligase</td>
 		</tr>
 		<tr>
-			<td><label for="annotation">Annotation : </label></td>
-			<td>
-				<select id="annotation" name="annotation" size="1">
-					<option value="" selected="selected">ALL</option>
-					<option value="PATRIC">PATRIC</option>
-					<option value="Legacy BRC">Legacy BRC</option>
-					<option value="RefSeq">RefSeq</option>
-				</select>
-			</td>
+			<th scope="row">EC Number:</th>
+			<td>1.1.1.1</td>
 		</tr>
 		<tr>
-			<td class="right" colspan="2"><input class="button"  type="submit" value="Search" onclick="searchbykeyword('<%=cId%>', '<%=cType %>')" /></td>
+			<th scope="row">EC Name:</th>
+			<td>Alcohol dehydrogenase</td>
 		</tr>
+		</tbody>
 		</table>
+		
+		<label class="left" for="annotation">Annotation : </label>
+		<select class="right far2x" id="annotation" name="annotation" size="1">
+			<option value="" selected="selected">ALL</option>
+			<option value="PATRIC">PATRIC</option>
+			<option value="Legacy BRC">Legacy BRC</option>
+			<option value="RefSeq">RefSeq</option>
+		</select>
+		<div class="clear"></div>
+
+		<input class="right button" type="submit" value="Search" onclick="searchbykeyword('<%=cId%>', '<%=cType %>')" />
+		<div class="clear"></div>
 		</form>
 	</div>
 	<div class="clear"></div>

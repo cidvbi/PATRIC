@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,8 +46,7 @@ public class TranscriptomicsGeneExp extends GenericPortlet {
 	 * @see javax.portlet.GenericPortlet#doView(javax.portlet.RenderRequest, javax.portlet.RenderResponse)
 	 */
 	@Override
-	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException,
-			UnavailableException {
+	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException, UnavailableException {
 
 		response.setContentType("text/html");
 		response.setTitle("Transcriptomics Feature");
@@ -87,14 +86,12 @@ public class TranscriptomicsGeneExp extends GenericPortlet {
 				for (int i = 1; i < sorter.size(); i++) {
 					sort_field += "," + ((JSONObject) sorter.get(i)).get("property").toString();
 				}
-
 			}
 			catch (ParseException e) {
 				e.printStackTrace();
 			}
 		}
-		System.out.println("paramFeatureId=" + paramFeatureId + ",paramSampleId=" + paramSampleId + ",paramStoreType="
-				+ paramStoreType);
+		// System.out.println("paramFeatureId=" + paramFeatureId + ",paramSampleId=" + paramSampleId + ",paramStoreType=" + paramStoreType);
 
 		HashMap<String, String> key = new HashMap<String, String>();
 		HashMap<String, String> sort = new HashMap<String, String>();
@@ -136,14 +133,12 @@ public class TranscriptomicsGeneExp extends GenericPortlet {
 					results.add(obj);
 				}
 				jsonResult.put("results", results);
-
 			}
 			catch (Exception ex) {
-				System.out.println("***" + ex.toString());
+				ex.printStackTrace();
 			}
 		}
-		else if (paramStoreType.equals("strain") || paramStoreType.equals("mutant")
-				|| paramStoreType.equals("condition")) {
+		else if (paramStoreType.equals("strain") || paramStoreType.equals("mutant") || paramStoreType.equals("condition")) {
 			// meta data fields
 			items = conn_transcriptopics.getGeneLvlExpressionCounts(paramStoreType, key);
 			try {
@@ -156,10 +151,9 @@ public class TranscriptomicsGeneExp extends GenericPortlet {
 					results.add(obj);
 				}
 				jsonResult.put("exp_stat", results);
-
 			}
 			catch (Exception ex) {
-				System.out.println("***" + ex.toString());
+				ex.printStackTrace();
 			}
 		}
 		else if (paramStoreType.equals("log_ratio") || paramStoreType.equals("z_score")) {
@@ -175,10 +169,9 @@ public class TranscriptomicsGeneExp extends GenericPortlet {
 					results.add(obj);
 				}
 				jsonResult.put("exp_stat", results);
-
 			}
 			catch (Exception ex) {
-				System.out.println("***" + ex.toString());
+				ex.printStackTrace();
 			}
 		}
 		else if (paramStoreType.equals("correlation")) {
@@ -209,12 +202,10 @@ public class TranscriptomicsGeneExp extends GenericPortlet {
 					results.add(obj);
 				}
 				jsonResult.put("results", results);
-
 			}
 			catch (Exception ex) {
-				System.out.println("***" + ex.toString());
+				ex.printStackTrace();
 			}
-
 		}
 
 		PrintWriter writer = resp.getWriter();

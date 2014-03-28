@@ -32,7 +32,6 @@ version="2.0">
 		<supported-public-render-parameter>context_id</supported-public-render-parameter>
 		<supported-public-render-parameter>display_mode</supported-public-render-parameter>
 		<supported-public-render-parameter>param_key</supported-public-render-parameter>
-		<supported-public-render-parameter>portlet_type</supported-public-render-parameter>
 	</portlet>
 	<portlet>
 		<portlet-name>SingleFigFam</portlet-name>
@@ -133,10 +132,6 @@ version="2.0">
 	<public-render-parameter>
 		<identifier>genome_ids</identifier>
 		<qname xmlns:x="http://patricbrc.org/params">x:genome_ids</qname>
-	</public-render-parameter>
-	<public-render-parameter>
-		<identifier>portlet_type</identifier>
-		<qname xmlns:x="http://patricbrc.org/params">x:portlet_type</qname>
 	</public-render-parameter>
 	<public-render-parameter>
 		<identifier>genome_ids</identifier>

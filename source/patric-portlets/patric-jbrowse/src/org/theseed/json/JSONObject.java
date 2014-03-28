@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,19 +51,17 @@ import java.util.Map;
 import java.util.TreeSet;
 
 /**
- * A JSONObject is an unordered collection of name/value pairs. Its external form is a string wrapped in curly braces
- * with colons between the names and values, and commas between the values and names. The internal form is an object
- * having <code>get</code> and <code>opt</code> methods for accessing the values by name, and <code>put</code> methods
- * for adding or replacing values by name. The values can be any of these types: <code>Boolean</code>,
- * <code>JSONArray</code>, <code>JSONObject</code>, <code>Number</code>, <code>String</code>, or the
- * <code>JSONObject.NULL</code> object. A JSONObject constructor can be used to convert an external form JSON text into
- * an internal form whose values can be retrieved with the <code>get</code> and <code>opt</code> methods, or to convert
- * values into a JSON text using the <code>put</code> and <code>toString</code> methods. A <code>get</code> method
- * returns a value if one can be found, and throws an exception if one cannot be found. An <code>opt</code> method
- * returns a default value instead of throwing an exception, and so is useful for obtaining optional values.
+ * A JSONObject is an unordered collection of name/value pairs. Its external form is a string wrapped in curly braces with colons between the names
+ * and values, and commas between the values and names. The internal form is an object having <code>get</code> and <code>opt</code> methods for
+ * accessing the values by name, and <code>put</code> methods for adding or replacing values by name. The values can be any of these types:
+ * <code>Boolean</code>, <code>JSONArray</code>, <code>JSONObject</code>, <code>Number</code>, <code>String</code>, or the
+ * <code>JSONObject.NULL</code> object. A JSONObject constructor can be used to convert an external form JSON text into an internal form whose values
+ * can be retrieved with the <code>get</code> and <code>opt</code> methods, or to convert values into a JSON text using the <code>put</code> and
+ * <code>toString</code> methods. A <code>get</code> method returns a value if one can be found, and throws an exception if one cannot be found. An
+ * <code>opt</code> method returns a default value instead of throwing an exception, and so is useful for obtaining optional values.
  * <p>
- * The generic <code>get()</code> and <code>opt()</code> methods return an object, which you can cast or query for type.
- * There are also typed <code>get</code> and <code>opt</code> methods that do type checking and type coercion for you.
+ * The generic <code>get()</code> and <code>opt()</code> methods return an object, which you can cast or query for type. There are also typed
+ * <code>get</code> and <code>opt</code> methods that do type checking and type coercion for you.
  * <p>
  * The <code>put</code> methods adds values to an object. For example,
  * 
@@ -73,18 +71,16 @@ import java.util.TreeSet;
  * 
  * produces the string <code>{"JSON": "Hello, World"}</code>.
  * <p>
- * The texts produced by the <code>toString</code> methods strictly conform to the JSON syntax rules. The constructors
- * are more forgiving in the texts they will accept:
+ * The texts produced by the <code>toString</code> methods strictly conform to the JSON syntax rules. The constructors are more forgiving in the texts
+ * they will accept:
  * <ul>
  * <li>An extra <code>,</code>&nbsp;<small>(comma)</small> may appear just before the closing brace.</li>
  * <li>Strings may be quoted with <code>'</code>&nbsp;<small>(single quote)</small>.</li>
- * <li>Strings do not need to be quoted at all if they do not begin with a quote or single quote, and if they do not
- * contain leading or trailing spaces, and if they do not contain any of these characters:
- * <code>{ } [ ] / \ : , = ; #</code> and if they do not look like numbers and if they are not the reserved words
- * <code>true</code>, <code>false</code>, or <code>null</code>.</li>
+ * <li>Strings do not need to be quoted at all if they do not begin with a quote or single quote, and if they do not contain leading or trailing
+ * spaces, and if they do not contain any of these characters: <code>{ } [ ] / \ : , = ; #</code> and if they do not look like numbers and if they are
+ * not the reserved words <code>true</code>, <code>false</code>, or <code>null</code>.</li>
  * <li>Keys can be followed by <code>=</code> or <code>=></code> as well as by <code>:</code>.</li>
- * <li>Values can be followed by <code>;</code> <small>(semicolon)</small> as well as by <code>,</code>
- * <small>(comma)</small>.</li>
+ * <li>Values can be followed by <code>;</code> <small>(semicolon)</small> as well as by <code>,</code> <small>(comma)</small>.</li>
  * <li>Numbers may have the <code>0-</code> <small>(octal)</small> or <code>0x-</code> <small>(hex)</small> prefix.</li>
  * </ul>
  * @author JSON.org
@@ -93,8 +89,8 @@ import java.util.TreeSet;
 public class JSONObject {
 
 	/**
-	 * JSONObject.NULL is equivalent to the value that JavaScript calls null, whilst Java's null is equivalent to the
-	 * value that JavaScript calls undefined.
+	 * JSONObject.NULL is equivalent to the value that JavaScript calls null, whilst Java's null is equivalent to the value that JavaScript calls
+	 * undefined.
 	 */
 	private static final class Null {
 
@@ -130,9 +126,8 @@ public class JSONObject {
 	private Map<String, Object> map;
 
 	/**
-	 * It is sometimes more convenient and less ambiguous to have a <code>NULL</code> object than to use Java's
-	 * <code>null</code> value. <code>JSONObject.NULL.equals(null)</code> returns <code>true</code>.
-	 * <code>JSONObject.NULL.toString()</code> returns <code>"null"</code>.
+	 * It is sometimes more convenient and less ambiguous to have a <code>NULL</code> object than to use Java's <code>null</code> value.
+	 * <code>JSONObject.NULL.equals(null)</code> returns <code>true</code>. <code>JSONObject.NULL.toString()</code> returns <code>"null"</code>.
 	 */
 	public static final Object NULL = new Null();
 
@@ -144,8 +139,8 @@ public class JSONObject {
 	}
 
 	/**
-	 * Construct a JSONObject from a subset of another JSONObject. An array of strings is used to identify the keys that
-	 * should be copied. Missing keys are ignored.
+	 * Construct a JSONObject from a subset of another JSONObject. An array of strings is used to identify the keys that should be copied. Missing
+	 * keys are ignored.
 	 * @param jo A JSONObject.
 	 * @param names An array of strings.
 	 * @throws JSONException
@@ -241,17 +236,15 @@ public class JSONObject {
 	}
 
 	/**
-	 * Construct a JSONObject from an Object using bean getters. It reflects on all of the public methods of the object.
-	 * For each of the methods with no parameters and a name starting with <code>"get"</code> or <code>"is"</code>
-	 * followed by an uppercase letter, the method is invoked, and a key and the value returned from the getter method
-	 * are put into the new JSONObject.
+	 * Construct a JSONObject from an Object using bean getters. It reflects on all of the public methods of the object. For each of the methods with
+	 * no parameters and a name starting with <code>"get"</code> or <code>"is"</code> followed by an uppercase letter, the method is invoked, and a
+	 * key and the value returned from the getter method are put into the new JSONObject.
 	 * 
-	 * The key is formed by removing the <code>"get"</code> or <code>"is"</code> prefix. If the second remaining
-	 * character is not upper case, then the first character is converted to lower case.
+	 * The key is formed by removing the <code>"get"</code> or <code>"is"</code> prefix. If the second remaining character is not upper case, then the
+	 * first character is converted to lower case.
 	 * 
-	 * For example, if an object has a method named <code>"getName"</code>, and if the result of calling
-	 * <code>object.getName()</code> is <code>"Larry Fine"</code>, then the JSONObject will contain
-	 * <code>"name": "Larry Fine"</code>.
+	 * For example, if an object has a method named <code>"getName"</code>, and if the result of calling <code>object.getName()</code> is
+	 * <code>"Larry Fine"</code>, then the JSONObject will contain <code>"name": "Larry Fine"</code>.
 	 * 
 	 * @param bean An object that has getter methods that should be used to make a JSONObject.
 	 */
@@ -261,9 +254,9 @@ public class JSONObject {
 	}
 
 	/**
-	 * Construct a JSONObject from an Object, using reflection to find the public members. The resulting JSONObject's
-	 * keys will be the strings from the names array, and the values will be the field values associated with those keys
-	 * in the object. If a key is not found or not visible, then it will not be copied into the new JSONObject.
+	 * Construct a JSONObject from an Object, using reflection to find the public members. The resulting JSONObject's keys will be the strings from
+	 * the names array, and the values will be the field values associated with those keys in the object. If a key is not found or not visible, then
+	 * it will not be copied into the new JSONObject.
 	 * @param object An object that has fields that should be used to make a JSONObject.
 	 * @param names An array of strings, the names of the fields to be obtained from the object.
 	 */
@@ -282,8 +275,8 @@ public class JSONObject {
 
 	/**
 	 * Construct a JSONObject from a source JSON text string. This is the most commonly used JSONObject constructor.
-	 * @param source A string beginning with <code>{</code>&nbsp;<small>(left brace)</small> and ending with
-	 * <code>}</code>&nbsp;<small>(right brace)</small>.
+	 * @param source A string beginning with <code>{</code>&nbsp;<small>(left brace)</small> and ending with <code>}</code>&nbsp;<small>(right
+	 * brace)</small>.
 	 * @exception JSONException If there is a syntax error in the source string or a duplicated key.
 	 */
 	public JSONObject(String source) throws JSONException {
@@ -291,9 +284,9 @@ public class JSONObject {
 	}
 
 	/**
-	 * Accumulate values under a key. It is similar to the put method except that if there is already an object stored
-	 * under the key then a JSONArray is stored under the key to hold all of the accumulated values. If there is already
-	 * a JSONArray, then the new value is appended to it. In contrast, the put method replaces the previous value.
+	 * Accumulate values under a key. It is similar to the put method except that if there is already an object stored under the key then a JSONArray
+	 * is stored under the key to hold all of the accumulated values. If there is already a JSONArray, then the new value is appended to it. In
+	 * contrast, the put method replaces the previous value.
 	 * @param key A key string.
 	 * @param value An object to be accumulated under the key.
 	 * @return this.
@@ -315,9 +308,8 @@ public class JSONObject {
 	}
 
 	/**
-	 * Append values to the array under a key. If the key does not exist in the JSONObject, then the key is put in the
-	 * JSONObject with its value being a JSONArray containing the value parameter. If the key was already associated
-	 * with a JSONArray, then the value parameter is appended to it.
+	 * Append values to the array under a key. If the key does not exist in the JSONObject, then the key is put in the JSONObject with its value being
+	 * a JSONArray containing the value parameter. If the key was already associated with a JSONArray, then the value parameter is appended to it.
 	 * @param key A key string.
 	 * @param value An object to be accumulated under the key.
 	 * @return this.
@@ -399,8 +391,7 @@ public class JSONObject {
 	 * Get the double value associated with a key.
 	 * @param key A key string.
 	 * @return The numeric value.
-	 * @throws JSONException if the key is not found or if the value is not a Number object and cannot be converted to a
-	 * number.
+	 * @throws JSONException if the key is not found or if the value is not a Number object and cannot be converted to a number.
 	 */
 	public double getDouble(String key) throws JSONException {
 		Object o = get(key);
@@ -529,12 +520,11 @@ public class JSONObject {
 	}
 
 	/**
-	 * Increment a property of a JSONObject. If there is no such property, create one with a value of 1. If there is
-	 * such a property, and if it is an Integer, Long, Double, or Float, then add one to it.
+	 * Increment a property of a JSONObject. If there is no such property, create one with a value of 1. If there is such a property, and if it is an
+	 * Integer, Long, Double, or Float, then add one to it.
 	 * @param key A key string.
 	 * @return this.
-	 * @throws JSONException If there is already a property with this name that is not an Integer, Long, Double, or
-	 * Float.
+	 * @throws JSONException If there is already a property with this name that is not an Integer, Long, Double, or Float.
 	 */
 	public JSONObject increment(String key) throws JSONException {
 		Object value = opt(key);
@@ -637,8 +627,8 @@ public class JSONObject {
 	}
 
 	/**
-	 * Get an optional boolean associated with a key. It returns false if there is no such key, or if the value is not
-	 * Boolean.TRUE or the String "true".
+	 * Get an optional boolean associated with a key. It returns false if there is no such key, or if the value is not Boolean.TRUE or the String
+	 * "true".
 	 * 
 	 * @param key A key string.
 	 * @return The truth.
@@ -648,8 +638,8 @@ public class JSONObject {
 	}
 
 	/**
-	 * Get an optional boolean associated with a key. It returns the defaultValue if there is no such key, or if it is
-	 * not a Boolean or the String "true" or "false" (case insensitive).
+	 * Get an optional boolean associated with a key. It returns the defaultValue if there is no such key, or if it is not a Boolean or the String
+	 * "true" or "false" (case insensitive).
 	 * 
 	 * @param key A key string.
 	 * @param defaultValue The default.
@@ -665,8 +655,8 @@ public class JSONObject {
 	}
 
 	/**
-	 * Get an optional double associated with a key, or NaN if there is no such key or if its value is not a number. If
-	 * the value is a string, an attempt will be made to evaluate it as a number.
+	 * Get an optional double associated with a key, or NaN if there is no such key or if its value is not a number. If the value is a string, an
+	 * attempt will be made to evaluate it as a number.
 	 * 
 	 * @param key A string which is the key.
 	 * @return An object which is the value.
@@ -676,8 +666,8 @@ public class JSONObject {
 	}
 
 	/**
-	 * Get an optional double associated with a key, or the defaultValue if there is no such key or if its value is not
-	 * a number. If the value is a string, an attempt will be made to evaluate it as a number.
+	 * Get an optional double associated with a key, or the defaultValue if there is no such key or if its value is not a number. If the value is a
+	 * string, an attempt will be made to evaluate it as a number.
 	 * 
 	 * @param key A key string.
 	 * @param defaultValue The default.
@@ -694,8 +684,8 @@ public class JSONObject {
 	}
 
 	/**
-	 * Get an optional int value associated with a key, or zero if there is no such key or if the value is not a number.
-	 * If the value is a string, an attempt will be made to evaluate it as a number.
+	 * Get an optional int value associated with a key, or zero if there is no such key or if the value is not a number. If the value is a string, an
+	 * attempt will be made to evaluate it as a number.
 	 * 
 	 * @param key A key string.
 	 * @return An object which is the value.
@@ -705,8 +695,8 @@ public class JSONObject {
 	}
 
 	/**
-	 * Get an optional int value associated with a key, or the default if there is no such key or if the value is not a
-	 * number. If the value is a string, an attempt will be made to evaluate it as a number.
+	 * Get an optional int value associated with a key, or the default if there is no such key or if the value is not a number. If the value is a
+	 * string, an attempt will be made to evaluate it as a number.
 	 * 
 	 * @param key A key string.
 	 * @param defaultValue The default.
@@ -722,8 +712,7 @@ public class JSONObject {
 	}
 
 	/**
-	 * Get an optional JSONArray associated with a key. It returns null if there is no such key, or if its value is not
-	 * a JSONArray.
+	 * Get an optional JSONArray associated with a key. It returns null if there is no such key, or if its value is not a JSONArray.
 	 * 
 	 * @param key A key string.
 	 * @return A JSONArray which is the value.
@@ -734,8 +723,7 @@ public class JSONObject {
 	}
 
 	/**
-	 * Get an optional JSONObject associated with a key. It returns null if there is no such key, or if its value is not
-	 * a JSONObject.
+	 * Get an optional JSONObject associated with a key. It returns null if there is no such key, or if its value is not a JSONObject.
 	 * 
 	 * @param key A key string.
 	 * @return A JSONObject which is the value.
@@ -746,8 +734,8 @@ public class JSONObject {
 	}
 
 	/**
-	 * Get an optional long value associated with a key, or zero if there is no such key or if the value is not a
-	 * number. If the value is a string, an attempt will be made to evaluate it as a number.
+	 * Get an optional long value associated with a key, or zero if there is no such key or if the value is not a number. If the value is a string, an
+	 * attempt will be made to evaluate it as a number.
 	 * 
 	 * @param key A key string.
 	 * @return An object which is the value.
@@ -757,8 +745,8 @@ public class JSONObject {
 	}
 
 	/**
-	 * Get an optional long value associated with a key, or the default if there is no such key or if the value is not a
-	 * number. If the value is a string, an attempt will be made to evaluate it as a number.
+	 * Get an optional long value associated with a key, or the default if there is no such key or if the value is not a number. If the value is a
+	 * string, an attempt will be made to evaluate it as a number.
 	 * 
 	 * @param key A key string.
 	 * @param defaultValue The default.
@@ -774,8 +762,8 @@ public class JSONObject {
 	}
 
 	/**
-	 * Get an optional string associated with a key. It returns an empty string if there is no such key. If the value is
-	 * not a string and is not null, then it is coverted to a string.
+	 * Get an optional string associated with a key. It returns an empty string if there is no such key. If the value is not a string and is not null,
+	 * then it is coverted to a string.
 	 * 
 	 * @param key A key string.
 	 * @return A string which is the value.
@@ -821,8 +809,7 @@ public class JSONObject {
 					else if (name.startsWith("is")) {
 						key = name.substring(2);
 					}
-					if (key.length() > 0 && Character.isUpperCase(key.charAt(0))
-							&& method.getParameterTypes().length == 0) {
+					if (key.length() > 0 && Character.isUpperCase(key.charAt(0)) && method.getParameterTypes().length == 0) {
 						if (key.length() == 1) {
 							key = key.toLowerCase();
 						}
@@ -918,11 +905,10 @@ public class JSONObject {
 	}
 
 	/**
-	 * Put a key/value pair in the JSONObject. If the value is null, then the key will be removed from the JSONObject if
-	 * it is present.
+	 * Put a key/value pair in the JSONObject. If the value is null, then the key will be removed from the JSONObject if it is present.
 	 * @param key A key string.
-	 * @param value An object which is the value. It should be of one of these types: Boolean, Double, Integer,
-	 * JSONArray, JSONObject, Long, String, or the JSONObject.NULL object.
+	 * @param value An object which is the value. It should be of one of these types: Boolean, Double, Integer, JSONArray, JSONObject, Long, String,
+	 * or the JSONObject.NULL object.
 	 * @return this.
 	 * @throws JSONException If the value is non-finite number or if the key is null.
 	 */
@@ -941,8 +927,8 @@ public class JSONObject {
 	}
 
 	/**
-	 * Put a key/value pair in the JSONObject, but only if the key and the value are both non-null, and only if there is
-	 * not already a member with that name.
+	 * Put a key/value pair in the JSONObject, but only if the key and the value are both non-null, and only if there is not already a member with
+	 * that name.
 	 * @param key
 	 * @param value
 	 * @return his.
@@ -961,8 +947,8 @@ public class JSONObject {
 	/**
 	 * Put a key/value pair in the JSONObject, but only if the key and the value are both non-null.
 	 * @param key A key string.
-	 * @param value An object which is the value. It should be of one of these types: Boolean, Double, Integer,
-	 * JSONArray, JSONObject, Long, String, or the JSONObject.NULL object.
+	 * @param value An object which is the value. It should be of one of these types: Boolean, Double, Integer, JSONArray, JSONObject, Long, String,
+	 * or the JSONObject.NULL object.
 	 * @return this.
 	 * @throws JSONException If the value is a non-finite number.
 	 */
@@ -974,9 +960,8 @@ public class JSONObject {
 	}
 
 	/**
-	 * Produce a string in double quotes with backslash sequences in all the right places. A backslash will be inserted
-	 * within </, allowing JSON text to be delivered in HTML. In JSON text, a string cannot contain a control character
-	 * or an unescaped quote or backslash.
+	 * Produce a string in double quotes with backslash sequences in all the right places. A backslash will be inserted within </, allowing JSON text
+	 * to be delivered in HTML. In JSON text, a string cannot contain a control character or an unescaped quote or backslash.
 	 * @param string A String
 	 * @return A String correctly formatted for insertion in a JSON text.
 	 */
@@ -1075,9 +1060,9 @@ public class JSONObject {
 		}
 
 		/*
-		 * If it might be a number, try converting it. We support the non-standard 0x- convention. If a number cannot be
-		 * produced, then the value will just be a string. Note that the 0x-, plus, and implied string conventions are
-		 * non-standard. A JSON parser may accept non-JSON forms as long as it accepts all correct JSON forms.
+		 * If it might be a number, try converting it. We support the non-standard 0x- convention. If a number cannot be produced, then the value will
+		 * just be a string. Note that the 0x-, plus, and implied string conventions are non-standard. A JSON parser may accept non-JSON forms as long
+		 * as it accepts all correct JSON forms.
 		 */
 
 		char b = s.charAt(0);
@@ -1131,8 +1116,7 @@ public class JSONObject {
 
 	/**
 	 * Produce a JSONArray containing the values of the members of this JSONObject.
-	 * @param names A JSONArray containing a list of key strings. This determines the sequence of the values in the
-	 * result.
+	 * @param names A JSONArray containing a list of key strings. This determines the sequence of the values in the result.
 	 * @return A JSONArray of values.
 	 * @throws JSONException If any of the values are non-finite numbers.
 	 */
@@ -1148,13 +1132,13 @@ public class JSONObject {
 	}
 
 	/**
-	 * Make a JSON text of this JSONObject. For compactness, no whitespace is added. If this would not result in a
-	 * syntactically correct JSON text, then null will be returned instead.
+	 * Make a JSON text of this JSONObject. For compactness, no whitespace is added. If this would not result in a syntactically correct JSON text,
+	 * then null will be returned instead.
 	 * <p>
 	 * Warning: This method assumes that the data structure is acyclical.
 	 * 
-	 * @return a printable, displayable, portable, transmittable representation of the object, beginning with
-	 * <code>{</code>&nbsp;<small>(left brace)</small> and ending with <code>}</code>&nbsp;<small>(right brace)</small>.
+	 * @return a printable, displayable, portable, transmittable representation of the object, beginning with <code>{</code>&nbsp;<small>(left
+	 * brace)</small> and ending with <code>}</code>&nbsp;<small>(right brace)</small>.
 	 */
 	public String toString() {
 		try {
@@ -1183,8 +1167,8 @@ public class JSONObject {
 	 * <p>
 	 * Warning: This method assumes that the data structure is acyclical.
 	 * @param indentFactor The number of spaces to add to each level of indentation.
-	 * @return a printable, displayable, portable, transmittable representation of the object, beginning with
-	 * <code>{</code>&nbsp;<small>(left brace)</small> and ending with <code>}</code>&nbsp;<small>(right brace)</small>.
+	 * @return a printable, displayable, portable, transmittable representation of the object, beginning with <code>{</code>&nbsp;<small>(left
+	 * brace)</small> and ending with <code>}</code>&nbsp;<small>(right brace)</small>.
 	 * @throws JSONException If the object contains an invalid number.
 	 */
 	public String toString(int indentFactor) throws JSONException {
@@ -1197,8 +1181,8 @@ public class JSONObject {
 	 * Warning: This method assumes that the data structure is acyclical.
 	 * @param indentFactor The number of spaces to add to each level of indentation.
 	 * @param indent The indentation of the top level.
-	 * @return a printable, displayable, transmittable representation of the object, beginning with <code>{</code>
-	 * &nbsp;<small>(left brace)</small> and ending with <code>}</code>&nbsp;<small>(right brace)</small>.
+	 * @return a printable, displayable, transmittable representation of the object, beginning with <code>{</code> &nbsp;<small>(left brace)</small>
+	 * and ending with <code>}</code>&nbsp;<small>(right brace)</small>.
 	 * @throws JSONException If the object contains an invalid number.
 	 */
 	String toString(int indentFactor, int indent) throws JSONException {
@@ -1245,18 +1229,17 @@ public class JSONObject {
 	}
 
 	/**
-	 * Make a JSON text of an Object value. If the object has an value.toJSONString() method, then that method will be
-	 * used to produce the JSON text. The method is required to produce a strictly conforming text. If the object does
-	 * not contain a toJSONString method (which is the most common case), then a text will be produced by other means.
-	 * If the value is an array or Collection, then a JSONArray will be made from it and its toJSONString method will be
-	 * called. If the value is a MAP, then a JSONObject will be made from it and its toJSONString method will be called.
+	 * Make a JSON text of an Object value. If the object has an value.toJSONString() method, then that method will be used to produce the JSON text.
+	 * The method is required to produce a strictly conforming text. If the object does not contain a toJSONString method (which is the most common
+	 * case), then a text will be produced by other means. If the value is an array or Collection, then a JSONArray will be made from it and its
+	 * toJSONString method will be called. If the value is a MAP, then a JSONObject will be made from it and its toJSONString method will be called.
 	 * Otherwise, the value's toString method will be called, and the result will be quoted.
 	 * 
 	 * <p>
 	 * Warning: This method assumes that the data structure is acyclical.
 	 * @param value The value to be serialized.
-	 * @return a printable, displayable, transmittable representation of the object, beginning with <code>{</code>
-	 * &nbsp;<small>(left brace)</small> and ending with <code>}</code>&nbsp;<small>(right brace)</small>.
+	 * @return a printable, displayable, transmittable representation of the object, beginning with <code>{</code> &nbsp;<small>(left brace)</small>
+	 * and ending with <code>}</code>&nbsp;<small>(right brace)</small>.
 	 * @throws JSONException If the value is or contains an invalid number.
 	 */
 	static String valueToString(Object value) throws JSONException {
@@ -1301,8 +1284,8 @@ public class JSONObject {
 	 * @param value The value to be serialized.
 	 * @param indentFactor The number of spaces to add to each level of indentation.
 	 * @param indent The indentation of the top level.
-	 * @return a printable, displayable, transmittable representation of the object, beginning with <code>{</code>
-	 * &nbsp;<small>(left brace)</small> and ending with <code>}</code>&nbsp;<small>(right brace)</small>.
+	 * @return a printable, displayable, transmittable representation of the object, beginning with <code>{</code> &nbsp;<small>(left brace)</small>
+	 * and ending with <code>}</code>&nbsp;<small>(right brace)</small>.
 	 * @throws JSONException If the object contains an invalid number.
 	 */
 	static String valueToString(Object value, int indentFactor, int indent) throws JSONException {
@@ -1344,10 +1327,10 @@ public class JSONObject {
 	}
 
 	/**
-	 * Wrap an object, if necessary. If the object is null, return the NULL object. If it is an array or collection,
-	 * wrap it in a JSONArray. If it is a map, wrap it in a JSONObject. If it is a standard property (Double, String, et
-	 * al) then it is already wrapped. Otherwise, if it comes from one of the java packages, turn it into a string. And
-	 * if it doesn't, try to wrap it in a JSONObject. If the wrapping fails, then null is returned.
+	 * Wrap an object, if necessary. If the object is null, return the NULL object. If it is an array or collection, wrap it in a JSONArray. If it is
+	 * a map, wrap it in a JSONObject. If it is a standard property (Double, String, et al) then it is already wrapped. Otherwise, if it comes from
+	 * one of the java packages, turn it into a string. And if it doesn't, try to wrap it in a JSONObject. If the wrapping fails, then null is
+	 * returned.
 	 * 
 	 * @param object The object to wrap
 	 * @return The wrapped value
@@ -1357,10 +1340,9 @@ public class JSONObject {
 			if (object == null) {
 				return NULL;
 			}
-			if (object instanceof JSONObject || object instanceof JSONArray || object instanceof Byte
-					|| object instanceof Character || object instanceof Short || object instanceof Integer
-					|| object instanceof Long || object instanceof Boolean || object instanceof Float
-					|| object instanceof Double || object instanceof String || NULL.equals(object)) {
+			if (object instanceof JSONObject || object instanceof JSONArray || object instanceof Byte || object instanceof Character
+					|| object instanceof Short || object instanceof Integer || object instanceof Long || object instanceof Boolean
+					|| object instanceof Float || object instanceof Double || object instanceof String || NULL.equals(object)) {
 				return object;
 			}
 
@@ -1375,8 +1357,7 @@ public class JSONObject {
 			}
 			Package objectPackage = object.getClass().getPackage();
 			String objectPackageName = (objectPackage != null ? objectPackage.getName() : "");
-			if (objectPackageName.startsWith("java.") || objectPackageName.startsWith("javax.")
-					|| object.getClass().getClassLoader() == null) {
+			if (objectPackageName.startsWith("java.") || objectPackageName.startsWith("javax.") || object.getClass().getClassLoader() == null) {
 				return object.toString();
 			}
 			return new JSONObject(object);

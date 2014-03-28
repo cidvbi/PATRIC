@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,6 +19,7 @@ import javax.portlet.MimeResponse;
 import javax.portlet.RenderRequest;
 import javax.portlet.RenderResponse;
 
+import org.json.simple.JSONObject;
 import org.w3c.dom.Element;
 
 import edu.vt.vbi.patric.dao.DBShared;
@@ -29,8 +30,7 @@ public class SiteHelper {
 	public static String getLinks(String target, String id) {
 		String link = "";
 		if (target.equals("taxon_overview")) {
-			link = "<a href=\"Taxon?cType=taxon&amp;cId="
-					+ id
+			link = "<a href=\"Taxon?cType=taxon&amp;cId=" + id
 					+ "\"><img src=\"/patric/images/icon_taxon.gif\" alt=\"Taxonomy Overview\" title=\"Taxonomy Overview\" /></a>";
 		}
 		else if (target.equals("genome_list")) {
@@ -55,8 +55,7 @@ public class SiteHelper {
 		else if (target.equalsIgnoreCase("ncbi_accession")) {
 			link = "http://www.ncbi.nlm.nih.gov/entrez/viewer.fcgi?db=nucleotide&val=";
 		}
-		else if (target.equalsIgnoreCase("ncbi_protein") || target.equalsIgnoreCase("RefSeq")
-				|| target.equalsIgnoreCase("GI")) {
+		else if (target.equalsIgnoreCase("ncbi_protein") || target.equalsIgnoreCase("RefSeq") || target.equalsIgnoreCase("GI")) {
 			link = "http://www.ncbi.nlm.nih.gov/protein/";
 		}
 		else if (target.equalsIgnoreCase("RefSeq_NT")) {
@@ -67,7 +66,7 @@ public class SiteHelper {
 			link = "http://amigo.geneontology.org/cgi-bin/amigo/term_details?term="; // GO:0004747
 		}
 		else if (target.equalsIgnoreCase("ec_number")) {
-			//link = "http://www.brenda-enzymes.org/php/result_flat.php4?ecno="; // 2.7.1.15
+			// link = "http://www.brenda-enzymes.org/php/result_flat.php4?ecno="; // 2.7.1.15
 			link = "http://enzyme.expasy.org/EC/";
 		}
 		else if (target.equalsIgnoreCase("kegg_pathwaymap") || target.equalsIgnoreCase("KEGG")) {
@@ -76,8 +75,7 @@ public class SiteHelper {
 		else if (target.equalsIgnoreCase("UniProtKB-Accession") || target.equalsIgnoreCase("UniProtKB-ID")) {
 			link = "http://www.uniprot.org/uniprot/"; // A9MFG0 or ASTD_SALAR
 		}
-		else if (target.equalsIgnoreCase("UniRef100") || target.equalsIgnoreCase("UniRef90")
-				|| target.equalsIgnoreCase("UniRef50")) {
+		else if (target.equalsIgnoreCase("UniRef100") || target.equalsIgnoreCase("UniRef90") || target.equalsIgnoreCase("UniRef50")) {
 			link = "http://www.uniprot.org/uniref/"; // UniRef100_A9MFG0,
 														// UniRef90_B5F7J0, or
 														// UniRef50_Q1C8A9
@@ -133,6 +131,30 @@ public class SiteHelper {
 		}
 		else if (target.equalsIgnoreCase("PDB")) {
 			link = "Jmol?structureID=";
+		}
+		else if (target.equalsIgnoreCase("STRING")) { // 204722.BR0001
+			link = "http://string.embl.de/newstring_cgi/show_network_section.pl?identifier=";
+		}
+		else if (target.equalsIgnoreCase("PATRIC")) { // 17788255
+			link = "Feature?cType=feature&cId=";
+		}
+		else if (target.equalsIgnoreCase("OrthoDB")) { // EOG689HR1
+			link = "http://cegg.unige.ch/orthodb7/results?searchtext=";
+		}
+		else if (target.equalsIgnoreCase("NCBI_TaxID")) { // 29461
+			link = "http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&id=";
+		}
+		else if (target.equalsIgnoreCase("KO")) { // K04756
+			link = "http://www.genome.jp/dbget-bin/www_bget?ko:";
+		}
+		else if (target.equalsIgnoreCase("TubercuList")) { // Rv2429
+			link = "http://tuberculist.epfl.ch/quicksearch.php?gene+name=";
+		}
+		else if (target.equalsIgnoreCase("PeroxiBase")) { // 4558
+			link = "http://peroxibase.toulouse.inra.fr/browse/process/view_perox.php?id=";
+		}
+		else if (target.equalsIgnoreCase("Reactome")) { // REACT_116125
+			link = "http://www.reactome.org/cgi-bin/eventbrowser_st_id?ST_ID=";
 		}
 		return link;
 	}
@@ -207,10 +229,12 @@ public class SiteHelper {
 				}
 			}
 			else if (contextType.equals("feature")) {
-				org = db_shared.getNamesFromNaFeatureId(contextId);
-				if (org != null) {
-					strTitle += org.get("source_id") + ":" + org.get("feature_name") + "::" + context;
-					strKeywords = context + ", " + org.get("source_id") + ":" + org.get("feature_name") + ", PATRIC";
+				SolrInterface solr = new SolrInterface();
+				JSONObject feature = solr.getFeature(contextId);
+
+				if (feature.isEmpty() == false) {
+					strTitle += feature.get("locus_tag") + ":" + feature.get("product") + "::" + context;
+					strKeywords = context + ", " + feature.get("locus_tag") + ":" + feature.get("product") + ", PATRIC";
 				}
 			}
 		}

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,27 +63,20 @@ public class FASTAHelper {
 	}
 
 	/*
-	 * public static String getFASTAAASequence(List fids) { String aa_sequence =
-	 * conn_shared.getFastaAASequence(fid);; if (aa_sequence.length()>0) {
-	 * aa_sequence = StringHelper.chunk_split(aa_sequence, 60, "\n"); return
-	 * getFASTAIdentifier(fid)+"\n"+aa_sequence; } else { return ""; } }
+	 * public static String getFASTAAASequence(List fids) { String aa_sequence = conn_shared.getFastaAASequence(fid);; if (aa_sequence.length()>0) {
+	 * aa_sequence = StringHelper.chunk_split(aa_sequence, 60, "\n"); return getFASTAIdentifier(fid)+"\n"+aa_sequence; } else { return ""; } }
 	 */
 	public static String getFASTAIdentifier(String fid) {
 		ResultType hashID = conn_shared.getFastaIdentifiers(fid);
 		String id = "";
 		/*
-		 * if (hashID.get("protein_id").equals("")) { id =
-		 * ">fid|"+hashID.get("na_feature_id"
-		 * )+"|locus|"+hashID.get("source_id")+
-		 * "| "+hashID.get("product")+" ["+hashID.get("genome_name")+"]"; } else
-		 * { id =
-		 * ">fid|"+hashID.get("na_feature_id")+"|locus|"+hashID.get("source_id"
-		 * )+
-		 * "|accn|"+hashID.get("protein_id")+"| "+hashID.get("product")+" ["+hashID
-		 * .get("genome_name")+"]"; }
+		 * if (hashID.get("protein_id").equals("")) { id = ">fid|"+hashID.get("na_feature_id" )+"|locus|"+hashID.get("source_id")+
+		 * "| "+hashID.get("product")+" ["+hashID.get("genome_name")+"]"; } else { id =
+		 * ">fid|"+hashID.get("na_feature_id")+"|locus|"+hashID.get("source_id" )+
+		 * "|accn|"+hashID.get("protein_id")+"| "+hashID.get("product")+" ["+hashID .get("genome_name")+"]"; }
 		 */
-		id = ">fid|" + hashID.get("na_feature_id") + "|locus|" + hashID.get("source_id") + "|   "
-				+ hashID.get("product") + "   [" + hashID.get("genome_name") + "]";
+		id = ">fid|" + hashID.get("na_feature_id") + "|locus|" + hashID.get("source_id") + "|   " + hashID.get("product") + "   ["
+				+ hashID.get("genome_name") + "]";
 		return id;
 	}
 

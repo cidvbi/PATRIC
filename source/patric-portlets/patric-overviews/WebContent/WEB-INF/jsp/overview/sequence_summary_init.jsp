@@ -85,18 +85,21 @@ function InsertTable(){
 			var row = table.tBodies[0].insertRow(nextRow);
 			//var cell0 = row.insertCell(0);
 			var cell0 = document.createElement('th');
-			row.appendChild(cell0);
-			
+			cell0.setAttribute('scope','rowgroup');
 			cell0.rowSpan = value.length;
 			cell0.innerHTML = metadataGenomeSummaryID[i].split("_").join(" ");
 			cell0.style.width="15%";
+			row.appendChild(cell0);
 			
-			var cell = row.insertCell(1);
-			cell.innerHTML = "<span>"+metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][0].name+"</span> ";
+			//var cell = row.insertCell(1);
+			var cell = document.createElement('th');
+			cell.setAttribute('scope','row');
+			cell.innerHTML = metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][0].name;
 			cell.style.display = metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][0].style;
-			cell.id=metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][0].text+"_1";
-			cell.style.width="30%";
-			
+			cell.id = metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][0].text+"_1";
+			cell.style.width="25%";
+			row.appendChild(cell);
+
 			cell = row.insertCell(2);
 			if(decoded[metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][0].text] != null) {
 				cell.innerHTML = "<span class=\"nowrap\">"+decoded[metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][0].text]+"</span>";
@@ -105,7 +108,7 @@ function InsertTable(){
 				cell.innerHTML = "&nbsp;";
 			}
 			cell.style.display = metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][0].style;
-			cell.style.width="40%";
+			cell.style.width="60%";
 			cell.id=metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][0].text+"_2";
 			cell.setAttribute('class', 'last');
 			
@@ -114,19 +117,23 @@ function InsertTable(){
 				nextRow = table.tBodies[0].rows.length;
 				row = table.tBodies[0].insertRow(nextRow);
 
-				cell = row.insertCell(0);
-				cell.innerHTML = "<span>"+metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][j].name+"</span> ";
+				//cell = row.insertCell(0);
+				cell = document.createElement('th');
+				cell.innerHTML = metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][j].name;
 				cell.style.display = metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][j].style;
-				cell.id=metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][j].text+"_1";
-				cell.style.width="30%";
-				cell = row.insertCell(1);
+				cell.id = metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][j].text+"_1";
+				//cell.style.width="30%";
+				row.appendChild(cell);
 				
+				cell = row.insertCell(1);
 				if(decoded[metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][j].text] != null) {
 					if (metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][j].link != null
 							&& decoded[metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][j].text] != 0 
 							&& decoded[metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][j].text] != "-") {
+						//console.log(metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][j].value.replace("\"","")); // e.g. genbank_accessions
+						//console.log(decoded[metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][j].value.replace("\"","")]); // e.g. CP003782.1
 						cell.innerHTML = "<a href=\""
-							+ Ext.String.format(metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][j].link, decoded[metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][j].value])
+							+ Ext.String.format(metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][j].link, decoded[metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][j].value].toString().replace("\"",""))
 							+ "\""
 							+ " class=\""+ metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][j].linkClass + "\""
 							+ " target=_blank>" 
@@ -140,7 +147,7 @@ function InsertTable(){
 					cell.innerHTML = "&nbsp;";
 				}
 				cell.style.display = metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][j].style;
-				cell.style.width="40%";	
+				///cell.style.width="40%";	
 				cell.id=metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][j].text+"_2";
 				if (metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][j].cellClass != null) {
 					cell.setAttribute('class', metadataGenomeSummaryValue[metadataGenomeSummaryID[i]][j].cellClass + " last");

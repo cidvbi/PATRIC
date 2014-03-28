@@ -38,7 +38,7 @@ var metadataGenomeSummaryValue = [{
 	name : 'RefSeq Project Id',
 	text : 'refseq_project_id'
 }, {
-	name : 'Genbank Accessions',
+	name : 'GenBank Accessions',
 	text : 'genbank_accessions'
 }, {
 	name : 'RefSeq Accessions',
@@ -150,7 +150,7 @@ var metadataGenomeSummaryValue = [{
 
 function getSummaryandCreateLayout() {
 
-	var Page = $Page, property = Page.getPageProperties(), hash = property.hash, spellcheck = true;
+	var Page = $Page, property = Page.getPageProperties(), hash = property.hash;
 
 	Ext.getDom("global_search_keyword").value = DecodeKeyword(Ext.getDom("keyword").value);
 
@@ -170,11 +170,15 @@ function getSummaryandCreateLayout() {
 		success : function(response, opts) {
 			var result = Ext.JSON.decode(response.responseText);
 			var summary_data = result.data;
-			if (spellcheck && result.suggestion) {
-				property["alternativeKW"] = result.suggestion;
-			}
 
 			for (var i = 0; i < property.name.length; i++) {
+				if(result.suggestion && result.suggestion[i]){
+					if(!property.alternativeKW){
+						property.alternativeKW = [];
+					}
+					property.alternativeKW[i] = result.suggestion[i];
+				}
+				
 				property.resultcount[i] = summary_data[i].response.numFound;
 				for (var j = 0; j < 3; j++) {
 					property.summary_data[i].push(summary_data[i].response.docs[j]);
@@ -238,10 +242,16 @@ function arrangeCSS() {
 		Ext.getDom("li__").innerHTML = "Summary";
 		Ext.get("GenericSelector").dom.style.display = "none";
 
-		if (!property.alternativeKW) {
-			Ext.getDom('med').innerHTML += "<span style=\"font-size:16px;padding-left: 80px;\">Showing results for </span><b style=\"font-size:15px;\"><i>" + Ext.getDom("keyword").value + "</i></b>";
-		} else {
-			Ext.getDom('med').innerHTML += "<span style=\"font-size:16px;padding-left: 80px;\">Showing results for </span><b style=\"font-size:15px;\"><i>" + property.alternativeKW + "</i></b><br><span style=\"font-size:13px;text-decoration:none;padding-left: 228px;\">Search instead for </span><a style=\"font-size:13px; text-decoration:none;\" href=\"javascript:loadSearchResultsNoSpellCheck('" + EncodeKeyword(Ext.getDom("global_search_keyword").value) + "')\">" + Ext.getDom("global_search_keyword").value + "</a>";
+		Ext.getDom('med').innerHTML += "<span style=\"font-size:16px;padding-left: 80px;\">Showing results for </span><b style=\"font-size:15px;\"><i>" + DecodeKeyword(Ext.getDom("keyword").value) + "</i></b><br/>";
+		
+		if(property.alternativeKW){
+			Ext.getDom('med').innerHTML += "<span style=\"font-size:13px;text-decoration:none;padding-left: 228px;\">Did you mean: </span>";
+			Ext.getDom('med').innerHTML += "<a style=\"font-size:13px; text-decoration:none;\" href=\"javascript:loadSearchResultsNoSpellCheck('" + EncodeKeyword(property.alternativeKW[0]) + "')\">" + property.alternativeKW[0] + "</a>";
+			for(var z=1; z<property.alternativeKW.length; z++){
+				if(property.alternativeKW[z]){
+					Ext.getDom('med').innerHTML += ", <a style=\"font-size:13px; text-decoration:none;\" href=\"javascript:loadSearchResultsNoSpellCheck('" + EncodeKeyword(property.alternativeKW[z]) + "')\">" + property.alternativeKW[z] + "</a>";		
+				}
+			}
 		}
 	}
 
@@ -269,7 +279,7 @@ function saveToPK() {
 		method : 'POST',
 		params : {
 			sraction : "save_params",
-			keyword : property.alternativeKW ? property.alternativeKW : Ext.getDom("keyword").value
+			keyword : Ext.getDom("keyword").value
 		},
 		success : function(rs) {
 			hash.key = rs.responseText;
@@ -287,6 +297,7 @@ function getExtraParams() {
 		grouping : true,
 		pk : hash.key,
 		need : property.need[which],
+		highlight: true,
 		keyword : constructKeyword((tree) ? tree.getSelectedTerms() : {}, property.name[which]),
 		facet : JSON.stringify({
 			"facet" : configuration[property.name[which]].display_facets.join(","),
@@ -336,11 +347,7 @@ function CallBack() {
 	
 	Ext.getDom('med').innerHTML = "<span style=\"font-size: 16px;padding: 0px 0px 0px 12px;font-weight: bold;\">Show Results in:</span>";
 
-	if (!property.alternativeKW) {
-		Ext.getDom('med').innerHTML += "<span id=\"resultStats\" style=\"padding-left: 80px;\">Showing " + store.getTotalCount() + which_cat + " for: <b><i>" + Ext.getDom("global_search_keyword").value + "</i></b></span>";
-	} else {
-		Ext.getDom('med').innerHTML += "<span id=\"resultStats\" style=\"padding-left: 80px;\">Showing " + store.getTotalCount() + which_cat + " for: <b><i>" + property.alternativeKW + "</i></b></span>";
-	}
+	Ext.getDom('med').innerHTML += "<span id=\"resultStats\" style=\"padding-left: 80px;\">Showing " + store.getTotalCount() + which_cat + " for: <b><i>" + Ext.getDom("keyword").value + "</i></b></span>";
 
 	Ext.getDom('med').innerHTML += "</span>";
 
@@ -413,9 +420,11 @@ function CallBack() {
 }
 
 function updateCountAtColumnHeader() {
-	var Page = $Page, property = Page.getPageProperties(), hash = property.hash, store = Page.getStore(hash.cat), pageSize = store.pageSize || (Ext.state.Manager.get('pagesize') ? Ext.state.Manager.get('pagesize').value : 20);
+	var Page = $Page, property = Page.getPageProperties(), hash = property.hash, store = Page.getStore(hash.cat), pageSize = store.pageSize || (Ext.state.Manager.get('pagesize') ? Ext.state.Manager.get('pagesize').value : 20),
+		cP = parseInt(store.currentPage), tC = store.totalCount, tP = tC/pageSize;
 
-	return (store.totalCount < pageSize) ? store.totalCount : pageSize;
+	
+	return (tC < pageSize) ? tC : (cP > tP?tC - (pageSize * (cP - 1)):pageSize);
 }
 
 function hideToolbar(action) {
@@ -491,6 +500,8 @@ function setSummaryInnerHTMLs() {"use strict";
 	}
 
 	document.getElementById("searching_span").style.height = "0px";
+	
+	Ext.get('mw').setHeight(1050);
 
 }
 
@@ -499,11 +510,11 @@ function renderListExperiment(value, p, record) {
 	var data = {}, text = "", organism;
 	if (record && record.data) {
 		data = record.data;
-		text = "<div style=\"line-height:1.8; white-space: normal !important;\"><div><img src=\"/patric/images/global_taxa.png\"style=\"float: left; padding: 3px 3px 0px 3px;\"/>";
+		text = "<div style=\"line-height:1.8; white-space: normal !important;\"><div><img src=\"/patric/images/global_experiment.png\"style=\"float: left; padding: 3px 3px 0px 3px;\"/>";
 		if(data.highlight && data.highlight.title){
-			text += data.highlight.title;
+			text += Ext.String.format('<a href="SingleExperiment?cType=taxon&cId=2&eid={0}">{1}</a>', data.eid, data.highlight.title);
 		}else{
-			text += data.title;	
+			text += Ext.String.format('<a href="SingleExperiment?cType=taxon&cId=2&eid={0}">{1}</a>', data.eid, data.title);	
 		}
 		
 		text += "<br/><span style=\"color: #C60;\">";
@@ -514,8 +525,13 @@ function renderListExperiment(value, p, record) {
 			organism = ({}).toString.call(data.organism) === "[object Array]"?data.organism.join(","):data.organism;
 
 		text += organism + "</span>";
-		if (parseInt(data.eid) > 0)
-			text += "<br/> Accession : " + Ext.String.format('<a href="SingleExperiment?cType=taxon&cId=2&eid={0}">{1}</a>', data.eid, data.accession);
+		if (parseInt(data.eid) > 0){
+			text += "<br/> Accession : ";
+			if (data.highlight && data.highlight.accession)
+				text += data.highlight.accession;
+			else
+				text += data.accession;
+		}
 		text += "</div>";
 	}
 	return text;

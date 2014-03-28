@@ -25,15 +25,10 @@
 	} else {
 		ArrayList<String> items = null;
 		if (cType.equals("taxon")) {
-			//tId = cId;
 			items = conn_transcriptopics.getEIDs(cId);
 		} else if (cType.equals("genome")) {
-			/*DBShared conn_shared = new DBShared();
-			ResultType context = conn_shared.getNamesFromGenomeInfoId(cId);
-			tId = context.get("ncbi_taxon_id");
-			*/
 			items = conn_transcriptopics.getEIDsFromGenomeID(cId);
-		} 
+		}
 		
 		if (items != null && items.size()>0) {
 			eid = items.get(0);
@@ -91,6 +86,9 @@ function launchTranscriptomicsUploader() {
 						m.slideIn('l').ghost("l", {delay: 2000, remove: true});	
 						
 						updateCartInfo();
+					},
+					"params":{
+						"metaData":{"data_type":"Transcriptomics"}
 					}
 				}).show();
 			}
@@ -136,7 +134,7 @@ function launchTranscriptomicsUploader() {
 <script type="text/javascript" src="/patric-common/js/grid/toolbar.js"></script>
 <script type="text/javascript" src="/patric-common/js/grid/gridoptions.js"></script>
 <script type="text/javascript" src="/patric-common/js/grid/PATRICSelectionModel.js"></script>
-<script type="text/javascript" src="/patric-common/js/grid/PATRICGrid.js"></script>    
+<script type="text/javascript" src="/patric-common/js/grid/PATRICGrid.js"></script>
 <script type="text/javascript" src="/patric-common/js/grid/table_checkboxes.js"></script>
 <script type="text/javascript" src="/patric-common/js/parameters.js"></script>
 <script type="text/javascript" src="/patric-common/js/grid/loadgrid.js"></script>
@@ -149,7 +147,6 @@ function launchTranscriptomicsUploader() {
 <script type="text/javascript" src="/patric/js/vbi/AddToWorkspace.min.js"></script>
 <script type="text/javascript">
 //<![CDATA[
-           
 var $Page;
 
 Ext.onReady(function()
@@ -162,7 +159,7 @@ Ext.onReady(function()
 		cart: true,
 		cartType: 'exp_list',
 		scm: [[checkbox,
-				{header:'Title',				flex:2, dataIndex: 'title',			renderer:BasicRenderer},
+				{header:'Title',				flex:2, dataIndex: 'title',			renderer:renderExpTitle},
 				{header:'Comparisons',			flex:1, dataIndex: 'samples',		align: 'center', renderer:renderComparisons},
 				{header:'Genes',				flex:1, dataIndex: 'genes',			align: 'center', renderer:linkToGeneList},
 				{header:'PubMed',				flex:1, dataIndex: 'pmid',			align: 'center', renderer:renderPubMed},
@@ -210,7 +207,7 @@ Ext.onReady(function()
 			cwG: false,
 			eId: "",
 			eName: "",
-			kW:"<%=kw%>"
+			kW:'<%=kw%>'
 		},
 		remoteSort:true,
 		model:["Experiment", "Sample"],

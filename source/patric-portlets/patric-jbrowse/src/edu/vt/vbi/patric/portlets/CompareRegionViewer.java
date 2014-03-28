@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,8 +47,7 @@ import edu.vt.vbi.patric.dao.ResultType;
 
 public class CompareRegionViewer extends GenericPortlet {
 
-	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException,
-			UnavailableException {
+	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException, UnavailableException {
 
 		new SiteHelper().setHtmlMetaElements(request, response, "Compare Region Viewer");
 
@@ -77,7 +76,7 @@ public class CompareRegionViewer extends GenericPortlet {
 			response.getWriter().write("wrong param");
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	private void printRefSeqInfo(ResourceRequest request, ResourceResponse response) throws IOException {
 
@@ -95,7 +94,7 @@ public class CompareRegionViewer extends GenericPortlet {
 		}
 
 		if (_feature != null && _feature.equals("") == false && _window != null) {
-			
+
 			JSONObject seq = new JSONObject();
 			seq.put("length", (Integer.parseInt(_window)));
 			seq.put("name", _feature);
@@ -103,10 +102,10 @@ public class CompareRegionViewer extends GenericPortlet {
 			seq.put("start", 1);
 			seq.put("end", (Integer.parseInt(_window)));
 			seq.put("seqChunkSize", 20000);
-			
+
 			JSONArray json = new JSONArray();
 			json.add(seq);
-			
+
 			response.setContentType("application/json");
 			json.writeJSONString(response.getWriter());
 			response.getWriter().close();
@@ -136,14 +135,13 @@ public class CompareRegionViewer extends GenericPortlet {
 			HashMap<String, ResultType> pseedMap = conn_summary.getPSeedMapping("PATRIC", _cId);
 			_feature = pseedMap.get(_cId).get("pseed_id");
 		}
-		
+
 		if (_feature != null && _feature.equals("") == false && _window != null) {
 			CRResultSet crRS = null;
 
 			try {
 				SAPserver sapling = new SAPserver("http://servers.nmpdr.org/pseed/sapling/server.cgi");
-				crRS = new CRResultSet(_feature, sapling.compared_regions(_feature, _numRegion + _numRegion_buffer,
-						Integer.parseInt(_window) / 2));
+				crRS = new CRResultSet(_feature, sapling.compared_regions(_feature, _numRegion + _numRegion_buffer, Integer.parseInt(_window) / 2));
 
 				Random g = new Random();
 				int random = g.nextInt();
@@ -154,7 +152,7 @@ public class CompareRegionViewer extends GenericPortlet {
 			catch (Exception ex) {
 				ex.printStackTrace();
 			}
-			
+
 			JSONObject trackList = new JSONObject();
 			JSONArray tracks = new JSONArray();
 			JSONObject trStyle = new JSONObject();
@@ -162,11 +160,15 @@ public class CompareRegionViewer extends GenericPortlet {
 			trStyle.put("showLabels", false);
 			trStyle.put("label", "function( feature ) { return feature.get('locus_tag'); }");
 			JSONObject trHooks = new JSONObject();
-			trHooks.put("modify", "function(track, feature, div) { div.style.backgroundColor = ['red','green','blue','orange','purple','brown','gray'][feature.get('phase')];}"); 
-			
-			//query genome metadata
+			// trHooks.put("modify",
+			// "function(track, feature, div) { div.style.backgroundColor = ['red','#C4BD97','#8DB3E2','#FBD5B5','#D7E3BC','#CCC1D9','#B7DDE8','#E5B9B7'][feature.get('phase')];}");
+			trHooks.put(
+					"modify",
+					"function(track, feature, div) { div.style.backgroundColor = ['red','#1F497D','#938953','#4F81BD','#9BBB59','#806482','#4BACC6','#F79646'][feature.get('phase')];}");
+
+			// query genome metadata
 			HashMap<String, ResultType> gMetaData = conn_summary.getGenomeMetadata(crRS.getGenomeNames());
-			
+
 			int count_genomes = 1;
 			if (crRS != null && crRS.getGenomeNames().size() > 0) {
 				for (Integer idx : crRS.keySet()) {
@@ -182,7 +184,8 @@ public class CompareRegionViewer extends GenericPortlet {
 						tr.put("style", trStyle);
 						tr.put("hooks", trHooks);
 						tr.put("type", "FeatureTrack");
-						tr.put("tooltip", "<div style='line-height:1.7em'><b>{locus_tag}</b> | {refseq} | {gene}<br>{product}<br>{type}:{start}...{end} ({strand_str})<br> <i>Click for detail information</i></div>");
+						tr.put("tooltip",
+								"<div style='line-height:1.7em'><b>{locus_tag}</b> | {refseq} | {gene}<br>{product}<br>{type}:{start}...{end} ({strand_str})<br> <i>Click for detail information</i></div>");
 						tr.put("urlTemplate", "/portal/portal/patric/CompareRegionViewer/CRWindow?action=b&cacheability=PAGE&mode=getTrackInfo&key="
 								+ _key + "&rowId=" + crTrack.getRowID() + "&format=.json");
 						tr.put("key", crTrack.getGenomeName());
@@ -211,10 +214,11 @@ public class CompareRegionViewer extends GenericPortlet {
 				}
 			}
 			trackList.put("tracks", tracks);
-			
+
 			JSONObject facetedTL = new JSONObject();
 			JSONArray dpColumns = new JSONArray();
-			dpColumns.addAll(Arrays.asList(new String[] {"key", "Isolation Country", "Host Name", "Disease", "Collection Date", "Completion Date"}));
+			dpColumns
+					.addAll(Arrays.asList(new String[] { "key", "Isolation Country", "Host Name", "Disease", "Collection Date", "Completion Date" }));
 			facetedTL.put("displayColumns", dpColumns);
 			facetedTL.put("type", "Faceted");
 			facetedTL.put("escapeHTMLInData", false);
@@ -265,10 +269,10 @@ public class CompareRegionViewer extends GenericPortlet {
 
 			feature = crTrack.get(i);
 			feature_patric = pseedMap.get(feature.getfeatureID());
-			// System.out.println(feature.getfeatureID());
+			// System.out.println(feature.getfeatureID()+","+feature_patric);
 
 			if (feature_patric != null) {
-				
+
 				JSONArray f = new JSONArray();
 				f.add(0);
 				f.add(feature.getStartPosition());
@@ -289,27 +293,30 @@ public class CompareRegionViewer extends GenericPortlet {
 				nclist.add(f);
 			}
 		}
-		//formatter.close();
+		// formatter.close();
 
 		JSONObject track = new JSONObject();
 		track.put("featureCount", features_count);
 		track.put("formatVersion", 1);
 		track.put("histograms", new JSONObject());
-		
+
 		JSONObject intervals = new JSONObject();
 		JSONArray _clses = new JSONArray();
 		JSONObject _cls = new JSONObject();
-		_cls.put("attributes", Arrays.asList(new String[] {"Start", "Start_str", "End", "Strand", "strand_str", "id", "locus_tag", "source", "type", "product", "gene", "refseq", "genome_name", "accession", "phase"}));
+		_cls.put(
+				"attributes",
+				Arrays.asList(new String[] { "Start", "Start_str", "End", "Strand", "strand_str", "id", "locus_tag", "source", "type", "product",
+						"gene", "refseq", "genome_name", "accession", "phase" }));
 		_cls.put("isArrayAttr", new JSONObject());
 		_clses.add(_cls);
-		intervals.put("classes",_clses);
+		intervals.put("classes", _clses);
 		intervals.put("lazyClass", 5);
 		intervals.put("minStart", 1);
 		intervals.put("maxEnd", 20000);
 		intervals.put("urlTemplate", "lf-{Chunk}.json");
 		intervals.put("nclist", nclist);
 		track.put("intervals", intervals);
-		
+
 		response.setContentType("application/json");
 		track.writeJSONString(response.getWriter());
 		response.getWriter().close();
@@ -330,10 +337,8 @@ public class CompareRegionViewer extends GenericPortlet {
 		// ArrayList<HashMap<String, Object>> _tbl_source = new ArrayList<HashMap<String, Object>>();
 		ArrayList<ResultType> _tbl_source = new ArrayList<ResultType>();
 
-		_tbl_header.addAll(Arrays.asList(new String[] { "Genome Name", "Feature", "Start", "End", "Strand", "FigFam",
-				"Product", "Group" }));
-		_tbl_field.addAll(Arrays.asList(new String[] { "genome_name", "feature_id", "start", "end", "strand",
-				"figfam_id", "product", "group_id" }));
+		_tbl_header.addAll(Arrays.asList(new String[] { "Genome Name", "Feature", "Start", "End", "Strand", "FigFam", "Product", "Group" }));
+		_tbl_field.addAll(Arrays.asList(new String[] { "genome_name", "feature_id", "start", "end", "strand", "figfam_id", "product", "group_id" }));
 
 		if (crRS != null && crRS.getGenomeNames().size() > 0) {
 			for (Integer idx : crRS.keySet()) {
@@ -354,7 +359,7 @@ public class CompareRegionViewer extends GenericPortlet {
 				}
 			}
 		}
-		//print out to xlsx file
+		// print out to xlsx file
 		response.setContentType("application/octetstream");
 		response.setProperty("Content-Disposition", "attachment; filename=\"CompareRegionView.xlsx\"");
 

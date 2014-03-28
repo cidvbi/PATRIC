@@ -36,12 +36,12 @@ if (tId !=null)
 	<table class="basic stripe far2x" id="data-table">
 	<tbody>
 	<tr>
-		<th class="first" style="width:20%">Taxonomy ID</th>
-		<td class="last"><a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=<%=tId %>" target="_blank"><%=tId %></a></td>
+		<th scope="row" style="width:20%">Taxonomy ID</th>
+		<td><a href="http://www.ncbi.nlm.nih.gov/Taxonomy/Browser/wwwtax.cgi?mode=Info&amp;id=<%=tId %>" target="_blank"><%=tId %></a></td>
 	</tr>
 	<tr>
-		<th class="first">Lineage</th>
-		<td class="last">
+		<th scope="row">Lineage</th>
+		<td>
 		<%
 		for (int i=parents.size()-1; i>=0; i--) 
 		{
@@ -55,14 +55,14 @@ if (tId !=null)
 		</td>
 	</tr>
 	<tr>
-		<th class="first">External Links</th>
-		<td class="last"><a href="http://www.immuneepitope.org/sourceOrgId/<%=tId %>" target="_blank">Immune Epitope Database and Analysis Resource</a></td>
+		<th scope="row" >External Links</th>
+		<td><a href="http://www.immuneepitope.org/sourceOrgId/<%=tId %>" target="_blank">Immune Epitope Database and Analysis Resource</a></td>
 	</tr>
 	<tr>
-		<td colspan="2" class="first last"><span>Summary Terms - Click on number to view genomes associated with term (<a href="http://enews.patricbrc.org/genome-finder-faqs/" target="_blank">see PATRIC FAQs</a>)</span></td>
+		<td colspan="2"><span>Summary Terms - Click on number to view genomes associated with term (<a href="http://enews.patricbrc.org/genome-finder-faqs/" target="_blank">see PATRIC FAQs</a>)</span></td>
 	</tr>
 	<tr>
-		<td colspan="2" class="first last"><img src="/patric/images/loading.gif" alt="Loading Icon"/> Loading...</td>
+		<td colspan="2"><img src="/patric/images/loading.gif" alt="Loading Icon"/> Loading...</td>
 	</tr>
 	<tr>
 		<td class="no-underline-links" colspan="2" id="click_for_more"></td>
@@ -129,9 +129,10 @@ function AppendData(data){
 		
 		//var cell0 = row.insertCell(0);
 		var cell0 = document.createElement('th');
+		cell0.setAttribute('scope', 'row');
 		row.appendChild(cell0);
 		var cell1 = row.insertCell(1);
-		cell1.setAttribute('class', 'last');
+		//cell1.setAttribute('class', 'last');
 		
 		var ind1_parent = obj.text.indexOf("<b>(");
 		var ind2_parent = obj.text.indexOf(")</b>");

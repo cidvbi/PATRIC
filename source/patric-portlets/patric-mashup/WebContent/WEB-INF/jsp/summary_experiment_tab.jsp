@@ -74,7 +74,7 @@ if (cType.equals("taxon")) {
 	<table class="basic far2x">
 	<tbody>
 	<tr>
-		<th width="75%">Transcriptomics from GEO</th>
+		<th scope="row" width="75%">Transcriptomics from GEO</th>
 		<td class="right-align-text"><!-- GEO/keyword -->
 			<% 
 			if (gds_taxon == null || gds_taxon.get("hasData").equals("false")) {
@@ -88,7 +88,7 @@ if (cType.equals("taxon")) {
 		</td>
 	</tr>
 	<tr>
-		<th>Transcriptomics from ArrayExpress</th>
+		<th scope="row">Transcriptomics from ArrayExpress</th>
 		<td class="right-align-text"><!-- ArrayExpress/Keyword -->
 			<% 
 			if (arex_keyword.get("hasData").equals(false)) {
@@ -102,7 +102,7 @@ if (cType.equals("taxon")) {
 		</td>
 	</tr>
 	<tr>
-		<th>Proteomics from PRIDE</th>
+		<th scope="row">Proteomics from PRIDE</th>
 		<td class="right-align-text"><!-- PRIDE/Species -->
 			<%
 			if (proteomics_result.get("hasData").equals(false)) {
@@ -117,7 +117,7 @@ if (cType.equals("taxon")) {
 		</td>	
 	</tr>
 	<tr>
-		<th>Structure from NCBI</th>
+		<th scope="row">Structure from NCBI</th>
 		<td class="right-align-text"><% 
 			if (st == null || st.get("hasData").equals("false")) {
 				%><%=errorMsg%><%
@@ -130,7 +130,7 @@ if (cType.equals("taxon")) {
 		</td>
 	</tr>
 	<tr>
-		<th>Protein Protein Interaction from IntAct</th>
+		<th scope="row">Protein Protein Interaction from IntAct</th>
 		<td class="right-align-text"><%
 			if (result.equals("-1")) {
 				%><%=errorMsg %><%

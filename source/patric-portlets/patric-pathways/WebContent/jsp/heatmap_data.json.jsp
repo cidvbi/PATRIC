@@ -35,9 +35,9 @@
 	ArrayList<ResultType> items;
 	
 	
-	System.out.print("hm"+genomeId);
-	System.out.print("hm"+taxonId);
-	System.out.print("hm"+algorithm);
+	//System.out.print("hm"+genomeId);
+	//System.out.print("hm"+taxonId);
+	//System.out.print("hm"+algorithm);
 
 	try {
 		

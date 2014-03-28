@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -54,8 +54,8 @@ public class PhylogeneticTree extends GenericPortlet {
 			StringBuilder sb = new StringBuilder();
 			sb.append("var genomeMap = new Array();\n");
 			for (int i = 0; i < list.size(); i++) {
-				sb.append("genomeMap[\"" + list.get(i).get("genome_name").replaceAll("[\\s\\(\\)\\:\\[\\],]+", "_")
-						+ "\"] = " + list.get(i).get("genome_info_id") + ";\n");
+				sb.append("genomeMap[\"" + list.get(i).get("genome_name").replaceAll("[\\s\\(\\)\\:\\[\\],]+", "_") + "\"] = "
+						+ list.get(i).get("genome_info_id") + ";\n");
 			}
 
 			PrintWriter out = new PrintWriter(new FileWriter(getPortletContext().getRealPath("/js/genomeMaps.js")));
@@ -67,8 +67,7 @@ public class PhylogeneticTree extends GenericPortlet {
 		}
 	}
 
-	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException,
-			UnavailableException {
+	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException, UnavailableException {
 		response.setContentType("text/html");
 
 		new SiteHelper().setHtmlMetaElements(request, response, "Phylogeny");

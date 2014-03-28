@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,34 +46,27 @@ public class TranscriptomicsEnrichment extends GenericPortlet {
 	 * @see javax.portlet.GenericPortlet#doView(javax.portlet.RenderRequest, javax.portlet.RenderResponse)
 	 */
 	@Override
-	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException,
-			UnavailableException {
+	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException, UnavailableException {
 
 		new SiteHelper().setHtmlMetaElements(request, response, "Pathway Summary");
 
 		response.setContentType("text/html");
 		response.setTitle("Pathway Summary");
 
-		PortletRequestDispatcher prd = getPortletContext().getRequestDispatcher(
-				"/WEB-INF/jsp/TranscriptomicsEnrichment.jsp");
-
+		PortletRequestDispatcher prd = getPortletContext().getRequestDispatcher("/WEB-INF/jsp/TranscriptomicsEnrichment.jsp");
 		prd.include(request, response);
-
 	}
 
 	@SuppressWarnings("unchecked")
 	public void serveResource(ResourceRequest req, ResourceResponse resp) throws PortletException, IOException {
 
 		resp.setContentType("text/html");
-
 		String callType = req.getParameter("callType");
 
 		if (callType.equals("saveParams")) {
 
 			HashMap<String, String> key = new HashMap<String, String>();
-
 			key.put("feature_info_id", req.getParameter("feature_info_id"));
-			System.out.println(req.getParameter("feature_info_id"));
 
 			Random g = new Random();
 			int random = g.nextInt();
@@ -84,8 +77,8 @@ public class TranscriptomicsEnrichment extends GenericPortlet {
 			PrintWriter writer = resp.getWriter();
 			writer.write("" + random);
 			writer.close();
-
 		}
+
 		if (callType.equals("getGenomeIds")) {
 
 			HashMap<String, String> key = new HashMap<String, String>();
@@ -98,7 +91,6 @@ public class TranscriptomicsEnrichment extends GenericPortlet {
 			PrintWriter writer = resp.getWriter();
 			writer.write(genomeId);
 			writer.close();
-
 		}
 		else if (callType.equals("getFeatureTable")) {
 
@@ -110,8 +102,7 @@ public class TranscriptomicsEnrichment extends GenericPortlet {
 			int start = Integer.parseInt(start_id);
 			int end = start + Integer.parseInt(limit);
 
-			HashMap<String, String> key = (HashMap<String, String>) sess.getAttribute("key" + pk,
-					PortletSession.APPLICATION_SCOPE);
+			HashMap<String, String> key = (HashMap<String, String>) sess.getAttribute("key" + pk, PortletSession.APPLICATION_SCOPE);
 			// sorting
 			JSONParser a = new JSONParser();
 			JSONArray sorter;
@@ -124,7 +115,6 @@ public class TranscriptomicsEnrichment extends GenericPortlet {
 				for (int i = 1; i < sorter.size(); i++) {
 					sort_field += "," + ((JSONObject) sorter.get(i)).get("property").toString();
 				}
-				System.out.println(sort_field);
 			}
 			catch (ParseException e) {
 				e.printStackTrace();
@@ -144,7 +134,6 @@ public class TranscriptomicsEnrichment extends GenericPortlet {
 			JSONObject jsonResult = new JSONObject();
 			try {
 				jsonResult.put("total", count_total);
-
 				JSONArray results = new JSONArray();
 
 				for (int i = 0; i < items.size(); i++) {
@@ -154,18 +143,14 @@ public class TranscriptomicsEnrichment extends GenericPortlet {
 					results.add(obj);
 				}
 				jsonResult.put("results", results);
-
 			}
 			catch (Exception ex) {
-				System.out.println("***" + ex.toString());
+				ex.printStackTrace();
 			}
 
 			PrintWriter writer = resp.getWriter();
 			writer.write(jsonResult.toString());
 			writer.close();
-
 		}
-
 	}
-
 }

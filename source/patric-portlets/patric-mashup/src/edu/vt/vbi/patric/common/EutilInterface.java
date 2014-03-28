@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -56,8 +56,8 @@ public class EutilInterface {
 		}
 	}
 
-	public HashMap<String, String> getCounts(String db, String term, String search_opt)
-			throws java.rmi.RemoteException, SocketTimeoutException, IOException, Exception {
+	public HashMap<String, String> getCounts(String db, String term, String search_opt) throws java.rmi.RemoteException, SocketTimeoutException,
+			IOException, Exception {
 		// defer exception handling to getResult()
 
 		ESearchHandler esearchHandler = new ESearchHandler();
@@ -84,15 +84,14 @@ public class EutilInterface {
 				count = Integer.parseInt(esearch_result.get("Count"));
 			}
 
-			URL url = new URL(baseURLESummary + "?db=" + db + "&query_key=" + esearch_result.get("QueryKey")
-					+ "&WebEnv=" + esearch_result.get("WebEnv") + "&retstart=" + startAt + "&retmax=" + count
-					+ summary_opt);
+			URL url = new URL(baseURLESummary + "?db=" + db + "&query_key=" + esearch_result.get("QueryKey") + "&WebEnv="
+					+ esearch_result.get("WebEnv") + "&retstart=" + startAt + "&retmax=" + count + summary_opt);
 			URLConnection c = url.openConnection();
 			c.setConnectTimeout(TIMEOUT_CONN);
 			c.setReadTimeout(TIMEOUT_READ);
 			c.setUseCaches(true);
 
-			System.out.println("esummary-url:" + url.toString());
+			// System.out.println("esummary-url:" + url.toString());
 
 			JSONArray subList = null;
 			if (db.equals("pubmed") || db.equals("pmc")) {

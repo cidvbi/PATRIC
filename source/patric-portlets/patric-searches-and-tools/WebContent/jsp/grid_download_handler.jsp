@@ -3,6 +3,7 @@
 %><%@ page import="edu.vt.vbi.patric.common.SolrInterface" 
 %><%@ page import="edu.vt.vbi.patric.common.SQLHelper" 
 %><%@ page import="edu.vt.vbi.patric.common.StringHelper" 
+%><%@ page import="edu.vt.vbi.patric.common.DownloadHelper" 
 %><%@ page import="edu.vt.vbi.patric.dao.*" 
 %><%@ page import="org.json.simple.JSONArray" 
 %><%@ page import="org.json.simple.JSONObject" 
@@ -65,133 +66,9 @@
 			JSONObject obj = (JSONObject)object.get("response");
 			_tbl_source = (JSONArray)obj.get("docs");
 
-			_tbl_header.addAll(Arrays.asList(new String[] {
-				"Genome Info Id",
-				"Genome Name",
-				"NCBI Taxon Id",
-				"Genome Status",
-				"Organism Name",
-				"Strain",
-				"Serovar",
-				"Biovar",
-				"Pathovar",
-				"Culture Collection",
-				"Type Strain",
-				"Project Status",
-				"Availability",
-				"Sequencing Center",
-				"Completion Date",
-				"MLST",
-				"Publication",
-				"NCBI Project Id",
-				"RefSeq Project Id",
-				"GenBank Accessions",
-				"RefSeq Accessions",
-				"Sequencing Status",
-				"Sequencing Platform",
-				"Sequencing Depth",
-				"Assembly Method",
-				"Chromosomes",
-				"Plasmids",
-				"Contigs",
-				"Sequences",
-				"Genome Length",
-				"GC Content",
-				"RAST CDS",
-				"BRC CDS",
-				"RefSeq CDS",
-				"Isolation Site",
-				"Isolation Source",
-				"Isolation Comments",
-				"Collection Date",
-				"Isolation Country",
-				"Geographic Location",
-				"Latitude",
-				"Longitude",
-				"Altitude",
-				"Depth",
-				"Host Name",
-				"Host Gender",
-				"Host Age",
-				"Host Health",
-				"Body Sample Site",
-				"Body Sample Subsite",
-				"Gram Stain",
-				"Cell Shape",
-				"Motility",
-				"Sporulation",
-				"Temperature Range",
-				"Optimal Temperature",
-				"Salinity",
-				"Oxygen Requirement",
-				"Habitat",
-				"Disease",
-				"Others"
-			}));
-
-			_tbl_field.addAll(Arrays.asList(new String[] {
-				"genome_info_id",
-				"genome_name",
-				"ncbi_tax_id",
-				"genome_status",
-				"organism_name",
-				"strain",
-				"serovar",
-				"biovar",
-				"pathovar",
-				"culture_collection",
-				"type_strain",
-				"project_status",
-				"availability",
-				"sequencing_centers",
-				"completion_date",
-				"mlst",
-				"publication",
-				"ncbi_project_id",
-				"refseq_project_id",
-				"genbank_accessions",
-				"refseq_accessions",
-				"sequencing_status",
-				"sequencing_platform",
-				"sequencing_depth",
-				"assembly_method",
-				"chromosomes",
-				"plasmids",
-				"contigs",
-				"sequences",
-				"genome_length",
-				"gc_content",
-				"rast_cds",
-				"brc_cds",
-				"refseq_cds",
-				"isolation_site",
-				"isolation_source",
-				"isolation_comments",
-				"collection_date",
-				"isolation_country",
-				"geographic_location",
-				"latitude",
-				"longitude",
-				"altitude",
-				"depth",
-				"host_name",
-				"host_gender",
-				"host_age",
-				"host_health",
-				"body_sample_site",
-				"body_sample_subsite",
-				"gram_stain",
-				"cell_shape",
-				"motility",
-				"sporulation",
-				"temperature_range",
-				"optimal_temperature",
-				"salinity",
-				"oxygen_requirement",
-				"habitat",
-				"disease",
-				"comments"
-			}));
+			// read array of header name and fields from a static class
+			_tbl_header.addAll(DownloadHelper.getHeaderForGenomes());
+			_tbl_field.addAll(DownloadHelper.getFieldsForGenomes());
 
 		} else if (request.getParameter("aT")!=null && request.getParameter("aT").equals("1")) {
 		
@@ -247,8 +124,8 @@
 		JSONObject obj = (JSONObject)object.get("response");
 		_tbl_source = (JSONArray)obj.get("docs");
 		
-		_tbl_header.addAll(Arrays.asList(new String[] {"Feature ID", "Genome Name", "Accession", "Locus Tag", /*"RefSeq Locus Tag",*/ "Gene Symbol", "Product Name", "Annotation", "GO Term", "GO Description"}));
-		_tbl_field.addAll(Arrays.asList(new String[] {"na_feature_id", "genome_name", "accession", "locus_tag", /*"refseq_locus_tag",*/ "gene", "product", "annotation", "go_id", "go_term"}));
+		_tbl_header.addAll(Arrays.asList(new String[] {"Feature ID", "Genome Name", "Accession", "Locus Tag", "Gene Symbol", "Product Name", "Annotation", "GO Term", "GO Description"}));
+		_tbl_field.addAll(Arrays.asList(new String[] {"na_feature_id", "genome_name", "accession", "locus_tag", "gene", "product", "annotation", "go_id", "go_term"}));
 
 		_filename = "GOTermSearch";
 
@@ -273,8 +150,8 @@
 		JSONObject obj = (JSONObject)object.get("response");
 		_tbl_source = (JSONArray)obj.get("docs");
 
-		_tbl_header.addAll(Arrays.asList(new String[] {"Feature ID", "Genome Name", "Accession", "Locus Tag", /*"RefSeq Locus Tag",*/ "Gene Symbol", "Product Name", "Annotation", "EC Number", "EC Description"}));
-		_tbl_field.addAll(Arrays.asList(new String[] {"na_feature_id", "genome_name", "accession", "locus_tag", /*"refseq_locus_tag",*/ "gene", "product", "annotation", "ec_number", "ec_name"}));
+		_tbl_header.addAll(Arrays.asList(new String[] {"Feature ID", "Genome Name", "Accession", "Locus Tag", "Gene Symbol", "Product Name", "Annotation", "EC Number", "EC Description"}));
+		_tbl_field.addAll(Arrays.asList(new String[] {"na_feature_id", "genome_name", "accession", "locus_tag", "gene", "product", "annotation", "ec_number", "ec_name"}));
 
 		_filename = "ECTermSearch";
 
@@ -304,8 +181,8 @@
 			_tbl_field.addAll(Arrays.asList(new String[] {"figfam_id"}));
 		}
 
-		_tbl_header.addAll(Arrays.asList(new String[] {"Genome", "Accession", "Locus Tag", "RefSeq Locus Tag", "Annotation", "Feature Type", "Start", "End", "Length", "Strand", "Protein ID", "AA Length", "Gene Symbol", "Product", "Bound Moiety", "AntiCodon"}));
-		_tbl_field.addAll(Arrays.asList(new String[] {"genome_name","accession","locus_tag", "refseq_locus_tag", "annotation", "feature_type", "start_max", "end_min", "na_length", "strand", "protein_id", "aa_length", "gene", "product", "bound_moiety", "anticodon"}));
+		_tbl_header.addAll(DownloadHelper.getHeaderForFeatures());
+		_tbl_field.addAll(DownloadHelper.getFieldsForFeatures());
 
 		_filename = "FeatureTable";
 
@@ -327,138 +204,12 @@
 			_tbl_field.addAll(Arrays.asList(new String[] {"eid", "title", "samples", "genes", "pmid", "accession", "organism", "strain", "mutant", "condition", "timeseries", "release_date", "author", "pi", "institution"}));
 		}else if(cat.equals("1")){
 			solr.setCurrentInstance("GenomeFinder");
-			_tbl_header.addAll(Arrays.asList(new String[] {
-				"Genome Info Id",
-				"Genome Name",
-				"NCBI Taxon Id", 
-				"Genome Status", 
-				"Organism Name", 
-				"Strain", 
-				"Serovar",
-				"Biovar",
-				"Pathovar",
-				"Culture Collection",
-				"Type Strain",
-				"Project Status",
-				"Availability",
-				"Sequencing Center",
-				"Completion Date",
-				"MLST",
-				"Publication",
-				"NCBI Project Id",
-				"RefSeq Project Id",
-				"GenBank Accessions",
-				"RefSeq Accessions",
-				"Sequencing Status",
-				"Sequencing Platform",
-				"Sequencing Depth",
-				"Assembly Method",
-				"Chromosomes",
-				"Plasmids",
-				"Contigs",
-				"Sequences",
-				"Genome Length",
-				"GC Content",
-				"RAST CDS",
-				"BRC CDS",
-				"RefSeq CDS",
-				"Isolation Site",
-				"Isolation Source",
-				"Isolation Comments",
-				"Collection Date",
-				"Isolation Country",
-				"Geographic Location",
-				"Latitude",
-				"Longitude",
-				"Altitude",
-				"Depth",
-				"Host Name",
-				"Host Gender",
-				"Host Age",
-				"Host Health",
-				"Body Sample Site",
-				"Body Sample Subsite",
-				"Gram Stain",
-				"Cell Shape",
-				"Motility",
-				"Sporulation",
-				"Temperature Range",
-				"Optimal Temperature",
-				"Salinity",
-				"Oxygen Requirement",
-				"Habitat",
-				"Disease",
-				"Others"
-			}));
-
-			_tbl_field.addAll(Arrays.asList(new String[] {
-				"genome_info_id",
-				"genome_name",
-				"ncbi_tax_id",
-				"genome_status",
-				"organism_name",
-				"strain",
-				"serovar",
-				"biovar",
-				"pathovar",
-				"culture_collection",
-				"type_strain",
-				"project_status",
-				"availability",
-				"sequencing_centers",
-				"completion_date",
-				"mlst",
-				"publication",
-				"ncbi_project_id",
-				"refseq_project_id",
-				"genbank_accessions",
-				"refseq_accessions",
-				"sequencing_status",
-				"sequencing_platform",
-				"sequencing_depth",
-				"assembly_method",
-				"chromosomes",
-				"plasmids",
-				"contigs",
-				"sequences",
-				"genome_length",
-				"gc_content",
-				"rast_cds",
-				"brc_cds",
-				"refseq_cds",
-				"isolation_site",
-				"isolation_source",
-				"isolation_comments",
-				"collection_date",
-				"isolation_country",
-				"geographic_location",
-				"latitude",
-				"longitude",
-				"altitude",
-				"depth",
-				"host_name",
-				"host_gender",
-				"host_age",
-				"host_health",
-				"body_sample_site",
-				"body_sample_subsite",
-				"gram_stain",
-				"cell_shape",
-				"motility",
-				"sporulation",
-				"temperature_range",
-				"optimal_temperature",
-				"salinity",
-				"oxygen_requirement",
-				"habitat",
-				"disease",
-				"comments"
-			}));
-
+			_tbl_header.addAll(DownloadHelper.getHeaderForGenomes());
+			_tbl_field.addAll(DownloadHelper.getFieldsForGenomes());
 		} else if(cat.equals("0")) {
 			solr.setCurrentInstance("GenomicFeature");
-			_tbl_header.addAll(Arrays.asList(new String[] {"Genome", "Accession", "Locus Tag", "RefSeq Locus Tag", "Annotation", "Feature Type", "Start", "End", "Length", "Strand", "Protein ID", "AA Length", "Gene Symbol", "Product", "Bound Moiety", "AntiCodon"}));
-			_tbl_field.addAll(Arrays.asList(new String[] {"genome_name","accession","locus_tag", "refseq_locus_tag", "annotation", "feature_type", "start_max", "end_min", "na_length", "strand", "protein_id", "aa_length", "gene", "product", "bound_moiety", "anticodon"}));
+			_tbl_header.addAll(DownloadHelper.getHeaderForFeatures());
+			_tbl_field.addAll(DownloadHelper.getFieldsForFeatures());
 		}
 		
 		JSONObject object = solr.getData(key, sort, null, 0, -1, false, false, false);
@@ -468,7 +219,7 @@
 		_tbl_field.addAll(Arrays.asList(new String[] {}));
 		
 		_filename = "GlobalSearch";
-			
+
 	} else if (_tablesource.equalsIgnoreCase("IDMapping")) {
 
 		String from = request.getParameter("from");
@@ -545,8 +296,8 @@
 			object.putAll(obj);
 			_tbl_source.add(object);
 		}
-		_tbl_header.addAll(Arrays.asList(new String[] {"Genome", "Accession", "Locus Tag", "PATRIC ID", header, "Annotation", "Feature Type", "Start", "End", "Length(NT)", "Strand", "Length (AA)", "Product Description"}));
-		_tbl_field.addAll(Arrays.asList(new String[] {"genome_name","accession","locus_tag", "na_feature_id", id, "algorithm","name","start_max","end_min","na_length","strand", "aa_length", "product"}));
+		_tbl_header.addAll(Arrays.asList(new String[] {"Genome", "Accession", "Locus Tag", header, "Annotation", "Feature Type", "Start", "End", "Length(NT)", "Strand", "Length (AA)", "Product Description"}));
+		_tbl_field.addAll(Arrays.asList(new String[] {"genome_name","accession","locus_tag", id, "algorithm","name","start_max","end_min","na_length","strand", "aa_length", "product"}));
 		
 		_filename = "IDMapping";
 	}
@@ -565,8 +316,8 @@
 				condition.put("na_feature_id", idList);
 			}
 			object = solr.getFeaturesByID(condition);
-			_tbl_header.addAll(Arrays.asList(new String[] {"Genome Name", "Accession", "Locus Tag", "Refseq Locus Tag", "Annotation", "Feature Type", "Start", "End", "Length", "Strand", "Protein ID", "AA Length", "Gene Symbol", "Product", "Bound Moiety", "AntiCodon"}));
-			_tbl_field.addAll(Arrays.asList(new String[] {"genome_name","accession","locus_tag", "refseq_locus_tag", "annotation", "feature_type", "start_max", "end_min", "na_length", "strand", "refseq_protein_id", "aa_length", "gene", "product", "bound_moiety", "anticodon"}));
+			_tbl_header.addAll(DownloadHelper.getHeaderForFeatures());
+			_tbl_field.addAll(DownloadHelper.getFieldsForFeatures());
 
 			_tbl_source = (JSONArray)object.get("results");
 			_filename = "Workspace_Features";
@@ -580,8 +331,8 @@
 			}
 			object = solr.getGenomesByID(condition);
 			
-			_tbl_header.addAll(Arrays.asList(new String[] {"Genome Name", "Genome Status", "PATRIC CDS", "Isolation Country", "Host Name", "Disease", "Collection Date", "Completion Date"}));
-			_tbl_field.addAll(Arrays.asList(new String[] {"genome_name", "genome_status", "rast_cds", "isolation_country", "host_name", "disease", "collection_date", "completion_date"}));
+			_tbl_header.addAll(DownloadHelper.getHeaderForGenomes());
+			_tbl_field.addAll(DownloadHelper.getFieldsForGenomes());
 			
 			_tbl_source = (JSONArray)object.get("results");
 			_filename = "Workspace_Genomes";
@@ -605,7 +356,7 @@
 					
 					// reading PATRIC Experiments
 					HashMap<String, Object> _key = new HashMap<String, Object>();
-					_key.put("tracks", PATRICExperiments);			
+					_key.put("tracks", PATRICExperiments);
 					resPATRIC = solr.getExperimentsByID(_key);
 				}
 				
@@ -885,7 +636,7 @@
 		}
 		
 		SolrInterface solr = new SolrInterface();
-		_tbl_source = solr.getTranscriptomicsSamples(null, eid, "");
+		_tbl_source = (JSONArray)((JSONObject)solr.getTranscriptomicsSamples(null, eid, "", 0, -1, sort)).get("data");
 		
 		_tbl_header.addAll(Arrays.asList(new String[] {
 				"Experiment ID", "Comparison ID", "Title", "Genes", "Significant genes(Log Ratio)", "Significant genes(Z Score)",

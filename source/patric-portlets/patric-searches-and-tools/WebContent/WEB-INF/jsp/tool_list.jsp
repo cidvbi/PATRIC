@@ -7,15 +7,15 @@
 <div id = "visual_browsers"></div>
 <div class="clear"></div>
 <script type="text/javascript">
+//<![CDATA[
 var rowitems = 3;
 var ap = 0, ca = 0, ss = 0, vb = 0, data, subdata = [], item, id, pass1, pass2;;
 var types = ["comparative_analyses_tools",
-             "specialized_searches",
-             "annotation_pipeline_tools",
-             "visual_browsers"];
-             
+			"specialized_searches",
+			"annotation_pipeline_tools",
+			"visual_browsers"];
 var labels = {};
-             
+
 Ext.Ajax.request({
 	url : "/portal/portal/patric/Tools/ToolListWindow?action=b&cacheability=PAGE",
 	method : 'POST',
@@ -72,5 +72,6 @@ function toolsTemplate(title, content, image, url, i, type) {
 		div += "</ul></div>";
 	
 	return div;
-}              
+}
+//]]>
 </script>

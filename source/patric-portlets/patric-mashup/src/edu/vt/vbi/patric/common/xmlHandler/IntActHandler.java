@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -160,8 +160,7 @@ public class IntActHandler {
 				participants.append("<table><tr>");
 				for (int i = 0; i < arrParticipants.size(); i++) {
 					participants.append("<td>");
-					participants.append(mapInteractor.get("" + arrParticipants.get(i).getInteractor().getId()).get(
-							"html"));
+					participants.append(mapInteractor.get("" + arrParticipants.get(i).getInteractor().getId()).get("html"));
 					participants.append("</td>");
 				}
 				participants.append("</tr></table>");

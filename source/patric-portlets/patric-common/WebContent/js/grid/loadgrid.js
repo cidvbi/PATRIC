@@ -114,7 +114,10 @@ var loadGrid = function() {
 			border : property.border ? property.border : false,
 			stateful : true,
 			stateEvents : ['hide', 'show', 'columnmove', 'columnresize', 'sortchange'],
-			stateId : property.stateId ? property.stateId[which] : "NA"
+			stateId : property.stateId ? property.stateId[which] : "NA",
+	        viewConfig: {
+	            stripeRows: true
+	        }
 		});
 
 		if (property.hideToolbar)

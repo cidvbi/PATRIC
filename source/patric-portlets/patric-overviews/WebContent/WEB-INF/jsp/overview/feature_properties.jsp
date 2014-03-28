@@ -71,7 +71,7 @@ if (feature.isEmpty() == false) {
 	<table class="basic stripe far2x left" style="width:600px">
 	<tbody>
 		<tr>
-			<th style="width:20%">Gene ID</th>
+			<th scope="row" style="width:20%">Gene ID</th>
 			<td>
 				<% if (feature.get("annotation").equals("PATRIC") && feature.get("locus_tag") != null) { %>
 					<span><b>PATRIC</b></span>: 
@@ -92,7 +92,7 @@ if (feature.isEmpty() == false) {
 			</td>
 		</tr>
 		<tr>
-			<th>Protein ID</th>
+			<th scope="row">Protein ID</th>
 			<td>
 				<% if (feature.get("refseq_protein_id") != null) { %>
 					<span><b>RefSeq</b></span>:
@@ -109,10 +109,10 @@ if (feature.isEmpty() == false) {
 				&nbsp;&nbsp;
 				<span> <a href="#" onclick="toggleLayer('uniprot_detail');return false;"><%=uniprot.size() %> IDs are mapped</a></span>
 				<div id="uniprot_detail" class="table-container" style="display:none">
-					<table style="width:100%">
+					<table class="basic">
 					<% for (int u=0; u<uniprot.size(); u++) { %>
 					<tr>
-						<td style="width:20%"><%=uniprot.get(u).get("id_type") %></td>
+						<th scope="row" style="width:20%"><%=uniprot.get(u).get("id_type") %></th>
 						<td><%
 							uniprot_link = SiteHelper.getExternalLinks(uniprot.get(u).get("id_type").trim()).replace("&","&amp;");
 							if (uniprot_link != "" && uniprot.get(u).get("id_type").matches("HOGENOM|OMA|ProtClustDB|eggNOG")) {
@@ -149,13 +149,13 @@ if (feature.isEmpty() == false) {
 	<table class="basic stripe far2x">
 	<thead>
 		<tr>
-			<th>Annotation</th>
-			<th>Locus Tag</th>
-			<th>Start</th>
-			<th>End</th>
-			<th>NT Length</th>
-			<th>AA Length</th>
-			<th>Product</th>
+			<th scope="col">Annotation</th>
+			<th scope="col">Locus Tag</th>
+			<th scope="col">Start</th>
+			<th scope="col">End</th>
+			<th scope="col">NT Length</th>
+			<th scope="col">AA Length</th>
+			<th scope="col">Product</th>
 		</tr>
 	</thead>
 	<tbody>

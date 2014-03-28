@@ -15,7 +15,7 @@
 	
 	String need = val.get("need").toString();
 	
-	System.out.println(need);
+	//System.out.println(need);
 	
 	
 	if(need.equals("all")){
@@ -40,7 +40,7 @@
 		
 	}else{
 		
-		System.out.println(val.get("value").toString());
+		//System.out.println(val.get("value").toString());
 		
 		key.put("map", val.get("map").toString());
 		key.put(need, val.get("value").toString());

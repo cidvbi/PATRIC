@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,8 +33,7 @@ public class P2Management extends GenericPortlet {
 	private String mode = null;
 
 	@Override
-	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException,
-			UnavailableException {
+	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException, UnavailableException {
 		response.setContentType("text/html");
 
 		PrintWriter out = response.getWriter();
@@ -42,11 +41,18 @@ public class P2Management extends GenericPortlet {
 
 		if (mode == null || mode.equals("")) {
 			out.println("<h3>Usage</h3>");
+			out.println("?mode=");
 			out.println("<ul>");
 			out.println("<li>updateENews: update fontpage eNews feed</li>");
 			out.println("<li>updateENewsDev: update fontpage eNews feed from Dev-version WordPress</li>");
 			out.println("<li>checkCurrentDB: show current database name</li>");
-			out.println("<li>updateDataLanding: update local cache for genome/figfam landing pages</li>");
+			out.println("<li>updateDataLandingGenomicFeatures: update local cache for feature landing pages</li>");
+			out.println("<li>updateDataLandingGenomes: update local cache for genome landing pages</li>");
+			out.println("<li>updateDataLandingProteinFamilies: update local cache for protein families landing pages</li>");
+			out.println("<li>updateDataLandingTranscriptomics: update local cache for transcriptomics landing pages</li>");
+			// out.println("<li>updateDataLandingProteomics: update local cache for proteomics landing pages</li>");
+			// out.println("<li>updateDataLandingPPInteractions: update local cache for protein protein interaction landing pages</li>");
+			out.println("<li>updateDataLandingPathways: update local cache for pathway landing pages</li>");
 			out.println("</ul>");
 		}
 		else if (mode.equals("checkCurrentDB")) {
@@ -75,14 +81,91 @@ public class P2Management extends GenericPortlet {
 			}
 			out.println("</ul>");
 		}
-		else if (mode.equals("updateDataLanding")) {
+		else if (mode.equals("updateDataLandingGenomicFeatures")) {
 			DataLandingGenerator cacheGen = new DataLandingGenerator();
-			boolean isSuccess = cacheGen.createCacheFileGenomes(getPortletContext()
-					.getRealPath("/data/genomeData.json"));
+			boolean isSuccess = cacheGen.createCacheFileGenomicFeatures(getPortletContext().getRealPath("/data/features.json"));
+
+			out.println("<ul>");
+			if (isSuccess) {
+				out.println("<li>Feature Landing data is generated</li>");
+			}
+			else {
+				out.println("<li>failed</li>");
+			}
+			out.println("</ul>");
+		}
+		else if (mode.equals("updateDataLandingGenomes")) {
+			DataLandingGenerator cacheGen = new DataLandingGenerator();
+			boolean isSuccess = cacheGen.createCacheFileGenomes(getPortletContext().getRealPath("/data/genomes.json"));
 
 			out.println("<ul>");
 			if (isSuccess) {
 				out.println("<li>Genome Landing data is generated</li>");
+			}
+			else {
+				out.println("<li>failed</li>");
+			}
+			out.println("</ul>");
+		}
+		else if (mode.equals("updateDataLandingProteinFamilies")) {
+			DataLandingGenerator cacheGen = new DataLandingGenerator();
+			boolean isSuccess = cacheGen.createCacheFileProteinFamilies(getPortletContext().getRealPath("/data/proteinfamilies.json"));
+
+			out.println("<ul>");
+			if (isSuccess) {
+				out.println("<li>ProteinFamilies Landing data is generated</li>");
+			}
+			else {
+				out.println("<li>failed</li>");
+			}
+			out.println("</ul>");
+		}
+		else if (mode.equals("updateDataLandingTranscriptomics")) {
+			DataLandingGenerator cacheGen = new DataLandingGenerator();
+			boolean isSuccess = cacheGen.createCacheFileTranscriptomics(getPortletContext().getRealPath("/data/transcriptomics.json"));
+
+			out.println("<ul>");
+			if (isSuccess) {
+				out.println("<li>Transcriptomics Landing data is generated</li>");
+			}
+			else {
+				out.println("<li>failed</li>");
+			}
+			out.println("</ul>");
+		}
+		else if (mode.equals("updateDataLandingProteomics")) {
+			DataLandingGenerator cacheGen = new DataLandingGenerator();
+			boolean isSuccess = cacheGen.createCacheFileProteomics(getPortletContext().getRealPath("/data/proteomics.json"));
+
+			out.println("<ul>");
+			if (isSuccess) {
+				out.println("<li>Proteomics Landing data is generated</li>");
+			}
+			else {
+				out.println("<li>failed</li>");
+			}
+			out.println("</ul>");
+		}
+		else if (mode.equals("updateDataLandingPPInteractions")) {
+			DataLandingGenerator cacheGen = new DataLandingGenerator();
+			boolean isSuccess = cacheGen.createCacheFilePPInteractions(getPortletContext().getRealPath("/data/ppinteractions.json"));
+
+			out.println("<ul>");
+			if (isSuccess) {
+				out.println("<li>Protein Protein Interactions Landing data is generated</li>");
+			}
+			else {
+				out.println("<li>failed</li>");
+			}
+			out.println("</ul>");
+		}
+		else if (mode.equals("updateDataLandingPathways")) {
+			DataLandingGenerator cacheGen = new DataLandingGenerator();
+			boolean isSuccess = cacheGen.createCacheFilePathways(getPortletContext().getRealPath("/data/pathways.json"));
+
+			out.println("<ul>");
+			if (isSuccess) {
+				out.println("<li>Pathways Landing data is generated</li>");
 			}
 			else {
 				out.println("<li>failed</li>");

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,10 +16,10 @@
 package org.theseed.json;
 
 /**
- * The <code>JSONString</code> interface allows a <code>toJSONString()</code> method so that a class can change the
- * behavior of <code>JSONObject.toString()</code>, <code>JSONArray.toString()</code>, and <code>JSONWriter.value(</code>
- * Object<code>)</code>. The <code>toJSONString</code> method will be used instead of the default behavior of using the
- * Object's <code>toString()</code> method and quoting the result.
+ * The <code>JSONString</code> interface allows a <code>toJSONString()</code> method so that a class can change the behavior of
+ * <code>JSONObject.toString()</code>, <code>JSONArray.toString()</code>, and <code>JSONWriter.value(</code> Object<code>)</code>. The
+ * <code>toJSONString</code> method will be used instead of the default behavior of using the Object's <code>toString()</code> method and quoting the
+ * result.
  */
 public interface JSONString {
 	/**

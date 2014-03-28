@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright 2013 Virginia Polytechnic Institute and State University
+  Copyright 2014 Virginia Polytechnic Institute and State University
   
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -216,31 +216,6 @@
 		<parent-ref>patric</parent-ref>
 		<if-exists>overwrite</if-exists>
 		<page>
-			<page-name>NaCTeM</page-name>
-			<properties>
-				<property>
-					<name>layout.id</name>
-					<value>patric-home</value>
-				</property>
-			</properties>
-			<window>
-				<window-name>NACTEMWindow</window-name>
-				<instance-ref>NACTEMInstance</instance-ref>
-				<region>left</region>
-				<height>0</height>
-				<properties>
-					<property>
-						<name>theme.renderSetId</name>
-						<value>emptyRenderer</value>
-					</property>
-				</properties>
-			</window>
-		</page>
-	</deployment>
-	<deployment>
-		<parent-ref>patric</parent-ref>
-		<if-exists>overwrite</if-exists>
-		<page>
 			<page-name>TB</page-name>
 			<properties>
 				<property>
@@ -270,7 +245,7 @@
 			<properties>
 				<property>
 					<name>layout.id</name>
-					<value>patric-compatible</value>
+					<value>patric</value>
 				</property>
 			</properties>
 			<window>
@@ -292,6 +267,14 @@
 						<id>data_url</id>
 						<qname>{http://patric.vbi.vt.edu/params}data_url</qname>
 					</alias-binding>
+					<alias-binding>
+						<id>file_type</id>
+						<qname>{http://patric.vbi.vt.edu/params}file_type</qname>
+					</alias-binding>
+					<alias-binding>
+						<id>file_format</id>
+						<qname>{http://patric.vbi.vt.edu/params}file_format</qname>
+					</alias-binding>
 				</bindings>
 			</coordination>
 		</page>
@@ -308,8 +291,8 @@
 				</property>
 			</properties>
 			<window>
-				<window-name>GenomesWindow</window-name>
-				<instance-ref>GenomesInstance</instance-ref>
+				<window-name>DataLandingWindow</window-name>
+				<instance-ref>DataLandingInstance</instance-ref>
 				<region>left</region>
 				<height>0</height>
 				<properties>
@@ -333,8 +316,133 @@
 				</property>
 			</properties>
 			<window>
-				<window-name>ProteinFamiliesWindow</window-name>
-				<instance-ref>ProteinFamiliesInstance</instance-ref>
+				<window-name>DataLandingWindow</window-name>
+				<instance-ref>DataLandingInstance</instance-ref>
+				<region>left</region>
+				<height>0</height>
+				<properties>
+					<property>
+						<name>theme.renderSetId</name>
+						<value>emptyRenderer</value>
+					</property>
+				</properties>
+			</window>
+		</page>
+	</deployment>
+	<deployment>
+		<parent-ref>patric</parent-ref>
+		<if-exists>overwrite</if-exists>
+		<page>
+			<page-name>GenomicFeatures</page-name>
+			<properties>
+				<property>
+					<name>layout.id</name>
+					<value>patric-home</value>
+				</property>
+			</properties>
+			<window>
+				<window-name>DataLandingWindow</window-name>
+				<instance-ref>DataLandingInstance</instance-ref>
+				<region>left</region>
+				<height>0</height>
+				<properties>
+					<property>
+						<name>theme.renderSetId</name>
+						<value>emptyRenderer</value>
+					</property>
+				</properties>
+			</window>
+		</page>
+	</deployment>
+	<deployment>
+		<parent-ref>patric</parent-ref>
+		<if-exists>overwrite</if-exists>
+		<page>
+			<page-name>Transcriptomics</page-name>
+			<properties>
+				<property>
+					<name>layout.id</name>
+					<value>patric-home</value>
+				</property>
+			</properties>
+			<window>
+				<window-name>DataLandingWindow</window-name>
+				<instance-ref>DataLandingInstance</instance-ref>
+				<region>left</region>
+				<height>0</height>
+				<properties>
+					<property>
+						<name>theme.renderSetId</name>
+						<value>emptyRenderer</value>
+					</property>
+				</properties>
+			</window>
+		</page>
+	</deployment>
+	<deployment>
+		<parent-ref>patric</parent-ref>
+		<if-exists>overwrite</if-exists>
+		<page>
+			<page-name>Proteomics</page-name>
+			<properties>
+				<property>
+					<name>layout.id</name>
+					<value>patric-home</value>
+				</property>
+			</properties>
+			<window>
+				<window-name>DataLandingWindow</window-name>
+				<instance-ref>DataLandingInstance</instance-ref>
+				<region>left</region>
+				<height>0</height>
+				<properties>
+					<property>
+						<name>theme.renderSetId</name>
+						<value>emptyRenderer</value>
+					</property>
+				</properties>
+			</window>
+		</page>
+	</deployment>
+	<deployment>
+		<parent-ref>patric</parent-ref>
+		<if-exists>overwrite</if-exists>
+		<page>
+			<page-name>PPInteractions</page-name>
+			<properties>
+				<property>
+					<name>layout.id</name>
+					<value>patric-home</value>
+				</property>
+			</properties>
+			<window>
+				<window-name>DataLandingWindow</window-name>
+				<instance-ref>DataLandingInstance</instance-ref>
+				<region>left</region>
+				<height>0</height>
+				<properties>
+					<property>
+						<name>theme.renderSetId</name>
+						<value>emptyRenderer</value>
+					</property>
+				</properties>
+			</window>
+		</page>
+	</deployment>
+	<deployment>
+		<parent-ref>patric</parent-ref>
+		<if-exists>overwrite</if-exists>
+		<page>
+			<page-name>Pathways</page-name>
+			<properties>
+				<property>
+					<name>layout.id</name>
+					<value>patric-home</value>
+				</property>
+			</properties>
+			<window>
+				<window-name>DataLandingWindow</window-name>
+				<instance-ref>DataLandingInstance</instance-ref>
 				<region>left</region>
 				<height>0</height>
 				<properties>

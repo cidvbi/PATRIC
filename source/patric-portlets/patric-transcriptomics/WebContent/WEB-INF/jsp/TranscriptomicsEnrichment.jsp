@@ -12,7 +12,7 @@ HashMap<String, String> key = (HashMap<String, String>)portletSession.getAttribu
 String cType = request.getParameter("context_type");
 String cId = request.getParameter("context_id");
 String featureList = key.get("feature_info_id");
-System.out.println("jsp page"+featureList);
+//System.out.println("jsp page"+featureList);
 
 int featureList_length = featureList.split(",").length;
 
@@ -51,7 +51,7 @@ int found_length = db.getPathwayEnrichmentNoofGenesSQL(key);
 <script type="text/javascript" src="/patric-common/js/grid/toolbar.js"></script>
 <script type="text/javascript" src="/patric-common/js/grid/gridoptions.js"></script>
 <script type="text/javascript" src="/patric-common/js/grid/PATRICSelectionModel.js"></script>
-<script type="text/javascript" src="/patric-common/js/grid/PATRICGrid.js"></script>    
+<script type="text/javascript" src="/patric-common/js/grid/PATRICGrid.js"></script>
 <script type="text/javascript" src="/patric-common/js/grid/table_checkboxes.js"></script>
 <script type="text/javascript" src="/patric/js/vbi/AddToWorkspace.min.js"></script>
 <script type="text/javascript" src="/patric-transcriptomics/js/TranscriptomicsEnrichment.js"></script>
@@ -105,7 +105,7 @@ Ext.onReady(function () {
 		url: ['<portlet:resourceURL />'],
 		loaderFunction: function(){SetLoadParameters();loadGrid();}
 	};
-		
+
 	SetPageProperties(pageProperties);
 	$Page.checkbox = checkbox;
 	// SetIntervalOrAPI();

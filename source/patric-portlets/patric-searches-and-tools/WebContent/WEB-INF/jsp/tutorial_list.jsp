@@ -2,14 +2,17 @@
 <div class="clear"></div>
 <div id = "workflow_tutorials"></div>
 <div class="clear"></div>
+<div id = "pdf_tutorials"></div>
+<div class="clear"></div>
 <script type="text/javascript">
+//<![CDATA[
 var rowitems = 3;
-var vt = 0, wt = 0, data, subdata = [], item, id, pass1, pass2;;
+var vt = 0, wt = 0, pt = 0, data, subdata = [], item, id, pass1, pass2;
 var types = ["video_tutorials",
-             "workflow_tutorials"];
-             
+			"workflow_tutorials",
+			"pdf_tutorials"];
 var labels = {};
-             
+
 Ext.Ajax.request({
 	url : "/portal/portal/patric/Tutorials/TutorialListWindow?action=b&cacheability=PAGE",
 	method : 'POST',
@@ -34,6 +37,11 @@ Ext.Ajax.request({
 					pass1 = wt;
 					id = wt < rowitems?types[i]:"column_wt_"+ wt % rowitems;
 					wt++;
+				}else if(types[i] == "pdf_tutorials"){
+					pass2 = "pt";
+					pass1 = pt;
+					id = pt < rowitems?types[i]:"column_pt_"+ pt % rowitems;
+					pt++;
 				}
 				if(id){
 					Ext.getDom(id).innerHTML += toolsTemplate(item.post_title, item.post_content, item.tool_image_thumbnail, item.url, pass1, pass2);
@@ -56,5 +64,6 @@ function toolsTemplate(title, content, image, url, i, type) {
 		div += "</ul></div>";
 	
 	return div;
-}              
+}
+//]]>
 </script>

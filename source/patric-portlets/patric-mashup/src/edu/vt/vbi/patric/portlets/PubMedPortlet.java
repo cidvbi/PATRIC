@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,8 +42,7 @@ public class PubMedPortlet extends GenericPortlet {
 	 * @see javax.portlet.GenericPortlet#doView(javax.portlet.RenderRequest, javax.portlet.RenderResponse)
 	 */
 	@Override
-	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException,
-			UnavailableException {
+	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException, UnavailableException {
 		new SiteHelper().setHtmlMetaElements(request, response, "Literature");
 		response.setContentType("text/html");
 		PortletRequestDispatcher prd = getPortletContext().getRequestDispatcher("/WEB-INF/jsp/pubmed_list.jsp");
@@ -73,34 +72,40 @@ public class PubMedPortlet extends GenericPortlet {
 
 		String cType = request.getParameter("context_type");
 		String cId = request.getParameter("context_id");
-		if (cType.equals("taxon")) {
-			tId = cId;
+		JSONObject jsonResult = null;
+
+		if (cType != null) {
+			if (cType.equals("taxon")) {
+				tId = cId;
+			}
+			else if (cType.equals("genome")) {
+				gId = cId;
+			}
+			else if (cType.equals("feature")) {
+				fId = cId;
+			}
+
+			HashMap<String, String> key = new HashMap<String, String>();
+			key.put("scope", qScope);
+			key.put("date", qDate);
+			key.put("keyword", qKeyword);
+			key.put("ncbi_taxon_id", tId);
+			key.put("genome_info_id", gId);
+			key.put("feature_id", fId);
+			key.put("context", cType);
+
+			String strPubmedQuery = PubMedHelper.getPubmedQueryString(key);
+			// System.out.println("pubmedQuery: " + strPubmedQuery);
+
+			// PubMedInterface pubmed_api = new PubMedInterface();
+			EutilInterface eutil_api = new EutilInterface();
+
+			// JSONObject jsonResult = pubmed_api.getResults(strPubmedQuery, start, limit);
+			jsonResult = eutil_api.getResults("pubmed", strPubmedQuery, "&sort=pub+date", "&sort=pub+date&retmode=xml", start, limit);
 		}
-		else if (cType.equals("genome")) {
-			gId = cId;
+		else {
+			jsonResult = new JSONObject();
 		}
-		else if (cType.equals("feature")) {
-			fId = cId;
-		}
-
-		HashMap<String, String> key = new HashMap<String, String>();
-		key.put("scope", qScope);
-		key.put("date", qDate);
-		key.put("keyword", qKeyword);
-		key.put("ncbi_taxon_id", tId);
-		key.put("genome_info_id", gId);
-		key.put("feature_id", fId);
-		key.put("context", cType);
-
-		String strPubmedQuery = PubMedHelper.getPubmedQueryString(key);
-		// System.out.println("pubmedQuery: " + strPubmedQuery);
-
-		// PubMedInterface pubmed_api = new PubMedInterface();
-		EutilInterface eutil_api = new EutilInterface();
-
-		// JSONObject jsonResult = pubmed_api.getResults(strPubmedQuery, start, limit);
-		JSONObject jsonResult = eutil_api.getResults("pubmed", strPubmedQuery, "&sort=pub+date",
-				"&sort=pub+date&retmode=xml", start, limit);
 
 		PrintWriter writer = response.getWriter();
 		writer.write(jsonResult.toString());

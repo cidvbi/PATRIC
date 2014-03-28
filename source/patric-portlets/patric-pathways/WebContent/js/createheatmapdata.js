@@ -113,25 +113,34 @@ function processData_GenomeColumn(flash_data){
 		'beforeCellLabel':'',
 		'afterCellLabel':''
 	};
+	if(navigator.mimeTypes ["application/x-shockwave-flash"]){
 
-	loadHeatmap();
+		loadHeatmap();
+		
+		if(axis == "Transpose"){
+			flipAxises();
+		}
+		
+		heatmapState = Ext.state.Manager.get("PathwayHeatmapState");
+		
+		function callHeatmapStateRestore(){
+			updateDisplayStateInFlash(jQuery(heatmapid)[0], heatmapState);
+		}
+		
+		if(heatmapState){
+			setTimeout(function(){callHeatmapStateRestore();}, 1500);
+	    }
+
+	}else{
+		Ext.getDom("heatmap-panel").innerHTML = "Your Flash player is either disabled or not installed. Please install using this <a target=\"blank\" href=\"http://get.adobe.com/flashplayer\">link</a>.";
+	}
+	
+	
 	
 	// setTimeout(function(){(jQuery(heatmapid)[0])?flashShouldRefreshData(jQuery(heatmapid)[0]):loadHeatmap();}, 500);
 	// setTimeout(function(){(jQuery(heatmapid)[0])?flashShouldRefreshData(jQuery(heatmapid)[0]):loadHeatmap();}, 500);
 	
-	if(axis == "Transpose"){
-		flipAxises();
-	}
 	
-	heatmapState = Ext.state.Manager.get("PathwayHeatmapState");
-	
-	function callHeatmapStateRestore(){
-		updateDisplayStateInFlash(jQuery(heatmapid)[0], heatmapState);
-	}
-	
-	if(heatmapState){
-		setTimeout(function(){callHeatmapStateRestore();}, 1500);
-    }
 	
 	
 }

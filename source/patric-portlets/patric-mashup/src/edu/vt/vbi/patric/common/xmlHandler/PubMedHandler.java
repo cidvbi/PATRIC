@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,10 +58,9 @@ public class PubMedHandler extends DefaultHandler {
 			this.sbSource = new StringBuffer();
 		}
 		if (qName.equalsIgnoreCase("Item")) {
-			if (atts.getValue("Name").equals("Title") || atts.getValue("Name").equals("Author")
-					|| atts.getValue("Name").equals("PubDate") || atts.getValue("Name").equals("FullJournalName")
-					|| atts.getValue("Name").equals("Source") || atts.getValue("Name").equals("pubmed")
-					|| atts.getValue("Name").equals("pmid")) {
+			if (atts.getValue("Name").equals("Title") || atts.getValue("Name").equals("Author") || atts.getValue("Name").equals("PubDate")
+					|| atts.getValue("Name").equals("FullJournalName") || atts.getValue("Name").equals("Source")
+					|| atts.getValue("Name").equals("pubmed") || atts.getValue("Name").equals("pmid")) {
 				currentElement = atts.getValue("Name");
 			}
 			else if (atts.getValue("Name").equals("AuthorList")) {
@@ -143,9 +142,8 @@ public class PubMedHandler extends DefaultHandler {
 		else if (currentElement.equals("Source") && !tmpVal.trim().equals("")) {
 			sbSource.append(tmpVal);
 		}
-		else if (currentElement.equals("AuthorList") || currentElement.equals("ArticleIds")
-				|| currentElement.equals("pubmed") || currentElement.equals("Author")
-				|| currentElement.equals("Source")) {
+		else if (currentElement.equals("AuthorList") || currentElement.equals("ArticleIds") || currentElement.equals("pubmed")
+				|| currentElement.equals("Author") || currentElement.equals("Source")) {
 			// skip
 		}
 		else if (currentElement.equals("Title")) {

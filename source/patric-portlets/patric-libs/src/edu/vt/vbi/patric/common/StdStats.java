@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,14 +41,11 @@ package edu.vt.vbi.patric.common;
  *************************************************************************/
 
 /**
- * <i>Standard statistics</i>. This class provides methods for computing
- * statistics such as min, max, mean, sample standard deviation, and sample
+ * <i>Standard statistics</i>. This class provides methods for computing statistics such as min, max, mean, sample standard deviation, and sample
  * variance.
  * <p>
- * For additional documentation, see <a
- * href="http://introcs.cs.princeton.edu/22library">Section 2.2</a> of
- * <i>Introduction to Programming in Java: An Interdisciplinary Approach</i> by
- * Robert Sedgewick and Kevin Wayne.
+ * For additional documentation, see <a href="http://introcs.cs.princeton.edu/22library">Section 2.2</a> of <i>Introduction to Programming in Java: An
+ * Interdisciplinary Approach</i> by Robert Sedgewick and Kevin Wayne.
  */
 
 public final class StdStats {
@@ -252,8 +249,7 @@ public final class StdStats {
 	}
 
 	/**
-	 * Return sample standard deviation of subarray a[lo..hi], NaN if no such
-	 * value.
+	 * Return sample standard deviation of subarray a[lo..hi], NaN if no such value.
 	 */
 	public double stddev(double[] a, int lo, int hi) {
 		return Math.sqrt(var(a, lo, hi));
@@ -274,8 +270,7 @@ public final class StdStats {
 	}
 
 	/**
-	 * Return population standard deviation of subarray a[lo..hi], NaN if no
-	 * such value.
+	 * Return population standard deviation of subarray a[lo..hi], NaN if no such value.
 	 */
 	public double stddevp(double[] a, int lo, int hi) {
 		return Math.sqrt(varp(a, lo, hi));

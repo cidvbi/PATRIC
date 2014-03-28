@@ -1,5 +1,5 @@
 <p class="close">PATRIC includes a collaboration with the University of Chicago to provide a meta genome annotation service using the MG-RAST system.</p>
-<iframe id="iframe_rast" src="http://metagenomics.nmpdr.org/" height="500" seamless></iframe>
+<iframe id="iframe_rast" src="http://metagenomics.nmpdr.org/" height="500" title="MG-RAST Service" seamless></iframe>
 
 <script type="text/javascript">
 Ext.onReady(function () {

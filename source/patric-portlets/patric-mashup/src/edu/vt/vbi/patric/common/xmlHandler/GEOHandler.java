@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -66,13 +66,11 @@ public class GEOHandler extends DefaultHandler {
 		}
 
 		if (qName.equalsIgnoreCase("Item")) {
-			if (atts.getValue("Name").equals("title") || atts.getValue("Name").equals("summary")
-					|| atts.getValue("Name").equals("taxon") || atts.getValue("Name").equals("entryType")
-					|| atts.getValue("Name").equals("GSE") || atts.getValue("Name").equals("GPL")
-					|| atts.getValue("Name").equals("GDS") || atts.getValue("Name").equals("gdsType")
-					|| atts.getValue("Name").equals("PDAT") || atts.getValue("Name").equals("n_samples")
-					|| atts.getValue("Name").equals("ptechType") || atts.getValue("Name").equals("subsetInfo")
-					|| atts.getValue("Name").equals("suppFile")) {
+			if (atts.getValue("Name").equals("title") || atts.getValue("Name").equals("summary") || atts.getValue("Name").equals("taxon")
+					|| atts.getValue("Name").equals("entryType") || atts.getValue("Name").equals("GSE") || atts.getValue("Name").equals("GPL")
+					|| atts.getValue("Name").equals("GDS") || atts.getValue("Name").equals("gdsType") || atts.getValue("Name").equals("PDAT")
+					|| atts.getValue("Name").equals("n_samples") || atts.getValue("Name").equals("ptechType")
+					|| atts.getValue("Name").equals("subsetInfo") || atts.getValue("Name").equals("suppFile")) {
 				currentElement = atts.getValue("Name");
 				if (isReadingPubMedIds) {
 					isReadingPubMedIds = false;
@@ -111,41 +109,32 @@ public class GEOHandler extends DefaultHandler {
 			if (docsum.get("entryType").equals("GPL")) {
 				docsum.put("dataType", "Platform");
 				docsum.put("expType", docsum.get("ptechType"));
-				docsum.put(
-						"link_soft_format",
-						"ftp://ftp.ncbi.nih.gov/pub/geo/DATA/SOFT/by_platform/" + docsum.get("ID") + "/"
-								+ docsum.get("ID") + "_family.soft.gz");
-				docsum.put(
-						"link_miniml_format",
-						"ftp://ftp.ncbi.nih.gov/pub/geo/DATA/MINiML/by_platform/" + docsum.get("ID") + "/"
-								+ docsum.get("ID") + "_family.xml.tgz");
+				docsum.put("link_soft_format", "ftp://ftp.ncbi.nih.gov/pub/geo/DATA/SOFT/by_platform/" + docsum.get("ID") + "/" + docsum.get("ID")
+						+ "_family.soft.gz");
+				docsum.put("link_miniml_format",
+						"ftp://ftp.ncbi.nih.gov/pub/geo/DATA/MINiML/by_platform/" + docsum.get("ID") + "/" + docsum.get("ID") + "_family.xml.tgz");
 				if (docsum.get("suppFile") != null && !docsum.get("suppFile").equals("")) {
-					docsum.put("link_supplementary", "ftp://ftp.ncbi.nih.gov/pub/geo/DATA/supplementary/platforms/"
-							+ docsum.get("ID") + "/");
+					docsum.put("link_supplementary", "ftp://ftp.ncbi.nih.gov/pub/geo/DATA/supplementary/platforms/" + docsum.get("ID") + "/");
 				}
 			}
 			else if (docsum.get("entryType").equals("GSE")) {
 				docsum.put("dataType", "Series");
 				docsum.put("expType", sbType.toString());
-				docsum.put("link_soft_format", "ftp://ftp.ncbi.nih.gov/pub/geo/DATA/SOFT/by_series/" + docsum.get("ID")
-						+ "/" + docsum.get("ID") + "_family.soft.gz");
-				docsum.put(
-						"link_miniml_format",
-						"ftp://ftp.ncbi.nih.gov/pub/geo/DATA/MINiML/by_series/" + docsum.get("ID") + "/"
-								+ docsum.get("ID") + "_family.xml.tgz");
+				docsum.put("link_soft_format", "ftp://ftp.ncbi.nih.gov/pub/geo/DATA/SOFT/by_series/" + docsum.get("ID") + "/" + docsum.get("ID")
+						+ "_family.soft.gz");
+				docsum.put("link_miniml_format", "ftp://ftp.ncbi.nih.gov/pub/geo/DATA/MINiML/by_series/" + docsum.get("ID") + "/" + docsum.get("ID")
+						+ "_family.xml.tgz");
 				docsum.put("link_seriesmatrix_format",
-						"ftp://ftp.ncbi.nih.gov/pub/geo/DATA/SeriesMatrix/" + docsum.get("ID") + "/" + docsum.get("ID")
-								+ "_series_matrix.txt.gz");
+						"ftp://ftp.ncbi.nih.gov/pub/geo/DATA/SeriesMatrix/" + docsum.get("ID") + "/" + docsum.get("ID") + "_series_matrix.txt.gz");
 				if (docsum.get("suppFile") != null && !docsum.get("suppFile").equals("")) {
-					docsum.put("link_supplementary", "ftp://ftp.ncbi.nih.gov/pub/geo/DATA/supplementary/series/"
-							+ docsum.get("ID") + "/" + docsum.get("ID") + "_RAW.tar");
+					docsum.put("link_supplementary",
+							"ftp://ftp.ncbi.nih.gov/pub/geo/DATA/supplementary/series/" + docsum.get("ID") + "/" + docsum.get("ID") + "_RAW.tar");
 				}
 			}
 			else if (docsum.get("entryType").equals("GDS")) {
 				docsum.put("dataType", "Datasets");
 				docsum.put("expType", sbType.toString());
-				docsum.put("link_soft_format", "ftp://ftp.ncbi.nih.gov/pub/geo/DATA/SOFT/GDS/" + docsum.get("ID")
-						+ ".soft.gz");
+				docsum.put("link_soft_format", "ftp://ftp.ncbi.nih.gov/pub/geo/DATA/SOFT/GDS/" + docsum.get("ID") + ".soft.gz");
 			}
 			if (docsum.get("GPL") != null && !docsum.get("GPL").equals("")) {
 				if (docsum.get("GPL").toString().contains(";")) {

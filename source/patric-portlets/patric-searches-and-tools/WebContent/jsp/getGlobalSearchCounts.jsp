@@ -19,10 +19,7 @@
 	
 	if(Boolean.parseBoolean(spellcheck)){
 		JSONObject a = solr.getSpellCheckerResult(keyword);
-		if(a.containsKey("suggestion")){
-			keyword = a.get("suggestion").toString();
-			result.put("suggestion", keyword);
-		}
+		result.put("suggestion", a.get("suggestion"));
 	}
 	
 	JSONArray data = new JSONArray();

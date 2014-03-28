@@ -59,13 +59,12 @@ if(request.getUserPrincipal() == null){
 	</div>
 	<div class="left" style="width:25px">&nbsp;</div>
 	<div class="left" style="width:375px">
-		<h3><img src="/patric/images/number2.gif" alt="2" height="14" width="14" />
-			Enter keyword</h3><br />
+		<h3><img src="/patric/images/number2.gif" alt="2" height="14" width="14" /> Enter keyword</h3><br />
+
 		<form action="#" onsubmit="return false;">
-		<table class="querytable">
-		<tr>
-			<td><label for="feature_type">Feature Type:</label></td>
-			<td><select id="feature_type" name="feature_type" size="1">
+
+		<label class="left" for="feature_type">Feature Type:</label>
+		<select class="right far" id="feature_type" name="feature_type" size="1">
 			<option value="">ALL</option>
 	<%
 			Iterator<String> itr = conn_summary.getListOfFeatureTypes(key).iterator();
@@ -85,21 +84,34 @@ if(request.getUserPrincipal() == null){
 				<option value="<%=fType%>" <%=_selected%>><%=fType%></option>
 		<%		}
 			} %>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td><label for="keyword">Keyword:</label></td>
-				<td><input type="text" id="keyword" name="keyword" size="32" value="" />
-					<br /><span class="hint">Example: DNA polymerase</span> 
-					<br /><span class="hint">Example: dnaN</span> 
-					<br /><span class="hint">Example: VBIBruSui107850_0001</span>
-				</td>
-			</tr>
+		</select>
+		<div class="clear"></div>
+		
+		<label class="left" for="keyword">Keyword:</label>
+		<textarea class="right" id="keyword" name="keyword" rows="5" cols="30"><%=(key!=null && key.containsKey("keyword") && !key.get("keyword").equalsIgnoreCase(""))?key.get("keyword"):""%></textarea>
+		<div class="clear"></div>
+		
+		<span class="small bold"><b>Examples</b></span>
+		<table class="basic far">
+		<tbody>
 		<tr>
-			<td><label for="annotation">Annotation:</label></td>
-			<td><select id="annotation" name="annotation" size="1">
-				<option value="">ALL</option>
+			<th width=125 scope="row">Keyword:</th>
+			<td>DNA polymerase</td>
+		</tr>
+		<tr>
+			<th scope="row">Keyword:</th>
+			<td>dnaN</td>
+		</tr>
+		<tr>
+			<th scope="row">Keyword:</th>
+			<td>VBIBruSui107850_0001</td>
+		</tr>
+		</tbody>
+		</table>
+		
+		<label class="left" for="annotation">Annotation:</label>
+		<select class="right far2x" id="annotation" name="annotation" size="1">
+			<option value="">ALL</option>
 			<%
 			ArrayList<String> dbList = new ArrayList<String>();
 			dbList.add("PATRIC");
@@ -117,16 +129,13 @@ if(request.getUserPrincipal() == null){
 				else
 					_selected = "";
 			%>
-				<option value="<%=anno%>" <%=_selected%>><%=anno%></option>
+			<option value="<%=anno%>" <%=_selected%>><%=anno%></option>
 		<%	} %>
-				</select>
-			</td>
-		</tr>
+		</select>
+		<div class="clear"></div>
 		
-		<tr>
-			<td class="formaction" colspan="2"><input class="button rightarrow"  type="submit" value="Search" onclick="searchbykeyword('<%=cId%>', '<%=cType %>')" /></td>
-		</tr>
-		</table>
+		<input class="right button rightarrow"  type="submit" value="Search" onclick="searchbykeyword('<%=cId%>', '<%=cType %>')" />
+		
 		</form>
 	</div>
 	<div class="clear"></div>

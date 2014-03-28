@@ -2,21 +2,31 @@
 %><%@ page import="edu.vt.vbi.patric.dao.DBSummary" 
 %><%@ page import="edu.vt.vbi.patric.dao.ResultType" 
 %><%@ page import="java.util.ArrayList" 
+%><%@ page import="edu.vt.vbi.patric.common.SolrInterface" 
+%><%@ page import="org.json.simple.JSONObject" 
 %><%
+
 String gId = request.getParameter("context_id");
 int genomeId = -1;
 
 try {
 	genomeId = Integer.parseInt(gId);
-} catch (Exception ex) {	
+}
+catch (Exception ex) {
+	ex.printStackTrace();
 }
 
-if (genomeId > 0) 
-{
+if (genomeId > 0) {
+
 	DBShared conn_shared = new DBShared();
 	DBSummary conn_summary = new DBSummary();
-	ResultType context = conn_shared.getNamesFromGenomeInfoId(gId);
-	String tId = context.get("ncbi_taxon_id");
+	//ResultType context = conn_shared.getNamesFromGenomeInfoId(gId);
+	SolrInterface solr = new SolrInterface();
+	JSONObject context = solr.getGenome(gId);
+	String tId = null;
+	if (context.get("ncbi_tax_id") != null) {
+		tId = context.get("ncbi_tax_id").toString();
+	}
 	int taxonId = Integer.parseInt(tId);
 	
 	ArrayList<ResultType> parents = conn_shared.getTaxonParentTree(tId);
@@ -64,11 +74,10 @@ if (genomeId > 0)
 			<li id="tabs_featuretable"><a href="FeatureTable?cType=genome&amp;cId=<%=gId %>&amp;featuretype=&amp;annotation=PATRIC&amp;filtertype=" 
 				title="Feature Tables contain a summary list of all features (e.g., CDS, rRNA, tRNA, etc.) associated with a givenGenome."><span>Feature Table</span></a></li>
 			<li id="tabs_pathways"><a href="CompPathwayTable?cType=genome&amp;cId=<%=gId %>&amp;algorithm=PATRIC&amp;ec_number="><span>Pathways</span></a></li>
-			<li id="tabs_proteinfamilysorter"><a href="FIGfamSorterB?cType=genome&amp;cId=<%=gId %>&amp;dm=result"><span>Protein Families</span></a></li>
+			<li id="tabs_proteinfamilysorter"><a href="FIGfam?cType=genome&amp;cId=<%=gId %>&amp;dm=result&amp;bm="><span>Protein Families</span></a></li>
 			<li id="tabs_explist"><a href="ExperimentList?cType=genome&amp;cId=<%=gId %>&amp;kw=" 
 				title=""><span>Transcriptomics</span></a></li>
-			<li id="tabs_proteomics"><a href="ProteomicsList?cType=genome&amp;cId=<%=gId %>&amp;kw=" 
-				title=""><span>Proteomics</span></a></li>
+			<li id="tabs_proteomics"><a href="ProteomicsList?cType=genome&amp;cId=<%=gId %>&amp;kw=" title=""><span>Proteomics</span></a></li>
 			<li id="tabs_disease"><a href="DiseaseOverview?cType=genome&amp;cId=<%=gId %>"><span>Diseases</span></a></li>
 			<li id="tabs_literature"><a href="Literature?cType=genome&amp;cId=<%=gId %>&amp;time=a&amp;kw=none"><span>Literature</span></a></li>
 		</ul>

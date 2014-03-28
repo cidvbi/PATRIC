@@ -8,7 +8,7 @@ int taxonId = -1;
 
 try {
 	taxonId = Integer.parseInt(tId);
-} catch (Exception ex) {	
+} catch (Exception ex) {
 }
 
 if (taxonId > 0)
@@ -78,13 +78,12 @@ if (taxonId > 0)
 			<li id="tabs_featuretable"><a href="FeatureTable?cType=taxon&amp;cId=<%=tId %>&amp;featuretype=&amp;annotation=PATRIC&amp;filtertype="
 				title="Feature Tables contain a summary list of all features (e.g., CDS, rRNA, tRNA, etc.) associated with a given Phylum, Class, Order, Family, Genus, Species or Genome."><span>Feature Table</span></a></li>
 			<% if (genus.size()>0) { %>
-			<li id="tabs_proteinfamilysorter"><a href="FIGfamSorterB?cType=taxon&amp;cId=<%=tId %>&amp;dm=result"><span>Protein Families</span></a></li>
+			<li id="tabs_proteinfamilysorter"><a href="FIGfam?cType=taxon&amp;cId=<%=tId %>&amp;dm=result&amp;bm="><span>Protein Families</span></a></li>
 			<% } %>
 			<li id="tabs_pathways"><a href="CompPathwayTable?cType=taxon&amp;cId=<%=tId %>&amp;algorithm=PATRIC&amp;ec_number="><span>Pathways</span></a></li>
 			<li id="tabs_explist"><a href="ExperimentList?cType=taxon&amp;cId=<%=tId %>&amp;kw=" 
 				title=""><span>Transcriptomics</span></a></li>
-			<li id="tabs_proteomics"><a href="ProteomicsList?cType=taxon&amp;cId=<%=tId %>&amp;kw=" 
-				title=""><span>Proteomics</span></a></li>
+			<li id="tabs_proteomics"><a href="ProteomicsList?cType=taxon&amp;cId=<%=tId %>&amp;kw=" title=""><span>Proteomics</span></a></li>
 			<li id="tabs_disease"><a href="DiseaseOverview?cType=taxon&amp;cId=<%=tId %>"><span>Diseases</span></a></li>
 			<li id="tabs_literature"><a href="Literature?cType=taxon&amp;cId=<%=tId %>&amp;time=a&amp;kw=none"><span>Literature</span></a></li>
 		</ul>

@@ -175,6 +175,12 @@ function createToolbar(type, download_option, workspace_type) {
 				handler : function() {
 					setAllDetails(property.name, "txt");
 				}
+			}, {
+				text : 'Family Details: Excel File (.xlsx)',
+				icon : '/patric/images/toolbar_excel.png',
+				handler : function() {
+					setAllDetails(property.name, "xlsx");
+				}
 			}] : (property.name.indexOf("TranscriptomicsGene") >= 0) ? [{
 				text : 'Text File (.txt)',
 				icon : '/patric/images/toolbar_text.png',

@@ -43,14 +43,10 @@ function SetPageProperties(property) {
 			this.doTabLayout();
 		},
 		doTabLayout : function() {
-			var width = 0, Page = $Page, grid = Page.getGrid(), widthOffset = 10;
+			var width, Page = $Page, grid = Page.getGrid(), widthOffset = 10;
 
-			if (Ext.getCmp("treePanel")) {
-				width = $(window).width() - Ext.getCmp("treePanel").getWidth() - widthOffset;
-			} else {
-				width = $(window).width() - widthOffset;
-			}
-
+			width = $(window).width() - widthOffset - (Ext.getCmp("treePanel")?Ext.getCmp("treePanel").getWidth():0);
+			
 			Ext.getCmp("tabLayout") ? Ext.getCmp("tabLayout").setWidth(width) : "";
 			Ext.getCmp('tabPanel') ? Ext.getCmp('tabPanel').setWidth(width) : "";
 			Ext.getCmp('centerPanel') ? Ext.getCmp('centerPanel').setWidth(width) : "";
@@ -191,8 +187,8 @@ function SetIntervalOrAPI() {
 			this.superclass = instance;
 			this.pushState = function(property){
 				var suburl = window.location.href.split("patric/")[1];
-				var url = suburl.substring(0, (suburl.lastIndexOf('/')>0?suburl.lastIndexOf('/'):suburl.length));
-				history.pushState(property.hash, "", url+"/" + this.superclass.pushState(property.hash));
+				var url = suburl.substring(0, (suburl.lastIndexOf('#')>0?suburl.lastIndexOf('#'):suburl.length));
+				history.pushState(property.hash, "", url+"#" + this.superclass.pushState(property.hash));
 				this.superclass.loaderFunction();
 			};
 			this.popState = function(state){
@@ -200,7 +196,7 @@ function SetIntervalOrAPI() {
 				this.superclass.loaderFunction();
 			};
 			this.replaceState = function(state){
-				history.replaceState(this.superclass.getOperations().getStateFromString("/aP"), "", "");
+				history.replaceState(this.superclass.getOperations().getStateFromString("#"), "", "");
 			};
 			this.toString = function(){
 				return "[object API]";

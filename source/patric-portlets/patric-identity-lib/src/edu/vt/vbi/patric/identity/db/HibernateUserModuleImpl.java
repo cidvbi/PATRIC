@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,8 @@
  * limitations under the License.
  ******************************************************************************/
 package edu.vt.vbi.patric.identity.db;
+
+import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.Query;
@@ -39,8 +41,14 @@ public class HibernateUserModuleImpl extends org.jboss.portal.identity.db.Hibern
 				Session session = super.getCurrentSession();
 				Query query = session.createQuery("from HibernateUserImpl where realEmail=:realEmail");
 				query.setParameter("realEmail", realEmail);
-				query.setCacheable(true);
-				HibernateUserImpl user = (HibernateUserImpl) query.uniqueResult();
+				//query.setCacheable(true);
+				//HibernateUserImpl user = (HibernateUserImpl) query.uniqueResult();
+				//Handle multiple accounts associated with same email. Get the first one
+				HibernateUserImpl user = null;
+				List<?> rset = query.list();
+				if (rset.size() > 0) {
+					user = (HibernateUserImpl) rset.get(0);
+				}
 				if (user == null) {
 					throw new NoSuchUserException("No such user " + realEmail);
 				}

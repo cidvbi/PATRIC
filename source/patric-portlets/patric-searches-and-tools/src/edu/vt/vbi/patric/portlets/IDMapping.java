@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -123,7 +123,7 @@ public class IDMapping extends GenericPortlet {
 					for (int i = 1; i < sorter.size(); i++) {
 						sort_field += "," + ((JSONObject) sorter.get(i)).get("property").toString();
 					}
-					System.out.println(sort_field);
+					//System.out.println(sort_field);
 				}
 				catch (ParseException e) {
 					// TODO Auto-generated catch block
@@ -166,7 +166,7 @@ public class IDMapping extends GenericPortlet {
 				jsonResult.put("results", results);
 			}
 			catch (Exception ex) {
-				System.out.println("***" + ex.toString());
+				System.out.println(ex.toString());
 			}
 
 			response.setContentType("application/json");

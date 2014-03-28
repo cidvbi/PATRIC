@@ -39,11 +39,11 @@ if (feature.isEmpty() == false) {
 	<table class="basic stripe far2x">
 	<thead>
 		<tr>
-			<th>Source</th>
-			<th>Property</th>
-			<th>Value</th>
-			<th>Evidence Code</th>
-			<th>Comment</th>
+			<th scope="col">Source</th>
+			<th scope="col">Property</th>
+			<th scope="col">Value</th>
+			<th scope="col">Evidence Code</th>
+			<th scope="col">Comment</th>
 		</tr>
 	</thead>
 	<tbody>

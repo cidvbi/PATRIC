@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,7 +33,8 @@ public class CreateZip {
 		ZipOutputStream zos = new ZipOutputStream(baos);
 		BufferedInputStream bis;
 
-		String[] files = new String[1000];
+		String[] files = new String[10000];
+
 		File file;
 
 		int bytesRead;
@@ -41,6 +42,7 @@ public class CreateZip {
 		byte[] buffer = new byte[1024];
 
 		int j = 0;
+		boolean flag;
 
 		for (int i = 0; i < items.size(); i++) {
 
@@ -57,39 +59,36 @@ public class CreateZip {
 
 			}
 			else {
-
 				for (int k = 0; k < algorithm.length; k++) {
-					String temp = algorithm[k];
-
 					for (int m = 0; m < filetype.length; m++) {
-						if (filetype[m].equalsIgnoreCase(".fna")) {
-							algorithm[k] = "";
-						}
-						else {
-							algorithm[k] = temp;
-						}
 
-						file = new File("/storage/brcdownloads/patric2/genomes/" + folder + "/" + folder + algorithm[k]
-								+ filetype[m]);
+						flag = false;
+
+						file = new File("/storage/brcdownloads/patric2/genomes/" + folder + "/" + folder
+								+ (filetype[m].equals(".fna") ? "" : algorithm[k]) + filetype[m]);
 
 						if (!file.exists()) {
-							System.err.println("Skipping File: " + "/storage/brcdownloads/patric2/genomes/" + folder
-									+ "/" + folder + algorithm[k] + filetype[m]);
+							System.err.println("Skipping File: " + file.getAbsolutePath());
 						}
 						else {
-							files[j] = "/storage/brcdownloads/patric2/genomes/" + folder + "/" + folder + algorithm[k]
-									+ filetype[m];
-							j++;
+							// System.out.println("File: " + file.getAbsolutePath());
+							for (int z = 0; z < files.length; z++) {
+								if (files[z] != null && files[z].equals(file.getAbsolutePath())) {
+									flag = true;
+									break;
+								}
+							}
+							// System.out.println(flag);
+							if (!flag) {
+								files[j] = file.getAbsolutePath();
+								j++;
+							}
 						}
-
 					}
-
 				}
-
 			}
-
 		}
-
+		// System.out.println(j);
 		if (j > 0) {
 			for (int i = 0; i < j; i++) {
 				file = new File(files[i]);

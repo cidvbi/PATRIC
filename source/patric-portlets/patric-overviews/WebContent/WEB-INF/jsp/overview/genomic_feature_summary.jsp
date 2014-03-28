@@ -34,9 +34,9 @@ if (key.size()==0 || context_link.equals("")) {
 	<thead>
 		<tr>
 			<th width="40%"></th>
-			<th width="20%">PATRIC</th>
-			<th width="20%">Legacy BRC</th>
-			<th width="20%">RefSeq</th>
+			<th scope="col" width="20%">PATRIC</th>
+			<th scope="col" width="20%">Legacy BRC</th>
+			<th scope="col" width="20%">RefSeq</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -68,7 +68,7 @@ if (key.size()==0 || context_link.equals("")) {
 				}
 		%>
 			<tr <%=(alt==true)?"class=\"alt\"":"" %>>
-				<th><%=item.get("name") %></th>
+				<th scope="row"><%=item.get("name") %></th>
 				<td class="right-align-text"><%=patric %></td>
 				<td class="right-align-text"><%=brc %></td>
 				<td class="right-align-text last"><%=refseq %></td>

@@ -23,7 +23,9 @@ if (cType!=null && cId!=null) {
 	for (int i=0; i<seqs.size(); i++) {
 		JSONObject seq = new JSONObject();
 		seq.put("length", Integer.parseInt(seqs.get(i).get("length")));
-		seq.put("name", seqs.get(i).get("accession"));
+		//seq.put("name", seqs.get(i).get("accession"));
+		seq.put("name", "sid|" + seqs.get(i).get("sequence_info_id") + "|accn|" + seqs.get(i).get("accession"));
+		seq.put("accn", seqs.get(i).get("accession"));
 		seq.put("sid", seqs.get(i).get("sequence_info_id"));
 		seq.put("start", 0);
 		seq.put("end", Integer.parseInt(seqs.get(i).get("length")));

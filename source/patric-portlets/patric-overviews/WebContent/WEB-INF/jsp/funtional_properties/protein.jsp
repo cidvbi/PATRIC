@@ -10,9 +10,13 @@
 JSONObject feature = (JSONObject) request.getAttribute("feature");
 String[] item = null;
 String urlBEIR = SiteHelper.getExternalLinks("BEIR");
+SolrInterface solr = new SolrInterface();
+ResultType key = new ResultType();
+DBSummary conn_summary = new DBSummary();
 
 // get PDB ID
-	DBSummary conn_summary = new DBSummary();
+	/*
+	* deprecate SQL query for UnitProt mapping.
 	ArrayList<ResultType> uniprot = conn_summary.getUniprotAccession(feature.get("na_feature_id").toString());
 	ArrayList<String> uniprot_pdb_id = new ArrayList<String>();
 	String uniprot_accession = "";
@@ -23,19 +27,38 @@ String urlBEIR = SiteHelper.getExternalLinks("BEIR");
 		if (uniprot.get(u).get("id_type").equals("PDB")) {
 			uniprot_pdb_id.add(uniprot.get(u).get("id"));
 		}
+	}*/
+	ArrayList<String> uniprot = (ArrayList<String>) feature.get("ids");
+	ArrayList<String> uniprot_pdb_id = new ArrayList<String>();
+	String uniprot_accession = "";
+	if (uniprot != null) {
+		for (int u=0; u<uniprot.size(); u++) {
+			if (uniprot.get(u).contains("UniProtKB-Accession|")) {
+				uniprot_accession = uniprot.get(u).replace("UniProtKB-Accession|", "");
+			}
+			if (uniprot.get(u).contains("PDB|")) {
+				uniprot_pdb_id.add(uniprot.get(u).replace("PDB|", ""));
+			}
+		}
 	}
 // End of getting PDB ID
 
 // Structure Center related 
+	/*
 	ArrayList<ResultType> beir = conn_summary.getBEIRClones(feature.get("na_feature_id").toString());
 	String beir_clone_id = "";
-	
+	*/
+	solr.setCurrentInstance("Structural-Genomics");
+	key.put("keyword", "\"PATRIC_ID:"+ feature.get("na_feature_id") + "\"");
+	JSONObject res = solr.getData(key, null, null, 0, -1, false, false, false);
+	JSONArray beir = (JSONArray)((JSONObject)res.get("response")).get("docs");
+	JSONObject structural = null;
 // End of Structure Center related
 %>
 <table class="basic stripe far2x">
 <tbody>
 	<tr>
-		<th style="width:20%">GO Assignments</th> 
+		<th scope="row" style="width:20%">GO Assignments</th>
 		<td class="last"><%
 			if (feature.get("go")!=null) {
 				ArrayList<String> goArr = (ArrayList<String>) feature.get("go");
@@ -47,9 +70,9 @@ String urlBEIR = SiteHelper.getExternalLinks("BEIR");
 				%>-<%
 			}
 		%></td> 
-	</tr>			
-	<tr> 
-		<th>EC Assignments</th> 
+	</tr>
+	<tr>
+		<th scope="row">EC Assignments</th>
 		<td><%
 			if (feature.get("ec")!=null) {
 				ArrayList<String> ecArr = (ArrayList<String>) feature.get("ec");
@@ -62,8 +85,8 @@ String urlBEIR = SiteHelper.getExternalLinks("BEIR");
 			}
 		%></td> 
 	</tr>
-	<tr> 
-		<th>FIGfam Assignments</th> 
+	<tr>
+		<th scope="row">FIGfam Assignments</th>
 		<td><%
 			if (feature.get("figfam_id")!=null) {
 				%><a href="javascript:submitFigfam('<%=feature.get("figfam_id") %>')"><%=feature.get("figfam_id") %></a><%
@@ -73,7 +96,7 @@ String urlBEIR = SiteHelper.getExternalLinks("BEIR");
 		%></td> 
 	</tr>
 	<tr> 
-		<th>Pathway Assignments</th> 
+		<th scope="row">Pathway Assignments</th>
 		<td><%
 			if (feature.get("pathway")!=null) {
 				ArrayList<String> pwArr = (ArrayList<String>) feature.get("pathway");
@@ -90,7 +113,7 @@ String urlBEIR = SiteHelper.getExternalLinks("BEIR");
 	<!-- PDB Info -->
 	<% if (uniprot_pdb_id.size()>0) { %>
 	<tr>
-		<th>Structure</th>
+		<th scope="row">Structure</th>
 		<td>
 			<% for (String _pdb_id:uniprot_pdb_id) { %>
 			<a href="Jmol?structureID=<%=_pdb_id %>"><%=_pdb_id %></a>&nbsp;
@@ -101,9 +124,9 @@ String urlBEIR = SiteHelper.getExternalLinks("BEIR");
 	<!-- End of PDB Info -->
 	
 	<!-- structure center related -->
-	<% if (beir.size() > 0) { %>
+	<%-- if (beir.size() > 0) { %>
 	<tr>
-		<th>BEIR Clones</th>
+		<th scope="row">BEIR Clones</th>
 		<td> <a href="#" onclick="toggleLayer('beir_detail');return false;"><%=beir.size() %> clones are available</a>
 			<div id="beir_detail" class="table-container" style="display:none">
 				<table>
@@ -120,7 +143,7 @@ String urlBEIR = SiteHelper.getExternalLinks("BEIR");
 			</div>
 		</td>
 	</tr>
-	<% } %>
+	<% } --%>
 	<%
 	// submit to CSGID/SSGCID
 	if (beir.size() == 0 && uniprot_pdb_id.size() == 0 && feature.get("feature_type").equals("CDS")) {
@@ -131,15 +154,15 @@ String urlBEIR = SiteHelper.getExternalLinks("BEIR");
 		
 		if (genus.get("name").matches(regSSGCID)) {
 			%>
-			<tr><th>&nbsp;</th><td><a href="#" onclick="SubmitToStructuralGenomicsCenter('ssgcid');return false;">Submit a request for structure determination to SSGCID</a></td></tr>
+			<tr><th scope="row">Structure</th><td class="no-underline-links"><a href="#" class="double-arrow-link" onclick="SubmitToStructuralGenomicsCenter('ssgcid');return false;">Submit a request for structure determination to SSGCID</a></td></tr>
 			<%
 		} else if (genus.get("name").matches(regCSGID)) {
 			%>
-			<tr><th>&nbsp;</th><td><a href="#" onclick="SubmitToStructuralGenomicsCenter('csgid');return false;">Submit a request for structure determination to CSGID</a></td></tr>
+			<tr><th scope="row">Structure</th><td class="no-underline-links"><a href="#" class="double-arrow-link" onclick="SubmitToStructuralGenomicsCenter('csgid');return false;">Submit a request for structure determination to CSGID</a></td></tr>
 			<%
 		} else {
 			%>
-			<tr><th>&nbsp;</th><td>Not supported by SSGCID/CSGID</td></tr>
+			<tr><th scope="row">Structure</th><td>Not supported by SSGCID/CSGID</td></tr>
 			<%
 		}
 	}
@@ -148,8 +171,45 @@ String urlBEIR = SiteHelper.getExternalLinks("BEIR");
 </tbody>
 </table>
 
+<% if (beir.size() > 0) { %>
+<h3 class="section-title normal-case close2x">Structure</h3>
+<table class="basic stripe far2x">
+	<thead>
+		<tr>
+			<th scope="col">Source</th>
+			<th scope="col">Target</th>
+			<th scope="col">Selection Criteria</th>
+			<th scope="col">Status</th>
+			<th scope="col">Clone Available</th>
+			<th scope="col">Protein Available</th>
+		</tr>
+	</thead>
+	<tbody>
+		<%
+		for (int i=0; i < beir.size(); i++) {
+			structural = (JSONObject) beir.get(i);
+		%>
+		<tr>
+			<td><a href="http://www.ssgcid.org" target="_blank">SSGCID</a></td>
+			<td><a href="https://apps.sbri.org/SSGCIDTargetStatus/Target/<%=structural.get("target_id") %>" target="_blank"><%=structural.get("target_id") %></a></td>
+			<td><%=structural.get("selection_criteria") %></td>
+			<td><%=structural.get("target_status") %> 
+				<% if (structural.get("target_status").equals("in PDB") && uniprot_pdb_id.size() > 0) { %>
+					<br/>
+					<% for (String _pdb_id:uniprot_pdb_id) { %>
+					<a href="Jmol?structureID=<%=_pdb_id %>"><%=_pdb_id %></a>&nbsp;
+					<% } %>
+				<% } %>
+			</td>
+			<td><%=structural.get("has_clones").equals("T")?"Yes":"No" %></td>
+			<td><%=structural.get("has_proteins").equals("T")?"Yes":"No" %></td>
+		</tr>
+		<% } %>
+	</tbody>
+</table>
+<% } %>
 
-	<form id="sgc_form" method="POST" action="#">
+	<form id="sgc_form" method="POST" action="#" target="_blank">
 		<input type="hidden" name="patric_feature_id" value="<%=feature.get("na_feature_id") %>" />
 		<input type="hidden" name="patric_callback_url" value="/portal/portal/patric/Feature?cType=feature&amp;cId=<%=feature.get("na_feature_id") %>" />
 		<input type="hidden" name="genome_name" value="<%=feature.get("genome_name") %>" />
@@ -187,7 +247,7 @@ function getProteinSequence() {
 }
 function SubmitToStructuralGenomicsCenter(center) {
 	if (center=="ssgcid") {
-		Ext.getDom("sgc_form").action = "http://apps.sbri.org/SSGCIDCommTargReq/Default.aspx";
+		Ext.getDom("sgc_form").action = "https://apps.sbri.org/SSGCIDCommTargReq/Default.aspx";
 	} else {
 		Ext.getDom("sgc_form").action = "http://www.biochem.ucl.ac.uk/cgi-bin/phil/csgid/submit_CSGID_targets/submit_PATRIC_protein.pl";
 	}
@@ -196,7 +256,7 @@ function SubmitToStructuralGenomicsCenter(center) {
 function submitFigfam(id) {
 
 	Ext.Ajax.request({
-		url: '/portal/portal/patric/FIGfamViewer/FigFamViewerWindow?action=b&cacheability=PAGE',
+		url: '/portal/portal/patric/SingleFIGfam/SingleFIGfamWindow?action=b&cacheability=PAGE',
 		method: 'POST',
 		timeout: 600000,
 		params: {callType: "saveState",
@@ -204,7 +264,7 @@ function submitFigfam(id) {
 			figfam: id
 		},
 		success: function(rs) {
-			document.location.href = "FIGfamViewerB?"+"&cType=taxon&cId=2&pk="+rs.responseText;
+			document.location.href = "SingleFIGfam?"+"&cType=taxon&cId=2&bm=tool&pk="+rs.responseText;
 		}
 	});	
 }

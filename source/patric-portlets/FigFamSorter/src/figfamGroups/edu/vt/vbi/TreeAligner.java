@@ -59,16 +59,6 @@ public class TreeAligner extends GenericPortlet {
 		return ((ynText != null) && (ynText.equals("Y")));
 	}
 
-	/*
-	 * private void markProgress(String fileName, String text) { try { BufferedWriter writer = new BufferedWriter(new
-	 * FileWriter("/tmp/dbg_" + fileName)); writer.write(text); writer.newLine(); writer.close(); } catch (IOException
-	 * e) { e.printStackTrace(); } }
-	 * 
-	 * private String addInput(String name, ResourceRequest req, String build) { String check = req.getParameter(name);
-	 * if (check == null) { build += name + " = null\n"; } else { build += name + " = " + check + "\n"; } return build;
-	 * }
-	 */
-
 	public void serveResource(ResourceRequest req, ResourceResponse resp) throws PortletException, IOException {
 		resp.setContentType("text/html");
 		String callType = req.getParameter("callType");

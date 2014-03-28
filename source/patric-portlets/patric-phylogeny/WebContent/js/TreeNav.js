@@ -1,14 +1,9 @@
 var selectedGenomes = "";
 
 function flipTreeCheckBox(id, state) {
-
-	if (state == "unchecked") {
-		state = "checked";
-		addRemoveGenomes(id, state);
-	} else {
-		state = "unchecked";
-		addRemoveGenomes(id, state);
-	}
+	(state == "unchecked")?state = "checked":state = "unchecked";
+		
+	addRemoveGenomes(id, state);
 	document.getElementById(id + "_checkbox").innerHTML = "<img src=\"/patric/images/" + state + ".gif\" onclick=\"javascript:flipTreeCheckBox('" + id + "', '" + state + "')\"/>";
 
 }
@@ -174,7 +169,8 @@ var TreeNav = {
 				var tipAt = getTipAtPoint(mouseX, mouseY);
 				if (tipAt != mouseOverLabel) {
 					labelLinkDiv.innerHTML = "";
-					mouseOverLabel = tipAt;
+					
+Label = tipAt;
 					if (tipAt == null) {
 					} else {
 						var id = tipLinkIds[tipAt];

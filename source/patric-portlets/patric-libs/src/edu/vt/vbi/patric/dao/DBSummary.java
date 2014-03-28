@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,6 +15,7 @@
  ******************************************************************************/
 package edu.vt.vbi.patric.dao;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -22,10 +23,13 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.solr.client.solrj.SolrQuery;
 import org.apache.solr.client.solrj.SolrServerException;
+import org.apache.solr.client.solrj.StreamingResponseCallback;
 import org.apache.solr.client.solrj.response.QueryResponse;
 import org.apache.solr.client.solrj.response.RangeFacet;
 import org.apache.solr.common.SolrDocument;
@@ -37,13 +41,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.lob.SerializableClob;
 
+import edu.vt.vbi.patric.beans.DNAFeature;
 import edu.vt.vbi.patric.common.SolrInterface;
 
 /**
  * <p>
- * An interface class for database queries. DBSummary includes queries that are used for patric-overview,
- * patric-jbrowse, patric-phylogeny, and patric-common. This class needs to be initialized (set SessionFactory) prior to
- * use.
+ * An interface class for database queries. DBSummary includes queries that are used for patric-overview, patric-jbrowse, patric-phylogeny, and
+ * patric-common. This class needs to be initialized (set SessionFactory) prior to use.
  * </p>
  * 
  * @author Harry Yoo (hyun@vbi.vt.edu)
@@ -68,16 +72,14 @@ public class DBSummary {
 	 * @param end stopping pointer. If this is <code>-1</code>, returns all the results.
 	 * @return a list of sequence info
 	 */
-	public ArrayList<ResultType> getSequenceListByTaxon(HashMap<String, String> key, HashMap<String, String> sort,
-			int start, int end) {
+	public ArrayList<ResultType> getSequenceListByTaxon(HashMap<String, String> key, HashMap<String, String> sort, int start, int end) {
 		String sql = "select distinct gi.genome_info_id, gi.genome_name, gi.ncbi_tax_id, si.sequence_info_id, si.accession, "
 				+ " 		si.gi, si.length, si.chromosome, si.strain, si.isolate, "
 				+ "		si.molecule_type, si.segment, si.localization, si.sequence_type, si.collection_date, "
 				+ " 		si.country, round(((nvl(ns.c_count,0)+nvl(ns.g_count,0))/ns.length*100),2) base_composition, ns.description "
-				+ "	FROM app.genomesummary gi, cas.sequenceinfo si, dots.nasequence ns "
-				+ "	WHERE gi.genome_info_id = si.genome_info_id "
-				+ "		and si.na_sequence_id = ns.na_sequence_id "
-				+ "		and si.sequence_info_id in (" + getSequenceIdsInTaxonSQL(":ncbi_taxon_id") + ") ";
+				+ "	FROM app.genomesummary gi, cas.sequenceinfo si, dots.nasequence ns " + "	WHERE gi.genome_info_id = si.genome_info_id "
+				+ "		and si.na_sequence_id = ns.na_sequence_id " + "		and si.sequence_info_id in (" + getSequenceIdsInTaxonSQL(":ncbi_taxon_id")
+				+ ") ";
 
 		if (key.get("data_source").equalsIgnoreCase("Legacy BRC")) {
 			sql += "	and gi.brc = '1' ";
@@ -89,8 +91,7 @@ public class DBSummary {
 			sql += "	and gi.rast='1' ";
 		}
 
-		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction")
-				&& sort.get("direction") != null) {
+		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction") && sort.get("direction") != null) {
 			sql += " Order by " + sort.get("field") + " " + sort.get("direction");
 		}
 		else {
@@ -166,8 +167,8 @@ public class DBSummary {
 	}
 
 	/**
-	 * Retrieves genomes that are associated to a given taxon node. This is used by GenomeSelector to feed the Genome
-	 * List tab and "Jump to" functionality.
+	 * Retrieves genomes that are associated to a given taxon node. This is used by GenomeSelector to feed the Genome List tab and "Jump to"
+	 * functionality.
 	 * 
 	 * @param key filtering condition such as ncbi_taxon_id and keyword
 	 * @return a list of genome info (ncbi_taxon_id, class_name, node_count, genome_info_id, genome_name)
@@ -198,12 +199,10 @@ public class DBSummary {
 		q.setString(1, node[2].toString());
 
 		if (key.containsKey("keyword")) {
-			String keyword = key.get("keyword").toLowerCase().trim().replace("'", "''").replace("_", "\\_")
-					.replace("-", "\\-");
+			String keyword = key.get("keyword").toLowerCase().trim().replace("'", "''").replace("_", "\\_").replace("-", "\\-");
 			q.setString("genome_name", "%" + keyword + "%");
 		}
-		q.addScalar("ncbi_taxon_id", Hibernate.INTEGER).addScalar("class_name", Hibernate.STRING)
-				.addScalar("node_count", Hibernate.INTEGER);
+		q.addScalar("ncbi_taxon_id", Hibernate.INTEGER).addScalar("class_name", Hibernate.STRING).addScalar("node_count", Hibernate.INTEGER);
 		q.addScalar("genome_info_id", Hibernate.INTEGER).addScalar("genome_name", Hibernate.STRING).setCacheable(true);
 
 		List<?> rset = q.list();
@@ -226,12 +225,11 @@ public class DBSummary {
 	}
 
 	/**
-	 * Retrieves taxonomy tree data that are associated to a given taxon node. This is used by GenomeSelector to feed
-	 * the Taxonomy Tree tab and "Jump to" functionality.
+	 * Retrieves taxonomy tree data that are associated to a given taxon node. This is used by GenomeSelector to feed the Taxonomy Tree tab and
+	 * "Jump to" functionality.
 	 * 
 	 * @param key filtering condition such as ncbi_taxon_id and keyword
-	 * @return a list of tree info (node_level, node_left, rank, class_name, node_count, is_leaf, parent_ncbi_taxon_id,
-	 * genome_count, genome_below)
+	 * @return a list of tree info (node_level, node_left, rank, class_name, node_count, is_leaf, parent_ncbi_taxon_id, genome_count, genome_below)
 	 */
 	public ArrayList<ResultType> getTaxonomyTreeForGenomeSelector(HashMap<String, String> key) {
 		String sql = "SELECT node_level, node_left, node_right from cas.ncbiclassification where ncbi_taxon_id = ?";
@@ -249,9 +247,8 @@ public class DBSummary {
 		sql = "SELECT distinct cls.node_level, cls.node_left, cls.rank, " + "		cls.class_name, cls.node_count, "
 				+ "		cls.ncbi_taxon_id, decode(cls.node_right-cls.node_left,1,1,0) is_leaf, cls.parent_ncbi_taxon_id, "
 				+ "		cls.genome_count, cls.node_count-cls.genome_count genome_below "
-				+ "	from cas.ncbiclassification cls, cas.genomeclassrelationship gr "
-				+ "	where node_left between ? and ? " + "		and (cls.node_count>0 or cls.genome_count>0) "
-				+ "		and cls.genome_classification_id = gr.genome_classification_id(+) ";
+				+ "	from cas.ncbiclassification cls, cas.genomeclassrelationship gr " + "	where node_left between ? and ? "
+				+ "		and (cls.node_count>0 or cls.genome_count>0) " + "		and cls.genome_classification_id = gr.genome_classification_id(+) ";
 
 		if (key.containsKey("keyword")) {
 			sql += "	and lower(cls.class_name) like :keyword ";
@@ -262,15 +259,12 @@ public class DBSummary {
 		q.setString(0, node[1].toString());
 		q.setString(1, node[2].toString());
 		if (key.containsKey("keyword")) {
-			String keyword = key.get("keyword").toLowerCase().trim().replace("'", "''").replace("_", "\\_")
-					.replace("-", "\\-");
+			String keyword = key.get("keyword").toLowerCase().trim().replace("'", "''").replace("_", "\\_").replace("-", "\\-");
 			q.setString("keyword", "%" + keyword + "%");
 		}
-		q.addScalar("node_level", Hibernate.INTEGER).addScalar("node_left", Hibernate.INTEGER)
-				.addScalar("rank", Hibernate.STRING);
+		q.addScalar("node_level", Hibernate.INTEGER).addScalar("node_left", Hibernate.INTEGER).addScalar("rank", Hibernate.STRING);
 		q.addScalar("class_name", Hibernate.STRING).addScalar("node_count", Hibernate.INTEGER);
-		q.addScalar("ncbi_taxon_id", Hibernate.INTEGER).addScalar("is_leaf", Hibernate.INTEGER)
-				.addScalar("parent_ncbi_taxon_id", Hibernate.INTEGER);
+		q.addScalar("ncbi_taxon_id", Hibernate.INTEGER).addScalar("is_leaf", Hibernate.INTEGER).addScalar("parent_ncbi_taxon_id", Hibernate.INTEGER);
 		q.addScalar("genome_count", Hibernate.INTEGER).addScalar("genome_below", Hibernate.INTEGER).setCacheable(true);
 
 		List<?> rset = q.list();
@@ -300,8 +294,8 @@ public class DBSummary {
 	/**
 	 * Retrieves genome summary that are associated to a given taxon node.
 	 * 
-	 * @param key filtering condition such as data_source( <code>Legacy BRC|RefSeq|PATRIC</code>), filter(
-	 * <code>complete|wgs|plasmid</code>), and ncbi_taxon_id
+	 * @param key filtering condition such as data_source( <code>Legacy BRC|RefSeq|PATRIC</code>), filter( <code>complete|wgs|plasmid</code>), and
+	 * ncbi_taxon_id
 	 * @param sort sorting condition
 	 * @param start starting pointer
 	 * @param end stopping pointer. If <code>-1</code>, returns all the results.
@@ -320,12 +314,10 @@ public class DBSummary {
 	 * <dd><code>ncbi_tax_id</code></dd>
 	 * </dl>
 	 */
-	public ArrayList<ResultType> getGenomeListByTaxon(HashMap<String, String> key, HashMap<String, String> sort,
-			int start, int end) {
-		String sql = "SELECT gs.genome_info_id, gs.genome_name, gs.length, "
-				+ "		nvl(gs.chromosome,0), nvl(gs.plasmid,0), nvl(gs.contig,0), "
-				+ "		nvl(gs.rast_cds,0), nvl(gs.brc_cds,0), nvl(gs.refseq_cds,0), " + "		complete, gs.ncbi_tax_id "
-				+ "	FROM app.genomesummary gs " + "	WHERE gs.ncbi_tax_id in ( " + getTaxonIdsInTaxonSQL("?") + ") ";
+	public ArrayList<ResultType> getGenomeListByTaxon(HashMap<String, String> key, HashMap<String, String> sort, int start, int end) {
+		String sql = "SELECT gs.genome_info_id, gs.genome_name, gs.length, " + "		nvl(gs.chromosome,0), nvl(gs.plasmid,0), nvl(gs.contig,0), "
+				+ "		nvl(gs.rast_cds,0), nvl(gs.brc_cds,0), nvl(gs.refseq_cds,0), " + "		complete, gs.ncbi_tax_id " + "	FROM app.genomesummary gs "
+				+ "	WHERE gs.ncbi_tax_id in ( " + getTaxonIdsInTaxonSQL("?") + ") ";
 
 		if (key.get("data_source").equalsIgnoreCase("Legacy BRC")) {
 			sql += "	and gs.brc = 1 ";
@@ -351,8 +343,7 @@ public class DBSummary {
 
 		sql += "	Group by gs.genome_info_id, gs.genome_name, gs.length, gs.chromosome, gs.plasmid, gs.contig, gs.rast_cds, gs.brc_cds, gs.refseq_cds, complete, ncbi_tax_id ";
 
-		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction")
-				&& sort.get("direction") != null) {
+		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction") && sort.get("direction") != null) {
 			sql += " Order by " + sort.get("field") + " " + sort.get("direction");
 		}
 		else {
@@ -406,10 +397,9 @@ public class DBSummary {
 	 * @return genome level summary (see the return type of {@link #getGenomeListByTaxon(HashMap, HashMap, int, int)})
 	 */
 	public ResultType getGenomeSummary(String id) {
-		String sql = "SELECT gs.genome_info_id, gs.genome_name, gs.length, "
-				+ "		nvl(gs.chromosome,0), nvl(gs.plasmid,0), nvl(gs.contig,0), "
-				+ "		nvl(gs.rast_cds,0), nvl(gs.brc_cds,0), nvl(gs.refseq_cds,0), " + "		complete, gs.ncbi_tax_id "
-				+ "	FROM app.genomesummary gs " + "	WHERE gs.genome_info_id = :genome_info_id "
+		String sql = "SELECT gs.genome_info_id, gs.genome_name, gs.length, " + "		nvl(gs.chromosome,0), nvl(gs.plasmid,0), nvl(gs.contig,0), "
+				+ "		nvl(gs.rast_cds,0), nvl(gs.brc_cds,0), nvl(gs.refseq_cds,0), " + "		complete, gs.ncbi_tax_id " + "	FROM app.genomesummary gs "
+				+ "	WHERE gs.genome_info_id = :genome_info_id "
 				+ "	Group by gs.genome_info_id, gs.genome_name, gs.length, gs.chromosome, gs.plasmid, gs.contig, "
 				+ "		gs.rast_cds, gs.brc_cds, gs.refseq_cds, complete, ncbi_tax_id ";
 
@@ -444,16 +434,13 @@ public class DBSummary {
 	 * Counts genomes that are associated to a given taxon node.
 	 * 
 	 * @param key filtering condition such as data_source and ncbi_taxon_id
-	 * @return count of complete genomes (cnt_complete), wgs (cnt_wgs), plasmid (cnt_plasmid), and all genomes
-	 * (cnt_all).
+	 * @return count of complete genomes (cnt_complete), wgs (cnt_wgs), plasmid (cnt_plasmid), and all genomes (cnt_all).
 	 */
 	public ResultType getGenomeCount(HashMap<String, String> key) {
 
-		String sql = "select nvl(sum(decode(gs.complete,'Complete',1,0)),0) complete_cnt, "
-				+ "		nvl(sum(decode(gs.complete,'WGS',1,0)),0) wgs_cnt, "
-				+ "		nvl(sum(decode(gs.complete,'Plasmid',1,0)),0) plasmid_cnt, " + "		count(*) all_cnt "
-				+ "	from app.genomesummary gs, (" + getTaxonIdsInTaxonSQL("?") + ") tx "
-				+ "	where gs.ncbi_tax_id = tx.ncbi_tax_id ";
+		String sql = "select nvl(sum(decode(gs.complete,'Complete',1,0)),0) complete_cnt, " + "		nvl(sum(decode(gs.complete,'WGS',1,0)),0) wgs_cnt, "
+				+ "		nvl(sum(decode(gs.complete,'Plasmid',1,0)),0) plasmid_cnt, " + "		count(*) all_cnt " + "	from app.genomesummary gs, ("
+				+ getTaxonIdsInTaxonSQL("?") + ") tx " + "	where gs.ncbi_tax_id = tx.ncbi_tax_id ";
 
 		if (key.get("data_source").equalsIgnoreCase("RefSeq")) {
 			sql += "	and gs.refseq = '1' ";
@@ -468,8 +455,8 @@ public class DBSummary {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery sqlQuery = session.createSQLQuery(sql);
-		sqlQuery.addScalar("complete_cnt", Hibernate.INTEGER).addScalar("wgs_cnt", Hibernate.INTEGER)
-				.addScalar("plasmid_cnt", Hibernate.INTEGER).addScalar("all_cnt", Hibernate.INTEGER);
+		sqlQuery.addScalar("complete_cnt", Hibernate.INTEGER).addScalar("wgs_cnt", Hibernate.INTEGER).addScalar("plasmid_cnt", Hibernate.INTEGER)
+				.addScalar("all_cnt", Hibernate.INTEGER);
 		sqlQuery.setCacheable(true);
 
 		sqlQuery.setString(0, key.get("ncbi_taxon_id"));
@@ -495,8 +482,7 @@ public class DBSummary {
 	 * @return genomic feature counts in RAST (patric), Legacy BRC (brc), and RefSeq (refseq) annotation.
 	 */
 	public ArrayList<ResultType> getNAFeatureSummary(HashMap<String, String> key) {
-		String sql = "select name, sum(rast) patric, sum(brc) brc, sum(refseq) refseq from app.featuresummary "
-				+ "	where ";
+		String sql = "select name, sum(rast) patric, sum(brc) brc, sum(refseq) refseq from app.featuresummary " + "	where ";
 		if (key.containsKey("genome_info_id")) {
 			sql += "	genome_info_id = :genome_info_id ";
 		}
@@ -522,8 +508,7 @@ public class DBSummary {
 		}
 
 		sqlQuery.addScalar("name", Hibernate.STRING);
-		sqlQuery.addScalar("patric", Hibernate.INTEGER).addScalar("brc", Hibernate.INTEGER)
-				.addScalar("refseq", Hibernate.INTEGER);
+		sqlQuery.addScalar("patric", Hibernate.INTEGER).addScalar("brc", Hibernate.INTEGER).addScalar("refseq", Hibernate.INTEGER);
 		sqlQuery.setCacheable(true);
 
 		List<?> rset = sqlQuery.list();
@@ -550,10 +535,8 @@ public class DBSummary {
 	 * @return list of sequence status name
 	 */
 	public ArrayList<String> getListOfUniqueSequenceStatusNames(HashMap<String, String> key) {
-		String sql = "select unique ssn.sequence_status_name "
-				+ "	from cas.genomeinfo gi, cas.sequenceinfo si, cas.sequencestatusname ssn "
-				+ "	where gi.genome_info_id = si.genome_info_id "
-				+ "		and si.sequence_status_name_id = ssn.sequence_status_name_id ";
+		String sql = "select unique ssn.sequence_status_name " + "	from cas.genomeinfo gi, cas.sequenceinfo si, cas.sequencestatusname ssn "
+				+ "	where gi.genome_info_id = si.genome_info_id " + "		and si.sequence_status_name_id = ssn.sequence_status_name_id ";
 
 		if (key.containsKey("genome_info_id") && key.get("genome_info_id") != null) {
 			sql += " and gi.genome_info_id = :genome_info_id ";
@@ -648,8 +631,7 @@ public class DBSummary {
 	 * @return sub-SQL string
 	 */
 	public static String getTaxonIdsInTaxonSQL(String id) {
-		String sql = "select ncbi_tax_id from sres.taxon " + "connect by prior taxon_id = parent_id "
-				+ "start with ncbi_tax_id = " + id;
+		String sql = "select ncbi_tax_id from sres.taxon " + "connect by prior taxon_id = parent_id " + "start with ncbi_tax_id = " + id;
 		return sql;
 	}
 
@@ -667,8 +649,7 @@ public class DBSummary {
 					+ "				decode(nf.algorithm,'Curation','Legacy BRC','RAST','PATRIC','RefSeq') as algorithm, "
 					+ "				decode(nf.is_reversed,1,'-','+') as strand, nf.debug_field, "
 					+ "			nf.start_min, nf.start_max, nf.end_min, nf.end_max, nf.na_length, "
-					+ "			nf.product, nf.gene, nf.aa_length, nf.is_pseudo, nf.bound_moiety, "
-					+ "			nf.anticodon, nf.protein_id ";
+					+ "			nf.product, nf.gene, nf.aa_length, nf.is_pseudo, nf.bound_moiety, " + "			nf.anticodon, nf.protein_id ";
 
 		}
 		sqlstr += "	from app.dnafeature nf where 1=1 ";
@@ -680,8 +661,7 @@ public class DBSummary {
 			sqlstr += "	and nf.genome_info_id = :scope";
 		}
 		else if (key.containsKey("ncbi_taxon_id") && key.get("ncbi_taxon_id") != null) {
-			if (key.get("ncbi_taxon_id").equals("2") && key.containsKey("keyword") && key.get("keyword") != null
-					&& !key.get("keyword").equals("")) {
+			if (key.get("ncbi_taxon_id").equals("2") && key.containsKey("keyword") && key.get("keyword") != null && !key.get("keyword").equals("")) {
 				// skip
 			}
 			else {
@@ -707,8 +687,7 @@ public class DBSummary {
 		}
 
 		// sequence status
-		if (key.containsKey("sequencestatus") && key.get("sequencestatus") != null
-				&& !key.get("sequencestatus").equals("All")) {
+		if (key.containsKey("sequencestatus") && key.get("sequencestatus") != null && !key.get("sequencestatus").equals("All")) {
 			sqlstr += "	and nf.sequence_status = :sequencestatus ";
 		}
 
@@ -742,8 +721,7 @@ public class DBSummary {
 			}
 		}
 		else if (key.containsKey("ncbi_taxon_id") && key.get("ncbi_taxon_id") != null) {
-			if (key.get("ncbi_taxon_id").equals("2") && key.containsKey("keyword") && key.get("keyword") != null
-					&& !key.get("keyword").equals("")) {
+			if (key.get("ncbi_taxon_id").equals("2") && key.containsKey("keyword") && key.get("keyword") != null && !key.get("keyword").equals("")) {
 				// skip
 			}
 			else {
@@ -793,8 +771,7 @@ public class DBSummary {
 		}
 
 		// sequence status
-		if (key.containsKey("sequencestatus") && key.get("sequencestatus") != null
-				&& !key.get("sequencestatus").equals("All")) {
+		if (key.containsKey("sequencestatus") && key.get("sequencestatus") != null && !key.get("sequencestatus").equals("All")) {
 			q.setString("sequencestatus", key.get("sequencestatus"));
 			if (debug) {
 				System.out.println("sequence status:" + key.get("sequence_status"));
@@ -813,8 +790,7 @@ public class DBSummary {
 	 * @param end stopping pointer. If <code>-1</code>, returns all the results.
 	 * @return list of features
 	 */
-	public ArrayList<ResultType> getGenetable(HashMap<String, String> key, HashMap<String, String> sort, int start,
-			int end) {
+	public ArrayList<ResultType> getGenetable(HashMap<String, String> key, HashMap<String, String> sort, int start, int end) {
 		String sql = getFeaturetableSQL(key, sort, false);
 
 		Session session = factory.getCurrentSession();
@@ -914,25 +890,20 @@ public class DBSummary {
 	public ArrayList<ResultType> getProteinFeatureSummary(HashMap<String, String> key) {
 		String sql = "";
 		if (key.containsKey("genome_info_id") && key.get("genome_info_id") != null) {
-			sql = " select attribute, order_by_att, rast, brc, refseq " + "		from app.proteinsummary "
-					+ "		where genome_info_id = :genome_info_id " + "		order by order_by_att";
+			sql = " select attribute, order_by_att, rast, brc, refseq " + "		from app.proteinsummary " + "		where genome_info_id = :genome_info_id "
+					+ "		order by order_by_att";
 		}
 		else if (key.containsKey("ncbi_taxon_id") && key.get("ncbi_taxon_id") != null) {
 			sql = "	select attribute, order_by_att, nvl(sum(rast),0) rast, nvl(sum(brc),0) brc, nvl(sum(refseq),0) refseq "
-					+ "		from app.proteinsummary "
-					+ "		where ncbi_tax_id in ("
-					+ getTaxonIdsInTaxonSQL(":ncbi_taxon_id")
-					+ ") "
-					+ "		group by attribute, order_by_att "
-					+ "		order by order_by_att";
+					+ "		from app.proteinsummary " + "		where ncbi_tax_id in (" + getTaxonIdsInTaxonSQL(":ncbi_taxon_id") + ") "
+					+ "		group by attribute, order_by_att " + "		order by order_by_att";
 		}
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
 		q.addScalar("attribute", Hibernate.STRING).addScalar("order_by_att", Hibernate.STRING);
-		q.addScalar("rast", Hibernate.INTEGER).addScalar("brc", Hibernate.INTEGER)
-				.addScalar("refseq", Hibernate.INTEGER);
+		q.addScalar("rast", Hibernate.INTEGER).addScalar("brc", Hibernate.INTEGER).addScalar("refseq", Hibernate.INTEGER);
 		q.setCacheable(true);
 
 		if (key.containsKey("genome_info_id")) {
@@ -995,8 +966,11 @@ public class DBSummary {
 				String strComment = IOUtils.toString(clobComment.getAsciiStream(), "UTF-8");
 				result.put("comment_string", strComment);
 			}
+			catch (NullPointerException ex) {
+				// this can be null
+			}
 			catch (Exception ex) {
-				System.out.println("Retrieving comments:" + ex.toString());
+				System.out.println("Problem in retrieving comments for RNA: " + ex.toString());
 			}
 		}
 		return result;
@@ -1079,10 +1053,9 @@ public class DBSummary {
 	}
 
 	public ResultType getRefSeqInfo(String id) {
-		String sql = "select gi.gene_id, gn.gi gi_number "
-				+ "		from app.dnafeature df, dots.gene_id gi, dots.gi_number gn "
-				+ "		where df.na_feature_id = gi.na_feature_id (+) "
-				+ "			and df.na_feature_id = gn.na_feature_id (+) " + "			and df.na_feature_id = ?";
+		String sql = "select gi.gene_id, gn.gi gi_number " + "		from app.dnafeature df, dots.gene_id gi, dots.gi_number gn "
+				+ "		where df.na_feature_id = gi.na_feature_id (+) " + "			and df.na_feature_id = gn.na_feature_id (+) "
+				+ "			and df.na_feature_id = ?";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -1112,14 +1085,12 @@ public class DBSummary {
 	public ArrayList<ResultType> getRefSeqs(HashMap<String, String> key) {
 		String sql = "";
 		if (key.containsKey("genome_info_id") && key.get("genome_info_id") != null) {
-			sql = "	select sequence_info_id, na_sequence_id, accession, length " + "	from cas.sequenceinfo "
-					+ "	where genome_info_id = " + key.get("genome_info_id") + " order by accession ";
+			sql = "	select sequence_info_id, na_sequence_id, accession, length " + "	from cas.sequenceinfo " + "	where genome_info_id = "
+					+ key.get("genome_info_id") + " order by accession ";
 		}
 		else if (key.containsKey("feature_info_id") && key.get("feature_info_id") != null) {
-			sql = "	select si.sequence_info_id, si.na_sequence_id, si.accession, si.length "
-					+ "	from app.dnafeature nf, cas.sequenceinfo si "
-					+ "	where nf.sequence_info_id = si.sequence_info_id and na_feature_id = "
-					+ key.get("feature_info_id");
+			sql = "	select si.sequence_info_id, si.na_sequence_id, si.accession, si.length " + "	from app.dnafeature nf, cas.sequenceinfo si "
+					+ "	where nf.sequence_info_id = si.sequence_info_id and na_feature_id = " + key.get("feature_info_id");
 		}
 
 		Session session = factory.getCurrentSession();
@@ -1147,19 +1118,19 @@ public class DBSummary {
 	 * Retrieves feature info for a given condition. This is used to feed Genome Browser track.
 	 * 
 	 * @param key filtering condition such as accession, feature type, and annotation
-	 * @return list of feature level data (na_feature_id, locus_tag, p_start, p_end, is_reversed, name, debug, product,
-	 * gene)
+	 * @return list of feature level data (na_feature_id, locus_tag, p_start, p_end, is_reversed, name, debug, product, gene)
 	 */
 	public ArrayList<ResultType> getFeatures(HashMap<String, String> key) {
 
-		//query by sequence_info_id (if available) or accession
+		// query by sequence_info_id (if available) or accession
 		String q = "";
 		if (key.containsKey("sid") && key.get("sid") != null) {
-			q += "sequence_info_id:"+key.get("sid");
-		} else {
-			q += "accession:\"" + key.get("accession")+"\"";
+			q += "sequence_info_id:" + key.get("sid");
 		}
-		//filter by annotation and feature type (if provided)
+		else {
+			q += "accession:\"" + key.get("accession") + "\"";
+		}
+		// filter by annotation and feature type (if provided)
 		String fq = "annotation:" + key.get("algorithm");
 		if (key.containsKey("type")) {
 			fq += " AND feature_type:" + key.get("type");
@@ -1171,6 +1142,208 @@ public class DBSummary {
 		query.setFilterQueries(fq);
 
 		return getGenomicFeaturesFromSolr(query);
+		// return getGenomicFeaturesFromSolrStream(query);
+		// return getGenomicFeaturesFromSolrBatch(query);
+	}
+
+	public List<DNAFeature> getDNAFeatures(HashMap<String, String> key) {
+
+		// query by sequence_info_id (if available) or accession
+		String q = "";
+		if (key.containsKey("sid") && key.get("sid") != null) {
+			q += "sequence_info_id:" + key.get("sid");
+		}
+		else {
+			q += "accession:\"" + key.get("accession") + "\"";
+		}
+		// filter by annotation and feature type (if provided)
+		String fq = "annotation:" + key.get("algorithm");
+		if (key.containsKey("type")) {
+			fq += " AND feature_type:" + key.get("type");
+		}
+		fq += " AND !(feature_type:source)";
+
+		SolrQuery query = new SolrQuery();
+		query.setQuery(q);
+		query.setFilterQueries(fq);
+
+		return getGenomicFeaturesFromSolrBean(query);
+		// return getGenomicFeaturesFromSolrBeanBatch(query);
+	}
+
+	public ArrayList<ResultType> streamResponse(SolrQuery query) {
+		ArrayList<ResultType> results = new ArrayList<ResultType>();
+		SolrInterface solr = new SolrInterface();
+		final BlockingQueue<SolrDocument> tmpQueue = new LinkedBlockingQueue<SolrDocument>();
+		try {
+			solr.setCurrentInstance("GenomicFeature");
+
+			long tp1 = System.currentTimeMillis();
+			solr.getServer().queryAndStreamResponse(query, new StreamCallbackHandler(tmpQueue));
+			long tp2 = System.currentTimeMillis();
+			System.out.println("first query: " + (tp2 - tp1) + " ms");
+
+			SolrDocument tmpDoc;
+			do {
+				tmpDoc = tmpQueue.take();
+				ResultType row = new ResultType();
+				row.putAll(tmpDoc);
+				if (row.isEmpty() == false) {
+					results.add(row);
+				}
+			} while (!tmpDoc.isEmpty());
+
+			long tp3 = System.currentTimeMillis();
+			System.out.println("fetching all: " + (tp3 - tp2) + " ms, totalRows=" + results.size());
+		}
+		catch (SolrServerException | IOException | InterruptedException e) {
+			e.printStackTrace();
+		}
+		return results;
+	}
+
+	public ArrayList<ResultType> getGenomicFeaturesFromSolrBatch(SolrQuery query) {
+		ArrayList<ResultType> results = new ArrayList<ResultType>();
+		SolrInterface solr = new SolrInterface();
+		int fetchSize = 5000;
+		long offset = 0;
+		long totalResults = 0;
+
+		query.setFields("na_feature_id,locus_tag,start_max,end_min,strand,feature_type,product,gene,refseq_locus_tag");
+
+		try {
+			solr.setCurrentInstance("GenomicFeature");
+
+			// first query to get totalRows
+			long tp1 = System.currentTimeMillis();
+			query.setRows(1);
+			totalResults = solr.getServer().query(query).getResults().getNumFound();
+			long tp2 = System.currentTimeMillis();
+			System.out.println("first query: " + (tp2 - tp1) + " ms, totalRows=" + totalResults);
+
+			// fetching
+			query.setSort("start_max", SolrQuery.ORDER.asc);
+			long tp3 = System.currentTimeMillis();
+			while (offset < totalResults) {
+
+				tp1 = System.currentTimeMillis();
+				// //
+				query.setStart((int) offset);
+				query.setRows(fetchSize);
+				for (SolrDocument doc : solr.getServer().query(query).getResults()) {
+					ResultType row = new ResultType();
+					row.putAll(doc);
+					results.add(row);
+				}
+				// //
+				tp2 = System.currentTimeMillis();
+				System.out.println("offset=" + offset + ": " + (tp2 - tp1) + " ms");
+
+				offset += fetchSize;
+			}
+
+			long tp4 = System.currentTimeMillis();
+			System.out.println("fetching all: " + (tp4 - tp3) + " ms");
+		}
+		catch (MalformedURLException | SolrServerException e) {
+			e.printStackTrace();
+		}
+		return results;
+	}
+
+	public List<DNAFeature> getGenomicFeaturesFromSolrBeanBatch(SolrQuery query) {
+		List<DNAFeature> beans = new ArrayList<DNAFeature>();
+		SolrInterface solr = new SolrInterface();
+		int fetchSize = 800;
+		long offset = 0;
+		long totalResults = 0;
+
+		query.setFields("na_feature_id,locus_tag,start_max,end_min,strand,feature_type,product,gene,refseq_locus_tag");
+
+		try {
+			solr.setCurrentInstance("GenomicFeature");
+
+			// first query to get totalRows
+			long tp1 = System.currentTimeMillis();
+			query.setRows(1);
+			totalResults = solr.getServer().query(query).getResults().getNumFound();
+			long tp2 = System.currentTimeMillis();
+			System.out.println("first query: " + (tp2 - tp1) + " ms, totalRows=" + totalResults);
+
+			// fetching
+			query.setSort("start_max", SolrQuery.ORDER.asc);
+			long tp3 = System.currentTimeMillis();
+			while (offset < totalResults) {
+
+				tp1 = System.currentTimeMillis();
+
+				query.setStart((int) offset);
+				query.setRows(fetchSize);
+				QueryResponse rsp = solr.getServer().query(query);
+				beans.addAll(rsp.getBeans(DNAFeature.class));
+
+				tp2 = System.currentTimeMillis();
+				System.out.println("offset=" + offset + ": " + (tp2 - tp1) + " ms");
+
+				offset += fetchSize;
+			}
+
+			long tp4 = System.currentTimeMillis();
+			System.out.println("fetching all: " + (tp4 - tp3) + " ms");
+		}
+		catch (MalformedURLException | SolrServerException e) {
+			e.printStackTrace();
+		}
+		return beans;
+	}
+
+	public ArrayList<ResultType> getGenomicFeaturesFromSolrStream(SolrQuery query) {
+		query.setRows(10000);
+		query.setSort("start_max", SolrQuery.ORDER.asc);
+		query.setFields("na_feature_id,locus_tag,start_max,end_min,strand,feature_type,product,gene,refseq_locus_tag");
+
+		return streamResponse(query);
+	}
+
+	public List<DNAFeature> getGenomicFeaturesFromSolrBean(SolrQuery query) {
+		SolrInterface solr = new SolrInterface();
+		List<DNAFeature> beans = null;
+
+		try {
+			solr.setCurrentInstance("GenomicFeature");
+			query.setSort("start_max", SolrQuery.ORDER.asc);
+			query.setFields("na_feature_id,locus_tag,start_max,end_min,strand,feature_type,product,gene,refseq_locus_tag");
+
+			// 1st q. get total rows
+			long tp1 = System.currentTimeMillis();
+
+			query.setRows(1);
+			long totalResults = solr.getServer().query(query).getResults().getNumFound();
+
+			long tp2 = System.currentTimeMillis();
+			System.out.println("first query: " + (tp2 - tp1) + " ms");
+
+			// long totalResults = 10000;
+			// 2nd Q. fetch
+			long tp3 = System.currentTimeMillis();
+
+			query.setRows((int) totalResults);
+			QueryResponse rsp = solr.getServer().query(query);
+
+			long tp4 = System.currentTimeMillis();
+			System.out.println("2nd query: " + (tp4 - tp3) + " ms");
+
+			// fetch
+			long tp5 = System.currentTimeMillis();
+			beans = rsp.getBeans(DNAFeature.class);
+			long tp6 = System.currentTimeMillis();
+			System.out.println("fetching all: " + (tp6 - tp5) + " ms, totalRows=" + beans.size());
+		}
+		catch (MalformedURLException | SolrServerException e) {
+			e.printStackTrace();
+		}
+
+		return beans;
 	}
 
 	public ArrayList<ResultType> getGenomicFeaturesFromSolr(SolrQuery query) {
@@ -1180,37 +1353,37 @@ public class DBSummary {
 		// common settings
 		query.setRows(10000);
 		query.setSort("start_max", SolrQuery.ORDER.asc);
-		// query.setSortField("end_min", SolrQuery.ORDER.asc);
 		query.setFields("na_feature_id,locus_tag,start_max,end_min,strand,feature_type,product,gene,refseq_locus_tag");
-		
+
 		QueryResponse rsp = null;
 
 		try {
 			solr.setCurrentInstance("GenomicFeature");
+			long tp1 = System.currentTimeMillis();
 			rsp = solr.getServer().query(query);
+			long tp2 = System.currentTimeMillis();
+			System.out.println("first query: " + (tp2 - tp1) + " ms");
 		}
-		catch (MalformedURLException e) {
+		catch (MalformedURLException | SolrServerException e) {
 			e.printStackTrace();
 		}
-		catch (SolrServerException e) {
-			e.printStackTrace();
-		}
-
+		long tp3 = System.currentTimeMillis();
 		SolrDocumentList docs = rsp.getResults();
 		for (Iterator<SolrDocument> iter = docs.iterator(); iter.hasNext();) {
 			SolrDocument obj = iter.next();
-
 			ResultType row = new ResultType();
 			row.putAll(obj);
-
 			results.add(row);
 		}
+		long tp4 = System.currentTimeMillis();
+		System.out.println("fetching all: " + (tp4 - tp3) + " ms, totalRows=" + results.size());
+
 		return results;
 	}
 
 	public ArrayList<Integer> getHistogram(HashMap<String, String> key) {
 
-		String q = "accession:" + key.get("accession");
+		String q = "accession:" + key.get("accession") + " AND sequence_info_id:" + key.get("sid");
 		String fq = "annotation:" + key.get("algorithm");
 		if (key.containsKey("type")) {
 			fq += " AND feature_type:" + key.get("type");
@@ -1224,14 +1397,14 @@ public class DBSummary {
 		query.setFacet(true);
 		query.setFacetMinCount(1);
 		query.addNumericRangeFacet("start_max", 0, 10000000, 10000);
-		//System.out.println("query:"+query.toString());
+		// System.out.println("query:"+query.toString());
 		ArrayList<Integer> results = new ArrayList<Integer>();
 		SolrInterface solr = new SolrInterface();
 		QueryResponse qr = null;
 		try {
 			solr.setCurrentInstance("GenomicFeature");
 			qr = solr.getServer().query(query);
-			
+
 			for (RangeFacet<?, ?> range : qr.getFacetRanges()) {
 				List<RangeFacet.Count> rangeEntries = range.getCounts();
 				if (rangeEntries != null) {
@@ -1249,47 +1422,10 @@ public class DBSummary {
 		}
 		return results;
 	}
-	/**
-	 * Retrieves RNA feature info for a given condition. This is used to feed Genome Browser track (RNA track).
-	 * 
-	 * @param key filtering condition such as accession and algorithm
-	 * @return list of all RNA type features
-	 */
-	public ArrayList<ResultType> getRNAFeatures(HashMap<String, String> key) {
-
-		String q = "accession:" + key.get("accession");
-		String fq = "annotation:" + key.get("algorithm") + " AND feature_type:*rna";
-
-		SolrQuery query = new SolrQuery();
-		query.setQuery(q);
-		query.setFilterQueries(fq);
-
-		return getGenomicFeaturesFromSolr(query);
-	}
 
 	/**
-	 * Retrieves miscellaneous feature info for a given condition. This is used to feed Genome Browser tracks (Misc
-	 * track).
-	 * 
-	 * @param key filtering condition such as accession and algorithm
-	 * @return list of all Misc features
-	 */
-	public ArrayList<ResultType> getMiscFeatures(HashMap<String, String> key) {
-
-		String q = "accession:" + key.get("accession");
-		String fq = "annotation:" + key.get("algorithm")
-				+ " AND !feature_type:*rna AND !feature_type:CDS AND !feature_type:gene";
-
-		SolrQuery query = new SolrQuery();
-		query.setQuery(q);
-		query.setFilterQueries(fq);
-
-		return getGenomicFeaturesFromSolr(query);
-	}
-
-	/**
-	 * Counts features that match the given genomeID. This is used for CompareReginoViewer to decide whether there are
-	 * features matching to a given PSEED genome ID.
+	 * Counts features that match the given genomeID. This is used for CompareReginoViewer to decide whether there are features matching to a given
+	 * PSEED genome ID.
 	 * 
 	 * @param id PSEED genome ID
 	 * @return feature count
@@ -1307,30 +1443,33 @@ public class DBSummary {
 	}
 
 	/**
-	 * Retrieves features that can be mapped by PATRIC feature ID (na_feature_id) or PSEED peg ID. This is used for
-	 * CompareRegionViewer to map features each other.
+	 * Retrieves features that can be mapped by PATRIC feature ID (na_feature_id) or PSEED peg ID. This is used for CompareRegionViewer to map
+	 * features each other.
 	 * 
 	 * @param src ID source. <code>PATRIC|PSEED</code>
 	 * @param IDs IDs
-	 * @return list of features (na_feature_id, pseed_id, source_id, start, end, strand, na_length, aa_length, product,
-	 * genome_name, accession)
+	 * @return list of features (na_feature_id, pseed_id, source_id, start, end, strand, na_length, aa_length, product, genome_name, accession)
 	 */
 	public HashMap<String, ResultType> getPSeedMapping(String src, String IDs) {
-		
+
 		HashMap<String, ResultType> result = new HashMap<String, ResultType>();
 		SolrInterface solr = new SolrInterface();
-		
+
 		String q = null;
 		if (src.equalsIgnoreCase("PATRIC")) {
-			q = "na_feature_id:("+IDs+")";
-		} else {
-			q = "pseed_id:("+IDs+")";
+			q = "na_feature_id:(" + IDs + ")";
 		}
-		
+		else {
+			q = "pseed_id:(" + IDs + ")";
+		}
+
 		SolrQuery query = new SolrQuery();
 		query.setQuery(q);
 		query.setFields("na_feature_id,pseed_id,locus_tag,start_max,end_min,strand,feature_type,product,gene,refseq_locus_tag,genome_name,accession");
+		query.setRows(1000);
 		QueryResponse rsp = null;
+
+		// System.out.println(query.toString());
 
 		try {
 			solr.setCurrentInstance("GenomicFeature");
@@ -1360,29 +1499,29 @@ public class DBSummary {
 	}
 
 	public HashMap<String, ResultType> getGenomeMetadata(HashSet<String> genomeNames) {
-		
+
 		HashMap<String, ResultType> result = new HashMap<String, ResultType>();
 		SolrInterface solr = new SolrInterface();
-		
+
 		StringBuilder sb = new StringBuilder();
-		for (String name: genomeNames) {
+		for (String name : genomeNames) {
 			if (sb.length() > 0) {
 				sb.append(" OR ");
 			}
-			sb.append("\""+name+"\"");
+			sb.append("\"" + name + "\"");
 		}
 		if (sb.length() == 0) {
 			return null;
 		}
-		
+
 		String q = "genome_name:(" + sb.toString() + ")";
-		
+
 		SolrQuery query = new SolrQuery();
 		query.setQuery(q);
 		query.setFields("genome_info_id,genome_name,isolation_country,host_name,disease,collection_date,completion_date");
 		QueryResponse rsp = null;
-		System.out.println(query.toString());
-		
+		// System.out.println(query.toString());
+
 		try {
 			solr.setCurrentInstance("GenomeFinder");
 			rsp = solr.getServer().query(query);
@@ -1399,11 +1538,17 @@ public class DBSummary {
 			SolrDocument obj = iter.next();
 			ResultType row = new ResultType();
 			row.putAll(obj);
-			row.put("completion_date", solr.transformDate((Date)obj.get("completion_date")));
+			if (obj.get("completion_date") != null) {
+				row.put("completion_date", solr.transformDate((Date) obj.get("completion_date")));
+			}
+			else {
+				row.put("completion_date", "");
+			}
 			result.put(row.get("genome_name"), row);
 		}
 		return result;
 	}
+
 	// / End of Genome Browser SQLs
 
 	/**
@@ -1416,14 +1561,10 @@ public class DBSummary {
 		if (ncbi_taxon_id <= 0)
 			return new ArrayList<ResultType>();
 
-		String sql = "select lng.ncbi_tax_id, lng.name, cls.rank, cls.node_level "
-				+ "	from ( "
-				+ "		select a.taxon_id, a.ncbi_tax_id, b.name, a.parent_id "
-				+ "		from sres.taxon a, sres.taxonname b "
-				+ "		where a.taxon_id = b.taxon_id and b.name_class = 'scientific name' "
-				+ "	) lng, cas.ncbiclassification cls "
-				+ "	where lng.ncbi_tax_id = cls.ncbi_taxon_id "
-				+ "		and cls.rank = 'order' "
+		String sql = "select lng.ncbi_tax_id, lng.name, cls.rank, cls.node_level " + "	from ( "
+				+ "		select a.taxon_id, a.ncbi_tax_id, b.name, a.parent_id " + "		from sres.taxon a, sres.taxonname b "
+				+ "		where a.taxon_id = b.taxon_id and b.name_class = 'scientific name' " + "	) lng, cas.ncbiclassification cls "
+				+ "	where lng.ncbi_tax_id = cls.ncbi_taxon_id " + "		and cls.rank = 'order' "
 				+ "		and cls.ncbi_taxon_id in (2037,1385,80840,213849,51291,186802,91347,186826,118969,356,766,136,72273,135623) "
 				+ "	connect by prior parent_id = taxon_id " + "	start with ncbi_tax_id = :ncbi_taxon_id";
 
@@ -1432,8 +1573,7 @@ public class DBSummary {
 		SQLQuery q = session.createSQLQuery(sql);
 		q.setInteger("ncbi_taxon_id", ncbi_taxon_id);
 
-		q.addScalar("ncbi_tax_id", Hibernate.INTEGER).addScalar("name", Hibernate.STRING)
-				.addScalar("rank", Hibernate.STRING);
+		q.addScalar("ncbi_tax_id", Hibernate.INTEGER).addScalar("name", Hibernate.STRING).addScalar("rank", Hibernate.STRING);
 		q.addScalar("node_level", Hibernate.INTEGER);
 		q.setCacheable(true);
 
@@ -1442,24 +1582,18 @@ public class DBSummary {
 
 		if (rset.size() == 0) {
 			// TODO: work on this sql. Need some performance improvement.
-			sql = "select lng.ncbi_tax_id, lng.name, cls.rank, cls.node_level "
-					+ "	from ( "
-					+ "		select a.taxon_id, a.ncbi_tax_id, b.name, a.parent_id "
-					+ "		from sres.taxon a, sres.taxonname b "
-					+ "		where a.taxon_id = b.taxon_id and b.name_class = 'scientific name' "
-					+ "	) lng, cas.ncbiclassification cls "
-					+ "	where lng.ncbi_tax_id = cls.ncbi_taxon_id "
-					+ "		and cls.rank = 'order' "
+			sql = "select lng.ncbi_tax_id, lng.name, cls.rank, cls.node_level " + "	from ( "
+					+ "		select a.taxon_id, a.ncbi_tax_id, b.name, a.parent_id " + "		from sres.taxon a, sres.taxonname b "
+					+ "		where a.taxon_id = b.taxon_id and b.name_class = 'scientific name' " + "	) lng, cas.ncbiclassification cls "
+					+ "	where lng.ncbi_tax_id = cls.ncbi_taxon_id " + "		and cls.rank = 'order' "
 					+ "		and ncbi_tax_id in (2037,1385,80840,213849,51291,186802,91347,186826,118969,356,766,136,72273,135623) "
-					+ "	connect by prior taxon_id = parent_id " + "	start with ncbi_tax_id = :ncbi_taxon_id "
-					+ "	order by name";
+					+ "	connect by prior taxon_id = parent_id " + "	start with ncbi_tax_id = :ncbi_taxon_id " + "	order by name";
 			session = factory.getCurrentSession();
 			session.beginTransaction();
 			q = session.createSQLQuery(sql);
 			q.setInteger("ncbi_taxon_id", ncbi_taxon_id);
 
-			q.addScalar("ncbi_tax_id", Hibernate.INTEGER).addScalar("name", Hibernate.STRING)
-					.addScalar("rank", Hibernate.STRING);
+			q.addScalar("ncbi_tax_id", Hibernate.INTEGER).addScalar("name", Hibernate.STRING).addScalar("rank", Hibernate.STRING);
 			q.addScalar("node_level", Hibernate.INTEGER);
 			q.setCacheable(true);
 
@@ -1488,8 +1622,8 @@ public class DBSummary {
 	 * @return list of species name
 	 */
 	public String getPRIDESpecies(String id) {
-		String sql = "select pr.species, pr.ncbi_tax_id " + "	from app.pride pr, ("
-				+ getTaxonIdsInTaxonSQL(":ncbi_taxon_id") + ") tx " + "	where pr.ncbi_tax_id = tx.ncbi_tax_id ";
+		String sql = "select pr.species, pr.ncbi_tax_id " + "	from app.pride pr, (" + getTaxonIdsInTaxonSQL(":ncbi_taxon_id") + ") tx "
+				+ "	where pr.ncbi_tax_id = tx.ncbi_tax_id ";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -1521,9 +1655,8 @@ public class DBSummary {
 	 * @return Uniprot info (uniprotkb_accession, id_type, id)
 	 */
 	public ArrayList<ResultType> getUniprotAccession(String id) {
-		String sql = "select uniprotkb_accession, id_type, id " + "	from app.idmapping "
-				+ "	where uniprotkb_accession in ( " + "		select uniprotkb_accession "
-				+ "		from app.idmapping idm, app.patricrefseqmapping prm " + "		where idm.id_type = 'GI' "
+		String sql = "select uniprotkb_accession, id_type, id " + "	from app.idmapping " + "	where uniprotkb_accession in ( "
+				+ "		select uniprotkb_accession " + "		from app.idmapping idm, app.patricrefseqmapping prm " + "		where idm.id_type = 'GI' "
 				+ "			and idm.id = to_char(prm.gi_number) " + "			and prm.patric_na_feature_id = ? )";
 
 		Session session = factory.getCurrentSession();
@@ -1531,8 +1664,7 @@ public class DBSummary {
 		SQLQuery sqlQuery = session.createSQLQuery(sql);
 		sqlQuery.setString(0, id);
 
-		sqlQuery.addScalar("uniprotkb_accession", Hibernate.STRING).addScalar("id_type", Hibernate.STRING)
-				.addScalar("id", Hibernate.STRING);
+		sqlQuery.addScalar("uniprotkb_accession", Hibernate.STRING).addScalar("id_type", Hibernate.STRING).addScalar("id", Hibernate.STRING);
 		sqlQuery.setCacheable(true);
 
 		List<?> rset = sqlQuery.list();
@@ -1558,17 +1690,13 @@ public class DBSummary {
 	 * @return clone info (beir_clone_id, clone_name)
 	 */
 	public ArrayList<ResultType> getBEIRClones(String id) {
-		String sql = "select sc.beirclone_id, sc.clone_name "
-				+ "	from structure.beir_clone sc, structure.gene sg, app.patricrefseqmapping mp "
-				+ "	where sc.beirclone_id = sg.beirclone_id "
-				+ "		and ( (lower(id_type) like '%geneid%' and geneidentifier = mp.gene_id) "
+		String sql = "select sc.beirclone_id, sc.clone_name " + "	from structure.beir_clone sc, structure.gene sg, app.patricrefseqmapping mp "
+				+ "	where sc.beirclone_id = sg.beirclone_id " + "		and ( (lower(id_type) like '%geneid%' and geneidentifier = mp.gene_id) "
 				+ "			or (id_type = 'RefSeq' and geneidentifier = protein_id) ) " + "		and mp.feature = 'CDS' "
-				+ "		and mp.patric_na_feature_id = :na_feature_id " + "	union "
-				+ "	select sc.beirclone_id, sc.clone_name "
+				+ "		and mp.patric_na_feature_id = :na_feature_id " + "	union " + "	select sc.beirclone_id, sc.clone_name "
 				+ "	from structure.beir_clone sc, structure.gene sg, app.idmapping im, app.patricrefseqmapping mp "
-				+ "	where sc.beirclone_id = sg.beirclone_id " + "		and sg.id_type = 'UniProt' "
-				+ "		and sg.geneidentifier = im.uniprotkb_accession " + "		and im.id_type = 'GI' "
-				+ "		and im.id = to_char(mp.gi_number) " + "		and mp.patric_na_feature_id = :na_feature_id ";
+				+ "	where sc.beirclone_id = sg.beirclone_id " + "		and sg.id_type = 'UniProt' " + "		and sg.geneidentifier = im.uniprotkb_accession "
+				+ "		and im.id_type = 'GI' " + "		and im.id = to_char(mp.gi_number) " + "		and mp.patric_na_feature_id = :na_feature_id ";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -1601,15 +1729,12 @@ public class DBSummary {
 	 */
 	public ArrayList<ResultType> getBEIRClonesByPDB(String id) {
 		String sql = "select sc.beirclone_id, sc.clone_name " + "		from structure.beir_clone sc, structure.gene sg "
-				+ "		where sc.beirclone_id = sg.beirclone_id " + "			and lower(id_type) like '%geneid%' "
-				+ "			and geneidentifier in ( "
+				+ "		where sc.beirclone_id = sg.beirclone_id " + "			and lower(id_type) like '%geneid%' " + "			and geneidentifier in ( "
 				+ "				select id from app.idmapping where id_type = 'GeneID' and uniprotkb_accession in ( "
-				+ "					select uniprotkb_accession from app.idmapping where id_type='PDB' and id = :pdb_id " + "				) "
-				+ "			) " + "	union " + "	select sc.beirclone_id, sc.clone_name "
-				+ "		from structure.beir_clone sc, structure.gene sg, app.idmapping im "
+				+ "					select uniprotkb_accession from app.idmapping where id_type='PDB' and id = :pdb_id " + "				) " + "			) " + "	union "
+				+ "	select sc.beirclone_id, sc.clone_name " + "		from structure.beir_clone sc, structure.gene sg, app.idmapping im "
 				+ "		where sc.beirclone_id = sg.beirclone_id " + "			and sg.id_type = 'UniProt' "
-				+ "			and sg.geneidentifier = im.uniprotkb_accession " + "			and im.id_type = 'PDB' "
-				+ "			and im.id = :pdb_id ";
+				+ "			and sg.geneidentifier = im.uniprotkb_accession " + "			and im.id_type = 'PDB' " + "			and im.id = :pdb_id ";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -1641,20 +1766,17 @@ public class DBSummary {
 	 * @return taxonomy info of genus
 	 */
 	public ResultType getGenusInTaxonomy(String id) {
-		String sql = "select lng.ncbi_tax_id, lng.name, cls.rank " + "	from ( "
-				+ "		select a.taxon_id, a.ncbi_tax_id, b.name, a.parent_id " + "		from sres.taxon a, sres.taxonname b "
-				+ "		where a.taxon_id = b.taxon_id and b.name_class = 'scientific name' "
-				+ "	) lng, cas.ncbiclassification cls " + "	where lng.ncbi_tax_id = cls.ncbi_taxon_id "
-				+ "		and cls.rank = 'genus' " + "	connect by prior parent_id = taxon_id "
-				+ "	start with ncbi_tax_id = ?";
+		String sql = "select lng.ncbi_tax_id, lng.name, cls.rank from ( " + "		select a.taxon_id, a.ncbi_tax_id, b.name, a.parent_id "
+				+ "		from sres.taxon a, sres.taxonname b " + "		where a.taxon_id = b.taxon_id and b.name_class = 'scientific name' "
+				+ "	) lng, cas.ncbiclassification cls " + "	where lng.ncbi_tax_id = cls.ncbi_taxon_id " + "		and cls.rank = 'genus' "
+				+ "	connect by prior parent_id = taxon_id start with ncbi_tax_id = ?";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
 		q.setString(0, id);
 
-		q.addScalar("ncbi_tax_id", Hibernate.INTEGER).addScalar("name", Hibernate.STRING)
-				.addScalar("rank", Hibernate.STRING);
+		q.addScalar("ncbi_tax_id", Hibernate.INTEGER).addScalar("name", Hibernate.STRING).addScalar("rank", Hibernate.STRING);
 		q.setCacheable(true);
 
 		List<?> rset = q.list();
@@ -1679,19 +1801,16 @@ public class DBSummary {
 	 * @return comments
 	 */
 	public ArrayList<ResultType> getTBAnnotation(String id) {
-		String sql = "select distinct locus_tag, property, value, evidence_code, comments, source"
-				+ "	from app.tbcap_annotation " + "	where locus_tag = :refseq_locus_tag and property != 'Interaction'"
-				+ "	order by property asc, evidence_code asc ";
+		String sql = "select distinct locus_tag, property, value, evidence_code, comments, source" + "	from app.tbcap_annotation "
+				+ "	where locus_tag = :refseq_locus_tag and property != 'Interaction'" + "	order by property asc, evidence_code asc ";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
 		q.setString("refseq_locus_tag", id);
 
-		q.addScalar("locus_tag", Hibernate.STRING).addScalar("property", Hibernate.STRING)
-				.addScalar("value", Hibernate.STRING);
-		q.addScalar("evidence_code", Hibernate.STRING).addScalar("comments", Hibernate.STRING)
-				.addScalar("source", Hibernate.STRING);
+		q.addScalar("locus_tag", Hibernate.STRING).addScalar("property", Hibernate.STRING).addScalar("value", Hibernate.STRING);
+		q.addScalar("evidence_code", Hibernate.STRING).addScalar("comments", Hibernate.STRING).addScalar("source", Hibernate.STRING);
 		// q.setCacheable(true);
 
 		List<?> rset = q.list();
@@ -1712,19 +1831,16 @@ public class DBSummary {
 		}
 
 		// get Interactions
-		sql = "select distinct locus_tag, property, value, evidence_code, comments, source"
-				+ "	from app.tbcap_annotation " + "	where locus_tag = :refseq_locus_tag and property = 'Interaction' "
-				+ "	order by value asc, evidence_code asc ";
+		sql = "select distinct locus_tag, property, value, evidence_code, comments, source" + "	from app.tbcap_annotation "
+				+ "	where locus_tag = :refseq_locus_tag and property = 'Interaction' " + "	order by value asc, evidence_code asc ";
 
 		// session = factory.getCurrentSession();
 		// session.beginTransaction();
 		q = session.createSQLQuery(sql);
 		q.setString("refseq_locus_tag", id);
 
-		q.addScalar("locus_tag", Hibernate.STRING).addScalar("property", Hibernate.STRING)
-				.addScalar("value", Hibernate.STRING);
-		q.addScalar("evidence_code", Hibernate.STRING).addScalar("comments", Hibernate.STRING)
-				.addScalar("source", Hibernate.STRING);
+		q.addScalar("locus_tag", Hibernate.STRING).addScalar("property", Hibernate.STRING).addScalar("value", Hibernate.STRING);
+		q.addScalar("evidence_code", Hibernate.STRING).addScalar("comments", Hibernate.STRING).addScalar("source", Hibernate.STRING);
 
 		rset = q.list();
 		session.getTransaction().commit();
@@ -1748,11 +1864,10 @@ public class DBSummary {
 
 	public ArrayList<ResultType> getFIGFamConservDist(int taxonId) {
 		String sql = "select grp, count(*) cnt from " + "	(select a.name, ceil(a.gcnt/b.gcnt*10) grp from "
-				+ "		(select name, count(distinct(genome_info_id)) gcnt " + "			from app.figfamsummary "
-				+ "			where ncbi_tax_id in (" + getTaxonIdsInTaxonSQL(":taxonId") + ") " + "			group by name) a, "
-				+ "		(select count(genome_info_id) gcnt " + "			from app.genomesummary "
-				+ "			where rast=1 and ncbi_tax_id in (" + getTaxonIdsInTaxonSQL(":taxonId") + ") " + "		) b " + "	) "
-				+ "group by grp " + "order by grp desc";
+				+ "		(select name, count(distinct(genome_info_id)) gcnt " + "			from app.figfamsummary " + "			where ncbi_tax_id in ("
+				+ getTaxonIdsInTaxonSQL(":taxonId") + ") " + "			group by name) a, " + "		(select count(genome_info_id) gcnt "
+				+ "			from app.genomesummary " + "			where rast=1 and ncbi_tax_id in (" + getTaxonIdsInTaxonSQL(":taxonId") + ") " + "		) b " + "	) "
+				+ "group by grp " + "order by grp";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -1780,8 +1895,7 @@ public class DBSummary {
 
 	public ResultType getFIGFamStat(int taxonId) {
 		ResultType result = new ResultType();
-		String sql = "select count(distinct name) cnt from app.figfamsummary ffs where ncbi_tax_id in ( "
-				+ getTaxonIdsInTaxonSQL(":taxonId") + ")";
+		String sql = "select count(distinct name) cnt from app.figfamsummary ffs where ncbi_tax_id in ( " + getTaxonIdsInTaxonSQL(":taxonId") + ")";
 
 		// get total, hypothetical, and functional
 		Session session = factory.getCurrentSession();
@@ -1795,8 +1909,7 @@ public class DBSummary {
 		result.put("total", total);
 
 		sql = "select count(distinct name) cnt from app.figfamsummary ffs "
-				+ "		where lower(ffs.description) like '%hypothetical%' and ncbi_tax_id in ( "
-				+ getTaxonIdsInTaxonSQL(":taxonId") + ")";
+				+ "		where lower(ffs.description) like '%hypothetical%' and ncbi_tax_id in ( " + getTaxonIdsInTaxonSQL(":taxonId") + ")";
 		q = session.createSQLQuery(sql);
 		q.setInteger("taxonId", taxonId);
 		q.addScalar("cnt", Hibernate.INTEGER).setCacheable(true);
@@ -1808,11 +1921,9 @@ public class DBSummary {
 
 		// get core vs accessory
 		sql = "select count(*) cnt from (select a.name, ceil(a.gcnt/b.gcnt*10) grp from "
-				+ "		(select name, count(distinct(genome_info_id)) gcnt from app.figfamsummary "
-				+ "			where ncbi_tax_id in (" + getTaxonIdsInTaxonSQL(":taxonId") + ") group by name) a, "
-				+ "		(select count(genome_info_id) gcnt from app.genomesummary "
-				+ "			where rast=1 and ncbi_tax_id in (" + getTaxonIdsInTaxonSQL(":taxonId") + ") ) b "
-				+ "	where a.gcnt = b.gcnt ) group by grp";
+				+ "		(select name, count(distinct(genome_info_id)) gcnt from app.figfamsummary " + "			where ncbi_tax_id in ("
+				+ getTaxonIdsInTaxonSQL(":taxonId") + ") group by name) a, " + "		(select count(genome_info_id) gcnt from app.genomesummary "
+				+ "			where rast=1 and ncbi_tax_id in (" + getTaxonIdsInTaxonSQL(":taxonId") + ") ) b " + "	where a.gcnt = b.gcnt ) group by grp";
 		q = session.createSQLQuery(sql);
 		q.setInteger("taxonId", taxonId);
 		q.addScalar("cnt", Hibernate.INTEGER).setCacheable(true);
@@ -1824,5 +1935,37 @@ public class DBSummary {
 		session.getTransaction().commit();
 
 		return result;
+	}
+
+	private class StreamCallbackHandler extends StreamingResponseCallback {
+		private BlockingQueue<SolrDocument> queue;
+
+		private long currentPosition;
+
+		private long numFound;
+
+		public StreamCallbackHandler(BlockingQueue<SolrDocument> aQueue) {
+			queue = aQueue;
+		}
+
+		@Override
+		public void streamDocListInfo(long aNumFound, long aStart, Float aMaxScore) {
+			currentPosition = aStart;
+			numFound = aNumFound;
+
+			if (numFound == 0) {
+				queue.add(new SolrDocument());
+			}
+		}
+
+		@Override
+		public void streamSolrDocument(SolrDocument aDoc) {
+			currentPosition++;
+			// System.out.println("adding doc " + currentPosition + " of " + numFound);
+			queue.add(aDoc);
+			if (currentPosition == numFound) {
+				queue.add(new SolrDocument());
+			}
+		}
 	}
 }

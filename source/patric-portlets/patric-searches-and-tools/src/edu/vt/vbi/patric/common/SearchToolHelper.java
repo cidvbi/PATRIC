@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -22,8 +22,8 @@ public class SearchToolHelper {
 
 	public static ArrayList<String> getInterproscanDatabaseList() {
 		ArrayList<String> dbList = new ArrayList<String>();
-		String[] db = { "BlastProDom", "FPrintScan", "Gene3D", "HMMPanther", "HMMPfam", "HMMPIR", "HMMSmart",
-				"HMMTigr", "ProfileScan", "ScanRegExp", "Seg", "superfamily" };
+		String[] db = { "BlastProDom", "FPrintScan", "Gene3D", "HMMPanther", "HMMPfam", "HMMPIR", "HMMSmart", "HMMTigr", "ProfileScan", "ScanRegExp",
+				"Seg", "superfamily" };
 		dbList.addAll(Arrays.asList(db));
 		return dbList;
 	}

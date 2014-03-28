@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -33,21 +33,20 @@ import edu.vt.vbi.patric.dao.ResultType;
 
 @SuppressWarnings("unchecked")
 public class DBPathways {
-	private final static String[] hexDigits = { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "0A", "0B",
-			"0C", "0D", "0E", "0F", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "1A", "1B", "1C", "1D",
-			"1E", "1F", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "2A", "2B", "2C", "2D", "2E", "2F",
-			"30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "3A", "3B", "3C", "3D", "3E", "3F", "40", "41",
-			"42", "43", "44", "45", "46", "47", "48", "49", "4A", "4B", "4C", "4D", "4E", "4F", "50", "51", "52", "53",
-			"54", "55", "56", "57", "58", "59", "5A", "5B", "5C", "5D", "5E", "5F", "60", "61", "62", "63", "64", "65",
-			"66", "67", "68", "69", "6A", "6B", "6C", "6D", "6E", "6F", "70", "71", "72", "73", "74", "75", "76", "77",
-			"78", "79", "7A", "7B", "7C", "7D", "7E", "7F", "80", "81", "82", "83", "84", "85", "86", "87", "88", "89",
-			"8A", "8B", "8C", "8D", "8E", "8F", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "9A", "9B",
-			"9C", "9D", "9E", "9F", "A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "AA", "AB", "AC", "AD",
-			"AE", "AF", "B0", "B1", "B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9", "BA", "BB", "BC", "BD", "BE", "BF",
-			"C0", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8", "C9", "CA", "CB", "CC", "CD", "CE", "CF", "D0", "D1",
-			"D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "DA", "DB", "DC", "DD", "DE", "DF", "E0", "E1", "E2", "E3",
-			"E4", "E5", "E6", "E7", "E8", "E9", "EA", "EB", "EC", "ED", "EE", "EF", "F0", "F1", "F2", "F3", "F4", "F5",
-			"F6", "F7", "F8", "F9", "FA", "FB", "FC", "FD", "FE", "FF" };
+	private final static String[] hexDigits = { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "0A", "0B", "0C", "0D", "0E", "0F", "10",
+			"11", "12", "13", "14", "15", "16", "17", "18", "19", "1A", "1B", "1C", "1D", "1E", "1F", "20", "21", "22", "23", "24", "25", "26", "27",
+			"28", "29", "2A", "2B", "2C", "2D", "2E", "2F", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "3A", "3B", "3C", "3D", "3E",
+			"3F", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "4A", "4B", "4C", "4D", "4E", "4F", "50", "51", "52", "53", "54", "55",
+			"56", "57", "58", "59", "5A", "5B", "5C", "5D", "5E", "5F", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "6A", "6B", "6C",
+			"6D", "6E", "6F", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "7A", "7B", "7C", "7D", "7E", "7F", "80", "81", "82", "83",
+			"84", "85", "86", "87", "88", "89", "8A", "8B", "8C", "8D", "8E", "8F", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99", "9A",
+			"9B", "9C", "9D", "9E", "9F", "A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "A9", "AA", "AB", "AC", "AD", "AE", "AF", "B0", "B1",
+			"B2", "B3", "B4", "B5", "B6", "B7", "B8", "B9", "BA", "BB", "BC", "BD", "BE", "BF", "C0", "C1", "C2", "C3", "C4", "C5", "C6", "C7", "C8",
+			"C9", "CA", "CB", "CC", "CD", "CE", "CF", "D0", "D1", "D2", "D3", "D4", "D5", "D6", "D7", "D8", "D9", "DA", "DB", "DC", "DD", "DE", "DF",
+			"E0", "E1", "E2", "E3", "E4", "E5", "E6", "E7", "E8", "E9", "EA", "EB", "EC", "ED", "EE", "EF", "F0", "F1", "F2", "F3", "F4", "F5", "F6",
+			"F7", "F8", "F9", "FA", "FB", "FC", "FD", "FE", "FF" };
+
+	protected final int SQL_TIMEOUT = 5 * 60;
 
 	protected static SessionFactory factory;
 
@@ -55,8 +54,7 @@ public class DBPathways {
 		factory = sf;
 	}
 
-	public ArrayList<ResultType> getPathwayList(HashMap<String, String> key, HashMap<String, String> sort, int start,
-			int end) {
+	public ArrayList<ResultType> getPathwayList(HashMap<String, String> key, HashMap<String, String> sort, int start, int end) {
 
 		return getFeaturePathwayList(key, sort, start, end);
 	}
@@ -90,14 +88,13 @@ public class DBPathways {
 
 	public String getFeaturePathwayCount(HashMap<String, String> key) {
 
-		String sql = "SELECT count(distinct ps.pathway_id) " + "	FROM app.pathwaysummary ps WHERE 1=1 "
-				+ getPathwaySQL(key);
+		String sql = "SELECT count(distinct ps.pathway_id) " + "	FROM app.pathwaysummary ps WHERE 1=1 " + getPathwaySQL(key);
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
 		q = bindCompSQLValues(q, key);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		Object obj = q.uniqueResult();
 		session.getTransaction().commit();
 
@@ -105,16 +102,13 @@ public class DBPathways {
 
 	}
 
-	public ArrayList<ResultType> getFeaturePathwayList(HashMap<String, String> key, HashMap<String, String> sort,
-			int start, int end) {
+	public ArrayList<ResultType> getFeaturePathwayList(HashMap<String, String> key, HashMap<String, String> sort, int start, int end) {
 
-		String sql = "SELECT" + "	distinct(ps.pathway_id), " + "	ps.na_feature_id, " + "	ps.pathway_name, "
-				+ "	ps.pathway_class, " + "	ps.algorithm, " + "	ps.ec_number, " + "	ps.occurrence, " + "	ps.ec_name, "
-				+ "	ps.ncbi_tax_id," + "	ps.genome_info_id " + "	FROM app.pathwaysummary ps " + "	WHERE 1=1 "
-				+ getPathwaySQL(key);
+		String sql = "SELECT" + "	distinct(ps.pathway_id), " + "	ps.na_feature_id, " + "	ps.pathway_name, " + "	ps.pathway_class, "
+				+ "	ps.algorithm, " + "	ps.ec_number, " + "	ps.occurrence, " + "	ps.ec_name, " + "	ps.ncbi_tax_id," + "	ps.genome_info_id "
+				+ "	FROM app.pathwaysummary ps " + "	WHERE 1=1 " + getPathwaySQL(key);
 
-		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction")
-				&& sort.get("direction") != null) {
+		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction") && sort.get("direction") != null) {
 			sql += " ORDER BY " + sort.get("field") + " " + sort.get("direction");
 		}
 		else {
@@ -125,7 +119,7 @@ public class DBPathways {
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
 		q = bindCompSQLValues(q, key);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 
 		if (end > 0) {
 			q.setMaxResults(end);
@@ -180,16 +174,15 @@ public class DBPathways {
 
 	public JSONArray getListOfPathwayNameList(HashMap<String, String> key) {
 
-		String sql = "SELECT distinct ps.pathway_id pid, ps.pathway_name pname" + "	FROM app.pathwaysummary ps, "
-				+ CompleteGenomeSQL(key) + "	WHERE ps.genome_info_id = gs.genome_info_id " + getPathwaySQL(key);
+		String sql = "SELECT distinct ps.pathway_id pid, ps.pathway_name pname" + "	FROM app.pathwaysummary ps, " + CompleteGenomeSQL(key)
+				+ "	WHERE ps.genome_info_id = gs.genome_info_id " + getPathwaySQL(key);
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
-		SQLQuery q = session.createSQLQuery(sql).addScalar("pid", Hibernate.STRING)
-				.addScalar("pname", Hibernate.STRING);
+		SQLQuery q = session.createSQLQuery(sql).addScalar("pid", Hibernate.STRING).addScalar("pname", Hibernate.STRING);
 		q = bindCompSQLValues(q, key);
 		q.setCacheable(true);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		List<?> rset = q.list();
 		session.getTransaction().commit();
 
@@ -214,14 +207,14 @@ public class DBPathways {
 
 	public JSONArray getListOfPathwayParentList(HashMap<String, String> key) {
 
-		String sql = "SELECT distinct(ps.pathway_class) pclass" + "	FROM app.pathwaysummary ps, "
-				+ CompleteGenomeSQL(key) + "	WHERE ps.genome_info_id = gs.genome_info_id " + getPathwaySQL(key);
+		String sql = "SELECT distinct(ps.pathway_class) pclass" + "	FROM app.pathwaysummary ps, " + CompleteGenomeSQL(key)
+				+ "	WHERE ps.genome_info_id = gs.genome_info_id " + getPathwaySQL(key);
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql).addScalar("pclass", Hibernate.STRING);
 		q = bindCompSQLValues(q, key);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		q.setCacheable(true);
 		List<?> rset = q.list();
 		session.getTransaction().commit();
@@ -255,7 +248,7 @@ public class DBPathways {
 		SQLQuery q = session.createSQLQuery(sql).addScalar("ecnum", Hibernate.STRING);
 		q.setCacheable(true);
 		q = bindCompSQLValues(q, key);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		List<?> rset = q.list();
 		session.getTransaction().commit();
 
@@ -282,16 +275,15 @@ public class DBPathways {
 
 		HashMap<String, String> key_clone = (HashMap<String, String>) key.clone();
 		key_clone.remove("algorithm");
-		String sql = "SELECT distinct(ps.algorithm) alg" + "	FROM app.pathwaysummary ps, "
-				+ CompleteGenomeSQL(key_clone) + "	WHERE ps.genome_info_id = gs.genome_info_id "
-				+ getPathwaySQL(key_clone);
+		String sql = "SELECT distinct(ps.algorithm) alg" + "	FROM app.pathwaysummary ps, " + CompleteGenomeSQL(key_clone)
+				+ "	WHERE ps.genome_info_id = gs.genome_info_id " + getPathwaySQL(key_clone);
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql).addScalar("alg", Hibernate.STRING);
 		q.setCacheable(true);
 		q = bindCompSQLValues(q, key_clone);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		List<?> rset = q.list();
 		session.getTransaction().commit();
 
@@ -327,7 +319,7 @@ public class DBPathways {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		List<?> rset = q.list();
 		session.getTransaction().commit();
 
@@ -377,13 +369,13 @@ public class DBPathways {
 		}
 		// End of validating na_feature_id
 
-		String sql = "SELECT distinct ps.ec_number, ps.ec_name, ps.occurrence " + "	FROM app.pathwaysummary ps "
-				+ "	WHERE  ps.na_feature_id = '" + na_feature_id + "'" + "	AND  ps.pathway_id = '" + map + "'";
+		String sql = "SELECT distinct ps.ec_number, ps.ec_name, ps.occurrence " + "	FROM app.pathwaysummary ps " + "	WHERE  ps.na_feature_id = '"
+				+ na_feature_id + "'" + "	AND  ps.pathway_id = '" + map + "'";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		List<?> rset = q.list();
 		session.getTransaction().commit();
 
@@ -404,8 +396,8 @@ public class DBPathways {
 
 	public String getMapSQL(HashMap<String, String> key) {
 
-		String sql = "	FROM app.pathwaysummary ps, sres.ecpathwayenzymeclass d"
-				+ "	WHERE d.ec_pathway_id = ps.ec_pathway_id " + "	AND ps.ec_number = d.map_name ";
+		String sql = "	FROM app.pathwaysummary ps, sres.ecpathwayenzymeclass d" + "	WHERE d.ec_pathway_id = ps.ec_pathway_id "
+				+ "	AND ps.ec_number = d.map_name ";
 
 		if (key.get("cType").equals("feature")) {
 			sql = sql + "	AND ps.na_feature_id = " + key.get("cId");
@@ -452,13 +444,13 @@ public class DBPathways {
 
 		ArrayList<ResultType> results = new ArrayList<ResultType>();
 
-		String sql = "SELECT distinct d.coordinate_x, d.coordinate_y, ps.ec_number, ps.ec_name, ps.algorithm "
-				+ getMapSQL(key) + "	AND d.map_type = 'enzyme'";
+		String sql = "SELECT distinct d.coordinate_x, d.coordinate_y, ps.ec_number, ps.ec_name, ps.algorithm " + getMapSQL(key)
+				+ "	AND d.map_type = 'enzyme'";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		List<?> rset = q.list();
 		session.getTransaction().commit();
 
@@ -483,15 +475,15 @@ public class DBPathways {
 	public ArrayList<ResultType> getMapIdsInMap(String map) {
 
 		String sql = "SELECT d.map_name, d.coordinate_x, d.coordinate_y, d.map_width, d.map_height"
-				+ "	FROM sres.ecpathwayenzymeclass d, sres.ecpathway c" + "	WHERE d.map_type = 'path'"
-				+ "	AND d.ec_pathway_id = c.ec_pathway_id " + " 	AND c.source_id= '" + map + "'";
+				+ "	FROM sres.ecpathwayenzymeclass d, sres.ecpathway c" + "	WHERE d.map_type = 'path'" + "	AND d.ec_pathway_id = c.ec_pathway_id "
+				+ " 	AND c.source_id= '" + map + "'";
 
 		ArrayList<ResultType> results = new ArrayList<ResultType>();
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		List<?> rset = q.list();
 		session.getTransaction().commit();
 
@@ -516,16 +508,15 @@ public class DBPathways {
 	public ArrayList<ResultType> getAllCoordinatesInMap(String map) {
 
 		String sql = "SELECT d.coordinate_x, d.coordinate_y, e.ec_number, e.description"
-				+ "	FROM sres.ecpathwayenzymeclass d, sres.enzymeclass e, sres.ecpathway c"
-				+ "	WHERE d.map_type = 'enzyme'" + "	AND e.enzyme_class_id=d.enzyme_class_id	" + "	AND c.source_id = '"
-				+ map + "'" + "	AND c.ec_pathway_id = d.ec_pathway_id";
+				+ "	FROM sres.ecpathwayenzymeclass d, sres.enzymeclass e, sres.ecpathway c" + "	WHERE d.map_type = 'enzyme'"
+				+ "	AND e.enzyme_class_id=d.enzyme_class_id	" + "	AND c.source_id = '" + map + "'" + "	AND c.ec_pathway_id = d.ec_pathway_id";
 
 		ArrayList<ResultType> results = new ArrayList<ResultType>();
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		List<?> rset = q.list();
 		session.getTransaction().commit();
 
@@ -546,8 +537,7 @@ public class DBPathways {
 
 	}
 
-	public ArrayList<ResultType> getGenomeNaFeatureIdList(String cId, String cType, String map, String algorithm,
-			String ec_number, String featureList) {
+	public ArrayList<ResultType> getGenomeNaFeatureIdList(String cId, String cType, String map, String algorithm, String ec_number, String featureList) {
 
 		String sql = "	select	distinct(ps.na_feature_id) genes, df.source_id locustags"
 				+ "	FROM app.pathwaysummary ps, app.dnafeature  df WHERE ps.na_feature_id = df.na_feature_id ";
@@ -575,12 +565,12 @@ public class DBPathways {
 		if (featureList != null && !featureList.equals("")) {
 			sql += " AND (ps.na_feature_id in (";
 
-			if (featureList.split(",").length > 1000) {
+			if (featureList.split(",").length > 500) {
 
 				String[] featureListArray = featureList.split(",");
 
 				for (int i = 0; i < featureListArray.length; i++) {
-					if (i % 1000 == 0)
+					if (i % 500 == 0)
 						sql = sql.substring(0, sql.length() - 1) + ") OR ps.na_feature_id in (";
 
 					sql += featureListArray[i] + ",";
@@ -601,7 +591,7 @@ public class DBPathways {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		List<?> rset = q.list();
 		session.getTransaction().commit();
 
@@ -629,7 +619,6 @@ public class DBPathways {
 		String sql = "	(SELECT genome_info_id from app.genomesummary" + "	WHERE complete in ('Complete', 'WGS') ";
 
 		if (key.containsKey("genomeId") && key.get("genomeId").toString().contains(",")) {
-			System.out.println("genomeId " + key.get("genomeId"));
 			List<?> lstGId = Arrays.asList(key.get("genomeId").toString().split(","));
 			sql += " AND genome_info_id in (";
 
@@ -653,11 +642,9 @@ public class DBPathways {
 
 		}
 		else if (key.containsKey("genomeId") && !key.get("genomeId").toString().equalsIgnoreCase("")) {
-			System.out.println("genomeId " + key.get("genomeId"));
 			sql += " AND genome_info_id = :genomeId ";
 		}
 		else if (key.containsKey("taxonId") && !key.get("taxonId").toString().equalsIgnoreCase("")) {
-			System.out.println("genomeId " + key.get("taxonId"));
 			sql += " AND ncbi_tax_id in (select ncbi_tax_id from sres.taxon connect by prior taxon_id = parent_id start with ncbi_tax_id = :taxonId)";
 		}
 
@@ -758,8 +745,7 @@ public class DBPathways {
 		Object obj = null;
 		SQLQuery q = null;
 
-		String sql = " SELECT count(distinct(genome_info_id)) cnt from app.genomesummary "
-				+ "  WHERE complete in ('Complete', 'WGS') " + "  AND ";
+		String sql = " SELECT count(distinct(genome_info_id)) cnt from app.genomesummary " + "  WHERE complete in ('Complete', 'WGS') " + "  AND ";
 		if (cType.equals("taxon") || cType.equals("genome")) {
 
 			if (cType.equals("taxon")) {
@@ -772,7 +758,6 @@ public class DBPathways {
 			q = session.createSQLQuery(sql).addScalar("cnt", Hibernate.INTEGER);
 			q.setString(0, cId);
 			q.setCacheable(true);
-
 		}
 		else if (cType.equals("genomelist")) {
 
@@ -798,7 +783,7 @@ public class DBPathways {
 			}
 			sql += ") ";
 		}
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		obj = q.uniqueResult();
 		session.getTransaction().commit();
 
@@ -861,8 +846,7 @@ public class DBPathways {
 		return sql;
 	}
 
-	public ArrayList<ResultType> getCompPathwayPathwayList(HashMap<String, String> key, HashMap<String, String> sort,
-			int start, int end) {
+	public ArrayList<ResultType> getCompPathwayPathwayList(HashMap<String, String> key, HashMap<String, String> sort, int start, int end) {
 
 		String sql = "";
 
@@ -870,8 +854,7 @@ public class DBPathways {
 
 		sql += "	GROUP BY pathway_id, pathway_name, pathway_class, algorithm";
 
-		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction")
-				&& sort.get("direction") != null) {
+		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction") && sort.get("direction") != null) {
 
 			sql += " ORDER BY " + sort.get("field") + " " + sort.get("direction");
 
@@ -885,7 +868,7 @@ public class DBPathways {
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
 		q = bindCompSQLValues(q, key);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 
 		if (end > 0) {
 			q.setMaxResults(end);
@@ -964,7 +947,7 @@ public class DBPathways {
 		SQLQuery q = session.createSQLQuery(sql).addScalar("cnt", Hibernate.INTEGER);
 		q.setCacheable(true);
 		q = bindCompSQLValues(q, key);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 
 		Object obj = q.uniqueResult();
 		session.getTransaction().commit();
@@ -988,10 +971,8 @@ public class DBPathways {
 			sql += "SELECT count(distinct(ps.pathway_id || ps.algorithm || ps.ec_number)) cnt ";
 		}
 		else if (where.equals("function")) {
-			sql += "select" + "	distinct ps.pathway_id, " + "	ps.pathway_name, " + "	ps.pathway_class, "
-					+ "	ps.algorithm, " + "	ps.ec_number, " + "	ps.ec_name,"
-					+ "	count(distinct(ps.genome_info_id)) genome_count, "
-					+ "	count(distinct(ps.na_feature_id)) gene_count ";
+			sql += "select" + "	distinct ps.pathway_id, " + "	ps.pathway_name, " + "	ps.pathway_class, " + "	ps.algorithm, " + "	ps.ec_number, "
+					+ "	ps.ec_name," + "	count(distinct(ps.genome_info_id)) genome_count, " + "	count(distinct(ps.na_feature_id)) gene_count ";
 		}
 
 		sql += "	FROM app.pathwaysummary ps," + CompleteGenomeSQL(key);
@@ -1001,16 +982,14 @@ public class DBPathways {
 		return sql;
 	}
 
-	public ArrayList<ResultType> getCompPathwayECList(HashMap<String, String> key, HashMap<String, String> sort,
-			int start, int end) {
+	public ArrayList<ResultType> getCompPathwayECList(HashMap<String, String> key, HashMap<String, String> sort, int start, int end) {
 		String sql = "";
 
 		sql += getCompPathwayECSQL(key, "function");
 
 		sql += "	GROUP BY pathway_id, pathway_name, pathway_class, algorithm, ec_number, ec_name";
 
-		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction")
-				&& sort.get("direction") != null) {
+		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction") && sort.get("direction") != null) {
 
 			sql += " ORDER BY " + sort.get("field") + " " + sort.get("direction");
 
@@ -1024,7 +1003,7 @@ public class DBPathways {
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
 		q = bindCompSQLValues(q, key);
-		q.setTimeout(2000);
+		q.setTimeout(SQL_TIMEOUT);
 
 		if (end > 0) {
 			q.setMaxResults(end);
@@ -1088,7 +1067,7 @@ public class DBPathways {
 		SQLQuery q = session.createSQLQuery(sql).addScalar("cnt", Hibernate.INTEGER);
 		q.setCacheable(true);
 		q = bindCompSQLValues(q, key);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 
 		Object obj = q.uniqueResult();
 		session.getTransaction().commit();
@@ -1125,10 +1104,9 @@ public class DBPathways {
 		}
 		else if (where.equals("function")) {
 
-			sql += "select" + "	distinct ps.genome_info_id, " + "	df.genome_name, " + "	df.accession, "
-					+ "	ps.na_feature_id, " + "	df.source_id as locus_tag, " + "	df.gene, " + "	df.product, "
-					+ "	ps.pathway_id, " + "	ps.pathway_name, " + "	ps.pathway_class, " + "	ps.algorithm, "
-					+ "	ps.ec_number, " + "	ps.ec_name ";
+			sql += "select" + "	distinct ps.genome_info_id, " + "	df.genome_name, " + "	df.accession, " + "	ps.na_feature_id, "
+					+ "	df.source_id as locus_tag, " + "	df.gene, " + "	df.product, " + "	ps.pathway_id, " + "	ps.pathway_name, "
+					+ "	ps.pathway_class, " + "	ps.algorithm, " + "	ps.ec_number, " + "	ps.ec_name ";
 
 			sql += "	FROM app.dnafeature df, app.pathwaysummary ps, " + CompleteGenomeSQL(key);
 			sql += "	WHERE df.na_feature_id = ps.na_feature_id";
@@ -1138,13 +1116,12 @@ public class DBPathways {
 		}
 		else if (where.equals("download_from_heatmap_feature")) {
 
-			sql += "select" + "	distinct df.genome_info_id, " + "	df.genome_name, " + "	df.accession, "
-					+ "	df.na_feature_id, " + "	df.na_sequence_id, " + "	df.name, " + "	df.source_id as locus_tag, "
+			sql += "select" + "	distinct df.genome_info_id, " + "	df.genome_name, " + "	df.accession, " + "	df.na_feature_id, "
+					+ "	df.na_sequence_id, " + "	df.name, " + "	df.source_id as locus_tag, "
 					+ "	decode(df.algorithm,'Curation','Legacy BRC','RAST','PATRIC','RefSeq') as algorithm, "
-					+ "	decode(df.is_reversed,1,'-','+') as strand, " + "	df.debug_field, " + "	df.start_min, "
-					+ "	df.start_max, " + "	df.end_min, " + "	df.end_max, " + "	df.na_length, " + "	df.product, "
-					+ "	df.gene, " + "	df.aa_length, " + "	df.is_pseudo, " + "	df.bound_moiety, " + "	df.anticodon,"
-					+ " 	df.protein_id, " + "	ps.pathway_id, " + "	ps.pathway_name, " + "	ps.ec_number, "
+					+ "	decode(df.is_reversed,1,'-','+') as strand, " + "	df.debug_field, " + "	df.start_min, " + "	df.start_max, " + "	df.end_min, "
+					+ "	df.end_max, " + "	df.na_length, " + "	df.product, " + "	df.gene, " + "	df.aa_length, " + "	df.is_pseudo, "
+					+ "	df.bound_moiety, " + "	df.anticodon," + " 	df.protein_id, " + "	ps.pathway_id, " + "	ps.pathway_name, " + "	ps.ec_number, "
 					+ "	ps.ec_name ";
 
 			sql += "	FROM app.dnafeature df, app.pathwaysummary ps, " + CompleteGenomeSQL(key);
@@ -1154,8 +1131,7 @@ public class DBPathways {
 		return sql;
 	}
 
-	public ArrayList<ResultType> getCompPathwayFeatureList(HashMap<String, String> key, HashMap<String, String> sort,
-			int start, int end) {
+	public ArrayList<ResultType> getCompPathwayFeatureList(HashMap<String, String> key, HashMap<String, String> sort, int start, int end) {
 
 		String sql = "";
 		HashMap<?, ?> key_clone = null;
@@ -1178,8 +1154,7 @@ public class DBPathways {
 			sql += getCompPathwayFeatureSQL(key, "function");
 		}
 
-		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction")
-				&& sort.get("direction") != null) {
+		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction") && sort.get("direction") != null) {
 			sql += " ORDER BY " + sort.get("field") + " " + sort.get("direction");
 		}
 		else {
@@ -1193,7 +1168,7 @@ public class DBPathways {
 			q = bindCompSQLValues(q, key_clone);
 		else
 			q = bindCompSQLValues(q, key);
-		q.setTimeout(2000);
+		q.setTimeout(SQL_TIMEOUT);
 
 		if (end > 0) {
 			q.setMaxResults(end);
@@ -1313,7 +1288,7 @@ public class DBPathways {
 			q = bindCompSQLValues(q, key_clone);
 		else
 			q = bindCompSQLValues(q, key);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 
 		Object obj = q.uniqueResult();
 		session.getTransaction().commit();
@@ -1329,8 +1304,7 @@ public class DBPathways {
 
 	public ArrayList<ResultType> getCompPathwayFeatureCoordinates(HashMap<String, String> key, int start, int end) {
 
-		String sql = "SELECT distinct d.map_name, d.coordinate_x, d.coordinate_y "
-				+ "	FROM sres.ecpathwayenzymeclass d, app.pathwaysummary ps ";
+		String sql = "SELECT distinct d.map_name, d.coordinate_x, d.coordinate_y " + "	FROM sres.ecpathwayenzymeclass d, app.pathwaysummary ps ";
 
 		List<?> lstGId = Arrays.asList(key.get("feature_info_id").toString().split(","));
 		sql += "	WHERE ps.na_feature_id in (";
@@ -1353,13 +1327,12 @@ public class DBPathways {
 		}
 		sql += ") ";
 
-		sql += " AND ps.ec_number = d.map_name" + "	AND d.ec_pathway_id = ps.ec_pathway_id"
-				+ "	AND ps.pathway_id = :map ";
+		sql += " AND ps.ec_number = d.map_name" + "	AND d.ec_pathway_id = ps.ec_pathway_id" + "	AND ps.pathway_id = :map ";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		q.setString("map", key.get("map"));
 
 		ScrollableResults scr = q.scroll();
@@ -1390,9 +1363,8 @@ public class DBPathways {
 
 	public ArrayList<ResultType> getCompPathwayEcCoordinates(HashMap<String, String> key, int start, int end) {
 
-		String sql = "SELECT distinct d.map_name, d.coordinate_x, d.coordinate_y "
-				+ "	FROM sres.ecpathwayenzymeclass d, app.pathwaysummary ps " + "	WHERE ps.ec_number = d.map_name "
-				+ "	AND d.ec_pathway_id = ps.ec_pathway_id" + "	AND d.map_name = :ec_number"
+		String sql = "SELECT distinct d.map_name, d.coordinate_x, d.coordinate_y " + "	FROM sres.ecpathwayenzymeclass d, app.pathwaysummary ps "
+				+ "	WHERE ps.ec_number = d.map_name " + "	AND d.ec_pathway_id = ps.ec_pathway_id" + "	AND d.map_name = :ec_number"
 				+ "	AND	ps.pathway_id = :map";
 
 		Session session = factory.getCurrentSession();
@@ -1400,7 +1372,7 @@ public class DBPathways {
 		SQLQuery q = session.createSQLQuery(sql);
 		q.setString("ec_number", key.get("ec_number"));
 		q.setString("map", key.get("map"));
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		ScrollableResults scr = q.scroll();
 		ArrayList<ResultType> results = new ArrayList<ResultType>();
 
@@ -1430,9 +1402,8 @@ public class DBPathways {
 	public ArrayList<ResultType> getCompPathwayCoordinates(HashMap<String, String> key, int start, int end) {
 
 		String sql = "SELECT distinct d.map_name, d.coordinate_x, d.coordinate_y, ps.algorithm, ps.ec_name, "
-				+ "	count(distinct(ps.genome_info_id)) genome_count "
-				+ "	FROM sres.ecpathwayenzymeclass d, app.pathwaysummary ps, " + CompleteGenomeSQL(key)
-				+ "	WHERE ps.genome_info_id = gs.genome_info_id " + "	AND ps.ec_number = d.map_name "
+				+ "	count(distinct(ps.genome_info_id)) genome_count " + "	FROM sres.ecpathwayenzymeclass d, app.pathwaysummary ps, "
+				+ CompleteGenomeSQL(key) + "	WHERE ps.genome_info_id = gs.genome_info_id " + "	AND ps.ec_number = d.map_name "
 				+ "   AND ps.ec_pathway_id = d.ec_pathway_id " + "	AND d.map_type = 'enzyme' ";
 
 		sql += CompSQLConditions(key);
@@ -1443,7 +1414,7 @@ public class DBPathways {
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
 		q = bindCompSQLValues(q, key);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		ScrollableResults scr = q.scroll();
 		ArrayList<ResultType> results = new ArrayList<ResultType>();
 
@@ -1477,9 +1448,8 @@ public class DBPathways {
 
 		String sql = "";
 
-		sql += "SELECT " + "	distinct ps.pathway_id, " + "	ps.pathway_name, " + "	ps.algorithm "
-				+ "	FROM app.pathwaysummary ps, " + CompleteGenomeSQL(key)
-				+ "	WHERE ps.genome_info_id = gs.genome_info_id ";
+		sql += "SELECT " + "	distinct ps.pathway_id, " + "	ps.pathway_name, " + "	ps.algorithm " + "	FROM app.pathwaysummary ps, "
+				+ CompleteGenomeSQL(key) + "	WHERE ps.genome_info_id = gs.genome_info_id ";
 		sql += CompSQLConditions(key);
 
 		return sql;
@@ -1487,9 +1457,8 @@ public class DBPathways {
 
 	public ArrayList<ResultType> getCompPathwayPathwayIds(HashMap<String, String> key, int start, int end) {
 
-		String sql = "SELECT " + "	distinct ps.pathway_id, " + "	ps.pathway_name, " + "	ps.algorithm "
-				+ "	FROM app.pathwaysummary ps, " + CompleteGenomeSQL(key)
-				+ "	WHERE ps.genome_info_id = gs.genome_info_id ";
+		String sql = "SELECT " + "	distinct ps.pathway_id, " + "	ps.pathway_name, " + "	ps.algorithm " + "	FROM app.pathwaysummary ps, "
+				+ CompleteGenomeSQL(key) + "	WHERE ps.genome_info_id = gs.genome_info_id ";
 
 		sql += CompSQLConditions(key);
 
@@ -1497,7 +1466,7 @@ public class DBPathways {
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
 		q = bindCompSQLValues(q, key);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		ScrollableResults scr = q.scroll();
 		ArrayList<ResultType> results = new ArrayList<ResultType>();
 
@@ -1535,7 +1504,7 @@ public class DBPathways {
 		SQLQuery q = session.createSQLQuery(sql).addScalar("cnt", Hibernate.INTEGER);
 		q.setCacheable(true);
 		q = bindCompSQLValues(q, key);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		Object obj = q.uniqueResult();
 		session.getTransaction().commit();
 
@@ -1554,7 +1523,7 @@ public class DBPathways {
 		SQLQuery q = session.createSQLQuery(sql).addScalar("cnt", Hibernate.INTEGER);
 		q.setCacheable(true);
 		q = bindCompSQLValues(q, key);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		Object obj = q.uniqueResult();
 		session.getTransaction().commit();
 
@@ -1564,8 +1533,8 @@ public class DBPathways {
 
 	public int getDistinctCompPathwayFeatureBreadCrumb(HashMap<String, String> key) {
 
-		String sql = "select count(distinct(ps.na_feature_id)) cnt FROM app.pathwaysummary ps, "
-				+ CompleteGenomeSQL(key) + "	WHERE ps.genome_info_id = gs.genome_info_id ";
+		String sql = "select count(distinct(ps.na_feature_id)) cnt FROM app.pathwaysummary ps, " + CompleteGenomeSQL(key)
+				+ "	WHERE ps.genome_info_id = gs.genome_info_id ";
 		sql += CompSQLConditions(key);
 
 		Session session = factory.getCurrentSession();
@@ -1573,7 +1542,7 @@ public class DBPathways {
 		SQLQuery q = session.createSQLQuery(sql).addScalar("cnt", Hibernate.INTEGER);
 		q.setCacheable(true);
 		q = bindCompSQLValues(q, key);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		Object obj = q.uniqueResult();
 
 		session.getTransaction().commit();
@@ -1583,8 +1552,8 @@ public class DBPathways {
 
 	public ArrayList<ResultType> EC2ECProperties(String ec_number, String map) {
 
-		String sql = "SELECT distinct ps.ec_name, ps.occurrence " + "	FROM app.pathwaysummary ps "
-				+ "	WHERE  ps.ec_number = ?" + "	AND  ps.pathway_id = ?" + "	GROUP BY ps.ec_name, ps.occurrence";
+		String sql = "SELECT distinct ps.ec_name, ps.occurrence " + "	FROM app.pathwaysummary ps " + "	WHERE  ps.ec_number = ?"
+				+ "	AND  ps.pathway_id = ?" + "	GROUP BY ps.ec_name, ps.occurrence";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -1592,7 +1561,7 @@ public class DBPathways {
 		// q.setCacheable(true);
 		q.setString(0, ec_number);
 		q.setString(1, map);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		List<?> rset = q.list();
 		session.getTransaction().commit();
 
@@ -1613,8 +1582,7 @@ public class DBPathways {
 
 	public ArrayList<ResultType> getTaxonGenomeCount(String cId, String cType) {
 
-		String sql = "	SELECT genome_info_id, rast, brc, refseq from app.genomesummary"
-				+ "	WHERE complete in ('Complete', 'WGS') ";
+		String sql = "	SELECT genome_info_id, rast, brc, refseq from app.genomesummary" + "	WHERE complete in ('Complete', 'WGS') ";
 
 		if (cType.equals("genomelist")) {
 			List<?> lstGId = Arrays.asList(cId.split(","));
@@ -1647,14 +1615,14 @@ public class DBPathways {
 			sql += " AND genome_info_id = " + cId;
 		}
 		else if (cType.equals("taxon")) {
-			sql += " AND ncbi_tax_id in (select ncbi_tax_id from sres.taxon connect by prior taxon_id = parent_id start with ncbi_tax_id = "
-					+ cId + ")";
+			sql += " AND ncbi_tax_id in (select ncbi_tax_id from sres.taxon connect by prior taxon_id = parent_id start with ncbi_tax_id = " + cId
+					+ ")";
 		}
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		List<?> rset = q.list();
 		session.getTransaction().commit();
 
@@ -1695,8 +1663,7 @@ public class DBPathways {
 	public int getCompleteGenomeCount(String genomeId) {
 		Object obj = null;
 
-		String sql = "select count(distinct(genome_info_id)) cnt " + "	from app.genomesummary gs"
-				+ "	where gs.genome_info_id in (";
+		String sql = "select count(distinct(genome_info_id)) cnt " + "	from app.genomesummary gs" + "	where gs.genome_info_id in (";
 
 		List<?> lstGId = Arrays.asList(genomeId.split(","));
 
@@ -1733,7 +1700,7 @@ public class DBPathways {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql).addScalar("cnt", Hibernate.INTEGER);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		q.setCacheable(true);
 		obj = q.uniqueResult();
 		session.getTransaction().commit();
@@ -1749,16 +1716,13 @@ public class DBPathways {
 		String sql = "";
 
 		sql += " SELECT distinct ps.genome_info_id, ps.algorithm, ps.ec_number, ps.ec_name, count(distinct(ps.na_feature_id)) gene_count "
-				+ "	FROM app.pathwaysummary ps, "
-				+ CompleteGenomeSQL(key)
-				+ "	WHERE ps.genome_info_id = gs.genome_info_id "
-				+ CompSQLConditions(key)
+				+ "	FROM app.pathwaysummary ps, " + CompleteGenomeSQL(key) + "	WHERE ps.genome_info_id = gs.genome_info_id " + CompSQLConditions(key)
 				+ " GROUP BY ps.genome_info_id, ps.algorithm, ps.ec_number, ps.ec_name";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		q = bindCompSQLValues(q, key);
 
 		ScrollableResults scr = q.scroll();
@@ -1796,8 +1760,8 @@ public class DBPathways {
 
 		String sql = "";
 
-		sql += "	SELECT distinct ps.genome_info_id, ps.genome_name" + "	FROM app.genomesummary ps, "
-				+ CompleteGenomeSQL(key) + "	WHERE ps.genome_info_id = gs.genome_info_id ";
+		sql += "	SELECT distinct ps.genome_info_id, ps.genome_name" + "	FROM app.genomesummary ps, " + CompleteGenomeSQL(key)
+				+ "	WHERE ps.genome_info_id = gs.genome_info_id ";
 
 		if (key.containsKey("algorithm")) {
 
@@ -1829,7 +1793,7 @@ public class DBPathways {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		q = bindCompSQLValues(q, key);
 
 		ScrollableResults scr = q.scroll();
@@ -1865,28 +1829,24 @@ public class DBPathways {
 		else if (where.equals("function")) {
 
 			sql += "select" + "	distinct ps.ec_number, ps.algorithm, ps.occurrence, ps.ec_name,"
-					+ "	count(distinct(ps.genome_info_id)) genome_count, "
-					+ "	count(distinct(ps.na_feature_id)) gene_count ";
+					+ "	count(distinct(ps.genome_info_id)) genome_count, " + "	count(distinct(ps.na_feature_id)) gene_count ";
 
 		}
 
-		sql += "	FROM app.pathwaysummary ps, " + CompleteGenomeSQL(key)
-				+ "	WHERE ps.genome_info_id = gs.genome_info_id ";
+		sql += "	FROM app.pathwaysummary ps, " + CompleteGenomeSQL(key) + "	WHERE ps.genome_info_id = gs.genome_info_id ";
 
 		sql += CompSQLConditions(key);
 
 		return sql;
 	}
 
-	public ArrayList<ResultType> getCompPathwayMapGridList(HashMap<String, String> key, HashMap<String, String> sort,
-			int start, int end) {
+	public ArrayList<ResultType> getCompPathwayMapGridList(HashMap<String, String> key, HashMap<String, String> sort, int start, int end) {
 
 		String sql = getCompPathwayMapGridSQL(key, "function");
 
 		sql += " GROUP BY ps.ec_number, ps.algorithm, ps.occurrence, ps.ec_name";
 
-		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction")
-				&& sort.get("direction") != null) {
+		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction") && sort.get("direction") != null) {
 			sql += " ORDER BY " + sort.get("field") + " " + sort.get("direction");
 		}
 		else {
@@ -1896,7 +1856,7 @@ public class DBPathways {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		q = bindCompSQLValues(q, key);
 
 		ScrollableResults scr = q.scroll();
@@ -1938,7 +1898,7 @@ public class DBPathways {
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql).addScalar("cnt", Hibernate.INTEGER);
 		q.setCacheable(true);
-		q.setTimeout(1000);
+		q.setTimeout(SQL_TIMEOUT);
 		q = bindCompSQLValues(q, key);
 
 		Object obj = q.uniqueResult();
@@ -1946,6 +1906,66 @@ public class DBPathways {
 
 		return Integer.parseInt(obj.toString());
 
+	}
+
+	// DLP
+	public ArrayList<Integer> getDistECConservation(String cType, String cId) {
+
+		HashMap<String, String> key = new HashMap<String, String>();
+		if (cType.equals("genome")) {
+			key.put("genomeId", cId);
+		}
+		else if (cType.equals("taxon")) {
+			key.put("taxonId", cId);
+		}
+
+		int uniqECCnt = 0;
+		if (cType.equals("taxon")) {
+			uniqECCnt = getTaxonCountSQL(cId, cType);
+		}
+		else if (cType.equals("genome")) {
+			uniqECCnt = getCompleteGenomeCount(cId);
+		}
+		else {
+			return null;
+		}
+
+		String sql = "select bin, count(*) cnt from ( "
+				+ "	select  (case when ec_cons < 20 then 5 when ec_cons between 20 and 40 then 4 when ec_cons between 40 and 60 then 3 "
+				+ "	when ec_cons between 60 and 80 then 2 when ec_cons > 80 then 1 end) bin " + "	from ( "
+				+ "		select trunc((count(distinct(ps.genome_info_id || ps.ec_number))*100/(:EC_COUNT))/count(distinct(ps.ec_number)), 2) ec_cons "
+				+ "		from app.pathwaysummary ps, " + CompleteGenomeSQL(key);
+		sql += "		where ps.genome_info_id = gs.genome_info_id AND ps.algorithm = 'RAST' "
+				+ "		group by pathway_id, pathway_name, pathway_class, algorithm " + "	) " + ") " + "group by bin " + "order by bin";
+
+		Session session = factory.getCurrentSession();
+		session.beginTransaction();
+		SQLQuery q = session.createSQLQuery(sql).addScalar("bin", Hibernate.INTEGER).addScalar("cnt", Hibernate.INTEGER);
+		q.setCacheable(true);
+		q.setTimeout(SQL_TIMEOUT);
+
+		q.setInteger("EC_COUNT", uniqECCnt);
+		if (cType.equals("taxon")) {
+			q.setString("taxonId", cId);
+		}
+		else if (cType.equals("genome")) {
+			q.setString("genomeId", cId);
+		}
+
+		List<?> rset = q.list();
+		session.getTransaction().commit();
+		Object[] obj = null;
+		ArrayList<Integer> results = new ArrayList<Integer>();
+		results.addAll(Arrays.asList(new Integer[] { 0, 0, 0, 0, 0 }));
+
+		for (Iterator<?> it = rset.iterator(); it.hasNext();) {
+			obj = (Object[]) it.next();
+
+			int j = Integer.parseInt(obj[0].toString());
+			results.set(j - 1, Integer.parseInt(obj[1].toString()));
+		}
+
+		return results;
 	}
 
 }

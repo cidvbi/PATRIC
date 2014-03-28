@@ -46,7 +46,7 @@ function createLoadComboBoxes() {
 
 	Ext.Ajax.request({
 		url : '/patric-common/jsp/featuretable_filter_populate.jsp',
-		method : 'GET',
+		method : 'POST',
 		params : {
 			keyword : constructKeyword(object, property.name),
 			facet : JSON.stringify({
@@ -115,7 +115,9 @@ function loadFBCD() {
 
 	function setInputs() {
 		if (Ext.getCmp("cb_feature_type_f") && Ext.getCmp("cb_feature_type_f").getStore().data.items.length > 0) {
-			Ext.getCmp("cb_feature_type_f").setValue(hash.fT), Ext.getCmp("cb_annotation_f").setValue(hash.alg), Ext.getCmp("tb_keyword").setValue(hash.kW), clearTimeout(timeoutId);
+			Ext.getCmp("cb_feature_type_f").setValue(hash.fT);
+			Ext.getCmp("cb_annotation_f").setValue(hash.alg);
+			Ext.getCmp("tb_keyword").setValue(hash.kW); clearTimeout(timeoutId);
 		}
 	}
 

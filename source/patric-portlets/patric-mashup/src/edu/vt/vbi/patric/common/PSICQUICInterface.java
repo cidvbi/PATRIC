@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,7 +40,7 @@ public class PSICQUICInterface {
 		String result = "-1";
 		try {
 			String url = baseURL + db + baseURLQuery + term + "?format=count";
-			//System.out.println("psicquic-count-url:" + url);
+			// System.out.println("psicquic-count-url:" + url);
 
 			StringWriter writer = new StringWriter();
 			IOUtils.copy((new URL(url)).openStream(), writer);
@@ -57,10 +57,9 @@ public class PSICQUICInterface {
 		JSONObject result = new JSONObject();
 		try {
 			String search_count = getCounts(db, term);
-			String url = baseURL + db + baseURLQuery + term + "?format=xml25&firstResult=" + startAt + "&maxResults="
-					+ count;
+			String url = baseURL + db + baseURLQuery + term + "?format=xml25&firstResult=" + startAt + "&maxResults=" + count;
 
-			System.out.println("psicquic-fetch-url:" + url);
+			// System.out.println("psicquic-fetch-url:" + url);
 
 			JSONArray subList = null;
 

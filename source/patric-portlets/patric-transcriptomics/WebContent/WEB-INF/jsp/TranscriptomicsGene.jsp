@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@ page import="javax.portlet.PortletSession" %>
 <%@ page import="edu.vt.vbi.patric.dao.ResultType" %>
-<portlet:defineObjects />
+<portlet:defineObjects/>
 <%
 
 String name = "TranscriptomicsGene";
@@ -66,6 +67,19 @@ String cId = request.getParameter("context_id");
 if (cId == null || cId == "") {
 	cId = "";
 }
+
+String keyword = "";
+String pk = request.getParameter("param_key");
+
+if (pk != null && pk != "") {
+	pk = pk.split("/")[0];
+	ResultType key = (ResultType) portletSession.getAttribute("key"+pk, PortletSession.APPLICATION_SCOPE);
+	if(key != null && key.get("keyword") != null){
+		keyword = key.get("keyword");
+		sampleId = key.get("sampleId");
+	}
+}
+
 %>
 
 <script type="text/javascript" src="<%=nameSpaceAids%>"></script>
@@ -159,7 +173,7 @@ Ext.onReady(function() {
 	Ext.QuickTips.init();
 	SetPageProperties(pageProperties);
 	TranscriptomicsGeneOnReady('<%=name%>', '<%=resourceURL%>',
-		'<%=contextPath%>', '<%=cType%>', '<%=cId%>', '<%=sampleId%>', '<%=expId%>', '<%=colId%>', '<%=log_ratio%>', '<%=zscore%>');
+		'<%=contextPath%>', '<%=cType%>', '<%=cId%>', '<%=sampleId%>', '<%=expId%>', '<%=colId%>', '<%=log_ratio%>', '<%=zscore%>', '<%=keyword%>');
 	
 	if (Ext.get("tabs_explist")!=null) {
 		Ext.get("tabs_explist").addCls("sel");

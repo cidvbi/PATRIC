@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -216,14 +216,12 @@ public class KLEIOInterface {
 					}
 					else {
 						if (e.getFirstChildWithName(qnFacetName).getText().toString().equals("DIAG_PROC")) {
-							facet.put(
-									"text",
+							facet.put("text",
 									"<span style=\"color: #CC6600; margin: 0; padding: 0 0 2px; font-weight: bold;\">Diagnostic Procedure</span><span style=\"color: #888;\"> ("
 											+ e.getFirstChildWithName(qnFacetFreq).getText() + "+) </span>");
 						}
 						else if (e.getFirstChildWithName(qnFacetName).getText().toString().equals("THERAPEUTIC_PROC")) {
-							facet.put(
-									"text",
+							facet.put("text",
 									"<span style=\"color: #CC6600; margin: 0; padding: 0 0 2px; font-weight: bold;\">Therapeutic Procedure</span><span style=\"color: #888;\"> ("
 											+ e.getFirstChildWithName(qnFacetFreq).getText() + "+) </span>");
 						}
@@ -231,11 +229,9 @@ public class KLEIOInterface {
 							facet.put(
 									"text",
 									"<span style=\"color: #CC6600; margin: 0; padding: 0 0 2px; font-weight: bold;\">"
-											+ e.getFirstChildWithName(qnFacetName).getText().substring(0, 1)
-													.toUpperCase()
+											+ e.getFirstChildWithName(qnFacetName).getText().substring(0, 1).toUpperCase()
 											+ e.getFirstChildWithName(qnFacetName).getText().substring(1).toLowerCase()
-											+ "</span><span style=\"color: #888;\"> ("
-											+ e.getFirstChildWithName(qnFacetFreq).getText() + "+)</span>");
+											+ "</span><span style=\"color: #888;\"> (" + e.getFirstChildWithName(qnFacetFreq).getText() + "+)</span>");
 						}
 						facet.put("id", e.getFirstChildWithName(qnFacetName).getText());
 						facet.put("leaf", false);
@@ -259,43 +255,28 @@ public class KLEIOInterface {
 								if (more_count == 4) {
 									jsonValue = new JSONObject();
 									jsonValue.put("parentID", e.getFirstChildWithName(qnFacetName).getText() + "_more");
-									jsonValue.put(
-											"id",
-											v.getFirstChildWithName(qnName).getText() + "##"
-													+ e.getFirstChildWithName(qnFacetName));
+									jsonValue.put("id", v.getFirstChildWithName(qnName).getText() + "##" + e.getFirstChildWithName(qnFacetName));
 									jsonValue.put("leaf", true);
-									jsonValue.put("text", v.getFirstChildWithName(qnName).getText().substring(0, 1)
-											.toUpperCase()
+									jsonValue.put("text", v.getFirstChildWithName(qnName).getText().substring(0, 1).toUpperCase()
 											+ v.getFirstChildWithName(qnName).getText().substring(1).toLowerCase()
-											+ "<span style=\"color: #888;\"> ("
-											+ v.getFirstChildWithName(qnFreq).getText() + "+)</span>");
-									jsonValue.put(
-											"checked",
-											keepState(v.getFirstChildWithName(qnName).getText(), e
-													.getFirstChildWithName(qnFacetName).getText()));
+											+ "<span style=\"color: #888;\"> (" + v.getFirstChildWithName(qnFreq).getText() + "+)</span>");
+									jsonValue.put("checked",
+											keepState(v.getFirstChildWithName(qnName).getText(), e.getFirstChildWithName(qnFacetName).getText()));
 									jsonValue.put("renderstep", "2");
 									morechildren.add(jsonValue);
 
 									while (itrValues.hasNext()) {
 										v = itrValues.next();
 										jsonValue = new JSONObject();
-										jsonValue.put("parentID", e.getFirstChildWithName(qnFacetName).getText()
-												+ "_more");
-										jsonValue.put(
-												"id",
-												v.getFirstChildWithName(qnName).getText() + "##"
-														+ e.getFirstChildWithName(qnFacetName));
+										jsonValue.put("parentID", e.getFirstChildWithName(qnFacetName).getText() + "_more");
+										jsonValue.put("id", v.getFirstChildWithName(qnName).getText() + "##" + e.getFirstChildWithName(qnFacetName));
 										jsonValue.put("leaf", true);
-										jsonValue.put("text", v.getFirstChildWithName(qnName).getText().substring(0, 1)
-												.toUpperCase()
+										jsonValue.put("text", v.getFirstChildWithName(qnName).getText().substring(0, 1).toUpperCase()
 												+ v.getFirstChildWithName(qnName).getText().substring(1).toLowerCase()
-												+ "<span style=\"color: #888;\"> ("
-												+ v.getFirstChildWithName(qnFreq).getText() + "+)</span>");
+												+ "<span style=\"color: #888;\"> (" + v.getFirstChildWithName(qnFreq).getText() + "+)</span>");
 										jsonValue.put("renderstep", "2");
-										jsonValue.put(
-												"checked",
-												keepState(v.getFirstChildWithName(qnName).getText(), e
-														.getFirstChildWithName(qnFacetName).getText()));
+										jsonValue.put("checked",
+												keepState(v.getFirstChildWithName(qnName).getText(), e.getFirstChildWithName(qnFacetName).getText()));
 										morechildren.add(jsonValue);
 
 									}
@@ -323,20 +304,13 @@ public class KLEIOInterface {
 								else {
 									jsonValue = new JSONObject();
 									jsonValue.put("parentID", e.getFirstChildWithName(qnFacetName).getText());
-									jsonValue.put(
-											"id",
-											v.getFirstChildWithName(qnName).getText() + "##"
-													+ e.getFirstChildWithName(qnFacetName));
+									jsonValue.put("id", v.getFirstChildWithName(qnName).getText() + "##" + e.getFirstChildWithName(qnFacetName));
 									jsonValue.put("leaf", true);
-									jsonValue.put("text", v.getFirstChildWithName(qnName).getText().substring(0, 1)
-											.toUpperCase()
+									jsonValue.put("text", v.getFirstChildWithName(qnName).getText().substring(0, 1).toUpperCase()
 											+ v.getFirstChildWithName(qnName).getText().substring(1).toLowerCase()
-											+ "<span style=\"color: #888;\"> ("
-											+ v.getFirstChildWithName(qnFreq).getText() + "+)</span>");
-									jsonValue.put(
-											"checked",
-											keepState(v.getFirstChildWithName(qnName).getText(), e
-													.getFirstChildWithName(qnFacetName).getText()));
+											+ "<span style=\"color: #888;\"> (" + v.getFirstChildWithName(qnFreq).getText() + "+)</span>");
+									jsonValue.put("checked",
+											keepState(v.getFirstChildWithName(qnName).getText(), e.getFirstChildWithName(qnFacetName).getText()));
 									jsonValues.add(jsonValue);
 									jsonValue.put("renderstep", "2");
 								}
@@ -638,8 +612,7 @@ public class KLEIOInterface {
 				entity.put("shortForm", entities.getFirstChildWithName(qnshortForm).getText());
 				entity.put("surfaceForm", entities.getFirstChildWithName(qnsurfaceForm).getText());
 
-				Iterator<OMElement> itrreferences = entities.getFirstChildWithName(qnexternalReferences)
-						.getChildElements();
+				Iterator<OMElement> itrreferences = entities.getFirstChildWithName(qnexternalReferences).getChildElements();
 
 				JSONObject extreferences = new JSONObject();
 

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -65,7 +65,7 @@ public class ArrayExpressInterface {
 			c.setConnectTimeout(EutilInterface.TIMEOUT_CONN);
 			c.setReadTimeout(EutilInterface.TIMEOUT_READ);
 
-			//System.out.println("ArrayExpress-url:" + url.toString());
+			// System.out.println("ArrayExpress-url:" + url.toString());
 
 			JSONArray subList = null;
 			// ArrayExpressHandler handler = new ArrayExpressHandler();

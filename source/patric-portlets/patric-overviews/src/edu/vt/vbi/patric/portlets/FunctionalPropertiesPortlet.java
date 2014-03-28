@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,8 +34,7 @@ import edu.vt.vbi.patric.dao.ResultType;
 
 public class FunctionalPropertiesPortlet extends GenericPortlet {
 
-	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException,
-			UnavailableException {
+	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException, UnavailableException {
 
 		response.setContentType("text/html");
 		String cType = request.getParameter("context_type");
@@ -78,8 +77,7 @@ public class FunctionalPropertiesPortlet extends GenericPortlet {
 				ResultType rnaInfo = null;
 				rnaInfo = conn_summary.getRNAInfo(fId);
 
-				if (rnaInfo.containsKey("comment_string")
-						&& rnaInfo.get("comment_string").toString().contains("structure:")) {
+				if (rnaInfo.containsKey("comment_string") && rnaInfo.get("comment_string").toString().contains("structure:")) {
 					String[] tmp = rnaInfo.get("comment_string").toString().split("structure:");
 					if (tmp[0] != null) {
 						rnaInfo.put("comment", tmp[0]);

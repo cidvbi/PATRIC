@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,8 +19,7 @@ import java.util.HashMap;
 
 /**
  * <p>
- * A key-value map to contain database query result. This is an extension of
- * java.util.HashMap class in order to handle null value. A ResultType
+ * A key-value map to contain database query result. This is an extension of java.util.HashMap class in order to handle null value. A ResultType
  * represents a record (tuple) in the DB query result.
  * </p>
  * 
@@ -31,8 +30,7 @@ public class ResultType extends HashMap<Object, Object> {
 	private static final long serialVersionUID = -2922819637750273384L;
 
 	/**
-	 * Add key-value pair in this map. If the value is null, stores empty
-	 * string.
+	 * Add key-value pair in this map. If the value is null, stores empty string.
 	 * 
 	 * @param k key
 	 * @param v value in java.lang.String format
@@ -49,8 +47,7 @@ public class ResultType extends HashMap<Object, Object> {
 	}
 
 	/**
-	 * Read from this map with a given key. If the corresponding value is not
-	 * available, returns empty string.
+	 * Read from this map with a given key. If the corresponding value is not available, returns empty string.
 	 * 
 	 * @param k key
 	 * @return corresponding value in string.

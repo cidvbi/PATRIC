@@ -14,11 +14,10 @@ function BlastOnReady(windowID, resourceURL, contextPath, pk, dm) {
 
 function BlastFormJsp(windowID, stateObject) {
 	Ext.Ajax.request({
-		url : stateObject.serveURL,
-		method : 'GET',
-		params : {
-			callType : "getJsp",
-			JSP_NAME : "settings"
+		url: stateObject.serveURL,
+		method: 'GET',
+		params: {callType: "getJsp",
+				 JSP_NAME: "settings"
 		},
 		success : function(rs) {
 			stampHTML(windowID, rs);
@@ -127,7 +126,7 @@ function saveBlastSettings(windowID, formSee) {
 
 	Ext.Ajax.request({
 		url : stateObject.serveURL,
-		method : 'POST',
+		method : 'GET',
 		params : {
 			callType : "formStore",
 			programIndex : formSee.PROGRAM.selectedIndex,
@@ -171,11 +170,10 @@ function showBlastHelp(windowID, helpHtml) {
 	var nextPop = window.open(helpHtml, helpHtml, "height=500, width=1000, toolbar=1,resizable=1,scrollbars=1");
 	var stateObject = getStateObject(windowID);
 	Ext.Ajax.request({
-		url : stateObject.serveURL,
-		method : 'GET',
-		params : {
-			callType : "blastHelp",
-			helpFile : helpHtml
+		url: stateObject.serveURL,
+		method: 'GET',
+		params: {callType: "blastHelp",
+				 helpFile: helpHtml
 		},
 		success : function(rs) {
 			(nextPop.document).write(rs.responseText);
@@ -189,12 +187,11 @@ function scrollBlastHelp(windowID, helpHtml, anchor) {
 	var nextPop = window.open(helpHtml, helpHtml, "height=500, width=1000, toolbar=1,resizable=1,scrollbars=1");
 	var stateObject = getStateObject(windowID);
 	Ext.Ajax.request({
-		url : stateObject.serveURL,
-		method : 'GET',
-		params : {
-			callType : "blastHelp",
-			helpFile : helpHtml,
-			scrollTo : anchor
+		url: stateObject.serveURL,
+		method: 'GET',
+		params: {callType: "blastHelp",
+				 helpFile: helpHtml,
+				 scrollTo: anchor
 		},
 		success : function(rs) {
 			(nextPop.document).write(rs.responseText);
@@ -283,11 +280,10 @@ function RunBlastCGI(windowID) {
 		var stateObject = getStateObject(windowID);
 		saveStateObject(stateObject);
 		Ext.Ajax.request({
-			url : stateObject.serveURL,
-			method : 'GET',
-			params : {
-				callType : "getJsp",
-				JSP_NAME : "blastWait"
+			url: stateObject.serveURL,
+			method: 'GET',
+			params: {callType: "getJsp",
+					 JSP_NAME: "blastWait"
 			},
 			success : function(rs) {
 				showWaiting(windowID, rs);

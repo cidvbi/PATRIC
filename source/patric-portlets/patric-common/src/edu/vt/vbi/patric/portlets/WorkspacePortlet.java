@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -53,8 +53,7 @@ import edu.vt.vbi.patric.dao.ResultType;
 public class WorkspacePortlet extends GenericPortlet {
 
 	@Override
-	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException,
-			UnavailableException {
+	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException, UnavailableException {
 		// do nothing
 	}
 
@@ -77,8 +76,7 @@ public class WorkspacePortlet extends GenericPortlet {
 		if (token == null) {
 			String userName = request.getUserPrincipal().getName();
 			polyomic.authenticate(userName);
-			p_session.setAttribute("PolyomicAuthToken", polyomic.getAuthenticationToken(),
-					PortletSession.APPLICATION_SCOPE);
+			p_session.setAttribute("PolyomicAuthToken", polyomic.getAuthenticationToken(), PortletSession.APPLICATION_SCOPE);
 		}
 		else {
 			polyomic.setAuthenticationToken(token);
@@ -117,8 +115,7 @@ public class WorkspacePortlet extends GenericPortlet {
 			Long defaultWId = (Long) p_session.getAttribute("DefaultWorkspaceID", PortletSession.APPLICATION_SCOPE);
 			if (token == null) {
 				polyomic.authenticate(userName);
-				p_session.setAttribute("PolyomicAuthToken", polyomic.getAuthenticationToken(),
-						PortletSession.APPLICATION_SCOPE);
+				p_session.setAttribute("PolyomicAuthToken", polyomic.getAuthenticationToken(), PortletSession.APPLICATION_SCOPE);
 			}
 			else {
 				polyomic.setAuthenticationToken(token);
@@ -139,8 +136,7 @@ public class WorkspacePortlet extends GenericPortlet {
 	private UIPreference getValidUIPreference(ResourceRequest request) {
 		PolyomicHandler polyomic = new PolyomicHandler();
 		PortletSession p_session = request.getPortletSession(true);
-		UIPreference uiPref_from_session = (UIPreference) p_session.getAttribute("preference",
-				PortletSession.APPLICATION_SCOPE);
+		UIPreference uiPref_from_session = (UIPreference) p_session.getAttribute("preference", PortletSession.APPLICATION_SCOPE);
 		UIPreference uiPref = null;
 
 		if (request.getUserPrincipal() == null) {
@@ -158,8 +154,7 @@ public class WorkspacePortlet extends GenericPortlet {
 			Long defaultWId = (Long) p_session.getAttribute("DefaultWorkspaceID", PortletSession.APPLICATION_SCOPE);
 			if (token == null) {
 				polyomic.authenticate(userName);
-				p_session.setAttribute("PolyomicAuthToken", polyomic.getAuthenticationToken(),
-						PortletSession.APPLICATION_SCOPE);
+				p_session.setAttribute("PolyomicAuthToken", polyomic.getAuthenticationToken(), PortletSession.APPLICATION_SCOPE);
 			}
 			else {
 				polyomic.setAuthenticationToken(token);
@@ -225,11 +220,9 @@ public class WorkspacePortlet extends GenericPortlet {
 					String grp_type = request.getParameter("group_type");
 					String tracks = request.getParameter("tracks");
 					String str_tags = request.getParameter("tags");
-					String fid = request.getParameter("fid"); // this is a
-																// legacy
-																// parameter,
-																// but used by
-																// GSE
+					String fid = request.getParameter("fid"); // this is a legacy parameter, but used by GSE
+					String grp_element = request.getParameter("group_element");
+
 					if (grp_name == null || grp_name.equals("")) {
 						grp_name = "(default)";
 					}
@@ -239,10 +232,33 @@ public class WorkspacePortlet extends GenericPortlet {
 					if (grp_type == null) {
 						grp_type = "Feature";
 					}
-					if (tracks == null && fid != null) { // exception handling
-															// for GSE
+					if (tracks == null && fid != null) { // exception handling for GSE
 						tracks = fid;
 					}
+					// Speical expception. if group is created from feature level, but user wanted to stop as Genome group,
+					// convert feature IDs to Genome IDs
+					// System.out.println("grp_type:"+grp_type+", grp_element:"+grp_element);
+					if (grp_type.equals("Feature") && (grp_element != null && grp_element.equals("Genome"))
+							&& (tracks != null && tracks.equals("") == false)) {
+
+						SolrInterface solr = new SolrInterface();
+						solr.setCurrentInstance("GenomicFeature");
+						JSONObject f = solr.queryFacet("na_feature_id:(" + tracks.replaceAll(",", " OR ") + ")", "gid");
+						JSONArray GIDs = (JSONArray) f.get("facet");
+						String gid = "";
+						if (GIDs.size() > 0) {
+							for (Object g : GIDs) {
+								JSONObject genome = (JSONObject) g;
+								if (gid.equals("") == false) {
+									gid += ",";
+								}
+								gid += genome.get("value");
+							}
+							tracks = gid;
+							grp_type = "Genome";
+						}
+					}
+
 					int tagId = ws.findTag("Group", grp_name, grp_type);
 					if (tagId >= 0) {
 						// add members to existing group
@@ -318,7 +334,6 @@ public class WorkspacePortlet extends GenericPortlet {
 						}
 						else {
 							// ERROR
-							System.out.println("error");
 							this.enumerateParameters(request);
 						}
 					}
@@ -360,14 +375,7 @@ public class WorkspacePortlet extends GenericPortlet {
 						if (ws.hasAssociation("Group", trackId)) {
 							// do not delete track, but mapping (done)
 						}
-						else if (ws.hasAssociation("String", trackId)) { // if
-																			// the
-																			// track
-																			// has
-																			// string
-																			// tag
-																			// association
-																			// only
+						else if (ws.hasAssociation("String", trackId)) { // if the track has string tag association only
 							// delete tag association
 							// find tags;
 							ArrayList<JSONObject> maps = ws.findMappingByTrackId(trackId);
@@ -477,14 +485,7 @@ public class WorkspacePortlet extends GenericPortlet {
 							if (ws.hasAssociation("Group", trackId)) {
 								// do not delete track, but mapping (done)
 							}
-							else if (ws.hasAssociation("String", trackId)) { // if
-																				// the
-																				// track
-																				// has
-																				// string
-																				// tag
-																				// association
-																				// only
+							else if (ws.hasAssociation("String", trackId)) { // if the track has string tag association only
 								// delete tag association
 								// find tags;
 								ArrayList<JSONObject> maps = ws.findMappingByTrackId(trackId);
@@ -535,8 +536,7 @@ public class WorkspacePortlet extends GenericPortlet {
 						new_group_desc = new_group.get("desc").toString();
 					}
 
-					ws.updateGroupTag(Integer.parseInt(new_group.get("tagId").toString()), new_group_name,
-							new_group_desc);
+					ws.updateGroupTag(Integer.parseInt(new_group.get("tagId").toString()), new_group_name, new_group_desc);
 					saveWorkspace(request, ws);
 				}
 				else if (action.equals("updateExperimentInfo")) {
@@ -576,8 +576,7 @@ public class WorkspacePortlet extends GenericPortlet {
 					String timestamp = sdf.format(Calendar.getInstance().getTime());
 					jsonExpOrig.put("mdate", timestamp);
 
-					polyomic.saveJSONtoCollection(collectionId, "experiment.json", jsonExpOrig,
-							PolyomicHandler.CONTENT_EXPERIMENT);
+					polyomic.saveJSONtoCollection(collectionId, "experiment.json", jsonExpOrig, PolyomicHandler.CONTENT_EXPERIMENT);
 					polyomic.refreshWorkspaceCollection(collectionId);
 				}
 
@@ -596,7 +595,7 @@ public class WorkspacePortlet extends GenericPortlet {
 					library.add(data);
 
 					response.setContentType("application/json");
-					response.getWriter().write(library.toJSONString());
+					library.writeJSONString(response.getWriter());
 					response.getWriter().close();
 				}
 				else if (action.equals("getGroups")) {
@@ -607,7 +606,7 @@ public class WorkspacePortlet extends GenericPortlet {
 					rtn.put("results", groups);
 
 					response.setContentType("application/json");
-					response.getWriter().write(rtn.toJSONString());
+					rtn.writeJSONString(response.getWriter());
 					response.getWriter().close();
 				}
 				else if (action.equals("getFacets")) {
@@ -618,7 +617,7 @@ public class WorkspacePortlet extends GenericPortlet {
 					rtn.put("results", tags);
 
 					response.setContentType("application/json");
-					response.getWriter().write(rtn.toJSONString());
+					rtn.writeJSONString(response.getWriter());
 					response.getWriter().close();
 				}
 				else if (action.equals("getTracks")) {
@@ -629,14 +628,14 @@ public class WorkspacePortlet extends GenericPortlet {
 					rtn.put("results", tags);
 
 					response.setContentType("application/json");
-					response.getWriter().write(rtn.toJSONString());
+					rtn.writeJSONString(response.getWriter());
 					response.getWriter().close();
 				}
 				else if (action.equals("getMappings")) {
 					JSONArray mapping = ws.getMapping();
 
 					response.setContentType("application/json");
-					response.getWriter().write(mapping.toJSONString());
+					mapping.writeJSONString(response.getWriter());
 					response.getWriter().close();
 				}
 				else if (action.equals("getGenomes")) {
@@ -657,7 +656,7 @@ public class WorkspacePortlet extends GenericPortlet {
 
 					response.setContentType("application/json");
 					PrintWriter writer = response.getWriter();
-					writer.write(res.toJSONString());
+					res.writeJSONString(writer);
 					writer.close();
 				}
 				else if (action.equals("getFeatures")) {
@@ -668,7 +667,6 @@ public class WorkspacePortlet extends GenericPortlet {
 					JSONArray tracks = null;
 
 					tracks = ws.getTracks(filter);
-					// System.out.println("tracks:"+tracks.toJSONString());
 
 					HashMap<String, Object> key = new HashMap<String, Object>();
 					key.put("tracks", tracks);
@@ -681,14 +679,15 @@ public class WorkspacePortlet extends GenericPortlet {
 
 					response.setContentType("application/json");
 					PrintWriter writer = response.getWriter();
-					writer.write(res.toString());
+					res.writeJSONString(writer);
+					// writer.write(res.toString());
 					writer.close();
 				}
 				else if (action.equals("getPublicExperiments")) {
 					JSONArray collectionIDs = null;
 					DefaultHttpClient httpclient = new DefaultHttpClient();
 					String hostname = System.getProperty("java.rmi.server.hostname");
-					String url = "http://"+hostname+"/patric/static/publicworkspace.json";
+					String url = "http://" + hostname + "/patric/static/publicworkspace.json";
 					System.out.println(url);
 					HttpGet httpRequest = new HttpGet(url);
 					try {
@@ -709,23 +708,21 @@ public class WorkspacePortlet extends GenericPortlet {
 					}
 
 					/*
-					ArrayList<String> collectionIds = new ArrayList<String>();
-					collectionIds.add("502fd1d4-37f5-4e6c-99b9-a721d65d3558");
-					collectionIds.add("d368a37e-e378-4d12-b5e3-ecc1370dc023");
-					collectionIds.add("79dfe766-c28c-4272-bb40-6846be48a753");
-					collectionIds.add("c6cc8806-39f5-401a-a8aa-1a8215384a45");
-					*/
+					 * ArrayList<String> collectionIds = new ArrayList<String>(); collectionIds.add("502fd1d4-37f5-4e6c-99b9-a721d65d3558");
+					 * collectionIds.add("d368a37e-e378-4d12-b5e3-ecc1370dc023"); collectionIds.add("79dfe766-c28c-4272-bb40-6846be48a753");
+					 * collectionIds.add("c6cc8806-39f5-401a-a8aa-1a8215384a45");
+					 */
 					JSONArray results = new JSONArray();
-					
+
 					PolyomicHandler polyomic = new PolyomicHandler();
 					polyomic.setAuthenticationToken("");
 
-					//for (String cId : collectionIds) {
-					for (Object cId: collectionIDs) {
+					// for (String cId : collectionIds) {
+					for (Object cId : collectionIDs) {
 						JSONObject collection = polyomic.getCollection(cId.toString(), "experiment");
 						if (collection != null) {
 							collection.put("source", "Public");
-						
+
 							results.add(collection);
 						}
 					}
@@ -738,12 +735,13 @@ public class WorkspacePortlet extends GenericPortlet {
 
 					response.setContentType("application/json");
 					PrintWriter writer = response.getWriter();
-					writer.write(res.toString());
+					res.writeJSONString(writer);
+					// writer.write(res.toString());
 					writer.close();
 				}
 				else if (action.equals("getPublicSamples")) {
 					String expId = request.getParameter("expid");
-					//String expSource = request.getParameter("expsource");
+					// String expSource = request.getParameter("expsource");
 					String strSampleIds = request.getParameter("sampleIds");
 					JSONObject res = new JSONObject();
 					List<String> sampleIds = null;
@@ -756,10 +754,11 @@ public class WorkspacePortlet extends GenericPortlet {
 					JSONArray samples = polyomic.getSamples(expId, sampleIds);
 					res.put("total", samples.size());
 					res.put("results", samples);
-					
+
 					response.setContentType("application/json");
 					PrintWriter writer = response.getWriter();
-					writer.write(res.toString());
+					res.writeJSONString(writer);
+					// writer.write(res.toString());
 					writer.close();
 				}
 				else if (action.equals("getExperiments")) {
@@ -798,8 +797,8 @@ public class WorkspacePortlet extends GenericPortlet {
 					key.put("startParam", request.getParameter("start"));
 					key.put("limitParam", request.getParameter("limit"));
 					if (request.getParameter("sort") != null
-							&& (request.getParameter("sort").contains("\"property\":\"source\"") || request
-									.getParameter("sort").contains("\"property\":\"organism\""))) {
+							&& (request.getParameter("sort").contains("\"property\":\"source\"") || request.getParameter("sort").contains(
+									"\"property\":\"organism\""))) {
 						// solr does not support sorting on multi-valued fields
 						// source fields does not exist in solr config
 						key.put("sortParam", null);
@@ -842,7 +841,8 @@ public class WorkspacePortlet extends GenericPortlet {
 
 					response.setContentType("application/json");
 					PrintWriter writer = response.getWriter();
-					writer.write(res.toString());
+					res.writeJSONString(writer);
+					// writer.write(res.toString());
 					writer.close();
 				}
 				else if (action.equals("getSamples")) {
@@ -901,7 +901,8 @@ public class WorkspacePortlet extends GenericPortlet {
 
 					response.setContentType("application/json");
 					PrintWriter writer = response.getWriter();
-					writer.write(res.toString());
+					// writer.write(res.toString());
+					res.writeJSONString(writer);
 					writer.close();
 				}
 				else if (action.equals("getToken")) {
@@ -992,33 +993,27 @@ public class WorkspacePortlet extends GenericPortlet {
 						JSONArray genomes = (JSONArray) solr_res.get("results");
 
 						JSONArray children = new JSONArray();
-						for (Object genome : genomes) {
-							JSONObject jsonGenome = (JSONObject) genome;
-							JSONObject resGenome = new JSONObject();
-							// resGenome.put("id",
-							// Integer.toString(id)+"_"+Integer.parseInt(jsonGenome.get("gid").toString()));
-							resGenome.put(
-									"id",
-									Integer.toString(id) + "_"
-											+ Integer.parseInt(jsonGenome.get("genome_info_id").toString()));
-							resGenome.put("parentID", Integer.toString(id));
-							resGenome.put("name", jsonGenome.get("genome_name").toString());
-							resGenome.put("leaf", true);
-							// resGenome.put("genome_info_id",
-							// Integer.parseInt(jsonGenome.get("gid").toString()));
-							resGenome.put("genome_info_id", jsonGenome.get("genome_info_id"));
-							resGenome.put("ncbi_taxon_id", Integer.parseInt(jsonGenome.get("ncbi_tax_id").toString()));
+						if (genomes != null) {
+							for (Object genome : genomes) {
+								JSONObject jsonGenome = (JSONObject) genome;
+								JSONObject resGenome = new JSONObject();
+								resGenome.put("id", Integer.toString(id) + "_" + Integer.parseInt(jsonGenome.get("genome_info_id").toString()));
+								resGenome.put("parentID", Integer.toString(id));
+								resGenome.put("name", jsonGenome.get("genome_name").toString());
+								resGenome.put("leaf", true);
+								resGenome.put("genome_info_id", jsonGenome.get("genome_info_id"));
+								resGenome.put("ncbi_taxon_id", Integer.parseInt(jsonGenome.get("ncbi_tax_id").toString()));
 
-							children.add(resGenome);
+								children.add(resGenome);
+							}
 						}
-
 						grp.put("children", children);
 						res.add(grp);
 					}
 
 					response.setContentType("application/json");
 					PrintWriter writer = response.getWriter();
-					writer.write(res.toJSONString());
+					res.writeJSONString(writer);
 					writer.close();
 				}
 				else if (action.equals("getGroupList")) {
@@ -1037,8 +1032,7 @@ public class WorkspacePortlet extends GenericPortlet {
 						grp.put("name", group.get("name").toString());
 						grp.put("description", group.get("desc").toString());
 
-						ArrayList<JSONObject> mapping_trks = ws.findMappingByTagId(Integer.parseInt(group.get("tagId")
-								.toString()));
+						ArrayList<JSONObject> mapping_trks = ws.findMappingByTagId(Integer.parseInt(group.get("tagId").toString()));
 						ArrayList<JSONObject> mapping_tags = null;
 						HashSet<Integer> tagIDs = new HashSet<Integer>();
 
@@ -1065,14 +1059,14 @@ public class WorkspacePortlet extends GenericPortlet {
 
 					response.setContentType("application/json");
 					PrintWriter writer = response.getWriter();
-					writer.write(res.toJSONString());
+					res.writeJSONString(writer);
 					writer.close();
 				}
 				// for debugging purpose
 				else if (action.equals("status")) {
 					response.setContentType("application/json");
 					PrintWriter writer = response.getWriter();
-					writer.write(ws.getWorkspace().toJSONString());
+					ws.getWorkspace().writeJSONString(writer);
 					writer.close();
 				}
 				else {
@@ -1119,12 +1113,10 @@ public class WorkspacePortlet extends GenericPortlet {
 
 						o.append("\t<group>\n");
 						o.append("\t\t<name>" + group.get("name") + "</name>\n");
-						o.append("\t\t<description>" + ((group.get("desc") != null) ? group.get("desc") : "")
-								+ "</description>\n");
+						o.append("\t\t<description>" + ((group.get("desc") != null) ? group.get("desc") : "") + "</description>\n");
 						o.append("\t\t<members>\n");
 
-						ArrayList<JSONObject> members = ws.findMappingByTagId(Integer.parseInt(group.get("tagId")
-								.toString()));
+						ArrayList<JSONObject> members = ws.findMappingByTagId(Integer.parseInt(group.get("tagId").toString()));
 
 						HashSet<Integer> trackIds = new HashSet<Integer>();
 						for (JSONObject member : members) {
@@ -1284,7 +1276,7 @@ public class WorkspacePortlet extends GenericPortlet {
 					if (request.getMethod().equals("GET")) {
 
 						String strUIPref = uiPref.getStateList().toJSONString();
-						//System.out.println("reading UIPreference:" + strUIPref);
+						// System.out.println("reading UIPreference:" + strUIPref);
 
 						response.getWriter().write(strUIPref);
 						response.getWriter().close();
@@ -1310,7 +1302,7 @@ public class WorkspacePortlet extends GenericPortlet {
 
 							this.saveUIPreference(request, uiPref);
 
-							//System.out.println("HTTPProvider.storage.POST:" + param.toJSONString());
+							// System.out.println("HTTPProvider.storage.POST:" + param.toJSONString());
 						}
 						catch (ParseException e) {
 							e.printStackTrace();

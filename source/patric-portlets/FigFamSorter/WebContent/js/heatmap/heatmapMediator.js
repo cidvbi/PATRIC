@@ -75,8 +75,7 @@ function flashCellClicked(flashObjectID, colID, rowID) {
 		params : {
 			callType : "getLocusTags",
 			figfamIds : colID,
-			genomeIds : rowID,
-			portlet_type : Ext.getDom("portlet_type").value
+			genomeIds : rowID
 		},
 		success : function(rs) {
 			catchLocusTags(colID, rowID, rs);
@@ -87,7 +86,7 @@ function flashCellClicked(flashObjectID, colID, rowID) {
 
 function catchLocusTags(colID, rowID, ajaxHttp) {
 
-	var locusList = (ajaxHttp.responseText).split("\t"), parts = getCellParts(idForHeatmap, colID, rowID), buttonList = [], showDetails = null, putInCart = null, downloadF = null, download = null, discard = null, text = "", i = 0, clickPop = null, memberCount = parts[2];
+	var locusList = Ext.JSON.decode(ajaxHttp.responseText).data, parts = getCellParts(idForHeatmap, colID, rowID), buttonList = [], showDetails = null, putInCart = null, downloadF = null, download = null, discard = null, text = "", i = 0, clickPop = null, memberCount = parts[2];
 
 	if (0 < memberCount) {
 		download = new Ext.Button({
@@ -320,12 +319,11 @@ function flashCellsSelected(flashObjectID, columns, rows) {
 
 function MediatorDownloadF(selectGenomes, selectFigs, type) {
 
-	var object = {}, toSubmit = document.getElementById("fTableForm_Feature");
+	var toSubmit = document.getElementById("detailsToFile");
 
-	object["gid"] = selectGenomes.replace(/,/g, '##');
-	object["figfam_id"] = selectFigs.replace(/,/g, '##');
-	toSubmit.download_keyword.value = constructKeyword(object, "Feature");
-	toSubmit.fileformat.value = type;
+	toSubmit.detailsFigfams.value = selectFigs.replace(/,/g, ' OR ');
+	toSubmit.detailsGenomes.value = selectGenomes.replace(/,/g, ' OR ');
+	toSubmit.detailsType.value = type;
 	toSubmit.submit();
 }
 

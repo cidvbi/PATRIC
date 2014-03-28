@@ -14,10 +14,7 @@
 	String filetype = request.getParameter("finalfiletype");
 	String algorithm = request.getParameter("finalalgorithm");
 	
-	System.out.print(genomeId);
-	System.out.print(taxonId);
-	System.out.print(filetype);
-	System.out.print(algorithm);
+	System.out.print("filedownload: genomeID=" + genomeId + ", taxonID=" + taxonId +", filetype=" + filetype + ", algorithm=" + algorithm);
 	
 	key.put("genomeId", genomeId);
 	key.put("taxonId", taxonId);
@@ -30,7 +27,7 @@
 		items = conn_search.getGenomeNames(key);
 		CreateZip zip = new CreateZip();
 		byte[] bytes = zip.ZipIt(items, algorithm.split(","), filetype.split(","));
-		System.out.println(bytes.length);
+		System.out.println("filedownload: size= " + bytes.length + "bytes");
 		if(bytes.length > 0){
 			response.setContentType("application/octetstream");
 			response.setHeader("Cache-Control", "cache");

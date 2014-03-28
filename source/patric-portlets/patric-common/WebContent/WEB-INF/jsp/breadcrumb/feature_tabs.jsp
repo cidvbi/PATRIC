@@ -10,7 +10,8 @@ int featureId = -1;
 
 try {
 	featureId = Integer.parseInt(fId);
-} catch (Exception ex) {	
+} catch (Exception ex) {
+	fId = null;
 }
 
 JSONObject feature = new JSONObject();
@@ -39,8 +40,8 @@ if (feature.isEmpty() == false) {
 		window_start = window_start - 1000;
 	}
 	int window_end = Integer.parseInt(feature.get("end_min").toString())+1000;
-	String gb_link = "GenomeBrowser?cType=feature&amp;cId="+fId+"&amp;loc="+feature.get("accession")+":"+window_start+".."+window_end+"&amp;tracks="+tracks;
-	String crv_link = "CompareRegionViewer?cType=feature&amp;cId="+feature.get("na_feature_id")+"&amp;tracks=&amp;regions=5&amp;window=10000";
+	String gb_link = "GenomeBrowser?cType=feature&amp;cId="+fId+"&amp;loc="+window_start+".."+window_end+"&amp;tracks="+tracks;
+	String crv_link = "CompareRegionViewer?cType=feature&amp;cId="+feature.get("na_feature_id")+"&amp;tracks=&amp;regions=5&amp;window=10000&amp;loc=1..10000";
 	%>
 	<nav class="breadcrumbs" style="width=100%">
 		<ul class="inline no-decoration">
@@ -92,7 +93,7 @@ if (feature.isEmpty() == false) {
 			<li id="tabs_crviewer"><a href="<%=crv_link%>"><span>Compare Region Viewer</span></a></li>
 			<li id="tabs_pathways"><a href="PathwayTable?cType=feature&amp;cId=<%=feature.get("na_feature_id") %>"><span>Pathways</span></a></li>
 			<li id="tabs_expression"><a href="TranscriptomicsGeneExp?cType=feature&amp;cId=<%=feature.get("na_feature_id") %>&amp;sampleId=&amp;colId=&amp;log_ratio=&amp;zscore=" title=""><span>Transcriptomics</span></a></li>
-			<li id="tabs_proteomics"><a href="ProteomicsList?cType=feature&amp;cId=<%=feature.get("na_feature_id") %>&amp;kw="><span>Proteomics</span></a></li>
+			<li id="tabs_proteomics"><a href="ProteomicsList?cType=feature&amp;cId=<%=feature.get("na_feature_id") %>&amp;kw="><span>Proteomics</span></a></li> 
 			<li id="tabs_correlated"><a href="TranscriptomicsGeneCorrelated?cType=feature&amp;cId=<%=feature.get("na_feature_id") %>" title=""><span>Correlated Genes</span></a></li>
 			<% } %>
 			

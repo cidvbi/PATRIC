@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright 2013 Virginia Polytechnic Institute and State University
+  Copyright 2014 Virginia Polytechnic Institute and State University
   
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -124,6 +124,38 @@
 					<alias-binding>
 						<id>zscore</id>
 						<qname>{http://patricbrc.org/params}zscore</qname>
+					</alias-binding>
+				</bindings>
+			</coordination>
+		</page>
+	</deployment>
+	<deployment>
+		<parent-ref>patric</parent-ref>
+		<if-exists>overwrite</if-exists>
+		<page>
+			<page-name>TranscriptomicsGeneSearch</page-name>
+			<properties>
+				<property>
+					<name>layout.id</name>
+					<value>patric-full</value>
+				</property>
+			</properties>
+			<window>
+				<window-name>TranscriptomicsGeneSearchWindow</window-name>
+				<instance-ref>TranscriptomicsGeneSearchInstance</instance-ref>
+				<region>center</region>
+				<height>0</height>
+			</window>
+			<coordination>
+				<bindings>
+					<implicit-mode>FALSE</implicit-mode>
+					<alias-binding>
+						<id>cType</id>
+						<qname>{http://patricbrc.org/params}context_type</qname>
+					</alias-binding>
+					<alias-binding>
+						<id>cId</id>
+						<qname>{http://patricbrc.org/params}context_id</qname>
 					</alias-binding>
 				</bindings>
 			</coordination>

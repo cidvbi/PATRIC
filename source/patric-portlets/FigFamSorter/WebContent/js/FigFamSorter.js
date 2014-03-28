@@ -22,8 +22,8 @@ function FigFamSorterStateObject(windowID, serveResource, getContextPath, keywor
 	this.colorScheme = 'rgb';
 
 	this.genomeIds = [];
-	this.genomeNames = [];
-	this.genomeVSfilter = {};
+	// this.genomeNames = [];
+	this.genomeVSfilter = null;
 	//this.orders = [];
 	//this.ncbitaxIds = [];
 
@@ -81,7 +81,7 @@ function FigFamSorterSaveData(windowID, namespace) {
 function FigFamSorterLoadData(namespace) {
 }
 
-function FigFamSorterOnReady(windowID, resourceURL, contextPath, cType, cId, keyword_search) {
+function FigFamSorterOnReady(windowID, resourceURL, contextPath, cType, cId, keyword_search, idText) {
 	// register windowID to insure that state values gets stored to a cookie
 	//   on page exits or refreshes
 	addWindowID(windowID);
@@ -94,8 +94,6 @@ function FigFamSorterOnReady(windowID, resourceURL, contextPath, cType, cId, key
 
 	idForHeatmap = windowID;
 
-	var toExtract = document.getElementById(windowID + "_forDetails");
-	var idText = toExtract.genome_ids.value;
 	if ((idText != null) && (0 < idText.length)) {
 		stateObject.genomeIds = idText.split(",");
 		getGenomeNames(windowID, stateObject);
@@ -124,14 +122,13 @@ function FigFamSorterOnReady(windowID, resourceURL, contextPath, cType, cId, key
 
 function catchTaxonIds(windowID, stateObject, rs) {
 	stateObject.genomeIds = (rs.responseText).split(",");
-	
 	getGenomeNames(windowID, stateObject);
 }
 
 function getGenomeNames(windowID, stateObject) {
-	var genomeIds = stateObject.genomeIds, leftHtml, option1, option2;
+	var genomeIds = stateObject.genomeIds, leftHtml, option1, option2, option3, option4;
 
-	if (genomeIds.length > 400) {
+	if (genomeIds.length > 500) {
 		leftHtml = "<div style=\"margin-left:5px;\"><b>More than 500 genomes</b></div><br/>";
 	} else {
 		leftHtml = "<div style=\"margin-left:5px;\">" + genomeIds.length + " genomes (<a href=\"FIGfamSorter?cType=taxon&cId=&dm=\">Change Genome Selection</a>)</div>" + "<table width=\"100%\" cellspacing=\"0\" cellpadding=\"2\"><tbody><tr width=\"100%\"><td style=\"line-height: 14px; padding-left: 4px;\" bgcolor=\"#f0f0f0\" colspan=\"4\"><b>Present</b> in all families</td></tr><tr><td style=\"line-height: 14px;\" bgcolor=\"#f0f0f0\"></td><td style=\"line-height: 14px; padding-left: 34px;\" width=\"100%\" bgcolor=\"#FFFFFF\" colspan=\"3\"><b>Absent</b> from all families</td></tr><tr><td style=\"line-height: 14px;\" bgcolor=\"#f0f0f0\"></td><td style=\"line-height: 14px;\" bgcolor=\"#FFFFFF\"></td><td style=\"line-height: 14px; padding-left: 58px;\" width=\"100%\" bgcolor=\"#f0f0f0\" colspan=\"2\"><b>Either/Mixed</b></td></tr></tbody></table>" + "<div id='" + windowID + "_4genome_grid'></div>";
@@ -141,9 +138,9 @@ function getGenomeNames(windowID, stateObject) {
 
 	option2 = "<br/><div style='float: left;'>Number of Genomes per Family </div></br>" + "<FORM NAME='" + windowID + "_speciesForm' " + "ONSUBMIT=\"updateOrthoListTable('" + windowID + "'); return false;\">" + "<div id='_minSpecies' style='float:left'></div><div style='padding-left: 15px;padding-top: 5px;float: left;''>to</div> <div id='_maxSpecies' style='float:left; padding-left:15px;'></div>" + "</FORM>";
 
-	option3 = "<div style=\"padding-top:10px;\">" + "<INPUT TYPE='radio' name='familySet' ID='" + windowID + "_perfectIn' return false;>Perfect Families (One protein per genome)</INPUT> " + "<BR/><INPUT TYPE='radio' name='familySet' ID='" + windowID + "_perfectOut' return false;>Non Perfect Families</INPUT> " + "<BR/><INPUT TYPE='radio' name='familySet' ID='" + windowID + "_perfectAll' CHECKED return false;>All Families</INPUT> " + "</div>";
+	option3 = "<div style=\"padding-top:10px;\">" + "<INPUT title='Perfect Families (One protein per genome)' TYPE='radio' name='familySet' ID='" + windowID + "_perfectIn'\><label for='"+windowID+"_perfectIn'>Perfect Families (One protein per genome)</label><BR/><INPUT title='Non Perfect Families' TYPE='radio' name='familySet' ID='" + windowID + "_perfectOut'/><label for='"+windowID+"_perfectOut'>Non Perfect Families</label>" + "<BR/><INPUT title='All Families' TYPE='radio' name='familySet' ID='" + windowID + "_perfectAll' CHECKED/><label for='"+windowID+"_perfectAll'>All Families</label>" + "</div>";
 
-	option4 = "Filter by one or more keywords <BR />" + "<div style=\"width: 98%; padding-top:10px;\" id=\"textbox_div\"></div>";
+	option4 = "<label for=\""+windowID+"_toSetRegex-inputEl\">Filter by one or more keywords </label><BR />" + "<div style=\"width: 98%; padding-top:10px;\" id=\"textbox_div\"></div>";
 
 	leftHtml += "<div style=\"padding:10px;\">" + option4 + option3 + option1 + option2 + "<br/><div style=\"padding:10px; float:right;\"><input type='button' class='button' style='padding: 2px 8px;' value='Filter' onclick=\"updateOrthoListTable('" + windowID + "');\"/></div>";
 
@@ -234,6 +231,7 @@ function getGenomeNames(windowID, stateObject) {
 			}
 		}
 	});
+	
 	createLeftBottomItems(windowID);
 	doAjaxNames(windowID, stateObject);
 }
@@ -275,8 +273,10 @@ function createLeftBottomItems(windowID) {
 
 function doAjaxNames(windowID, stateObject) {"use strict";
 
-	var stateObject = getStateObject(windowID), i, items, tableObject;
+	var stateObject = getStateObject(windowID), i, items, tableObject, gridObject;
 	start = (new Date()).getMilliseconds();
+	tableObject = new GroupGrid(windowID, stateObject, 0);
+	
 	Ext.define('Genome_Store', {
 		extend : 'Ext.data.Model',
 		fields : [{
@@ -314,7 +314,7 @@ function doAjaxNames(windowID, stateObject) {"use strict";
 		model : 'Genome_Store',
 		proxy : {
 			type : 'ajax',
-			url : '/portal/portal/patric/GenomeFinder/GenomeFinderWindow?action=b&cacheability=PAGE',
+			url : stateObject.serveURL,
 			timeout : 600000, //10*60*1000
 			actionMethods : {
 				create : 'POST',
@@ -326,26 +326,24 @@ function doAjaxNames(windowID, stateObject) {"use strict";
 				totalProperty : 'total'
 			},
 			extraParams : {
-				pk : +Date.now(),
-				need : '0',
 				keyword : 'gid:(' + stateObject.genomeIds.join(" OR ") + ")",
-				start : 0,
-				limit : 50000
+				fields: (stateObject.genomeIds.length > 500)?"genome_info_id,genome_name":"",
+				callType:'getGenomeDetails'
 			}
 		},
 		autoLoad : true,
 		remoteSort : false,
 		listeners : {
 			datachanged : function() {
-				if (stateObject.genomeNames.length === 0) {
+				if (!stateObject.genomeVSfilter) {
 					items = this.data.items;
+					stateObject.genomeVSfilter = {};
 					for ( i = 0; i < items.length; i++) {
 						stateObject.genomeVSfilter[items[i].data.genome_info_id] = new GenomeVSFilterPair();
 						stateObject.genomeVSfilter[items[i].data.genome_info_id].init(i, items[i].data.genome_name);
-						stateObject.genomeNames[i] = items[i].data.genome_name;
+						// stateObject.genomeNames[i] = items[i].data.genome_name;
 						stateObject.genomeIds[i] = items[i].data.genome_info_id;
 						stateObject.filter += " ";
-
 					}
 
 					tableObject.stateObject = stateObject;
@@ -357,8 +355,7 @@ function doAjaxNames(windowID, stateObject) {"use strict";
 						params : {
 							callType : "getGroupStats",
 							genomeIds : stateObject.genomeIds.join(","),
-							keyword : stateObject.keyword_search,
-							portlet_type : Ext.getDom("portlet_type").value
+							keyword : stateObject.keyword_search
 						},
 						success : function(rs) {
 							catchGroupStats(windowID, rs);
@@ -369,13 +366,13 @@ function doAjaxNames(windowID, stateObject) {"use strict";
 		}
 	});
 
-	if (stateObject.genomeIds.length <= 400) {
+	if (stateObject.genomeIds.length <= 500) {
 		Ext.create('Ext.grid.Panel', {
 			store : 'ds_genome',
 			id : windowID + '_genome_grid',
 			renderTo : windowID + "_4genome_grid",
 			columns : [{
-				header : '<input type=\"radio\" id=\"' + windowID + '_scALL_0\" onclick=\"haveOrthoCareClick(\'' + windowID + '\', \'ALL\', \'0\')\"/>',
+				header : '<input title=\"Present in all families\" type=\"radio\" id=\"' + windowID + '_scALL_0\" onclick=\"haveOrthoCareClick(\'' + windowID + '\', \'ALL\', \'0\')\"/>',
 				hideable : false,
 				menuDisabled : true,
 				resizable : false,
@@ -384,7 +381,7 @@ function doAjaxNames(windowID, stateObject) {"use strict";
 				width : 30,
 				renderer : GenomeColumnRenderer
 			}, {
-				header : '<input type=\"radio\" id=\"' + windowID + '_scALL_1\" onclick=\"haveOrthoCareClick(\'' + windowID + '\', \'ALL\', \'1\')\"/>',
+				header : '<input title=\"Absent from all families\" type=\"radio\" id=\"' + windowID + '_scALL_1\" onclick=\"haveOrthoCareClick(\'' + windowID + '\', \'ALL\', \'1\')\"/>',
 				hideable : false,
 				menuDisabled : true,
 				resizable : false,
@@ -393,7 +390,7 @@ function doAjaxNames(windowID, stateObject) {"use strict";
 				width : 30,
 				renderer : GenomeColumnRenderer
 			}, {
-				header : '<input type=\"radio\" checked id=\"' + windowID + '_scALL_2\" onclick=\"haveOrthoCareClick(\'' + windowID + '\', \'ALL\', \'2\')\"/>',
+				header : '<input title=\"Either/Mixed\" type=\"radio\" checked id=\"' + windowID + '_scALL_2\" onclick=\"haveOrthoCareClick(\'' + windowID + '\', \'ALL\', \'2\')\"/>',
 				hideable : false,
 				menuDisabled : true,
 				resizable : false,
@@ -462,8 +459,7 @@ function doAjaxNames(windowID, stateObject) {"use strict";
 			}
 		});
 	}
-
-	tableObject = new GroupGrid(windowID, stateObject, 0);
+	
 	cacheObject(windowID, tableObject);
 	$Page.doLayout();
 }
@@ -532,27 +528,17 @@ function checkForHeaderRow(windowID) {"use strict";
 	}
 
 	filter = stateObject.filter.split("");
-	id = filter.every(AllSame) ? filter[0] == " " ? windowID + '_scALL_2' : filter[0] == "0" ? windowID + '_scALL_1' : windowID + '_scALL_0' : null;
-
-	if (id) {
-		toSet = document.getElementById(id);
-		toSet.checked = true;
-	} else {
-		for ( j = 0; j < 3; j++) {
-			toSet = document.getElementById(windowID + '_scALL_' + j);
-			toSet.checked = false;
-		}
+	id = filter.every(AllSame) ? filter[0] == " " ? 2 : filter[0] == "0" ? 1 : 0 : null;
+	
+	for ( j = 0; j < 3; j++) {
+		toSet = document.getElementById(windowID + '_scALL_' + j);
+		toSet.checked = !(id != j);
 	}
 }
 
 function BasicTooltipRenderer(value, metadata, record, rowIndex, colIndex, store) {"use strict";
 	metadata.tdAttr = 'data-qtip="' + value + '" data-qclass="x-tip"';
 	return value ? value : "";
-}
-
-function getFamType(windowID) {"use strict";
-	var famRead = document.getElementById(windowID + '_detailsToFile');
-	return (famRead.FAM_TYPE.value);
 }
 
 function padNum(num, digits){ 
@@ -564,30 +550,32 @@ function catchGroupStats(windowID, ajaxHttp) {"use strict";
 
 	var rowData, orthoRows = [], distribution = "", genomeIds = getStateObject(windowID).genomeIds, i, t, j, ordered = [];
 	
-	rowData = Ext.JSON.decode(ajaxHttp.responseText);
-	
-	for(var key in rowData){
-		ordered.push(parseInt(key.split("FIG")[1]));
-	}
-	
-	ordered.sort(function(a, b) { return a - b;});
-	
-	for(j=0; j<ordered.length; j++){
-		key = "FIG"+padNum(ordered[j], 8);
+	if(ajaxHttp.responseText){
+		rowData = Ext.JSON.decode(ajaxHttp.responseText);
 		
-		if(genomeIds.length <= 500){
-			distribution = "";
-			for(i=0; i<genomeIds.length; i++){
-				t = rowData[key].genomes[genomeIds[i]]?(rowData[key].genomes[genomeIds[i]]).toString(16):"0";
-				distribution += t.length == 2?t:"0"+t;
-			}
+		for(var key in rowData){
+			ordered.push(parseInt(key.split("FIG")[1]));
 		}
 		
-		orthoRows.push(new orthoRow(key, 
-				rowData[key].genomes, rowData[key].feature_count, 
-				rowData[key].genome_count, 
-				rowData[key].stats.min, rowData[key].stats.max, 
-				rowData[key].stats.mean, rowData[key].stats.stddev, rowData[key].description));
+		ordered.sort(function(a, b) { return a - b;});
+		
+		for(j=0; j<ordered.length; j++){
+			key = "FIG"+padNum(ordered[j], 8);
+			
+			if(genomeIds.length <= 500){
+				distribution = "";
+				for(i=0; i<genomeIds.length; i++){
+					t = rowData[key].genomes[genomeIds[i]]?(rowData[key].genomes[genomeIds[i]]).toString(16):"0";
+					distribution += t.length == 2?t:"0"+t;
+				}
+			}
+			
+			orthoRows.push(new orthoRow(key, 
+					rowData[key].genomes, rowData[key].feature_count, 
+					rowData[key].genome_count, 
+					rowData[key].stats.min, rowData[key].stats.max, 
+					rowData[key].stats.mean, rowData[key].stats.stddev, rowData[key].description));
+		}
 	}
 	
 	cacheObject(windowID + "_groupRows", orthoRows);
@@ -632,22 +620,26 @@ function setSyntenyOrder(windowID, genomeId) {
 		method : 'GET',
 		params : {
 			callType : "getSyntonyOrder",
-			FAM_TYPE : stateObject.famType,
+			// FAM_TYPE : stateObject.famType,
 			syntonyId : genomeId
 		},
 		success : function(rs) {
 			catchSyntenyOrder(windowID, rs);
+		},
+		failure: function(){
+			Ext.MessageBox.alert("Error", "Data is not available now. Please try again later or contact PATRIC team (patric@vbi.vt.edu).");
+			Ext.get("sample-layout").unmask();
 		}
 	});
 }
 
 function catchSyntenyOrder(windowID, rs) {"use strict";
 	var orthoRows = getScratchObject(windowID + "_groupRows"),
-		orderPairs = (rs.responseText).split(","),
+		orderPairs = Ext.JSON.decode(rs.responseText),
 		colOrder = [],
 		adjust,
-		orderAt,
 		endAid,
+		orderAt,
 		i,
 		nextRow,
 		bumper,
@@ -656,16 +648,16 @@ function catchSyntenyOrder(windowID, rs) {"use strict";
 		gridObject = getScratchObject(windowID),
 		stateObject = getStateObject(windowID);
 
+	
 	if (0 < orderPairs.length) {
-		adjust = -orderPairs.length;
+		adjust = -(orderPairs.length * 2);
 		adjust /= 2;
 		orderAt = 0;
 		endAid = [];
 		for (i = 0; i < orthoRows.length; i++) {
 			nextRow = orthoRows[i];
-			if (nextRow.groupId == orderPairs[orderAt]) {
-				++orderAt;
-				nextRow.order = orderPairs[orderAt]; 
+			if (orderPairs[orderAt] && nextRow.groupId == orderPairs[orderAt].groupId) {
+				nextRow.order = orderPairs[orderAt].syntonyAt; 
 				++orderAt;
 			} else {
 				nextRow.order -= adjust;
@@ -735,7 +727,7 @@ function GenomeColumnRenderer(value, metadata, record, rowIndex, colIndex, store
 	genomeVSfilter = stateObject.genomeVSfilter;
 	checked = genomeVSfilter[gid].getStatus();
 
-	return '<input type=\"radio\" id=\"' + property.name + '_sc' + record.data.genome_info_id + '_' + colIndex + '\" ' + (colIndex == 0 && checked == '1' ? 'checked' : colIndex == 1 && checked == '0' ? 'checked' : colIndex == 2 && checked == ' ' ? 'checked' : '') + ' onclick=\"haveOrthoCareClick(\'' + property.name + '\', \'' + record.data.genome_info_id + '\', \'' + colIndex + '\')\"/>';
+	return '<input title=\"'+((colIndex == 0)?'Present in all families':(colIndex == 1)?'Absent from all families':'Either/Mixed')+'\" type=\"radio\" id=\"' + property.name + '_sc' + record.data.genome_info_id + '_' + colIndex + '\" ' + (colIndex == 0 && checked == '1' ? 'checked' : colIndex == 1 && checked == '0' ? 'checked' : colIndex == 2 && checked == ' ' ? 'checked' : '') + ' onclick=\"haveOrthoCareClick(\'' + property.name + '\', \'' + record.data.genome_info_id + '\', \'' + colIndex + '\')\"/>';
 }
 
 function haveOrthoCareClick(windowID, record_id, column) {"use strict";
@@ -893,7 +885,6 @@ function addRectangleToGroup(windowID, figfamNames, genomeList) {
 		timeout : 600000,
 		params : {
 			callType : "getFeatureIds",
-			FAM_TYPE : getFamType(windowID),
 			keyword : constructKeyword(object, "Feature")
 		},
 		success : function(rs) {
@@ -913,14 +904,14 @@ function drawOrthoGroupTable(windowID) {
 
 function filterHeatmapData(stateObject, ds, windowID) {"use strict";
 
-	var keeps = [], items = Ext.getStore('ds_genome').data.items,
-	//var orders = stateObject.orders;
-	orthoFilter = stateObject.filter, stateObject = getStateObject(windowID), gridObject = getScratchObject(windowID), syntenyOrderStore = [], rowCount = ds.getTotalCount(), iMax = 0, clusterColumn = (stateObject.heatmapAxis == "Transpose") ? stateObject.ClusterRowOrder : stateObject.ClusterColumnOrder, clusterRow = (stateObject.heatmapAxis == "Transpose") ? stateObject.ClusterColumnOrder : stateObject.ClusterRowOrder, rowColor, labelColor, place, i, j, genome_info_id, genome_name, index, z, record, groupId, meta, colorStop = [];
-
+	var keeps = [], items = Ext.getStore('ds_genome').data.items, stateObject = getStateObject(windowID);
+	var gridObject = getScratchObject(windowID), syntenyOrderStore = [], rowCount = ds.getTotalCount(), iMax = 0, clusterColumn = (stateObject.heatmapAxis == "Transpose") ? stateObject.ClusterRowOrder : stateObject.ClusterColumnOrder, clusterRow = (stateObject.heatmapAxis == "Transpose") ? stateObject.ClusterColumnOrder : stateObject.ClusterRowOrder, rowColor, labelColor, place, i, j, genome_info_id, genome_name, index, z, record, groupId, meta, colorStop = [],
+			orthoFilter = stateObject.filter;
 	rows = [], cols = [];
 
 	//	var Tree = {}, TI = {};
-
+	//var orders = stateObject.orders;
+	
 	if (clusterRow != null && clusterRow.length > 0 && clusterRow[0] != "") {
 		place = 0;
 		for ( j = 0; j < clusterRow.length; j++) {
@@ -1101,15 +1092,12 @@ function createCladogram(Tree) {
 
 function getCellParts(windowID, groupId, genomeId) {
 	var stateObject = getStateObject(windowID);
-	var genomeIds = stateObject.genomeIds;
+
+	var genomeVSfilter = stateObject.genomeVSfilter;
 	var result = [];
-	var depth = 0;
-	for (var i = 0; i < genomeIds.length; i++) {
-		if (genomeId == genomeIds[i]) {
-			result.push((stateObject.genomeNames)[i]);
-			depth = 2 * i;
-		}
-	}
+	var depth = 2 * genomeVSfilter[genomeId].getIndex();
+	result.push(genomeVSfilter[genomeId].getGenomeName());
+	
 	var orthoRows = getScratchObject(windowID + "_groupRows");
 	for (var i = 0; i < orthoRows.length; i++) {
 		var nextRow = orthoRows[i];
@@ -1635,15 +1623,14 @@ function getOrthoAlignment(windowID, groupID) {
 function setAllDetails(windowID, fileType) {
 	var tableData = filterOrthoTableData(windowID);
 	if (0 < tableData.length) {
-		var toSet = document.getElementById(windowID + '_detailsToFile');
+		var toSet = document.getElementById('detailsToFile');
 		toSet.detailsType.value = fileType;
-		toSet.detailsName.value = 'features';
-		var idText = getStateObject(windowID).genomeIds.join(",");
+		var idText = getStateObject(windowID).genomeIds.join(" OR ");
 		toSet.detailsGenomes.value = idText;
 		var figList = tableData[0][7];
 
 		for (var i = 1; i < tableData.length; i++) {
-			figList += ',' + tableData[i][7];
+			figList += ' OR ' + tableData[i][7];
 		}
 		toSet.detailsFigfams.value = figList;
 		toSet.submit();
@@ -1669,7 +1656,7 @@ function setTopOrtho(windowID, fileType) {
 		tablePass += "\n";
 	}
 
-	var toSet = document.getElementById(windowID + '_orthoToFile');
+	var toSet = document.getElementById('orthoToFile');
 	toSet.OrthoFileName.value = 'groups';
 	toSet.OrthoFileType.value = fileType;
 	toSet.data.value = tablePass;
@@ -1724,7 +1711,6 @@ function getSelectedFeatures(windowID, actiontype, showdownload, fastatype, to) 
 		timeout : 600000,
 		params : {
 			callType : "getFeatureIds",
-			FAM_TYPE : getFamType(windowID),
 			keyword : constructKeyword(object, "Feature")
 		},
 		success : function(rs) {

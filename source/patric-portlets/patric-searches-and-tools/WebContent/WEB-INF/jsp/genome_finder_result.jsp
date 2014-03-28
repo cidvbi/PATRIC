@@ -112,10 +112,10 @@ Ext.onReady(function()
 		cart: true,
 		cartType:'',
 		scm: [[checkbox,
-			{header:'Organism Name',	dataIndex:'genome_name',		flex:2, renderer:renderGenomeName}, 
-			{header:'NCBI Taxon Id',	dataIndex:'ncbi_tax_id',		flex:1, hidden:true, align:'right'},
-			{header:'Genome Status',	dataIndex:'genome_status',		flex:1, align:'center'/*, renderer:BasicRenderer*/}, 
-			{header:'Genome Browser',	dataIndex:'genome_browser', 	flex:1,	hidden:true, sortable:false, align: 'center', renderer:renderGenomeBrowserByGenome},
+			{header:'Organism Name',	dataIndex:'genome_name',		flex:2, renderer:renderGenomeName},
+			{header:'NCBI Taxon ID',	dataIndex:'ncbi_tax_id',		flex:1, hidden:true, align:'right'},
+			{header:'Genome Status',	dataIndex:'genome_status',		flex:1, align:'center'},
+			{header:'Genome Browser',	dataIndex:'genome_browser',		flex:1, sortable:false, align: 'center', renderer:renderGenomeBrowserByGenome},
 			{header:'Size',				dataIndex:'genome_length',		flex:1, hidden:true, align:'right'/*, renderer:BasicRenderer*/},
 			{header:'Chromosome',		dataIndex:'chromosomes',		flex:1, hidden:true, align:'center'/*, renderer:BasicRenderer*/},
 			{header:'Plasmids',			dataIndex:'plasmids',			flex:1, hidden:true, align:'center'/*, renderer:BasicRenderer*/},
@@ -124,13 +124,13 @@ Ext.onReady(function()
 			{header:'PATRIC CDS',		dataIndex:'rast_cds',			flex:1, align:'center', renderer:renderCDS_Count_RAST},
 			{header:'Legacy BRC CDS',	dataIndex:'brc_cds',			flex:1, hidden:true, align:'center', renderer:renderCDS_Count_BRC},
 			{header:'RefSeq CDS',		dataIndex:'refseq_cds',			flex:1, hidden:true, align:'center', renderer:renderCDS_Count_RefSeq},
-			{header:'Isolation Country',dataIndex:'isolation_country', 	flex:1, align:'center'/*, renderer:BasicRenderer*/}, 
-			{header:'Host Name',		dataIndex:'host_name',			flex:1, align:'center'/*, renderer:BasicRenderer*/}, 
-			{header:'Disease', 			dataIndex:'disease',			flex:1, align:'center'/*, renderer:BasicRenderer*/}, 
-			{header:'Collection Date', 	dataIndex:'collection_date', 	flex:1, align:'center'/*, renderer:BasicRenderer*/},
-			{header:'Completion Date', 	dataIndex:'completion_date', 	flex:1, align:'center', renderer:renderCompletionDate},
+			{header:'Isolation Country',dataIndex:'isolation_country', 	flex:1, align:'center'/*, renderer:BasicRenderer*/},
+			{header:'Host Name',		dataIndex:'host_name',			flex:1, align:'center'/*, renderer:BasicRenderer*/},
+			{header:'Disease',			dataIndex:'disease',			flex:1, align:'center'/*, renderer:BasicRenderer*/},
+			{header:'Collection Date',	dataIndex:'collection_date', 	flex:1, align:'center'/*, renderer:BasicRenderer*/},
+			{header:'Completion Date',	dataIndex:'completion_date', 	flex:1, align:'center', renderer:renderCompletionDate},
 			{header:'MLST', 		dataIndex:'mlst', 	flex:1, align:'center', renderer:BasicRenderer, hidden:true},
-			{header:'Strain',			dataIndex:'strain', 			flex:1, align:'center', hidden:true/*, renderer:BasicRenderer*/},      
+			{header:'Strain',			dataIndex:'strain', 			flex:1, align:'center', hidden:true/*, renderer:BasicRenderer*/},
 			{header:'Serovar',			dataIndex:'serovar',			flex:1, align:'center', hidden:true/*, renderer:BasicRenderer*/},
 			{header:'Biovar',			dataIndex:'biovar',				flex:1, align:'center', hidden:true/*, renderer:BasicRenderer*/},
 			{header:'Pathovar',			dataIndex:'pathovar',			flex:1, align:'center', hidden:true/*, renderer:BasicRenderer*/},
@@ -140,9 +140,9 @@ Ext.onReady(function()
 			{header:'Availability', 		dataIndex:'availability', 		flex:1, align:'center', hidden:true/*, renderer:BasicRenderer*/},
 			{header:'Sequencing Center',	dataIndex:'sequencing_centers', flex:1, align:'center', hidden:true/*, renderer:BasicRenderer*/},
 			{header:'Publication', 			dataIndex:'publication',		flex:1, align:'center', hidden:true/*, renderer:BasicRenderer*/},
-			{header:'NCBI Project Id', 		dataIndex:'ncbi_project_id',	flex:1, align:'center', hidden:true/*, renderer:BasicRenderer*/},
-			{header:'RefSeq Project Id',	dataIndex:'refseq_project_id',	flex:1, align:'center', hidden:true/*, renderer:BasicRenderer*/},
-			{header:'Genbank Accessions',	dataIndex:'genbank_accessions',	flex:1, align:'center', hidden:true/*, renderer:BasicRenderer*/},
+			{header:'NCBI Project ID', 		dataIndex:'ncbi_project_id',	flex:1, align:'center', hidden:true/*, renderer:BasicRenderer*/},
+			{header:'RefSeq Project ID',	dataIndex:'refseq_project_id',	flex:1, align:'center', hidden:true/*, renderer:BasicRenderer*/},
+			{header:'GenBank Accessions',	dataIndex:'genbank_accessions',	flex:1, align:'center', hidden:true/*, renderer:BasicRenderer*/},
 			{header:'RefSeq Accessions',	dataIndex:'refseq_accessions',	flex:1, align:'center', hidden:true/*, renderer:BasicRenderer*/},
 			{header:'Sequencing Platform',	dataIndex:'sequencing_platform',flex:1, align:'center', hidden:true/*, renderer:BasicRenderer*/},
 			{header:'Sequencing Depth',		dataIndex:'sequencing_depth',	flex:1, align:'center', hidden:true/*, renderer:BasicRenderer*/},
@@ -174,7 +174,7 @@ Ext.onReady(function()
 			[checkbox,
 			{header:"Genome Name",		dataIndex:'genome_name', 		flex:3, renderer:renderGenomeName},
 			{header:"Accession",		dataIndex:'accession',			flex:1, renderer:renderAccession},
-			{header:"Genome Browser",	dataIndex:'genome_browser',		flex:1, sortable:false, align:'center', renderer:renderGenomeBrowserBySequence},
+			{header:"Genome Browser",	dataIndex:'sid',				flex:1, sortable:false, align:'center', renderer:renderGenomeBrowserBySequence},
 			{header:"Length (bp)",		dataIndex:'length', 			flex:1, align:'right', renderer:BasicRenderer},
 			{header:"Sequence Type",	dataIndex:'sequence_type',		flex:1, align:'center', renderer:BasicRenderer},
 			{header:"GC Content (%)",	dataIndex:'gc_content',			flex:1, align:'center', renderer:BasicRenderer},
@@ -227,7 +227,7 @@ function getOriginalKeyword(){
 }
 
 function returntoSearchPage(){
-	var key = DecodeKeyword('<%=exact_search_term%>');
+	var key = DecodeKeyword('<%=java.net.URLEncoder.encode(exact_search_term, "UTF-8") %>');
 	document.location.href = "GenomeFinder?cType=<%=cType%>&cId=<%=cId%>&dm=#search_on=<%=search_on%>&keyword="+key;
 }
 

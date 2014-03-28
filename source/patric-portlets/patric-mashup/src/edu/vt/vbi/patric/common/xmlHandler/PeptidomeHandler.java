@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -77,11 +77,10 @@ public class PeptidomeHandler extends DefaultHandler {
 			sbSpectraCount = new StringBuffer();
 		}
 
-		if (qName.equalsIgnoreCase("accession") || qName.equalsIgnoreCase("entryType")
-				|| qName.equalsIgnoreCase("title") || qName.equalsIgnoreCase("summary")
-				|| qName.equalsIgnoreCase("int") || qName.equalsIgnoreCase("taxname")
-				|| qName.equalsIgnoreCase("proteincount") || qName.equalsIgnoreCase("peptidecount")
-				|| qName.equalsIgnoreCase("spectracount") || qName.equalsIgnoreCase("samplecount")) {
+		if (qName.equalsIgnoreCase("accession") || qName.equalsIgnoreCase("entryType") || qName.equalsIgnoreCase("title")
+				|| qName.equalsIgnoreCase("summary") || qName.equalsIgnoreCase("int") || qName.equalsIgnoreCase("taxname")
+				|| qName.equalsIgnoreCase("proteincount") || qName.equalsIgnoreCase("peptidecount") || qName.equalsIgnoreCase("spectracount")
+				|| qName.equalsIgnoreCase("samplecount")) {
 			currentElement = qName;
 		}
 		else if (qName.equalsIgnoreCase("pubmedids")) {
@@ -106,8 +105,7 @@ public class PeptidomeHandler extends DefaultHandler {
 			item.put("PeptideCount", sbPeptideCount.toString());
 			item.put("SpectraCount", sbSpectraCount.toString());
 			// link
-			item.put("link_data_file", "ftp://ftp.ncbi.nih.gov/pub/peptidome/studies/PSEnnn/" + item.get("Accession")
-					+ "/");
+			item.put("link_data_file", "ftp://ftp.ncbi.nih.gov/pub/peptidome/studies/PSEnnn/" + item.get("Accession") + "/");
 			list.add(item);
 			this.item = null;
 			this.sbSummary = null;

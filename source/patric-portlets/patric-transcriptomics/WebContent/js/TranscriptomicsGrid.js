@@ -420,22 +420,30 @@ function pickPanel() {
 			Ext.getDom('grid_result_summary').innerHTML = "<b>" + cols.length + " genes found</b><br/>";
 			Ext.get("sample-layout").unmask();
 			this.heatMapPanel.setVisible(true);
-			if (this.isHeatMapLoaded == false) {
-				loadHeatmap();
-				this.isHeatMapLoaded = true;
-			} else {
-				(jQuery(heatmapid)[0]).refreshData();
-			}
-			var stateObject = this.stateObject;
-			function callHeatmapStateRestore(state) {
-				updateDisplayStateInFlash(jQuery(heatmapid)[0], stateObject.heatmapState);
-			}
+			
+			if(navigator.mimeTypes ["application/x-shockwave-flash"]){
 
-			if (stateObject.heatmapState) {
-				setTimeout(function() {
-					callHeatmapStateRestore();
-				}, 3000);
+				if (this.isHeatMapLoaded == false) {
+					loadHeatmap();
+					this.isHeatMapLoaded = true;
+				} else {
+					flashShouldRefreshData(jQuery(heatmapid)[0]);
+				}
+	
+				var stateObject = this.stateObject;
+				function callHeatmapStateRestore(state) {
+					updateDisplayStateInFlash(jQuery(heatmapid)[0], stateObject.heatmapState);
+				}
+	
+				if (stateObject.heatmapState) {
+					setTimeout(function() {
+						callHeatmapStateRestore();
+					}, 3000);
+				}
+			}else{
+				Ext.getDom("TranscriptomicsGene_4heatmap").innerHTML = "Your Flash player is either disabled or not installed. Please install using this <a target=\"blank\" href=\"http://get.adobe.com/flashplayer\">link</a>.";
 			}
+			
 		} else {
 
 			this.heatMapPanel.setVisible(false);

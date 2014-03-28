@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright 2013 Virginia Polytechnic Institute and State University
+  Copyright 2014 Virginia Polytechnic Institute and State University
   
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -75,7 +75,7 @@
 		<portlet-info>
 			<title>Meta Genome Rapid Annotation using Subsustem Technology (MG-RAST)</title>
 		</portlet-info>
-	</portlet>
+	</portlet><!--
 	<portlet>
 		<portlet-name>NACTEM</portlet-name>
 		<portlet-class>edu.vt.vbi.patric.portlets.NaCTeM</portlet-class>
@@ -86,7 +86,7 @@
 		<portlet-info>
 			<title>The National Center for Text Mining</title>
 		</portlet-info>
-	</portlet>
+	</portlet>-->
 	<portlet>
 		<portlet-name>TB</portlet-name>
 		<portlet-class>edu.vt.vbi.patric.portlets.TB</portlet-class>
@@ -109,30 +109,22 @@
 			<title>Upload2PATRIC</title>
 		</portlet-info>
 		<supported-public-render-parameter>data_url</supported-public-render-parameter>
+		<supported-public-render-parameter>file_type</supported-public-render-parameter>
+		<supported-public-render-parameter>file_format</supported-public-render-parameter>
 	</portlet>
 <!-- landing pages -->
 	<portlet>
-		<portlet-name>Genomes</portlet-name>
-		<portlet-class>edu.vt.vbi.patric.portlets.Genomes</portlet-class>
+		<portlet-name>DataLanding</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.DataLanding</portlet-class>
 		<supports>
 			<mime-type>text/html</mime-type>
 			<portlet-mode>VIEW</portlet-mode>
 		</supports>
 		<portlet-info>
-			<title>Genome Landing</title>
+			<title>Data Landing</title>
 		</portlet-info>
 	</portlet>
-	<portlet>
-		<portlet-name>ProteinFamilies</portlet-name>
-		<portlet-class>edu.vt.vbi.patric.portlets.ProteinFamilies</portlet-class>
-		<supports>
-			<mime-type>text/html</mime-type>
-			<portlet-mode>VIEW</portlet-mode>
-		</supports>
-		<portlet-info>
-			<title>Protein Familiy Landing</title>
-		</portlet-info>
-	</portlet>
+<!-- page params-->
 	<public-render-parameter>
 		<identifier>page</identifier>
 		<qname xmlns:x="http://patric.vbi.vt.edu/params">x:page</qname>
@@ -140,5 +132,13 @@
 	<public-render-parameter>
 		<identifier>data_url</identifier>
 		<qname xmlns:x="http://patric.vbi.vt.edu/params">x:data_url</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>file_type</identifier>
+		<qname xmlns:x="http://patric.vbi.vt.edu/params">x:file_type</qname>
+	</public-render-parameter>
+	<public-render-parameter>
+		<identifier>file_format</identifier>
+		<qname xmlns:x="http://patric.vbi.vt.edu/params">x:file_format</qname>
 	</public-render-parameter>
 </portlet-app>

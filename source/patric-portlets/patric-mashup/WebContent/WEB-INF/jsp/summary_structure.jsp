@@ -44,14 +44,14 @@ if (cType.equals("taxon")) {
 		<table class="basic far2x">
 		<thead>
 			<tr>
-				<th width="75%">Data Source</th>
-				<th><a href="http://www.ncbi.nlm.nih.gov/Structure/" target="_blank"><img src="/patric/images/logo_ncbi.png" alt="NCBI Structure" /></a>
+				<th scope="row" width="75%">Data Source</th>
+				<th scope="col"><a href="http://www.ncbi.nlm.nih.gov/Structure/" target="_blank"><img src="/patric/images/logo_ncbi.png" alt="NCBI Structure" /></a>
 					<br/><a href="http://www.ncbi.nlm.nih.gov/Structure/" target="_blank">NCBI Structure</a></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
-				<th>Taxonomy search</th>
+				<th scope="row">Taxonomy search</th>
 				<td class="right-align-text"><% 
 				if (st == null || st.get("hasData").equals("false")) {
 					%><%=errorMsg%><%
@@ -64,7 +64,7 @@ if (cType.equals("taxon")) {
 				</td>
 			</tr>
 			<tr>
-				<th>Taxonomy search - Seattle Structural Genomics Center for Infectious Disease (SSGCID)</th>
+				<th scope="row">Taxonomy search - Seattle Structural Genomics Center for Infectious Disease (SSGCID)</th>
 				<td class="right-align-text"><% 
 				if (st_ssgcid == null || st_ssgcid.get("hasData").equals("false")) {
 					%><%=errorMsg%><%
@@ -77,7 +77,7 @@ if (cType.equals("taxon")) {
 				</td>
 			</tr>
 			<tr>
-				<th>Taxonomy search - Center for Structural Genomics of Infectious Diseases (CSGID)</th>
+				<th scope="row">Taxonomy search - Center for Structural Genomics of Infectious Diseases (CSGID)</th>
 				<td class="right-align-text"><% 
 				if (st_csgid == null || st_csgid.get("hasData").equals("false")) {
 					%><%=errorMsg%><%

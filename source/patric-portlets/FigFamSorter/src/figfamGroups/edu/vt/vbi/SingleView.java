@@ -106,7 +106,7 @@ public class SingleView extends GenericPortlet {
 						for (int i = 1; i < sorter.size(); i++) {
 							sort_field += "," + ((JSONObject) sorter.get(i)).get("property").toString();
 						}
-						System.out.println(sort_field);
+						//System.out.println(sort_field);
 					}
 					catch (ParseException e) {
 						e.printStackTrace();

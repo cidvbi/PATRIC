@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -77,12 +77,10 @@ public class ArrayExpressHandler extends DefaultHandler {
 			sbPubMedID = new StringBuffer();
 		}
 
-		if (qName.equalsIgnoreCase("accession") || qName.equalsIgnoreCase("name")
-				|| qName.equalsIgnoreCase("releasedate") || qName.equalsIgnoreCase("species")
-				|| qName.equalsIgnoreCase("assays") || qName.equalsIgnoreCase("samples")
-				|| qName.equalsIgnoreCase("experimenttype") || qName.equalsIgnoreCase("experimentdesign")
-				|| qName.equalsIgnoreCase("text") || qName.equalsIgnoreCase("secondaryaccession")
-				|| qName.equalsIgnoreCase("id")) {
+		if (qName.equalsIgnoreCase("accession") || qName.equalsIgnoreCase("name") || qName.equalsIgnoreCase("releasedate")
+				|| qName.equalsIgnoreCase("species") || qName.equalsIgnoreCase("assays") || qName.equalsIgnoreCase("samples")
+				|| qName.equalsIgnoreCase("experimenttype") || qName.equalsIgnoreCase("experimentdesign") || qName.equalsIgnoreCase("text")
+				|| qName.equalsIgnoreCase("secondaryaccession") || qName.equalsIgnoreCase("id")) {
 			currentElement = qName;
 		}
 		else if (qName.equalsIgnoreCase("bibliography")) {

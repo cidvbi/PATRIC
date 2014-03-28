@@ -32,7 +32,7 @@ String cId = (request.getParameter("context_id")!=null)?request.getParameter("co
 <script type="text/javascript" src="/patric-common/js/grid/toolbar.js"></script>
 <script type="text/javascript" src="/patric-common/js/grid/gridoptions.js"></script>
 <script type="text/javascript" src="/patric-common/js/grid/PATRICSelectionModel.js"></script>
-<script type="text/javascript" src="/patric-common/js/grid/PATRICGrid.js"></script>    
+<script type="text/javascript" src="/patric-common/js/grid/PATRICGrid.js"></script>
 <script type="text/javascript" src="/patric-common/js/grid/table_checkboxes.js"></script>
 <script type="text/javascript" src="/patric-common/js/grid/loadgrid.js"></script>
 <script type="text/javascript" src="/patric-common/js/parameters.js"></script>
@@ -41,7 +41,6 @@ String cId = (request.getParameter("context_id")!=null)?request.getParameter("co
 </script><script type="text/javascript" src="/patric/js/vbi/CorrelatedGenesFilter.js"></script>
 <script type="text/javascript">
 //<![CDATA[
-           
 var $Page;
 
 Ext.onReady(function()
@@ -101,7 +100,7 @@ Ext.onReady(function()
 		gridType: "Feature",
 		current_hash: window.location.hash?window.location.hash.substring(1):"",
 		url: ['/portal/portal/patric/TranscriptomicsGeneExp/TranscriptomicsGeneExpWindow?action=b&cacheability=PAGE'],
-		loaderFunction: function(){SetLoadParameters();loadGrid();},
+		loaderFunction: function(){loadFBCD();},
 		stateId: ['correlated'],
 		border: true,
 		pagingBarMsg: ['Displaying features {0} - {1} of {2}']
@@ -109,12 +108,21 @@ Ext.onReady(function()
 	
 	SetPageProperties(pageProperties),
 	$Page.checkbox = checkbox;
-	// SetIntervalOrAPI();
+	SetIntervalOrAPI();
 	Ext.QuickTips.init();
 	Ext.get("tabs_correlated") && Ext.get("tabs_correlated").addCls("sel");
 	overrideButtonActions();
-	loadGrid();
+	loadFBCD();
 });
+
+function loadFBCD() {
+
+	SetLoadParameters();
+	var hash = $Page.getPageProperties().hash;
+	Ext.getCmp("PATRICGridFilterPanel").child("#cutoffValue").setValue( Math.abs(hash.cutoffValue));
+	Ext.getCmp("PATRICGridFilterPanel").child("#cutoffDir").setValue(hash.cutoffDir);
+	loadGrid();
+}
 
 function getExtraParams(){
 	var Page = $Page,
@@ -140,7 +148,7 @@ function CallBack(){
 	Ext.getDom("grid_result_summary").innerHTML = '<b>'+Page.getStore(which).getTotalCount()+' features found</b>';
 	
 }
-    
+
 function DownloadFile(type){
 	"use strict";
 	
@@ -150,8 +158,7 @@ function DownloadFile(type){
 	form.target = "",
 	form.fileformat.value = arguments[0];
 	getHashFieldsToDownload(form);
-	form.submit();	
-	
+	form.submit();
 };
 
 function getSelectedFeatures() {

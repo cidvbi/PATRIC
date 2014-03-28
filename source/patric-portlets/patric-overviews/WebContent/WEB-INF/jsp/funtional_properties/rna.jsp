@@ -8,34 +8,34 @@ ResultType summary = (ResultType) request.getAttribute("rna");
 <tbody>
 	<% if (summary.containsKey("gene") && !summary.get("gene").equals("")) { %>
 	<tr>
-	    <th>Gene</th>
-	    <td><%=summary.get("gene")%></td>
+		<th scope="row">Gene</th>
+		<td><%=summary.get("gene")%></td>
 	</tr>
 	<% } %>
 	<% if (summary.containsKey("label") && !summary.get("label").equals("")) { %>
 	<tr>
-	    <th>Label</th>
-	    <td><%=summary.get("label")%></td>
+		<th scope="row">Label</th>
+		<td><%=summary.get("label")%></td>
 	</tr>
 	<% } %>
 	<tr>
-	    <th>Anticodon</th>
-	    <td><%=summary.get("anticodon")%>&nbsp;</td>
+		<th scope="row">Anticodon</th>
+		<td><%=summary.get("anticodon")%>&nbsp;</td>
 	</tr>
 	<tr>
-	    <th width="30%">Product</th>
-	    <td><%=summary.get("product")%>&nbsp;</td>
+		<th scope="row" width="30%">Product</th>
+		<td><%=summary.get("product")%>&nbsp;</td>
 	</tr>
 	<% if (summary.containsKey("comment") && !summary.get("comment").equals("")) { %>
 	<tr>
-	    <th>Comment</th>
-	    <td><%=summary.get("comment")%></td>
+		<th scope="row">Comment</th>
+		<td><%=summary.get("comment")%></td>
 	</tr>
 	<% } %>
 	<% if (summary.containsKey("structure") && !summary.get("structure").equals("")) { %>
 	<tr>
-	    <th>Structure</th>
-	    <td><span class="fixed-width-font"><%=summary.get("structure")%></span></td>
+		<th scope="row">Structure</th>
+		<td><span class="fixed-width-font"><%=summary.get("structure")%></span></td>
 	</tr>
 	<% } %>
 </tbody>

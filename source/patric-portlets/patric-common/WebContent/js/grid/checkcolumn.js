@@ -62,7 +62,6 @@ Ext.grid.CheckColumn.prototype = {
 	updateCheckAllIcon : function() {
 		Ext.getDom("checkbox_headerBox").src = "/patric/images/unchecked.gif";
 	},
-
 	showMessage : function(count, type) {
 		var mesaj = {}, m, msgCt = null;
 

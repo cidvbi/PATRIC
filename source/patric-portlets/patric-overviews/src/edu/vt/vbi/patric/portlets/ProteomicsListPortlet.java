@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -45,8 +45,7 @@ public class ProteomicsListPortlet extends GenericPortlet {
 	SolrInterface solr = new SolrInterface();
 
 	@Override
-	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException,
-			UnavailableException {
+	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException, UnavailableException {
 
 		response.setContentType("text/html");
 		PortletRequestDispatcher prd = null;
@@ -54,13 +53,14 @@ public class ProteomicsListPortlet extends GenericPortlet {
 		new SiteHelper().setHtmlMetaElements(request, response, "Proteomics Experiment List");
 		response.setTitle("Proteomics Experiment List");
 		String type = request.getParameter("context_type");
-		
-		if(type.equals("feature")){
+
+		if (type.equals("feature")) {
 			prd = getPortletContext().getRequestDispatcher("/WEB-INF/jsp/experiment/proteomics_list_feature.jsp");
-		}else{
+		}
+		else {
 			prd = getPortletContext().getRequestDispatcher("/WEB-INF/jsp/experiment/proteomics_list.jsp");
 		}
-		
+
 		prd.include(request, response);
 	}
 
@@ -102,10 +102,13 @@ public class ProteomicsListPortlet extends GenericPortlet {
 			PrintWriter writer = response.getWriter();
 			writer.write("" + random);
 			writer.close();
-		}else {
+		}
+		else {
 
 			String need = request.getParameter("need");
 			String facet = "", keyword = "", pk = "", state = "", experiment_id = "";
+			boolean hl = false;
+
 			PortletSession sess = request.getPortletSession();
 			ResultType key = new ResultType();
 			JSONObject jsonResult = new JSONObject();
@@ -220,17 +223,20 @@ public class ProteomicsListPortlet extends GenericPortlet {
 				pk = request.getParameter("pk");
 				keyword = request.getParameter("keyword");
 				facet = request.getParameter("facet");
+				String highlight = request.getParameter("highlight");
+
+				hl = Boolean.parseBoolean(highlight);
 
 				if (pk != null && sess.getAttribute("key" + pk, PortletSession.APPLICATION_SCOPE) == null) {
 					key.put("facet", facet);
 					key.put("keyword", keyword);
 					sess.setAttribute("key" + pk, key, PortletSession.APPLICATION_SCOPE);
 				}
-				else if(pk != null){
+				else if (pk != null) {
 					key = (ResultType) sess.getAttribute("key" + pk, PortletSession.APPLICATION_SCOPE);
 					key.put("facet", facet);
 				}
-				else{
+				else {
 					key.put("keyword", keyword);
 				}
 				// System.out.println("key::" + key.toString());
@@ -254,21 +260,21 @@ public class ProteomicsListPortlet extends GenericPortlet {
 						for (int i = 1; i < sorter.size(); i++) {
 							sort_field += "," + ((JSONObject) sorter.get(i)).get("property").toString();
 						}
-						System.out.println(sort_field);
+						// System.out.println(sort_field);
 					}
 					catch (ParseException e) {
 						e.printStackTrace();
 					}
-	
+
 					sort = new HashMap<String, String>();
-	
+
 					if (!sort_field.equals("") && !sort_dir.equals("")) {
 						sort.put("field", sort_field);
 						sort.put("direction", sort_dir);
 					}
 				}
-				
-				JSONObject object = solr.getData(key, sort, facet, start, end, facet != null && !facet.equals("")?true:false, false, false);
+
+				JSONObject object = solr.getData(key, sort, facet, start, end, facet != null && !facet.equals("") ? true : false, hl, false);
 
 				// System.out.print("pk-"+object.toString());
 
@@ -309,8 +315,7 @@ public class ProteomicsListPortlet extends GenericPortlet {
 				try {
 					if (!key.containsKey("tree")) {
 						JSONObject facet_fields = (JSONObject) new JSONParser().parse(key.get("facets"));
-						JSONArray arr1 = solr.processStateAndTree(key, need, facet_fields, key.get("facet"), state, 4,
-								false);
+						JSONArray arr1 = solr.processStateAndTree(key, need, facet_fields, key.get("facet"), state, 4, false);
 						jsonResult.put("results", arr1);
 						key.put("tree", arr1);
 					}
@@ -326,35 +331,37 @@ public class ProteomicsListPortlet extends GenericPortlet {
 				PrintWriter writer = response.getWriter();
 				writer.write(jsonResult.get("results").toString());
 				writer.close();
-				
-			}else if(need.equals("getFeatureIds")){
-				
+
+			}
+			else if (need.equals("getFeatureIds")) {
+
 				solr.setCurrentInstance("Proteomics_Protein");
 				keyword = request.getParameter("keyword");
 				key.put("keyword", keyword);
 				JSONObject object = solr.getData(key, null, facet, 0, -1, false, false, false);
-				
+
 				response.setContentType("application/json");
 				PrintWriter writer = response.getWriter();
 				writer.write(object.get("response").toString());
 				writer.close();
-				
-			}else if(need.equals("getPeptides")){
-				
+
+			}
+			else if (need.equals("getPeptides")) {
+
 				experiment_id = request.getParameter("experiment_id");
 				String na_feature_id = request.getParameter("na_feature_id");
-				
+
 				solr.setCurrentInstance("Proteomics_Peptide");
-				key.put("keyword", "na_feature_id:"+na_feature_id + " AND experiment_id:" + experiment_id);
+				key.put("keyword", "na_feature_id:" + na_feature_id + " AND experiment_id:" + experiment_id);
 				key.put("fields", "peptide_sequence");
 				JSONObject object = solr.getData(key, null, facet, 0, -1, false, false, false);
-				object = (JSONObject)object.get("response");
+				object = (JSONObject) object.get("response");
 				object.put("aa", FASTAHelper.getFASTAAASequence(na_feature_id));
-				
+
 				response.setContentType("application/json");
 				PrintWriter writer = response.getWriter();
 				writer.write(object.toJSONString());
-				writer.close();				
+				writer.close();
 			}
 		}
 	}

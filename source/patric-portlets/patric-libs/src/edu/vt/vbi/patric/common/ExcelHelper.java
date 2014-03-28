@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -107,8 +107,7 @@ public class ExcelHelper {
 	// -----------------------------------------------------------------------
 
 	/**
-	 * This constructor is used when you're reading in a file instead of
-	 * generating one
+	 * This constructor is used when you're reading in a file instead of generating one
 	 * 
 	 * @param type = type of workbook. "hssf" or "xssf", defaults to XSSF
 	 */
@@ -363,8 +362,7 @@ public class ExcelHelper {
 	}
 
 	/**
-	 * This method will write a simple text file using the header and field
-	 * arrays, with an array as the source
+	 * This method will write a simple text file using the header and field arrays, with an array as the source
 	 * 
 	 * @return = string text file
 	 */
@@ -443,8 +441,7 @@ public class ExcelHelper {
 	/**
 	 * Writes the workbook to an Excel file
 	 * 
-	 * @param fN = the desired filename (NOTE: DO NOT include the file
-	 * extension)
+	 * @param fN = the desired filename (NOTE: DO NOT include the file extension)
 	 */
 	public void writeSpreadsheet(String fN) {
 		String fileName = "";
@@ -497,14 +494,12 @@ public class ExcelHelper {
 				return true;
 			}
 			catch (FileNotFoundException e) {
-				System.out
-						.println("File Not Found Exception thrown. Uncomment in readFile(String fileName) to see stack trace.");
+				System.out.println("File Not Found Exception thrown. Uncomment in readFile(String fileName) to see stack trace.");
 				// e.printStackTrace();
 				return false;
 			}
 			catch (InvalidFormatException e) {
-				System.out
-						.println("Invalid Format Exception thrown. Uncomment in readFile(String fileName) to see stack trace.");
+				System.out.println("Invalid Format Exception thrown. Uncomment in readFile(String fileName) to see stack trace.");
 				// e.printStackTrace();
 				return false;
 			}
@@ -523,14 +518,12 @@ public class ExcelHelper {
 				return true;
 			}
 			catch (FileNotFoundException e) {
-				System.out
-						.println("File Not Found Exception thrown. Uncomment in readFile(String fileName) to see stack trace.");
+				System.out.println("File Not Found Exception thrown. Uncomment in readFile(String fileName) to see stack trace.");
 				// e.printStackTrace();
 				return false;
 			}
 			catch (InvalidFormatException e) {
-				System.out
-						.println("Invalid Format Exception thrown. Uncomment in readFile(String fileName) to see stack trace.");
+				System.out.println("Invalid Format Exception thrown. Uncomment in readFile(String fileName) to see stack trace.");
 				// e.printStackTrace();
 				return false;
 			}
@@ -607,8 +600,7 @@ public class ExcelHelper {
 	// ---------------------------------------------------------------------
 
 	/**
-	 * This method creates a map of Cellstyle objects for page building. Note:
-	 * this method used for HSSF pages
+	 * This method creates a map of Cellstyle objects for page building. Note: this method used for HSSF pages
 	 * 
 	 * @return hashmap of styles
 	 */
@@ -618,9 +610,7 @@ public class ExcelHelper {
 		HSSFPalette palette = ((HSSFWorkbook) wb).getCustomPalette();
 
 		// This replaces various shades of grey with custom colors
-		palette.setColorAtIndex(HSSFColor.GREY_25_PERCENT.index, (byte) 0, // RGB
-																			// red
-																			// (0-255)
+		palette.setColorAtIndex(HSSFColor.GREY_25_PERCENT.index, (byte) 0, // RGB red (0-255)
 				(byte) 52, // RGB green
 				(byte) 94 // RGB blue
 		);
@@ -678,8 +668,7 @@ public class ExcelHelper {
 	}
 
 	/**
-	 * This method creates a map of Cellstyle objects for page building. Note:
-	 * this method used for XSSF pages
+	 * This method creates a map of Cellstyle objects for page building. Note: this method used for XSSF pages
 	 * 
 	 * @return hashmap of styles
 	 */
@@ -733,9 +722,8 @@ public class ExcelHelper {
 	}
 
 	/**
-	 * Returns a CellStyle with a thin black boarder around all edges Boarder
-	 * Options: 0 = no boarder 1 = all thin black boarder 2 = top+bot thin black
-	 * boarder
+	 * Returns a CellStyle with a thin black boarder around all edges Boarder Options: 0 = no boarder 1 = all thin black boarder 2 = top+bot thin
+	 * black boarder
 	 * 
 	 * @param wb = workbook used to create style
 	 * @return CellStyle
@@ -778,9 +766,8 @@ public class ExcelHelper {
 	}
 
 	/**
-	 * This method automatically sets the column widths How: Measures the
-	 * character length of the text in header cell of a column. Max column
-	 * length is either the title length or the title length *4
+	 * This method automatically sets the column widths How: Measures the character length of the text in header cell of a column. Max column length
+	 * is either the title length or the title length *4
 	 */
 	public void setColWidths() {
 		if (wb == null) {
@@ -801,9 +788,7 @@ public class ExcelHelper {
 			for (int i = 0; i < row.getLastCellNum(); i++) {
 				sheet.setColumnWidth(i, (decideColumnWidth(sheet, i) + margin) * 256);
 			}
-
 		}
-
 	}
 
 	/**
@@ -898,8 +883,7 @@ public class ExcelHelper {
 	}
 
 	/**
-	 * Sets predetermined boarder option. Styles must be remade if border option
-	 * is changed see createBorderStyle for options
+	 * Sets predetermined boarder option. Styles must be remade if border option is changed see createBorderStyle for options
 	 * 
 	 * @param opt = option to change to
 	 */
@@ -930,5 +914,4 @@ public class ExcelHelper {
 	public void setEmptyOption(int opt) {
 		emptyOpt = opt;
 	}
-
 }

@@ -2,6 +2,8 @@
 <%@ page import="edu.vt.vbi.patric.common.PubMedHelper" %>
 <%@ page import="edu.vt.vbi.patric.dao.DBShared" %>
 <%@ page import="edu.vt.vbi.patric.dao.ResultType" %>
+<%@ page import="edu.vt.vbi.patric.common.SolrInterface" %>
+<%@ page import="org.json.simple.JSONObject" %>
 <%
 	String scopeUrl = "";
 	String qScope = request.getParameter("scope");
@@ -49,9 +51,10 @@
 		if (qScope==null) {
 			qScope = "f";
 		}
-		ResultType names = dbh_shared.getNamesFromNaFeatureId(cId);
-		genome_name = names.get("genome_name");
-		feature_name = names.get("feature_name");
+		SolrInterface solr = new SolrInterface();
+		JSONObject names = solr.getFeature(cId);
+		genome_name = names.get("genome_name").toString();
+		feature_name = names.get("product").toString();
 	}
 %>
 <div class="table-container" id="filter" style="width:160px;float:left;line-height:1.7em;margin:0px">

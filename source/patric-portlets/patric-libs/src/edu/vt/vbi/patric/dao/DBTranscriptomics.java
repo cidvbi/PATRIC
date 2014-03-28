@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -46,8 +46,7 @@ public class DBTranscriptomics {
 
 	public JSONArray getSamples(String sampleId, String expId) {
 		long start = System.currentTimeMillis();
-		String sql = "select g.pid, g.expname, g.timepoint, g.strain, g.mutant, g.condition "
-				+ " from app.genexp_sample g " + " where 1 = 1";
+		String sql = "select g.pid, g.expname, g.timepoint, g.strain, g.mutant, g.condition from app.genexp_sample g where 1 = 1";
 
 		if (expId != null && expId != "") {
 			sql += " and g.eid in (:expId)";
@@ -102,14 +101,14 @@ public class DBTranscriptomics {
 			results.add(row);
 		}
 		long end = System.currentTimeMillis();
-		System.out.println("Total query and Processing time for 1st query is - "+(end-start));
+		System.out.println("Total query and Processing time for 1st query is - " + (end - start));
 		return results;
 	}
 
 	public JSONArray getGenes(String sampleId, String expId) {
 
 		long start = System.currentTimeMillis();
-		
+
 		String sql = "select g.pid, g.locustag, g.log_ratio, g.z_score, " + "p.patric_na_feature_id "
 				+ " from app.genexp_gene g, app.genexp_genemapping p " + " where 1 = 1 ";
 
@@ -159,9 +158,9 @@ public class DBTranscriptomics {
 				results.add(row);
 			}
 		}
-		
+
 		long end = System.currentTimeMillis();
-		System.out.println("Total query and Processing time for 2nd query is - "+(end-start));
+		System.out.println("Total query and Processing time for 2nd query is - " + (end - start));
 		return results;
 	}
 
@@ -315,10 +314,9 @@ public class DBTranscriptomics {
 	public ArrayList<ResultType> getGeneLvlExpressionCounts(String field, HashMap<String, String> key) {
 		boolean hasParam = false;
 		String sql = "select rownum, A.* from ( " + "	select nvl(" + field + ", 'N/A') name, count(*) cnt from ( "
-				+ "		select distinct pm.patric_na_feature_id, g.pid, " + field + "		from " + "			app.genexp_gene g, "
-				+ "			app.genexp_sample s, " + "			app.genexp_genemapping pm, " + "			app.dnafeature nf " + "		where "
-				+ "			g.locustag = pm.exp_locus_tag " + "			and g.pid = s.pid "
-				+ "			and pm.patric_na_feature_id = nf.na_feature_id ";
+				+ "		select distinct pm.patric_na_feature_id, g.pid, " + field + "		from " + "			app.genexp_gene g, " + "			app.genexp_sample s, "
+				+ "			app.genexp_genemapping pm, " + "			app.dnafeature nf " + "		where " + "			g.locustag = pm.exp_locus_tag "
+				+ "			and g.pid = s.pid " + "			and pm.patric_na_feature_id = nf.na_feature_id ";
 
 		if (key.containsKey("na_feature_id") && key.get("na_feature_id") != null) {
 			sql += " 		and pm.patric_na_feature_id = :na_feature_id ";
@@ -416,43 +414,12 @@ public class DBTranscriptomics {
 
 	public ArrayList<ResultType> getGeneLvlExpressionHistogram(String field, HashMap<String, String> key) {
 		boolean hasParam = false;
-		String sql = "select rangee, count(*) cnt from ( " + "	select distinct pm.patric_na_feature_id, g.pid, (case "
-				+ "			when "
-				+ field
-				+ " < -2 then 1 "
-				+ "			when "
-				+ field
-				+ " between -2.0 and -1.5 then 2 "
-				+ "			when "
-				+ field
-				+ " between -1.5 and -1 then 3 "
-				+ "			when "
-				+ field
-				+ " between -1.0 and -0.5 then 4 "
-				+ "			when "
-				+ field
-				+ " between -0.5 and 0.0 then 5 "
-				+ "			when "
-				+ field
-				+ " between 0.0 and 0.5 then 6 "
-				+ "			when "
-				+ field
-				+ " between 0.5 and 1.0 then 7 "
-				+ "			when "
-				+ field
-				+ " between 1.0 and 1.5 then 8 "
-				+ "			when "
-				+ field
-				+ " between 1.5 and 2.0 then 9 "
-				+ "			when "
-				+ field
-				+ " > 2 then 10 "
-				+ "		end) rangee "
-				+ "	from "
-				+ "		app.genexp_gene g, "
-				+ "		app.genexp_sample s, "
-				+ "		app.genexp_genemapping pm "
-				+ "	where "
+		String sql = "select rangee, count(*) cnt from ( " + "	select distinct pm.patric_na_feature_id, g.pid, (case " + "			when " + field
+				+ " < -2 then 1 " + "			when " + field + " between -2.0 and -1.5 then 2 " + "			when " + field + " between -1.5 and -1 then 3 "
+				+ "			when " + field + " between -1.0 and -0.5 then 4 " + "			when " + field + " between -0.5 and 0.0 then 5 " + "			when " + field
+				+ " between 0.0 and 0.5 then 6 " + "			when " + field + " between 0.5 and 1.0 then 7 " + "			when " + field
+				+ " between 1.0 and 1.5 then 8 " + "			when " + field + " between 1.5 and 2.0 then 9 " + "			when " + field + " > 2 then 10 "
+				+ "		end) rangee " + "	from " + "		app.genexp_gene g, " + "		app.genexp_sample s, " + "		app.genexp_genemapping pm " + "	where "
 				+ "		g.locustag = pm.exp_locus_tag " + "		and g.pid = s.pid ";
 
 		if (key.containsKey("na_feature_id") && key.get("na_feature_id") != null) {
@@ -540,56 +507,34 @@ public class DBTranscriptomics {
 		return results;
 	}
 
-	public ArrayList<ResultType> getCorrelatedGenes(HashMap<String, String> key, HashMap<String, String> sort,
-			int start, int end) {
+	public ArrayList<ResultType> getCorrelatedGenes(HashMap<String, String> key, HashMap<String, String> sort, int start, int end) {
 
-		String sql = "	select co.locustag1, co.locustag2, co.correlation, co.cnt, "
-				+ "			df.genome_info_id, df.genome_name, df.accession, df.source_id, df.na_feature_id, "
+		String sql = "	select co.locustag1, co.locustag2 as refseq_locus_tag, co.correlation, co.cnt, "
+				+ "			df.genome_info_id, df.genome_name, df.accession, df.source_id locus_tag, df.na_feature_id, "
 				+ "			df.start_max, df.end_min, df.na_length, df.is_reversed, df.product, "
 				+ "			decode(df.algorithm,'Curation','Legacy BRC','RAST','PATRIC','RefSeq') as annotation, "
-				+ "			df.name as feature_type, prm.refseq_source_id as refseq_locus_tag, df.gene, "
-				+ "			df.protein_id, df.aa_length "
-				+ "		from (select "
-				+ "				mp1.refseq_locus_tag locustag1, "
-				+ "				mp2.refseq_locus_tag locustag2, "
-				+ "				round(corr(e1.log_ratio, e2.log_ratio), 3) correlation, "
-				+ "				count(distinct(e1.pid)) cnt "
-				+ "			from "
-				+ "				app.genexp_sample gs, app.genexp_gene e1, app.genexp_genemapping mp1, "
-				+ "				app.genexp_gene e2, app.genexp_genemapping mp2, app.dnafeature df "
-				+ "			where "
-				+ "				e1.pid = e2.pid and gs.pid = e1.pid and e1.locustag = mp1.exp_locus_tag and e2.locustag = mp2.exp_locus_tag "
-				+ "				and mp1.patric_na_feature_id = :na_feature_id "
-				+ "				and e1.log_ratio is not null "
-				+ "				and mp2.patric_na_feature_id = df.na_feature_id "
-				+ "				and df.genome_info_id = (select genome_info_id from app.dnafeature "
-				+ "					where na_feature_id = :na_feature_id) "
-				+ "						and mp1.patric_na_feature_id != mp2.patric_na_feature_id " 
-				+ "					group by mp1.refseq_locus_tag, mp2.refseq_locus_tag "
-				+ "					having abs(corr(e1.log_ratio, e2.log_ratio)) > 0 "
-				+ "		) co, "
-				+ "		app.genexp_genemapping mp, app.dnafeature df, app.patricrefseqmapping prm "
-				+ "		where	"
-				+ "			co.locustag2 = mp.exp_locus_tag "
-				+ "			and mp.patric_na_feature_id = df.na_feature_id "
-				+ "			and df.na_feature_id = prm.patric_na_feature_id (+) "
-				+ "			and df.name = 'CDS' "
-				+ "			and co.cnt > (select 0.8*count(distinct(gene.pid)) "
-				+ "					from app.genexp_sample gs, app.genexp_gene gene, app.genexp_genemapping mp "
-				+ "					where gs.pid = gene.pid and gene.locustag = mp.exp_locus_tag "
-				+ "						and gene.log_ratio is not null and mp.patric_na_feature_id = :na_feature_id) ";
-
+				+ "			df.name as feature_type, df.gene, df.protein_id, df.aa_length " + "		from (select " + "				mp1.refseq_locus_tag locustag1, "
+				+ "				mp2.refseq_locus_tag locustag2, " + "				mp2.patric_na_feature_id, "
+				+ "				round(corr(e1.log_ratio, e2.log_ratio), 3) correlation, " + "				count(distinct(e1.pid)) cnt " + "			from "
+				+ "				app.genexp_gene e1, app.genexp_genemapping mp1, " + "				app.genexp_gene e2, app.genexp_genemapping mp2 "
+				+ "			where e1.log_ratio is not null"
+				+ "				and e1.pid = e2.pid and e1.locustag = mp1.exp_locus_tag and e2.locustag = mp2.exp_locus_tag "
+				+ "				and mp1.patric_na_feature_id = :na_feature_id " + "				and mp1.genome_info_id = mp2.genome_info_id "
+				+ "			group by mp1.refseq_locus_tag, mp2.refseq_locus_tag, mp2.patric_na_feature_id " + "			having ";
 		if (key.containsKey("cutoff_value") && key.containsKey("cutoff_dir")) {
 			if (key.get("cutoff_dir").equals("positive")) {
-				sql += "	and correlation > :cutoff_value";
+				sql += "		corr(e1.log_ratio, e2.log_ratio) > :cutoff_value";
 			}
 			else {
-				sql += "	and correlation < :cutoff_value";
+				sql += "		corr(e1.log_ratio, e2.log_ratio) < :cutoff_value";
 			}
 		}
+		sql += "				and count(distinct(e1.pid)) > (select 0.8*count(distinct(gene.pid)) "
+				+ "					from app.genexp_gene gene, app.genexp_genemapping mp " + "					where gene.log_ratio is not null "
+				+ "						and gene.locustag = mp.exp_locus_tag " + "						and mp.patric_na_feature_id = :na_feature_id) " + "		) co, "
+				+ "		app.dnafeature df " + "		where	" + "			co.patric_na_feature_id = df.na_feature_id ";
 
-		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction")
-				&& sort.get("direction") != null) {
+		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction") && sort.get("direction") != null) {
 			sql += "	order by " + sort.get("field") + " " + sort.get("direction");
 		}
 		else {
@@ -599,6 +544,7 @@ public class DBTranscriptomics {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
+		q.setTimeout(SQL_TIMEOUT);
 
 		// binding value
 		if (key.containsKey("na_feature_id") && key.get("na_feature_id") != null) {
@@ -640,10 +586,10 @@ public class DBTranscriptomics {
 
 			row.put("annotation", obj[14]);
 			row.put("feature_type", obj[15]);
-			row.put("refseq_locus_tag", obj[16]);
-			row.put("gene", obj[17]);
-			row.put("protein_id", obj[18]);
-			row.put("aa_length", obj[19]);
+			row.put("refseq_locus_tag", obj[1]);
+			row.put("gene", obj[16]);
+			row.put("protein_id", obj[17]);
+			row.put("aa_length", obj[18]);
 
 			results.add(row);
 		}
@@ -653,44 +599,30 @@ public class DBTranscriptomics {
 
 	public int getCorrelatedGenesCount(HashMap<String, String> key) {
 
-		String sql = "	select count(*) cnt "
-				+ "				from (select "
-				+ "							mp1.refseq_locus_tag locustag1, "
-				+ "							mp2.refseq_locus_tag locustag2, "
-				+ "							round(corr(e1.log_ratio, e2.log_ratio), 3) correlation, "
-				+ "							count(distinct(e1.pid)) cnt "
-				+ "						from "
-				+ "							app.genexp_sample gs, app.genexp_gene e1, app.genexp_genemapping mp1, "
-				+ "							app.genexp_gene e2, app.genexp_genemapping mp2, app.dnafeature df "
-				+ "						where "
-				+ "							e1.pid = e2.pid and gs.pid = e1.pid and e1.locustag = mp1.exp_locus_tag and e2.locustag = mp2.exp_locus_tag "
-				+ "							and mp1.patric_na_feature_id = :na_feature_id "
-				+ "							and e1.log_ratio is not null "
-				+ "							and mp2.patric_na_feature_id = df.na_feature_id "
-				+ "							and df.genome_info_id = (select genome_info_id from app.dnafeature where na_feature_id = :na_feature_id) "
-				+ "							and mp1.patric_na_feature_id != mp2.patric_na_feature_id " + "						group by "
-				+ "							mp1.refseq_locus_tag, mp2.refseq_locus_tag " + "						having "
-				+ "							abs(corr(e1.log_ratio, e2.log_ratio)) > 0 " + "					) co, "
-				+ "					app.genexp_genemapping mp, " + "					app.dnafeature df " + "		where "
-				+ "			co.locustag2 = mp.exp_locus_tag " + "			and mp.patric_na_feature_id = df.na_feature_id "
-				+ "			and df.name = 'CDS' " + "			and co.cnt > (select 0.8*count(distinct(gene.pid)) "
-				+ "						from app.genexp_sample gs, app.genexp_gene gene, app.genexp_genemapping mp "
-				+ "						where gs.pid = gene.pid " + "							and gene.locustag = mp.exp_locus_tag "
-				+ "							and gene.log_ratio is not null " + "							and mp.patric_na_feature_id = :na_feature_id) ";
-
+		String sql = "select count(*) cnt " + "		from (select " + "				mp1.refseq_locus_tag locustag1, " + "				mp2.refseq_locus_tag locustag2, "
+				+ "				mp2.patric_na_feature_id " + "			from " + "				app.genexp_gene e1, app.genexp_genemapping mp1, "
+				+ "				app.genexp_gene e2, app.genexp_genemapping mp2" + "			where e1.log_ratio is not null "
+				+ "				and e1.pid = e2.pid and e1.locustag = mp1.exp_locus_tag and e2.locustag = mp2.exp_locus_tag "
+				+ "				and mp1.patric_na_feature_id = :na_feature_id " + "				and mp1.genome_info_id = mp2.genome_info_id " + "			group by "
+				+ "				mp1.refseq_locus_tag, mp2.refseq_locus_tag, mp2.patric_na_feature_id " + "			having ";
 		if (key.containsKey("cutoff_value") && key.containsKey("cutoff_dir")) {
 			if (key.get("cutoff_dir").equals("positive")) {
-				sql += "	and co.correlation > :cutoff_value";
+				sql += "		corr(e1.log_ratio, e2.log_ratio) > :cutoff_value";
 			}
 			else {
-				sql += "	and co.correlation < :cutoff_value";
+				sql += "		corr(e1.log_ratio, e2.log_ratio) < :cutoff_value";
 			}
 		}
+		sql += "				and count(distinct(e1.pid)) > (select 0.8*count(distinct(gene.pid)) "
+				+ "					from app.genexp_gene gene, app.genexp_genemapping mp " + "					where gene.log_ratio is not null "
+				+ "						and gene.locustag = mp.exp_locus_tag " + "						and mp.patric_na_feature_id = :na_feature_id) " + "			) co, "
+				+ "			app.dnafeature df " + "		where " + "			co.patric_na_feature_id = df.na_feature_id ";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql).addScalar("cnt", Hibernate.INTEGER);
 		q.setCacheable(true);
+		q.setTimeout(SQL_TIMEOUT);
 
 		if (key.containsKey("na_feature_id") && key.get("na_feature_id") != null) {
 			q.setInteger("na_feature_id", Integer.parseInt(key.get("na_feature_id").toString()));
@@ -707,8 +639,7 @@ public class DBTranscriptomics {
 
 	public ArrayList<String> getEIDs(String taxon_id) {
 
-		String sql = "select distinct mp.eid "
-				+ "	from app.genexp_genomemapping mp, "
+		String sql = "select distinct mp.eid " + "	from app.genexp_genomemapping mp, "
 				+ "	(select ncbi_tax_id from sres.taxon connect by prior taxon_id = parent_id start with ncbi_tax_id = :taxon_id) tx "
 				+ "	where mp.ncbi_tax_id = tx.ncbi_tax_id";
 
@@ -730,8 +661,7 @@ public class DBTranscriptomics {
 
 	public ArrayList<String> getEIDsFromGenomeID(String gid) {
 
-		String sql = "select distinct mp.eid from app.genexp_genomemapping mp "
-				+ "	where mp.genome_info_id = :gid";
+		String sql = "select distinct mp.eid from app.genexp_genomemapping mp " + "	where mp.genome_info_id = :gid";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -756,13 +686,13 @@ public class DBTranscriptomics {
 
 	public int getPathwayEnrichmentNoofGenesSQL(HashMap<String, String> key) {
 
-		String sql = "select count(distinct(na_feature_id)) cnt from app.pathwaysummary where "
-				+ getParsedFeatureIds(key);
+		String sql = "select count(distinct(na_feature_id)) cnt from app.pathwaysummary where " + getParsedFeatureIds(key);
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql).addScalar("cnt", Hibernate.INTEGER);
 		q.setCacheable(true);
+		q.setTimeout(SQL_TIMEOUT);
 
 		Object obj = q.uniqueResult();
 		session.getTransaction().commit();
@@ -782,13 +712,10 @@ public class DBTranscriptomics {
 			sql += "select obs.opname pathway_name, obs.opid pathway_id, obs.ocnt ocnt, exp.ecnt ecnt, trunc(obs.ocnt*100/exp.ecnt) percentage from ";
 		}
 
-		sql += " ( select pathway_name opname, pathway_id opid, count(distinct(na_feature_id)) ocnt "
-				+ " from app.pathwaysummary " + " where " + getParsedFeatureIds(key)
-				+ " group by pathway_name, pathway_id) obs, "
-				+ " (select pathway_name epname, pathway_id epid, count(distinct(na_feature_id)) ecnt "
-				+ " from app.pathwaysummary "
-				+ " where genome_info_id in (select distinct genome_info_id from app.pathwaysummary " + " where "
-				+ getParsedFeatureIds(key)
+		sql += " ( select pathway_name opname, pathway_id opid, count(distinct(na_feature_id)) ocnt " + " from app.pathwaysummary " + " where "
+				+ getParsedFeatureIds(key) + " group by pathway_name, pathway_id) obs, "
+				+ " (select pathway_name epname, pathway_id epid, count(distinct(na_feature_id)) ecnt " + " from app.pathwaysummary "
+				+ " where genome_info_id in (select distinct genome_info_id from app.pathwaysummary " + " where " + getParsedFeatureIds(key)
 				+ " ) and algorithm = 'RAST' group by pathway_name, pathway_id) exp where obs.opid = exp.epid ";
 
 		return sql;
@@ -829,6 +756,7 @@ public class DBTranscriptomics {
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql).addScalar("cnt", Hibernate.INTEGER);
 		q.setCacheable(true);
+		q.setTimeout(SQL_TIMEOUT);
 
 		Object obj = q.uniqueResult();
 		session.getTransaction().commit();
@@ -836,13 +764,11 @@ public class DBTranscriptomics {
 		return Integer.parseInt(obj.toString());
 	}
 
-	public ArrayList<ResultType> getPathwayEnrichmentList(HashMap<String, String> key, HashMap<String, String> sort,
-			int start, int end) {
+	public ArrayList<ResultType> getPathwayEnrichmentList(HashMap<String, String> key, HashMap<String, String> sort, int start, int end) {
 
 		String sql = getPathwayEnrichmentSQL(key, "function");
 
-		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction")
-				&& sort.get("direction") != null) {
+		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction") && sort.get("direction") != null) {
 			sql += " ORDER BY " + sort.get("field") + " " + sort.get("direction");
 		}
 		else {
@@ -852,7 +778,7 @@ public class DBTranscriptomics {
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
-		q.setTimeout(300);
+		q.setTimeout(SQL_TIMEOUT);
 
 		if (end > 0) {
 			q.setMaxResults(end);
@@ -884,13 +810,13 @@ public class DBTranscriptomics {
 
 	public String getGenomeListFromFeatureIds(HashMap<String, String> key, int start, int end) {
 		String sql = "", genomeIds = "";
-		sql += "select distinct genome_info_id from app.pathwaysummary " + " where " + getParsedFeatureIds(key)
-				+ " and pathway_id = '" + key.get("map").toString() + "'";
+		sql += "select distinct genome_info_id from app.pathwaysummary " + " where " + getParsedFeatureIds(key) + " and pathway_id = '"
+				+ key.get("map").toString() + "'";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
-		q.setTimeout(300);
+		q.setTimeout(SQL_TIMEOUT);
 
 		if (end > 0) {
 			q.setMaxResults(end);

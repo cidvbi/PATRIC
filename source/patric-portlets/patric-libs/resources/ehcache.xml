@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright 2013 Virginia Polytechnic Institute and State University
+  Copyright 2014 Virginia Polytechnic Institute and State University
   
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -171,7 +171,7 @@
 	//statistics="true"
 	-->
 	<defaultCache
-	maxElementsInMemory="5000"
+	maxElementsInMemory="10000"
 	eternal="false"
 	timeToIdleSeconds="120"
 	timeToLiveSeconds="120"
@@ -180,13 +180,13 @@
 	memoryStoreEvictionPolicy="LFU"
 	/>
 	<cache name="org.hibernate.cache.StandardQueryCache"
-	maxElementsInMemory="5000"
+	maxElementsInMemory="10000"
 	timeToIdleSeconds="600"
 	timeToLiveSeconds="600"
 	overflowToDisk="false"
 	/>
 	<cache name="org.hibernate.cache.UpdateTimestampsCache"
-	maxElementsInMemory="5000"
+	maxElementsInMemory="10000"
 	eternal="true"
 	overflowToDisk="false"
 	/>

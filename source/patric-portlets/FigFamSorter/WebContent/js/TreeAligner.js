@@ -91,14 +91,18 @@ function insertTreeApplet(windowID, ajaxHttp) {
 	var jarUrl = stateObject.contextPath + '/TreeViewer.jar';
 	toSet = document.getElementById(windowID + "_forApplet");
 
-	var setter = "<applet archive='" + jarUrl + "'" + " codebase='.'" + " code='edu/vt/vbi/patric/applets/treealign/TreeAlignment.class'" + " id='" + windowID + "_applet'" + " width='100%' height='100%'>" + " <param name='NEWICK'" + " value='" + nexusData[4] + "'>";
+	var setter = "<object type=\"application/x-java-applet\" codebase=\".\" id=\"" + windowID + "_applet\" width='100%' height='100%'>";
+	setter += "<param name=\"code\" value=\"edu/vt/vbi/patric/applets/treealign/TreeAlignment.class\" />";
+	setter += "<param name=\"archive\" value=\"" + jarUrl + "\" />";
+	setter += "<param name=\"NEWICK\" value=\"" + nexusData[4] + "\">";
 	var alignNum = 0;
 	for (var i = 5; i < nexusData.length; i++) {++alignNum;
 		var pName = "ALIGN" + alignNum;
-		pName = " <param name='" + pName + "'" + " value='" + nexusData[i] + "'>";
+		pName = " <param name=\"" + pName + "\" value=\"" + nexusData[i] + "\">";
 		setter += pName;
 	}
-	setter += " </applet>";
+	setter += "Applet failed to run. No Java plug-in was found. You can download Java JRE from <a href=\"http://java.com/en/download/\" target=_blank>here</a>";
+	setter += " </object>";
 
 	toSet.innerHTML = setter;
 	Ext.get(windowID).unmask();

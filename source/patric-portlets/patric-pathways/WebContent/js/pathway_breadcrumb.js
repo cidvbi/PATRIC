@@ -38,7 +38,7 @@ function writeBreadCrumb(){
 		
 		Ext.Ajax.request({
 		    url: url,
-		    method: 'GET',
+		    method: 'POST',
 		    params: {val:Ext.JSON.encode(obj)},
 		    success: function(response, opts) {
 		    	summary.innerHTML = "<b> " + response.responseText +" unique pathway(s) found</b><br/>";		    
@@ -49,14 +49,14 @@ function writeBreadCrumb(){
 		
 		Ext.Ajax.request({
 		    url: url,
-		    method: 'GET',
+		    method: 'POST',
 		    params: {val:Ext.JSON.encode(obj)},
 		    success: function(response1, opts1) {
 				if(!hash.cwP){
 					obj.need = 0;
 					Ext.Ajax.request({
 					    url: "/patric-pathways/jsp/get_breadcrumb_data.json.jsp",
-					    method: 'GET',
+					    method: 'POST',
 					    params: {val:Ext.JSON.encode(obj)},
 					    success: function(response, opts) {
 									summary.innerHTML = "<b>"+ response1.responseText +" unique EC Number(s) found in" + response.responseText +"pathway(s) </b><br/>";
@@ -72,7 +72,7 @@ function writeBreadCrumb(){
 			
 		Ext.Ajax.request({
 		    url: url,
-		    method: 'GET',
+		    method: 'POST',
 		    params: {val:Ext.JSON.encode(obj)},					
 		    success: function(response1, opts1) {
 				if(!hash.cwP){
@@ -80,7 +80,7 @@ function writeBreadCrumb(){
 						obj.need = 0;
 						Ext.Ajax.request({
 						    url: url,
-						    method: 'GET',
+						    method: 'POST',
 						    params: {val:Ext.JSON.encode(obj)},
 						    success: function(response, opts) {
 								summary.innerHTML = "<b>"+response1.responseText+" unique gene(s) found in"+response.responseText+" pathway(s)</b><br/>";						

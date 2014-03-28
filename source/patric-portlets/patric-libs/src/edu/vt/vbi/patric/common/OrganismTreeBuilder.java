@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,8 +25,7 @@ import edu.vt.vbi.patric.dao.DBSummary;
 import edu.vt.vbi.patric.dao.ResultType;
 
 /**
- * Class to support Genome Selector. You just need to call
- * buildOrganismTreeListView() method to create an instance of genome selector.
+ * Class to support Genome Selector. You just need to call buildOrganismTreeListView() method to create an instance of genome selector.
  * 
  * @author Harry Yoo
  * 
@@ -59,8 +58,7 @@ public class OrganismTreeBuilder {
 	 * @param parent_id NCBI Taxonomy ID of parent node
 	 * @return json object of tree node
 	 */
-	public static JSONObject createOrganismTreeNode(String taxon_id, String name, String rank, String node_count,
-			boolean isLeaf, String parent_id) {
+	public static JSONObject createOrganismTreeNode(String taxon_id, String name, String rank, String node_count, boolean isLeaf, String parent_id) {
 		JSONObject n = new JSONObject();
 		n.put("id", Integer.parseInt(taxon_id));
 		n.put("name", name);
@@ -114,13 +112,12 @@ public class OrganismTreeBuilder {
 		JSONArray azlist = new JSONArray();
 		JSONArray children = new JSONArray();
 
-		JSONObject root = createGenomeListNode("0", genome.get("class_name") + " (" + genome.get("node_count") + ")",
-				genome.get("ncbi_taxon_id"), null);
+		JSONObject root = createGenomeListNode("0", genome.get("class_name") + " (" + genome.get("node_count") + ")", genome.get("ncbi_taxon_id"),
+				null);
 
 		for (int i = 0; i < list.size(); i++) {
 			genome = list.get(i);
-			children.add(createGenomeListNode(genome.get("genome_info_id"), genome.get("genome_name"),
-					genome.get("ncbi_taxon_id"), "0"));
+			children.add(createGenomeListNode(genome.get("genome_info_id"), genome.get("genome_name"), genome.get("ncbi_taxon_id"), "0"));
 		}
 
 		root.put("children", children);
@@ -178,8 +175,8 @@ public class OrganismTreeBuilder {
 
 			if (taxon.get("is_leaf").equals("0") && !taxon.get("genome_below").equals("0")) {
 				// has children
-				JSONObject node = createOrganismTreeNode(taxon.get("ncbi_taxon_id"), taxon.get("class_name"),
-						taxon.get("rank"), taxon.get("node_count"), false, taxon.get("parent_ncbi_taxon_id"));
+				JSONObject node = createOrganismTreeNode(taxon.get("ncbi_taxon_id"), taxon.get("class_name"), taxon.get("rank"),
+						taxon.get("node_count"), false, taxon.get("parent_ncbi_taxon_id"));
 				JSONArray children = new JSONArray();
 
 				node.put("children", children);
@@ -194,8 +191,8 @@ public class OrganismTreeBuilder {
 			}
 			else {
 				// this is a leaf node
-				JSONObject node = createOrganismTreeNode(taxon.get("ncbi_taxon_id"), taxon.get("class_name"),
-						taxon.get("rank"), taxon.get("node_count"), true, taxon.get("parent_ncbi_taxon_id"));
+				JSONObject node = createOrganismTreeNode(taxon.get("ncbi_taxon_id"), taxon.get("class_name"), taxon.get("rank"),
+						taxon.get("node_count"), true, taxon.get("parent_ncbi_taxon_id"));
 				if (nodeFinder(txtree, Integer.parseInt(taxon.get("parent_ncbi_taxon_id"))) == null) {
 					txtree.add(node);
 				}

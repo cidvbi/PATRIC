@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -57,8 +57,7 @@ public class TestFileUploader extends GenericPortlet {
 	private ExpressionDataFileReader reader;
 
 	@Override
-	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException,
-			UnavailableException {
+	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException, UnavailableException {
 
 		response.setContentType("text/html");
 		response.setTitle("Test File Uploader");
@@ -92,10 +91,9 @@ public class TestFileUploader extends GenericPortlet {
 			/*
 			 * JSONObject config = new JSONObject();
 			 * 
-			 * config.put("sampleFilePresent","true"); config.put("sampleURL", polyomic.findRawFileUrl("sample",
-			 * collectionId)); config.put("sampleFileType", "txt"); config.put("dataURL",
-			 * polyomic.findRawFileUrl("expression", collectionId)); config.put("dataFileType", "txt");
-			 * config.put("dataFileFormat", "matrix"); config.put("dataFileOrientation", "svg");
+			 * config.put("sampleFilePresent","true"); config.put("sampleURL", polyomic.findRawFileUrl("sample", collectionId));
+			 * config.put("sampleFileType", "txt"); config.put("dataURL", polyomic.findRawFileUrl("expression", collectionId));
+			 * config.put("dataFileType", "txt"); config.put("dataFileFormat", "matrix"); config.put("dataFileOrientation", "svg");
 			 * config.put("idMappingType", "refseq_source_id"); config.put("collectionID", collectionId);
 			 */
 
@@ -121,7 +119,6 @@ public class TestFileUploader extends GenericPortlet {
 
 				polyomic.saveJSONFilesToCollection(collectionId, reader);
 			}
-
 		}
 		else if (callType.equals("second")) {
 
@@ -135,7 +132,6 @@ public class TestFileUploader extends GenericPortlet {
 			JSONArray sample = dbomics.getSamples(sampleId, expId);
 
 			String colFlag = "true";
-			// System.out.println("data-size-before - "+items.size());
 			if (colFlag.equals("true")) {
 				/*
 				 * Start reading from JSON files
@@ -152,7 +148,6 @@ public class TestFileUploader extends GenericPortlet {
 
 				// Append samples from collection to samples from DB
 				sample = parser.append(sample, ExpressionDataCollection.CONTENT_SAMPLE);
-
 			}
 
 			String sampleList = "";
@@ -191,11 +186,9 @@ public class TestFileUploader extends GenericPortlet {
 
 			writer.write(jsonResult.toString());
 			writer.close();
-
 		}
 		writer.write(jsonResult.toString());
 		writer.close();
-
 	}
 
 	public void IDMap() throws InvalidFormatException {
@@ -229,10 +222,8 @@ public class TestFileUploader extends GenericPortlet {
 
 			b.addSamplestoGene(a, sample); // Sample HashMap is used to create absence/presence string
 			genes.put(id, b);
-
 		}
 
-		// Set<?> entries = genes.entrySet();
 		Iterator<?> it = genes.entrySet().iterator();
 		String idList = "";
 		JSONObject temp = new JSONObject();
@@ -240,9 +231,7 @@ public class TestFileUploader extends GenericPortlet {
 		while (it.hasNext()) {
 
 			Map.Entry<?, ?> entry = (Map.Entry<?, ?>) it.next();
-
 			ExpressionDataGene value = (ExpressionDataGene) entry.getValue();
-
 			JSONObject a = new JSONObject();
 
 			a.put("refseq_locus_tag", value.getRefSeqLocusTag());
@@ -253,11 +242,10 @@ public class TestFileUploader extends GenericPortlet {
 			a.put("samples", value.getSamples());
 
 			idList += value.getNAFeatureID() + ",";
-
 			temp.put(value.getNAFeatureID(), a);
 		}
 
-		System.out.println(idList.split(",").length);
+		// System.out.println(idList.split(",").length);
 
 		/*
 		 * Solr Call to get Feature attributes-----------------------------------
@@ -269,11 +257,8 @@ public class TestFileUploader extends GenericPortlet {
 		SolrInterface solr = new SolrInterface();
 		JSONObject object = solr.getFeaturesByID(condition);
 		JSONArray obj_array = (JSONArray) object.get("results");
-		/**/
 
 		JSONObject a, b;
-
-		System.out.print(obj_array.size());
 
 		for (int i = 0; i < obj_array.size(); i++) {
 			a = (JSONObject) obj_array.get(i);
@@ -287,7 +272,6 @@ public class TestFileUploader extends GenericPortlet {
 			results.add(b);
 		}
 
-		System.out.print(results.size());
 		return results;
 	}
 }

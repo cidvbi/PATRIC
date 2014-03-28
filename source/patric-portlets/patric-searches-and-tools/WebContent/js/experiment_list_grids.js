@@ -195,7 +195,7 @@ function renderID(value) {
 
 function linkToGeneList(value, metadata, record, rowIndex, colIndex, store) {
 	if (value != 0) {
-		return Ext.String.format('<a href="TranscriptomicsGene?cType=taxon&cId={5}&dm=result&expId={1}&sampleId={2}&colId=&log_ratio={3}&zscore={4}">{0}</a>', value, record.data.eid, (record.get("pid") == undefined) ? "" : record.data.pid, 0, 0, Ext.getDom("cId").value);
+		return Ext.String.format('<a href="TranscriptomicsGene?cType=taxon&cId={5}&dm=result&pk=&expId={1}&sampleId={2}&colId=&log_ratio={3}&zscore={4}">{0}</a>', value, record.data.eid, (record.get("pid") == undefined) ? "" : record.data.pid, 0, 0, Ext.getDom("cId").value);
 	} else {
 		return 0;
 	}
@@ -203,7 +203,7 @@ function linkToGeneList(value, metadata, record, rowIndex, colIndex, store) {
 
 function linkToGeneListFold(value, metadata, record, rowIndex, colIndex, store) {
 	if (value != 0) {
-		return Ext.String.format('<a href="TranscriptomicsGene?cType=taxon&cId={5}&dm=result&expId={1}&sampleId={2}&colId=&log_ratio={3}&zscore={4}">{0}</a>', value, record.data.eid, record.data.pid, 1, 0, Ext.getDom("cId").value);
+		return Ext.String.format('<a href="TranscriptomicsGene?cType=taxon&cId={5}&dm=result&pk=&expId={1}&sampleId={2}&colId=&log_ratio={3}&zscore={4}">{0}</a>', value, record.data.eid, record.data.pid, 1, 0, Ext.getDom("cId").value);
 	} else {
 		return 0;
 	}
@@ -211,10 +211,16 @@ function linkToGeneListFold(value, metadata, record, rowIndex, colIndex, store) 
 
 function linkToGeneListZScore(value, metadata, record, rowIndex, colIndex, store) {
 	if (value != 0) {
-		return Ext.String.format('<a href="TranscriptomicsGene?cType=taxon&cId={5}&dm=result&expId={1}&sampleId={2}&colId=&log_ratio={3}&zscore={4}">{0}</a>', value, record.data.eid, record.data.pid, 0, 2, Ext.getDom("cId").value);
+		return Ext.String.format('<a href="TranscriptomicsGene?cType=taxon&cId={5}&dm=result&pk=&expId={1}&sampleId={2}&colId=&log_ratio={3}&zscore={4}">{0}</a>', value, record.data.eid, record.data.pid, 0, 2, Ext.getDom("cId").value);
 	} else {
 		return 0;
 	}
+}
+
+function renderExpTitle(value, metadata, record, rowIndex, colIndex, store) {
+	metadata.tdAttr = 'data-qtip="' + value + '" data-qclass="x-tip"';
+	return Ext.String.format("<a href=\"SingleExperiment?cType=taxon&cId={2}&eid={1}\">{0}</a>", value, record.data.eid, Ext.getDom("cId").value);
+
 }
 
 function renderComparisons(value, metadata, record, rowIndex, colIndex, store) {
@@ -299,7 +305,7 @@ function showExpDetail() {
 			});
 		}
 
-		//console.log("# of comparisions:"+countComparisons);
+		//console.log("# of comparisons:"+countComparisons);
 
 		if (countComparisons >= maxComparisions) {
 			alert("You have exceeded the limit of comparisons. Please lower than " + maxComparisions);
@@ -318,7 +324,7 @@ function showExpDetail() {
 			expId = param;
 		}
 
-		document.location.href = "TranscriptomicsGene?cType=" + cType + "&cId=" + cId + "&dm=result&expId=" + expId + "&sampleId=" + sampleId + "&colId=&log_ratio=&zscore=";
+		document.location.href = "TranscriptomicsGene?cType=" + cType + "&cId=" + cId + "&dm=result&pk=&expId=" + expId + "&sampleId=" + sampleId + "&colId=&log_ratio=&zscore=";
 
 	} else {
 		alert("No experiment(s) are selected. To see associated gene(s), at least one experiment must be selected");

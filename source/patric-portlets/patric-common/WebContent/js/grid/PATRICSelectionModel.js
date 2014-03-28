@@ -1,10 +1,12 @@
-Ext.grid.PATRICSelectionModel = function(config) {
-	this.selection = null, this.mouseSelectionEnable = false, this.checkSelectionEnable = false, this.cr2, this.firstSelectedCell = [0, 0], this.selectedCellRange = [0, 0, 0, 0];
-};
-
 Ext.define('Ext.grid.PATRICSelectionModel', {
 	extend : 'Ext.selection.CellModel',
 	allowDeselect : true,
+	selection : null, 
+	mouseSelectionEnable: false, 
+	checkSelectionEnable: false, 
+	cr2: null, 
+	firstSelectedCell : [0, 0], 
+	selectedCellRange : [0, 0, 0, 0],
 	clearSelections : function() {
 		if (this.selectedCellRange) {
 			var cr = this.selectedCellRange, row1 = cr[0], col1 = cr[1], row2 = cr[2], col2 = cr[3], r, c;

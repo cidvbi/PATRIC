@@ -55,19 +55,19 @@ else if (cType.equals("genome")) {
 	<table class="basic far2x">
 	<thead>
 		<tr>
-			<th width="25%">Data Source</th>
-			<th width="25%"><a href="http://www.ncbi.nlm.nih.gov/geo/" target="_blank"><img src="/patric/images/logo_geo.png" alt="GEO" /></a>
+			<th scope="row" width="25%">Data Source</th>
+			<th scope="col" width="25%"><a href="http://www.ncbi.nlm.nih.gov/geo/" target="_blank"><img src="/patric/images/logo_geo.png" alt="GEO" /></a>
 				<br/><a href="http://www.ncbi.nlm.nih.gov/geo/" target="_blank">Gene Expression Omnibus</a>
 			</th>
-			<th width="25%"><a href="http://www.ebi.ac.uk/microarray-as/ae/" target="_blank"><img src="/patric/images/logo_arrayexpress.png" alt="ArrayExpress" /></a>
+			<th scope="col" width="25%"><a href="http://www.ebi.ac.uk/microarray-as/ae/" target="_blank"><img src="/patric/images/logo_arrayexpress.png" alt="ArrayExpress" /></a>
 				<br/><a href="http://www.ebi.ac.uk/microarray-as/ae/" target="_blank">ArrayExpress</a></th>
-			<th width="25%"><a href="http://pathogenportal.net/portal/portal/PathPort/Data+Set+Summary/prc" target="_blank"><img src="/patric/images/logo_prc.png" alt="Proteomics Resource Center" /></a>
+			<th scope="col" width="25%"><a href="http://pathogenportal.net/portal/portal/PathPort/Data+Set+Summary/prc" target="_blank"><img src="/patric/images/logo_prc.png" alt="Proteomics Resource Center" /></a>
 				<br/><a href="http://pathogenportal.net/portal/portal/PathPort/Data+Set+Summary/prc" target="_blank">Proteomics Resource Center</a></th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<th>Taxonomy search</th>
+			<th scope="row">Taxonomy search</th>
 			<td class="right-align-text"><!-- GEO/taxonomy -->
 				<% 
 				if (gds_taxon == null || gds_taxon.get("hasData").equals("false")) { 
@@ -92,7 +92,7 @@ else if (cType.equals("genome")) {
 			</td>
 		</tr>
 		<tr>
-			<th>Keyword search</th>
+			<th scope="row">Keyword search</th>
 			<td class="right-align-text"><!-- GEO/keyword -->
 				<% 
 				if (gds_keyword == null || gds_keyword.get("hasData").equals("false")) {
@@ -118,7 +118,7 @@ else if (cType.equals("genome")) {
 			<td class="right-align-text last"><!-- PRC/Keyword -->N/A</td>
 		</tr>
 		<tr>
-			<th>Species search</th>
+			<th scope="row">Species search</th>
 			<td class="right-align-text"><!-- GEO/Species -->N/A</td>
 			<td class="right-align-text"><!-- ArrayExpress/Species -->
 				<% 

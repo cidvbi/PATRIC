@@ -126,14 +126,14 @@
 <thead>
 	<tr>
 		<th width="40%"></th>
-		<th width="20%">PATRIC</th>
-		<th width="20%">Legacy BRC</th>
-		<th width="20%">RefSeq</th>
+		<th scope="col" width="20%">PATRIC</th>
+		<th scope="col" width="20%">Legacy BRC</th>
+		<th scope="col" width="20%">RefSeq</th>
 	</tr>
 </thead>
 <tbody>
 	<tr class="alt">
-		<th>Hypothetical proteins</th>
+		<th scope="row">Hypothetical proteins</th>
 		<td class="right-align-text">
 		<% if (hypotheticalProteins.isEmpty() == false
 				&& hypotheticalProteins.get("PATRIC") != null) 
@@ -158,7 +158,7 @@
 		<% if (hypotheticalProteins.isEmpty() == false
 				&& hypotheticalProteins.get("RefSeq") != null) 
 		{ 
-        		%>
+		%>
 			<a href="FeatureTable?cType=<%=cType%>&amp;cId=<%=cId%>&amp;featuretype=CDS&amp;annotation=RefSeq&amp;filtertype=hypothetical_proteins"><%=hypotheticalProteins.get("RefSeq")%></a>
 		<% } else { %>
 			0
@@ -166,7 +166,7 @@
 		</td>
 	</tr>
 	<tr>
-		<th>Proteins with functional assignments</th>
+		<th scope="row">Proteins with functional assignments</th>
 		<td class="right-align-text">
 		<% if (functionalProteins.isEmpty() == false
 				&& functionalProteins.get("PATRIC") != null) 
@@ -191,7 +191,7 @@
 		<% if (functionalProteins.isEmpty() == false
 				&& functionalProteins.get("RefSeq") != null) 
 		{ 
-        		%>
+		%>
 			<a href="FeatureTable?cType=<%=cType%>&amp;cId=<%=cId%>&amp;featuretype=CDS&amp;annotation=RefSeq&amp;filtertype=functional_proteins"><%=functionalProteins.get("RefSeq")%></a>
 		<% } else { %>
 			0
@@ -199,7 +199,7 @@
 		</td>
 	</tr>
 	<tr class="alt">
-		<th>Proteins with EC number assignments</th>
+		<th scope="row">Proteins with EC number assignments</th>
 		<td class="right-align-text">
 		<% if (ecAssignedProteins.isEmpty() == false
 				&& ecAssignedProteins.get("PATRIC") != null) 
@@ -224,7 +224,7 @@
 		<% if (ecAssignedProteins.isEmpty() == false
 				&& ecAssignedProteins.get("RefSeq") != null) 
 		{ 
-        		%>
+		%>
 			<a href="FeatureTable?cType=<%=cType%>&amp;cId=<%=cId%>&amp;featuretype=CDS&amp;annotation=RefSeq&amp;filtertype=ec"><%=ecAssignedProteins.get("RefSeq")%></a>
 		<% } else { %>
 			0
@@ -232,7 +232,7 @@
 		</td>
 	</tr>
 	<tr>
-		<th>Proteins with GO assignments</th>
+		<th scope="row">Proteins with GO assignments</th>
 		<td class="right-align-text">
 		<% if (goAssignedProteins.isEmpty() == false
 				&& goAssignedProteins.get("PATRIC") != null) 
@@ -257,7 +257,7 @@
 		<% if (goAssignedProteins.isEmpty() == false
 				&& goAssignedProteins.get("RefSeq") != null) 
 		{ 
-        		%>
+		%>
 			<a href="FeatureTable?cType=<%=cType%>&amp;cId=<%=cId%>&amp;featuretype=CDS&amp;annotation=RefSeq&amp;filtertype=go"><%=goAssignedProteins.get("RefSeq")%></a>
 		<% } else { %>
 			0
@@ -265,7 +265,7 @@
 		</td>
 	</tr>
 	<tr class="alt">
-		<th>Proteins with Pathway assignments</th>
+		<th scope="row">Proteins with Pathway assignments</th>
 		<td class="right-align-text">
 		<% if (pathwayAssignedProteins.isEmpty() == false
 				&& pathwayAssignedProteins.get("PATRIC") != null) 
@@ -290,7 +290,7 @@
 		<% if (pathwayAssignedProteins.isEmpty() == false
 				&& pathwayAssignedProteins.get("RefSeq") != null) 
 		{ 
-        		%>
+		%>
 			<a href="FeatureTable?cType=<%=cType%>&amp;cId=<%=cId%>&amp;featuretype=CDS&amp;annotation=RefSeq&amp;filtertype=pathway"><%=pathwayAssignedProteins.get("RefSeq")%></a>
 		<% } else { %>
 			0
@@ -298,7 +298,7 @@
 		</td>
 	</tr>
 	<tr>
-		<th>Proteins with FigFam assignments</th>
+		<th scope="row">Proteins with FIGfam assignments</th>
 		<td class="right-align-text">
 		<% if (figfamAssignedProteins.isEmpty() == false
 				&& figfamAssignedProteins.get("PATRIC") != null) 
@@ -323,7 +323,7 @@
 		<% if (figfamAssignedProteins.isEmpty() == false
 				&& figfamAssignedProteins.get("RefSeq") != null) 
 		{ 
-        		%>
+		%>
 			<a href="FeatureTable?cType=<%=cType%>&amp;cId=<%=cId%>&amp;featuretype=CDS&amp;annotation=RefSeq&amp;filtertype=figfam_id"><%=figfamAssignedProteins.get("RefSeq")%></a>
 		<% } else { %>
 			0

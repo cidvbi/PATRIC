@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright 2013 Virginia Polytechnic Institute and State University
+  Copyright 2014 Virginia Polytechnic Institute and State University
   
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -46,12 +46,12 @@
 			<portlet-ref>MGRAST</portlet-ref>
 		</instance>
 	</deployment>
-	<deployment>
+<!-- <deployment>
 		<instance>
 			<instance-id>NACTEMInstance</instance-id>
 			<portlet-ref>NACTEM</portlet-ref>
 		</instance>
-	</deployment>
+	</deployment>-->
 	<deployment>
 		<instance>
 			<instance-id>TBInstance</instance-id>
@@ -66,14 +66,8 @@
 	</deployment>
 	<deployment>
 		<instance>
-			<instance-id>GenomesInstance</instance-id>
-			<portlet-ref>Genomes</portlet-ref>
-		</instance>
-	</deployment>
-	<deployment>
-		<instance>
-			<instance-id>ProteinFamiliesInstance</instance-id>
-			<portlet-ref>ProteinFamilies</portlet-ref>
+			<instance-id>DataLandingInstance</instance-id>
+			<portlet-ref>DataLanding</portlet-ref>
 		</instance>
 	</deployment>
 </deployments>

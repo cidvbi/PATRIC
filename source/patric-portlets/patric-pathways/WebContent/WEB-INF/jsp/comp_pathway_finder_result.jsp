@@ -83,7 +83,7 @@ Click on a pathway name to view a pathway map.
     
     
 <div id="sample-layout"></div>
-<div id="grid_result_summary">Loading...</div>
+<div id="PATRICGrid"></div>
 </div>
 
 <script type="text/javascript" src="/patric-common/js/ZeroClipboard.js"></script>
@@ -120,6 +120,7 @@ Ext.onReady(function()
 		plugintype:"checkbox",
 		extraParams:getExtraParams,
 		callBackFn:CallBack,
+		border: true,
 		scm :[[checkbox, {header:'Pathway ID',			dataIndex:'pathway_id',		flex:1, renderer:BasicRenderer},
 						{header:'Pathway Name',			dataIndex:'pathway_name',	flex:2, renderer:renderPathwayName},
 						{header:'Pathway Class',		dataIndex:'pathway_class',	flex:2, renderer:BasicRenderer},

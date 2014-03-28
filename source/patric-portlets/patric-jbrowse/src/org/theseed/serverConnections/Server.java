@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,8 +30,7 @@ import java.util.HashMap;
 public interface Server {
 
 	/**
-	 * The query reader is an output stream from the network instantiated as a buffered reader. It allows you to read
-	 * the results of your query
+	 * The query reader is an output stream from the network instantiated as a buffered reader. It allows you to read the results of your query
 	 * @return a buffered reader
 	 * @throws Exception if there is an error reading the stream
 	 */
@@ -45,8 +44,8 @@ public interface Server {
 	public InputStream query() throws Exception;
 
 	/**
-	 * Getter/Setter methods for the three variables, url (the server URL), method (the function that is to be called),
-	 * and data (the key/value pairs of any data to be sent to the server.
+	 * Getter/Setter methods for the three variables, url (the server URL), method (the function that is to be called), and data (the key/value pairs
+	 * of any data to be sent to the server.
 	 * 
 	 * You have to set the URL and the method before you can make a valid call!
 	 * 
@@ -71,8 +70,7 @@ public interface Server {
 	public void setMethod(String query);
 
 	/**
-	 * The encoding is the method that is used to transfer data. Currently, there are two formats that we support: YAML
-	 * (default) and JSON.
+	 * The encoding is the method that is used to transfer data. Currently, there are two formats that we support: YAML (default) and JSON.
 	 * @return encoding the type of encoding you would like to retrieve
 	 */
 
@@ -146,8 +144,7 @@ public interface Server {
 	public boolean isDebug();
 
 	/**
-	 * Encode a String[] array into a data object that can be exchanged (e.g. yaml or json data object). You can then
-	 * add this to data.
+	 * Encode a String[] array into a data object that can be exchanged (e.g. yaml or json data object). You can then add this to data.
 	 * @param array a string array to encode
 	 * @return the string representation of the array
 	 * @throws Exception
@@ -163,8 +160,8 @@ public interface Server {
 	public String encode(HashMap<String, Object> hashmap) throws Exception;
 
 	/**
-	 * Reset the server connection. This resets the method and arguments passed to the server, but does not affect the
-	 * URL, email, source, or encoding strings, so you can call this method between calls to clear previous data.
+	 * Reset the server connection. This resets the method and arguments passed to the server, but does not affect the URL, email, source, or encoding
+	 * strings, so you can call this method between calls to clear previous data.
 	 */
 	public void reset();
 

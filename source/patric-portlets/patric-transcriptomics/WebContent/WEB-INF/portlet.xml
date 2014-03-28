@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  Copyright 2013 Virginia Polytechnic Institute and State University
+  Copyright 2014 Virginia Polytechnic Institute and State University
   
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -45,6 +45,19 @@
 		<supported-public-render-parameter>context_type</supported-public-render-parameter>
 		<supported-public-render-parameter>context_id</supported-public-render-parameter>
 		<supported-public-render-parameter>eid</supported-public-render-parameter>
+	</portlet>
+	<portlet>
+		<portlet-name>TranscriptomicsGeneSearch</portlet-name>
+		<portlet-class>edu.vt.vbi.patric.portlets.TranscriptomicsGeneSearch</portlet-class>
+		<supports>
+			<mime-type>text/html</mime-type>
+			<portlet-mode>VIEW</portlet-mode>
+		</supports>
+		<portlet-info>
+			<title>Transcriptomics Gene Search</title>
+		</portlet-info>
+		<supported-public-render-parameter>context_type</supported-public-render-parameter>
+		<supported-public-render-parameter>context_id</supported-public-render-parameter>
 	</portlet>
 	<portlet>
 		<portlet-name>TranscriptomicsGene</portlet-name>

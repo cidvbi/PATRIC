@@ -120,10 +120,10 @@ Ext.onReady(function() {
 		scm:[],
 		extraParams:getExtraParams,
 		callBackFn:CallBack,
-		sort: [[{
+		sort: [[{/*
 			property: 'genome_name',
 			direction: 'ASC'
-		},{
+		},{*/
 			property: 'locus_tag',
 			direction: 'ASC'
 		}]],

@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="/patric-static/ibrc.css" type="text/css" />
 <div id="fp">
 	
-	<div>
+	<div class="far2x">
 		<h2>PATRIC</h2>
 	</div>
 	
@@ -15,78 +15,74 @@
 	</div>
 
 	<div class="right" style="width:60%">
-
-		<div class="table-container with-border">
-			<h2>List of Genera</h2>
-			<table class="data-table">
-				<thead>
-				<tr>
-					<th width="80">Genus name</th>
-					<th width="25">Genomes from BRC</th>
-					<th width="70">Link</th>
-					<th>Description</th>
-				</tr>
-				</thead>
-				<tr>
-					<td>Brucella</td>
-					<td class="right">38</td>
-					<td>
-						<%=SiteHelper.getLinks("taxon_overview", "234")%>
-						<%=SiteHelper.getLinks("genome_list", "234")%>
-						<%=SiteHelper.getLinks("feature_table", "234")%>
-					</td>
-					<td><i>Brucella</i> are gram-negative, facultative, intracellular bacteria that are members of the order Rhizobiales.
-						They can infect many species of animals as well as man. Human brucellosis is treatable with antibiotics, though the course of
-					  	antibiotic treatment must be prolonged due to the intracellular nature of <i>Brucella</i>.
-						The genus <i>Brucella</i> consists of at least six species, designated on the basis of host preference, antigenic and
-					  	biochemical characteristics.
-					</td>
-				</tr>
-				<tr>
-					<td>Coxiella</td>
-					<td class="right">6</td>
-					<td>
-						<%=SiteHelper.getLinks("taxon_overview", "776")%>
-						<%=SiteHelper.getLinks("genome_list", "776")%>
-						<%=SiteHelper.getLinks("feature_table", "776")%>
-					</td>
-					<td><i>Coxiella</i> is a genus best known for the species <i>C. burnetii</i>, the causative agent of Q fever.
-						<i>Coxiella</i> is a gram-negative member of the order Legionellales in the class Gammaproteobacteria.
-						Q fever is a category B bioterrorism agent that is highly infective to both humans and livestock.
-					</td>
-				</tr>
-				<tr>
-					<td>Rickettsia</td>
-					<td class="right">15</td>
-					<td>
-						<%=SiteHelper.getLinks("taxon_overview", "780")%>
-						<%=SiteHelper.getLinks("genome_list", "780")%>
-						<%=SiteHelper.getLinks("feature_table", "780")%>
-					</td>
-					<td>Rickettsiae are a group of gram-negative bacteria belonging to the class Alphaproteobacteria.
-						The order Rickettsiales comprises three families: Holosporaceae, Anaplasmataceae and Rickettsiaceae.
-						<i>Rickettsia</i> spp. are grouped in Rickettsiaceae and many species are pathogenic to humans.
-						Included in these is <i>R. prowazekii</i>, the etiologic agent of epidemic typhus, 
-						and <i>R. rickettsii</i>, which causes Rocky Mountain spotted fever.
-					</td>
-				</tr>
-				<tr>
-					<td>Ochrobactrum</td>
-					<td class="right">1</td>
-					<td>
-						<%=SiteHelper.getLinks("taxon_overview", "528")%>
-						<%=SiteHelper.getLinks("genome_list", "528")%>
-						<%=SiteHelper.getLinks("feature_table", "528")%>
-					</td>
-					<td><i>Ochrobactrum</i> is a gram-negative genus of bacteria in the family Brucellaceae of the order Rhizobiales.
-						Closely related to <i>Brucella</i>, members of this genus have a wide distribution in environmental
-					  	and water sources. <i>Ochrobactrum anthropi</i> is an emerging opportunist pathogen in immunocompromised patients.
-					</td>
-				</tr>
-			</table>
-		</div>
-		
+		<table class="basic stripe">
+		<thead>
+			<tr>
+				<th scope="col" width="80">Genus name</th>
+				<th scope="col" width="25">Genomes from BRC</th>
+				<th scope="col" width="82">Link</th>
+				<th scope="col">Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Brucella</td>
+				<td class="right">38</td>
+				<td>
+					<%=SiteHelper.getLinks("taxon_overview", "234")%>
+					<%=SiteHelper.getLinks("genome_list", "234")%>
+					<%=SiteHelper.getLinks("feature_table", "234")%>
+				</td>
+				<td><i>Brucella</i> are gram-negative, facultative, intracellular bacteria that are members of the order Rhizobiales.
+					They can infect many species of animals as well as man. Human brucellosis is treatable with antibiotics, though the course of
+				  	antibiotic treatment must be prolonged due to the intracellular nature of <i>Brucella</i>.
+					The genus <i>Brucella</i> consists of at least six species, designated on the basis of host preference, antigenic and
+				  	biochemical characteristics.
+				</td>
+			</tr>
+			<tr>
+				<td>Coxiella</td>
+				<td class="right">6</td>
+				<td>
+					<%=SiteHelper.getLinks("taxon_overview", "776")%>
+					<%=SiteHelper.getLinks("genome_list", "776")%>
+					<%=SiteHelper.getLinks("feature_table", "776")%>
+				</td>
+				<td><i>Coxiella</i> is a genus best known for the species <i>C. burnetii</i>, the causative agent of Q fever.
+					<i>Coxiella</i> is a gram-negative member of the order Legionellales in the class Gammaproteobacteria.
+					Q fever is a category B bioterrorism agent that is highly infective to both humans and livestock.
+				</td>
+			</tr>
+			<tr>
+				<td>Rickettsia</td>
+				<td class="right">15</td>
+				<td>
+					<%=SiteHelper.getLinks("taxon_overview", "780")%>
+					<%=SiteHelper.getLinks("genome_list", "780")%>
+					<%=SiteHelper.getLinks("feature_table", "780")%>
+				</td>
+				<td>Rickettsiae are a group of gram-negative bacteria belonging to the class Alphaproteobacteria.
+					The order Rickettsiales comprises three families: Holosporaceae, Anaplasmataceae and Rickettsiaceae.
+					<i>Rickettsia</i> spp. are grouped in Rickettsiaceae and many species are pathogenic to humans.
+					Included in these is <i>R. prowazekii</i>, the etiologic agent of epidemic typhus, 
+					and <i>R. rickettsii</i>, which causes Rocky Mountain spotted fever.
+				</td>
+			</tr>
+			<tr>
+				<td>Ochrobactrum</td>
+				<td class="right">1</td>
+				<td>
+					<%=SiteHelper.getLinks("taxon_overview", "528")%>
+					<%=SiteHelper.getLinks("genome_list", "528")%>
+					<%=SiteHelper.getLinks("feature_table", "528")%>
+				</td>
+				<td><i>Ochrobactrum</i> is a gram-negative genus of bacteria in the family Brucellaceae of the order Rhizobiales.
+					Closely related to <i>Brucella</i>, members of this genus have a wide distribution in environmental
+				  	and water sources. <i>Ochrobactrum anthropi</i> is an emerging opportunist pathogen in immunocompromised patients.
+				</td>
+			</tr>
+		</tbody>
+		</table>
 	</div>
 	<div class="clear"></div>
 </div>
-<br/><br/>

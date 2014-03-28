@@ -37,7 +37,9 @@ if (feature.isEmpty() == false) {
 	
 	// getting Protein Sequence
 	DBShared conn_shared = new DBShared();
-	dispProteinSequence = conn_shared.getFastaAASequence(fId);
+	if (feature.get("feature_type").equals("CDS")) {
+		dispProteinSequence = conn_shared.getFastaAASequence(fId);
+	}
 	//dispNTSequence = conn_shared.getFastaNTSequence(fId);
 	%>
 	<div class="far2x">
@@ -48,11 +50,13 @@ if (feature.isEmpty() == false) {
 				target="_blank" style="text-decoration:none">
 				View NT Sequence</a>
 		</div>
+		<% if (dispProteinSequence != null) { %>
 		<div class="close2x"><a href="/patric-common/jsp/fasta_download_handler.jsp?fastaaction=display&amp;fastatype=protein&amp;fastascope=Selected&amp;fids=<%=fId %>" 
 				onclick="window.open(this.href,'mywin','width=920,height=500,resizable,scrollbars');return false" 
 				target="_blank" style="text-decoration:none">
 				View AA Sequence</a>
 		</div>
+		<% } %>
 	</div>
 
 	<% if (dispRefseqLocusTag != null || dispPSeedId != null || (dispSequenceID !=null && dispProteinSequence!=null)) { %>

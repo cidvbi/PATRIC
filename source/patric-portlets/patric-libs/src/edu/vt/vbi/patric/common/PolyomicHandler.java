@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -172,8 +172,7 @@ public class PolyomicHandler {
 	}
 
 	/**
-	 * This retrieves authcode from JBoss User Property and set in an attribute.
-	 * If authcode is not set, create one and save it in User Property.
+	 * This retrieves authcode from JBoss User Property and set in an attribute. If authcode is not set, create one and save it in User Property.
 	 * 
 	 * @param userName
 	 * @return authcode
@@ -182,17 +181,16 @@ public class PolyomicHandler {
 		String code = null;
 
 		try {
-			SessionFactory identitySessionFactory = (SessionFactory) new InitialContext()
-					.lookup("java:/portal/IdentitySessionFactory");
+			SessionFactory identitySessionFactory = (SessionFactory) new InitialContext().lookup("java:/portal/IdentitySessionFactory");
 			Session session = identitySessionFactory.openSession();
 			Transaction transaction = session.beginTransaction();
 
 			IdentityServiceController identityServiceController = (IdentityServiceController) new InitialContext()
 					.lookup("java:/portal/IdentityServiceController");
-			HibernateUserModuleImpl userModule = (HibernateUserModuleImpl) identityServiceController
-					.getIdentityContext().getObject(IdentityContext.TYPE_USER_MODULE);
-			UserProfileModule userProfileModule = (UserProfileModule) identityServiceController.getIdentityContext()
-					.getObject(IdentityContext.TYPE_USER_PROFILE_MODULE);
+			HibernateUserModuleImpl userModule = (HibernateUserModuleImpl) identityServiceController.getIdentityContext().getObject(
+					IdentityContext.TYPE_USER_MODULE);
+			UserProfileModule userProfileModule = (UserProfileModule) identityServiceController.getIdentityContext().getObject(
+					IdentityContext.TYPE_USER_PROFILE_MODULE);
 
 			try {
 				User user = userModule.findUserByUserName(userName);
@@ -230,17 +228,14 @@ public class PolyomicHandler {
 		UserProfileModule userProfileModule;
 
 		try {
-			SessionFactory identitySessionFactory = (SessionFactory) new InitialContext()
-					.lookup("java:/portal/IdentitySessionFactory");
+			SessionFactory identitySessionFactory = (SessionFactory) new InitialContext().lookup("java:/portal/IdentitySessionFactory");
 			Session session = identitySessionFactory.openSession();
 			Transaction transaction = session.beginTransaction();
 
-			identityServiceController = (IdentityServiceController) new InitialContext()
-					.lookup("java:/portal/IdentityServiceController");
-			userModule = (HibernateUserModuleImpl) identityServiceController.getIdentityContext().getObject(
-					IdentityContext.TYPE_USER_MODULE);
-			userProfileModule = (UserProfileModule) identityServiceController.getIdentityContext().getObject(
-					IdentityContext.TYPE_USER_PROFILE_MODULE);
+			identityServiceController = (IdentityServiceController) new InitialContext().lookup("java:/portal/IdentityServiceController");
+			userModule = (HibernateUserModuleImpl) identityServiceController.getIdentityContext().getObject(IdentityContext.TYPE_USER_MODULE);
+			userProfileModule = (UserProfileModule) identityServiceController.getIdentityContext()
+					.getObject(IdentityContext.TYPE_USER_PROFILE_MODULE);
 
 			try {
 				User user = userModule.findUserByUserName(userName);
@@ -439,12 +434,10 @@ public class PolyomicHandler {
 					}
 
 					// build url and add the file_url
-					if (_file_ext.equals("xls") || _file_ext.equals("xlsx")) {
-						_accept = "";
-					}
-					else {
-						_accept = "http_accept=text/plain";
-					}
+					/*
+					 * if (_file_ext.equals("xls") || _file_ext.equals("xlsx")) { _accept = ""; } else { _accept = "http_accept=text/plain"; }
+					 */
+					_accept = "http_accept=*/*";
 					String _url = ENDPOINT + "/Collection/" + collectionId + "/" + _file_name + "?" + _accept
 							+ "&http_authorized_session=polyomic%20authorization_token%3D" + AuthenticationToken;
 					fileObj.put("url", _url);
@@ -485,9 +478,12 @@ public class PolyomicHandler {
 			}
 		}
 		if (_file_name != null) {
+			/*
+			 * return ENDPOINT + "/Collection/" + collectionId + "/" + _file_name +
+			 * "?http_accept=application/json&http_authorized_session=polyomic%20authorization_token%3D" + AuthenticationToken;
+			 */
 			return ENDPOINT + "/Collection/" + collectionId + "/" + _file_name
-					+ "?http_accept=application/json&http_authorized_session=polyomic%20authorization_token%3D"
-					+ AuthenticationToken;
+					+ "?http_accept=*/*&http_authorized_session=polyomic%20authorization_token%3D" + AuthenticationToken;
 		}
 		else {
 			return null;
@@ -511,16 +507,13 @@ public class PolyomicHandler {
 
 		try {
 			/*
-			 * InputStreamBody will set chunked = true whereas ByteArrayBody
-			 * will set length of request properly
+			 * InputStreamBody will set chunked = true whereas ByteArrayBody will set length of request properly
 			 */
 			/*
-			 * InputStreamBody body = new InputStreamBody( new
-			 * ByteArrayInputStream(json.toJSONString().getBytes("UTF-8")),
+			 * InputStreamBody body = new InputStreamBody( new ByteArrayInputStream(json.toJSONString().getBytes("UTF-8")),
 			 * "application/json; charset=UTF-8", filename);
 			 */
-			ByteArrayBody body = new ByteArrayBody(json.toJSONString().getBytes("UTF-8"),
-					"application/json; charset=UTF-8", filename);
+			ByteArrayBody body = new ByteArrayBody(json.toJSONString().getBytes("UTF-8"), "application/json; charset=UTF-8", filename);
 
 			if (_debug) {
 				System.out.println("ContentLength in body: " + body.getContentLength());

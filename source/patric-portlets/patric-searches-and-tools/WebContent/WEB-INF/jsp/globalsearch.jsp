@@ -139,7 +139,7 @@ Ext.onReady(function() {
 	};
 	SetPageProperties(pageProperties);
 	SetLoadParameters();
-	// SetIntervalOrAPI();
+	SetIntervalOrAPI();
 	getSummaryandCreateLayout();
 	overrideButtonActions();
 });

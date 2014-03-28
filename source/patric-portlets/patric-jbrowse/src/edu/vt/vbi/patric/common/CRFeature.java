@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,8 +28,6 @@ public class CRFeature implements Comparable<CRFeature> {
 	private String genome = null;
 
 	public CRFeature(JSONArray jsonFeature) {
-
-		// System.out.println("[debug:"+jsonFeature.toString()+"]");
 
 		if (jsonFeature.get(0) != null) {
 			featureID = jsonFeature.get(0).toString();
@@ -140,13 +138,13 @@ public class CRFeature implements Comparable<CRFeature> {
 	}
 
 	public int getStartPosition() {
-		return startPosition-1;
+		return startPosition - 1;
 	}
 
 	public int getStartString() {
 		return startPosition;
 	}
-	
+
 	public void setEndPosition(int p) {
 		this.endPosition = p;
 	}

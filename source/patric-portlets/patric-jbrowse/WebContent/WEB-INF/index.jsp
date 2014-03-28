@@ -10,25 +10,17 @@ String urlRoot = "/patric-jbrowse/jbrowse/";
 
 %>
 <link rel="stylesheet" type="text/css" href="<%=urlRoot%>genome.css">
-<script type="text/javascript" src="<%=urlRoot%>src/dojo/dojo.js" data-dojo-config="async: 1"></script>
+<script type="text/javascript" src="<%=urlRoot%>src/dojo/dojo.js" data-dojo-config="async: 1, baseUrl: '/patric-jbrowse/jbrowse/src' "></script>
+<script type="text/javascript" src="<%=urlRoot%>src/JBrowse/init.js"></script>
 <script type="text/javascript">
 //<![CDATA[ 
 	window.onerror=function(msg){
 	if( document.body )
 		document.body.setAttribute("JSError",msg);
 	}
-
 	var JBrowse;
-	require({
-		baseUrl: '<%=urlRoot%>src',
-		packages: [ 'dojo', 'dijit', 'dojox', 'jszlib',
-			{ name: 'lazyload', main: 'lazyload' },
-			'dgrid', 'xstyle', 'put-selector',
-			{ name: 'jDataView', location: 'jDataView/src', main: 'jdataview' },
-			'JBrowse','FileSaver']
-		},
-		[ 'JBrowse/Browser', 'dojo/io-query', 'dojo/json' ],
-		function (Browser,ioQuery) {
+	require(['JBrowse/Browser', 'dojo/io-query', 'dojo/json' ],
+		function (Browser,ioQuery,JSON) {
 			var queryParams = ioQuery.queryToObject( window.location.search.slice(1) );
 			var dataRoot = queryParams.data || '/patric-jbrowse/data';
 			var config = {
@@ -38,7 +30,7 @@ String urlRoot = "/patric-jbrowse/jbrowse/";
 				browserRoot: '<%=urlRoot%>',
 				include: [
 					'<%=urlRoot%>jbrowse_conf.json',
-					dataRoot + "/trackList.json"
+					dataRoot + "/trackList.jsp"
 				],
 				nameUrl: dataRoot + "/name.jsp",
 				defaultTracks: "DNA,PATRICGenes",
@@ -67,6 +59,13 @@ String urlRoot = "/patric-jbrowse/jbrowse/";
 			// configuration
 			if( queryParams.addTracks ) {
 				config.tracks = JSON.parse( queryParams.addTracks );
+			}
+			
+			// if there is ?addStores in the query params, add
+			// those store configurations to our initial
+			// configuration
+			if( queryParams.addStores ) {
+				config.stores = JSON.parse( queryParams.addStores );
 			}
 			
 			// create a JBrowse global variable holding the JBrowse instance

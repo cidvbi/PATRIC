@@ -116,7 +116,7 @@ Ext.onReady(function () {
 		
 	SetPageProperties(pageProperties);
 	$Page.checkbox = checkbox,
-	// SetIntervalOrAPI();
+	SetIntervalOrAPI();
 	Ext.QuickTips.init();
 	overrideButtonActions();
 	createLayout();

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -51,7 +51,7 @@ public class TutorialList extends GenericPortlet {
 	public void serveResource(ResourceRequest request, ResourceResponse response) throws PortletException, IOException {
 		
 		JSONObject jsonResult = new JSONObject();
-		System.out.println("here");
+		
 		URL jsonURL = new URL("http://enews.patricbrc.org/tutorial_landing/tutorial-landing-page-1-3/?req=passphrase");
 		
 		InputStream dh = null;

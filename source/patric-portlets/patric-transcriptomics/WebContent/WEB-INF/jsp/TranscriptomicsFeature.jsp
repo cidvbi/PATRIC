@@ -133,7 +133,7 @@ Ext.onReady(function()
 	
 	SetPageProperties(pageProperties);
 	$Page.checkbox = checkbox;
-	// SetIntervalOrAPI();
+	SetIntervalOrAPI();
 	Ext.QuickTips.init();
 	if(Ext.get("tabs_explist"))
 		Ext.get("tabs_explist").addCls("sel");

@@ -3,7 +3,7 @@ var metadataTaxonSummary = ['genome_status_f', 'isolation_country_f', 'host_name
 var metadataGenomeSummaryID = ['Organism_Info', 'Isolate_Info', 'Host_Info', 'Sequence_Info', 'Phenotype_Info', 'Project_Info', 'Others'];
 var metadataGenomeSummaryValue = {};
 metadataGenomeSummaryValue['Organism_Info'] = [{
-	name : 'Genome Info Id',
+	name : 'Genome Info ID',
 	text : 'genome_info_id',
 	style : 'none'
 }, {
@@ -11,7 +11,7 @@ metadataGenomeSummaryValue['Organism_Info'] = [{
 	text : 'genome_name',
 	style : 'none'
 }, {
-	name : 'NCBI Taxon Id',
+	name : 'NCBI Taxon ID',
 	text : 'ncbi_tax_id',
 	style : 'none'
 }, {
@@ -76,7 +76,7 @@ metadataGenomeSummaryValue['Project_Info'] = [{
 	linkClass: 'double-arrow-link',
 	cellClass: 'no-underline-links '
 }, {
-	name : 'NCBI Project Id',
+	name : 'NCBI Project ID',
 	text : 'ncbi_project_id',
 	style : 'none',
 	link : 'http://www.ncbi.nlm.nih.gov/bioproject/{0}',
@@ -84,7 +84,7 @@ metadataGenomeSummaryValue['Project_Info'] = [{
 	linkClass: 'double-arrow-link',
 	cellClass: 'no-underline-links'
 }, {
-	name : 'RefSeq Project Id',
+	name : 'RefSeq Project ID',
 	text : 'refseq_project_id',
 	style : 'none',
 	link : 'http://www.ncbi.nlm.nih.gov/bioproject/{0}',
@@ -92,10 +92,10 @@ metadataGenomeSummaryValue['Project_Info'] = [{
 	linkClass: 'double-arrow-link',
 	cellClass: 'no-underline-links'
 }, {
-	name : 'Genbank Accessions',
+	name : 'GenBank Accessions',
 	text : 'genbank_accessions',
 	style : 'none',
-	link : 'http://www.ncbi.nlm.nih.gov/nuccore/{0}',
+	link : 'http://www.ncbi.nlm.nih.gov/nuccore/?term={0}',
 	value: 'genbank_accessions',
 	linkClass: 'double-arrow-link',
 	cellClass: 'no-underline-links'
@@ -103,7 +103,7 @@ metadataGenomeSummaryValue['Project_Info'] = [{
 	name : 'RefSeq Accessions',
 	text : 'refseq_accessions',
 	style : 'none',
-	link : 'http://www.ncbi.nlm.nih.gov/nuccore/{0}',
+	link : 'http://www.ncbi.nlm.nih.gov/nuccore/?term={0}',
 	value: 'refseq_accessions',
 	linkClass: 'double-arrow-link',
 	cellClass: 'no-underline-links'

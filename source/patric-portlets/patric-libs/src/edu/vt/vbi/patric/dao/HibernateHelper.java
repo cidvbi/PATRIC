@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -25,11 +25,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 /**
- * Basic Hibernate helper class, handles SessionFactory, Session and
- * Transaction. You can also use a static initializer for the initial
- * SessionFactory creation and holds Session and Transactions in thread local
- * variables. All exceptions are wrapped in an unchecked
- * InfrastructureException.
+ * Basic Hibernate helper class, handles SessionFactory, Session and Transaction. You can also use a static initializer for the initial SessionFactory
+ * creation and holds Session and Transactions in thread local variables. All exceptions are wrapped in an unchecked InfrastructureException.
  * 
  */
 public class HibernateHelper {

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -63,7 +63,7 @@ public class PDBInterface {
 		PDBDescriptionHandler handler = new PDBDescriptionHandler();
 		try {
 			String url = baseUrlDescription + "?structureId=" + pdbIDs;
-			System.out.println(url);
+			// System.out.println(url);
 			URL u = new URL(url);
 			URLConnection c = u.openConnection();
 			c.setConnectTimeout(EutilInterface.TIMEOUT_CONN);
@@ -83,7 +83,7 @@ public class PDBInterface {
 		PDBLigandHandler handler = new PDBLigandHandler();
 		try {
 			String url = baseUrlLigand + "?structureId=" + pdbID;
-			System.out.println(url);
+			// System.out.println(url);
 			URL u = new URL(url);
 			URLConnection c = u.openConnection();
 			c.setConnectTimeout(EutilInterface.TIMEOUT_CONN);
@@ -101,7 +101,7 @@ public class PDBInterface {
 		PDBGOTermsHandler handler = new PDBGOTermsHandler();
 		try {
 			String url = baseUrlGOTerm + "?structureId=" + pdbID;
-			System.out.println(url);
+			// System.out.println(url);
 			URL u = new URL(url);
 			URLConnection c = u.openConnection();
 			c.setConnectTimeout(EutilInterface.TIMEOUT_CONN);
@@ -115,12 +115,11 @@ public class PDBInterface {
 		return handler.getParsedData();
 	}
 
-	public ArrayList<HashMap<String, String>> getSequenceCluster(String pdbID, int cluster)
-			throws java.rmi.RemoteException {
+	public ArrayList<HashMap<String, String>> getSequenceCluster(String pdbID, int cluster) throws java.rmi.RemoteException {
 		PDBSequenceClusterHandler handler = new PDBSequenceClusterHandler();
 		try {
 			String url = baseUrlCluster + "?structureId=" + pdbID + "&cluster=" + cluster;
-			System.out.println(url);
+			// System.out.println(url);
 			URL u = new URL(url);
 			URLConnection c = u.openConnection();
 			c.setConnectTimeout(EutilInterface.TIMEOUT_CONN);
@@ -139,7 +138,7 @@ public class PDBInterface {
 		PDBAnnotationsResolver resolver = new PDBAnnotationsResolver();
 		try {
 			String url = baseUrlAnnotations + "?segment=" + pdbID;
-			System.out.println(url);
+			// System.out.println(url);
 
 			URL u = new URL(url);
 			URLConnection c = u.openConnection();
@@ -160,7 +159,7 @@ public class PDBInterface {
 		PDBPolymersHandler handler = new PDBPolymersHandler();
 		try {
 			String url = baseUrlPolymers + "?structureId=" + pdbID;
-			System.out.println(url);
+			// System.out.println(url);
 			URL u = new URL(url);
 			URLConnection c = u.openConnection();
 			c.setConnectTimeout(EutilInterface.TIMEOUT_CONN);

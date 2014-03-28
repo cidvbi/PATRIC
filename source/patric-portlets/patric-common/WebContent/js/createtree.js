@@ -248,10 +248,7 @@ function refresh(action) {
 		tree.selectedTerm = {};
 	}
 
-	if (property.alternativeKW)
-		tree.selectedTerm["Keyword"] = property.alternativeKW;
-	else
-		tree.selectedTerm["Keyword"] = Ext.getDom("keyword").value;
+	tree.selectedTerm["Keyword"] = Ext.getDom("keyword").value;
 
 	createURL();
 }

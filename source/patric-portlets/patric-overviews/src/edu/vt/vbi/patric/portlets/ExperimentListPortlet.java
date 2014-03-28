@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -44,8 +44,7 @@ public class ExperimentListPortlet extends GenericPortlet {
 	SolrInterface solr = new SolrInterface();
 
 	@Override
-	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException,
-			UnavailableException {
+	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException, UnavailableException {
 
 		response.setContentType("text/html");
 		PortletRequestDispatcher prd = null;
@@ -91,7 +90,7 @@ public class ExperimentListPortlet extends GenericPortlet {
 			if (state != null) {
 				key.put("state", state);
 			}
-			System.out.println("save_params::" + key.toString());
+			// System.out.println("save_params::" + key.toString());
 			// random
 			Random g = new Random();
 			int random = g.nextInt();
@@ -108,6 +107,7 @@ public class ExperimentListPortlet extends GenericPortlet {
 
 			String need = request.getParameter("need");
 			String facet = "", keyword = "", pk = "", state = "", eId = "";
+			boolean hl = false;
 			PortletSession sess = request.getPortletSession();
 			ResultType key = new ResultType();
 			JSONObject jsonResult = new JSONObject();
@@ -225,6 +225,9 @@ public class ExperimentListPortlet extends GenericPortlet {
 				pk = request.getParameter("pk");
 				keyword = request.getParameter("keyword");
 				facet = request.getParameter("facet");
+				String highlight = request.getParameter("highlight");
+
+				hl = Boolean.parseBoolean(highlight);
 
 				if (sess.getAttribute("key" + pk, PortletSession.APPLICATION_SCOPE) == null) {
 					key.put("facet", facet);
@@ -257,21 +260,21 @@ public class ExperimentListPortlet extends GenericPortlet {
 						for (int i = 1; i < sorter.size(); i++) {
 							sort_field += "," + ((JSONObject) sorter.get(i)).get("property").toString();
 						}
-						System.out.println(sort_field);
+						// System.out.println(sort_field);
 					}
 					catch (ParseException e) {
 						e.printStackTrace();
 					}
-	
+
 					sort = new HashMap<String, String>();
-	
+
 					if (!sort_field.equals("") && !sort_dir.equals("")) {
 						sort.put("field", sort_field);
 						sort.put("direction", sort_dir);
 					}
 				}
-				
-				JSONObject object = solr.getData(key, sort, facet, start, end, true, false, false);
+
+				JSONObject object = solr.getData(key, sort, facet, start, end, true, hl, false);
 
 				// System.out.print("pk-"+object.toString());
 
@@ -286,8 +289,7 @@ public class ExperimentListPortlet extends GenericPortlet {
 				}
 
 				if (!key.containsKey("solrId")) {
-					key.put("solrId", solr.getGenomeIdsfromSolrOutput(solr.getGenomeIDsfromSolr(key.get("keyword"),
-							facet, false)));
+					key.put("solrId", solr.getGenomeIdsfromSolrOutput(solr.getGenomeIDsfromSolr(key.get("keyword"), facet, false)));
 				}
 
 				jsonResult.put("results", obj1);
@@ -317,8 +319,7 @@ public class ExperimentListPortlet extends GenericPortlet {
 				try {
 					if (!key.containsKey("tree")) {
 						JSONObject facet_fields = (JSONObject) new JSONParser().parse(key.get("facets"));
-						JSONArray arr1 = solr.processStateAndTree(key, need, facet_fields, key.get("facet"), state, 4,
-								false);
+						JSONArray arr1 = solr.processStateAndTree(key, need, facet_fields, key.get("facet"), state, 4, false);
 						jsonResult.put("results", arr1);
 						key.put("tree", arr1);
 					}

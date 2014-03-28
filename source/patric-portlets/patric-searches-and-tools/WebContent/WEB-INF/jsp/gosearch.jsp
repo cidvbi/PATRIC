@@ -60,44 +60,49 @@ if(request.getUserPrincipal() == null){
 	</div>
 	<div class="left" style="width:25px">&nbsp;</div>
 	<div class="left" style="width:375px">
-		<h3><img src="/patric/images/number2.gif" alt="2" height="14" width="14" />
-		Enter keyword</h3><br />
+		<h3><img src="/patric/images/number2.gif" alt="2" height="14" width="14" /> Enter keyword</h3><br />
+		
 		<form action="#" onsubmit="return false;">
-		<table class="querytable">
+		
+		<select class="left" id="search_on" name="search_on" size="1">
+			<option value="Keyword" selected="selected">Keyword</option>
+			<option value="go_id">GO Term ID</option>
+			<option value="go_term">GO Term Description</option>
+		</select>
+		
+		<textarea class="right" id="keyword" name="keyword" rows="5" cols="30" title="keyword or GO TERM ID or GO TERM Description"><%=(key!=null && key.containsKey("keyword") && !key.get("keyword").equalsIgnoreCase(""))?key.get("keyword"):""%></textarea>
+		<div class="clear"></div>
+		
+		<span class="small bold"><b>Examples</b></span>
+		<table class="basic far">
+		<tbody>
 		<tr>
-			<td>
-				<select id="search_on" name="search_on" size="1">
-					<option value="Keyword" selected="selected">Keyword</option>
-					<option value="go_id">GO Term ID</option>
-					<option value="go_term">GO Term Description</option>
-				</select>
-				<br /><span class="hint"><b>Examples</b></span>
-				<br /><span class="hint">Keyword:</span>
-				<br /><span class="hint">GO Term ID:</span>
-				<br /><span class="hint" style="text-align:right">GO Term Description:</span>
-			</td>
-			<td><input type="text" id="keyword" name="keyword" size="32" title="keyword or GO TERM ID or GO TERM Description" />
-				<br />
-				<br /><span class="hint">glucose</span>
-				<br /><span class="hint">GO:0003978</span>
-				<br /><span class="hint">UTP:glucose-1-phosphate</span>
-			</td>
+			<th width=125 scope="row">Keyword:</th>
+			<td>glucose</td>
 		</tr>
 		<tr>
-			<td><label for="annotation">Annotation : </label></td>
-			<td>
-				<select id="annotation" name="annotation" size="1">
-					<option value="" selected="selected">ALL</option>
-					<option value="PATRIC" >PATRIC</option>
-					<option value="Legacy BRC" >Legacy BRC</option>
-					<option value="RefSeq" >RefSeq</option>
-				</select>
-			</td>
+			<th scope="row">GO Term ID:</th>
+			<td>GO:0003978</td>
 		</tr>
 		<tr>
-			<td class="formaction" colspan="2"><input class="button rightarrow"  type="submit" value="Search" onclick="searchbykeyword('<%=cId%>', '<%=cType %>')" /></td>
+			<th scope="row">GO Term Description:</th>
+			<td>UTP:glucose-1-phosphate</td>
 		</tr>
+		</tbody>
 		</table>
+		
+		<label class="left" for="annotation">Annotation : </label>
+		
+		<select class="right far2x" id="annotation" name="annotation" size="1">
+			<option value="" selected="selected">ALL</option>
+			<option value="PATRIC" >PATRIC</option>
+			<option value="Legacy BRC" >Legacy BRC</option>
+			<option value="RefSeq" >RefSeq</option>
+		</select>
+		<div class="clear"></div>
+		
+		<input class="right button rightarrow"  type="submit" value="Search" onclick="searchbykeyword('<%=cId%>', '<%=cType %>')" />
+		
 		</form>
 	</div>
 	<div class="clear"></div>

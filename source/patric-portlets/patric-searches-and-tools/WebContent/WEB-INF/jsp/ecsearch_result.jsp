@@ -27,7 +27,7 @@ if(key != null && key.containsKey("exact_search_term")){
 
 String algorithm = "";
 if(keyword.contains("annotation:(")){
-	System.out.println(keyword);
+	//System.out.println(keyword);
 	algorithm = keyword.split("annotation:\\(")[1].split("\\)")[0];	
 }
 %>
@@ -104,7 +104,7 @@ Ext.onReady(function() {
 			{header: "Accession",		dataIndex: 'accession',		flex:1,	hidden:true, align:'center', renderer:renderAccession},
 			{header: "Locus Tag",		dataIndex: 'locus_tag',		flex:1,	align:'center', renderer:renderLocusTag},
 			{header: "Gene Symbol",		dataIndex: 'gene',			flex:1,	renderer:BasicRenderer},
-			{header: "Product Descrioption", dataIndex: 'product',	flex:2,	renderer:BasicRenderer},
+			{header: "Product Description", dataIndex: 'product',	flex:2,	renderer:BasicRenderer},
 			{header: "Annotation",		dataIndex: 'annotation',	flex:1,	align:'center', renderer:BasicRenderer},
 			{header: "EC Number",		dataIndex: 'ec_number',		flex:1,	align:'center', renderer:renderECNumber},
 			{header: "EC Description",	dataIndex: 'ec_name',		flex:2,	renderer:BasicRenderer},
@@ -147,7 +147,7 @@ function getOriginalKeyword(){
 }
 
 function returntoSearchPage(){
-	var key = DecodeKeyword('<%=exact_search_term%>');
+	var key = DecodeKeyword('<%=java.net.URLEncoder.encode(exact_search_term, "UTF-8") %>');
 	document.location.href = "ECSearch?cType=<%=cType%>&cId=<%=cId%>&dm=#keyword="+key+"&search_on=<%=search_on%>&annotation=<%=algorithm%>";
 }
 //]]>

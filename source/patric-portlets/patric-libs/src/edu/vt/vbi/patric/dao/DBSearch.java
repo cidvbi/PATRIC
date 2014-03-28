@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -115,9 +115,9 @@ public class DBSearch {
 
 			if (key.get("from").equalsIgnoreCase("RefSeq Locus Tag"))
 				row.put("refseq_source_id", obj[1]);
-			else if (key.get("from").equalsIgnoreCase("PATRIC Locus Tag")){
+			else if (key.get("from").equalsIgnoreCase("PATRIC Locus Tag")) {
 				row.put("source_id", obj[1]);
-				if(obj[2] == null){
+				if (obj[2] == null) {
 					obj[2] = "";
 				}
 				row.put("refseq_source_id", obj[2]);
@@ -131,8 +131,7 @@ public class DBSearch {
 		return results;
 	}
 
-	public ArrayList<ResultType> getIDSearchResult(HashMap<String, String> key, HashMap<String, String> sort,
-			int start, int end) {
+	public ArrayList<ResultType> getIDSearchResult(HashMap<String, String> key, HashMap<String, String> sort, int start, int end) {
 		String sql = "";
 
 		sql = this.getIDSearchSQL(key, sort, "function");
@@ -217,13 +216,11 @@ public class DBSearch {
 				else if (key.get("from").equalsIgnoreCase("GI")) {
 					row.put("gi_number", obj[22]);
 				}
-				else if (!key.get("from").equalsIgnoreCase("PATRIC ID")
-						&& !key.get("from").equalsIgnoreCase("PSEED ID")) {
+				else if (!key.get("from").equalsIgnoreCase("PATRIC ID") && !key.get("from").equalsIgnoreCase("PSEED ID")) {
 					row.put("requested_data", obj[22]);
 				}
 			}
-			else if (!key.get("to").equalsIgnoreCase("PATRIC ID")
-					&& !key.get("to").equalsIgnoreCase("PATRIC Locus Tag")
+			else if (!key.get("to").equalsIgnoreCase("PATRIC ID") && !key.get("to").equalsIgnoreCase("PATRIC Locus Tag")
 					&& !key.get("to").equalsIgnoreCase("PSEED ID")) {
 				row.put("requested_data", obj[22]);
 			}
@@ -282,14 +279,13 @@ public class DBSearch {
 				else if (key.get("from").equalsIgnoreCase("GI")) {
 					sql += ", rm.gi_number ";
 				}
-				else if (!key.get("from").equalsIgnoreCase("PATRIC ID")
-						&& !key.get("from").equalsIgnoreCase("PATRIC Locus Tag")
+				else if (!key.get("from").equalsIgnoreCase("PATRIC ID") && !key.get("from").equalsIgnoreCase("PATRIC Locus Tag")
 						&& !key.get("from").equalsIgnoreCase("PSEED ID")) {
 					sql += ", im.id requested_data ";
 				}
 				else if (key.get("from").equalsIgnoreCase("PATRIC Locus Tag")) {
 					sql += ", nf.source_id ";
-					if(key.get("to").equalsIgnoreCase("PATRIC Locus Tag")){
+					if (key.get("to").equalsIgnoreCase("PATRIC Locus Tag")) {
 						sql += ", prm.refseq_source_id ";
 					}
 				}
@@ -317,83 +313,74 @@ public class DBSearch {
 
 		if ((key.get("to").equalsIgnoreCase("RefSeq") || key.get("to").equalsIgnoreCase("RefSeq Locus Tag")
 				|| key.get("to").equalsIgnoreCase("Gene ID") || key.get("to").equalsIgnoreCase("GI"))
-				|| (key.get("from").equalsIgnoreCase("RefSeq") || key.get("from").equalsIgnoreCase("Gene ID") || key
-						.get("from").equalsIgnoreCase("GI"))) {
+				|| (key.get("from").equalsIgnoreCase("RefSeq") || key.get("from").equalsIgnoreCase("Gene ID") || key.get("from").equalsIgnoreCase(
+						"GI"))) {
 
-			sql += " from app.dnafeature nf, app.patricrefseqmapping rm "
-					+ "	where nf.name='CDS' AND nf.na_feature_id=rm.patric_na_feature_id ";
+			sql += " from app.dnafeature nf, app.patricrefseqmapping rm " + "	where "/* nf.name='CDS' */+ " nf.na_feature_id=rm.patric_na_feature_id ";
 
 		}
 		else if (key.get("to").equalsIgnoreCase("UniProtKB-ID") || key.get("from").equalsIgnoreCase("UniProtKB-ID")) {
 
-			sql += " from app.dnafeature nf, app.patricuniprotmapping pum "
-					+ "	where nf.name='CDS' AND nf.na_feature_id=pum.na_feature_id ";
+			sql += " from app.dnafeature nf, app.patricuniprotmapping pum " + "	where "/* nf.name='CDS' */+ " nf.na_feature_id=pum.na_feature_id ";
 
 		}
-		else if ((key.get("to").equalsIgnoreCase("PATRIC ID") || key.get("to").equalsIgnoreCase("PATRIC Locus Tag") || key
-				.get("to").equalsIgnoreCase("PSEED ID"))
-				|| (key.get("from").equalsIgnoreCase("PATRIC ID")
-						|| key.get("from").equalsIgnoreCase("PATRIC Locus Tag") || key.get("from").equalsIgnoreCase(
-						"PSEED ID"))) {
+		else if ((key.get("to").equalsIgnoreCase("PATRIC ID") || key.get("to").equalsIgnoreCase("PATRIC Locus Tag") || key.get("to")
+				.equalsIgnoreCase("PSEED ID"))
+				|| (key.get("from").equalsIgnoreCase("PATRIC ID") || key.get("from").equalsIgnoreCase("PATRIC Locus Tag") || key.get("from")
+						.equalsIgnoreCase("PSEED ID"))) {
 
 			if (key.get("from").equalsIgnoreCase("UniProtKB-ID")) {
 
-				sql += " from app.dnafeature nf, app.patricuniprotmapping pum "
-						+ "	where nf.name='CDS' AND nf.na_feature_id=pum.na_feature_id ";
+				sql += " from app.dnafeature nf, app.patricuniprotmapping pum " + "	where "/* nf.name='CDS' */
+						+ " nf.na_feature_id=pum.na_feature_id ";
 
 			}
 			else if (key.get("from").equalsIgnoreCase("RefSeq") || key.get("from").equalsIgnoreCase("RefSeq Locus Tag")
 					|| key.get("from").equalsIgnoreCase("Gene ID") || key.get("from").equalsIgnoreCase("GI")) {
 
-				sql += " from app.dnafeature nf, app.patricrefseqmapping rm "
-						+ "	where nf.name='CDS' AND nf.na_feature_id=rm.patric_na_feature_id ";
+				sql += " from app.dnafeature nf, app.patricrefseqmapping rm " + "	where "/* nf.name='CDS' */
+						+ " nf.na_feature_id=rm.patric_na_feature_id ";
 
 			}
-			else if ((key.get("from").equalsIgnoreCase("PATRIC ID") || key.get("from").equalsIgnoreCase("PSEED ID") || key
-					.get("from").equalsIgnoreCase("PATRIC Locus Tag"))
-					&& (key.get("to").equalsIgnoreCase("PATRIC ID")
-							|| key.get("to").equalsIgnoreCase("PATRIC Locus Tag") || key.get("to").equalsIgnoreCase(
-							"PSEED ID"))) {
+			else if ((key.get("from").equalsIgnoreCase("PATRIC ID") || key.get("from").equalsIgnoreCase("PSEED ID") || key.get("from")
+					.equalsIgnoreCase("PATRIC Locus Tag"))
+					&& (key.get("to").equalsIgnoreCase("PATRIC ID") || key.get("to").equalsIgnoreCase("PATRIC Locus Tag") || key.get("to")
+							.equalsIgnoreCase("PSEED ID"))) {
 
 				sql += " from app.dnafeature nf ";
-				
-				if(key.get("to").equalsIgnoreCase("PATRIC Locus Tag")){
+
+				if (key.get("to").equalsIgnoreCase("PATRIC Locus Tag")) {
 					sql += ", app.patricrefseqmapping prm ";
 				}
-				
-				sql += " where 1=1 AND nf.name='CDS' ";
 
-				if(key.get("to").equalsIgnoreCase("PATRIC Locus Tag")){
+				sql += " where 1=1 ";// nf.name='CDS' ";
+
+				if (key.get("to").equalsIgnoreCase("PATRIC Locus Tag")) {
 					sql += " and nf.na_feature_id = prm.patric_na_feature_id (+) ";
 				}
-				
+
 			}
 			else {
 
 				if (key.get("from").equalsIgnoreCase("PATRIC ID") || key.get("from").equalsIgnoreCase("PSEED ID")
 						|| key.get("from").equalsIgnoreCase("PATRIC Locus Tag")) {
-
-					sql += " from app.dnafeature nf, app.idmapping im, app.patricuniprotmapping pum "
-							+ "	where nf.name='CDS' AND nf.na_feature_id=pum.na_feature_id "
-							+ "	and im.uniprotkb_accession = pum.uniprotkb_accession " + "	and im.id_type = '"
-							+ key.get("to") + "'";
+					sql += " from app.dnafeature nf, app.idmapping im, app.patricuniprotmapping pum " + "	where "/* nf.name='CDS' */
+							+ "nf.na_feature_id = pum.na_feature_id " + "	and im.uniprotkb_accession = pum.uniprotkb_accession "
+							+ "	and im.id_type = '" + key.get("to") + "'";
 				}
 				else {
-
-					sql += " from app.dnafeature nf, app.idmapping im, app.patricuniprotmapping pum "
-							+ "	where nf.name='CDS' AND nf.na_feature_id=pum.na_feature_id "
-							+ "	and im.uniprotkb_accession = pum.uniprotkb_accession " + "	and im.id_type = '"
-							+ key.get("from") + "'";
+					sql += " from app.dnafeature nf, app.idmapping im, app.patricuniprotmapping pum " + "	where "/* nf.name='CDS' */
+							+ "nf.na_feature_id = pum.na_feature_id " + "	and im.uniprotkb_accession = pum.uniprotkb_accession "
+							+ "	and im.id_type = '" + key.get("from") + "'";
 				}
 			}
 
 		}
 		else {
 
-			sql += " from app.dnafeature nf, app.idmapping im, app.patricuniprotmapping pum "
-					+ "	where nf.name='CDS' AND nf.na_feature_id=pum.na_feature_id "
-					+ "	and im.uniprotkb_accession = pum.uniprotkb_accession " + "	and im.id_type = '" + key.get("to")
-					+ "'";
+			sql += " from app.dnafeature nf, app.idmapping im, app.patricuniprotmapping pum " + "	where "/* nf.name='CDS' */
+					+ " nf.na_feature_id=pum.na_feature_id " + "	and im.uniprotkb_accession = pum.uniprotkb_accession " + "	and im.id_type = '"
+					+ key.get("to") + "'";
 
 		}
 
@@ -458,8 +445,7 @@ public class DBSearch {
 			else if (key.get("from").equalsIgnoreCase("UniProtKB-ID")) {
 				String keywords_1 = keywords.replaceAll("REPLACE_ME", "pum.uniprotkb_accession");
 				String keywords_2 = keywords.replaceAll("REPLACE_ME", "pum.uniprot_id");
-				sql += "	and (pum.uniprotkb_accession in " + keywords_1 + ") OR  (pum.uniprot_id in " + keywords_2
-						+ ")";
+				sql += "	and (pum.uniprotkb_accession in " + keywords_1 + ") OR  (pum.uniprot_id in " + keywords_2 + ")";
 			}
 			else {
 				keywords = keywords.replaceAll("REPLACE_ME", "im.id");
@@ -470,8 +456,9 @@ public class DBSearch {
 		if (!where.equals("count") && !where.equals("tocount") && !where.equals("shortversion")) {
 			if (sort != null) {
 				sql += " order by " + sort.get("field") + " " + sort.get("direction");
-				if (sort.get("field").equals("genome_name"))
+				if (sort.get("field").equals("genome_name")) {
 					sql += " order by " + sort.get("field") + " " + sort.get("direction") + ", locus_tag ASC ";
+				}
 			}
 		}
 
@@ -482,8 +469,7 @@ public class DBSearch {
 	 * Count the result of GenomeFinder in sequence list mode.
 	 * 
 	 * @param key filtering condition
-	 * @param sort sorting condition [why we need a sorting condition for count
-	 * query?]
+	 * @param sort sorting condition [why we need a sorting condition for count query?]
 	 * @return count
 	 */
 	public int getSequenceFinderSearchCount(HashMap<String, String> key, HashMap<String, String> sort, String genomeId) {
@@ -506,8 +492,7 @@ public class DBSearch {
 	 * Count the result of GenomeFinder in genome list mode.
 	 * 
 	 * @param key filtering condition
-	 * @param sort sorting condition [why we need a sorting condition for count
-	 * query?]
+	 * @param sort sorting condition [why we need a sorting condition for count query?]
 	 * @return count
 	 */
 	public int getGenomeFinderSearchCount(HashMap<String, String> key, HashMap<String, String> sort) {
@@ -532,12 +517,11 @@ public class DBSearch {
 	 * @param key filtering condition
 	 * @param sort sorting condition
 	 * @param start starting point of cursor in the result-set
-	 * @param end stopping point of cursor in the result-set. If <code>-1</code>
-	 * , returns all the results.
+	 * @param end stopping point of cursor in the result-set. If <code>-1</code> , returns all the results.
 	 * @return sequence
 	 */
-	public ArrayList<ResultType> getSequenceFinderSearchResult(HashMap<String, String> key,
-			HashMap<String, String> sort, String genomeId, int start, int end) {
+	public ArrayList<ResultType> getSequenceFinderSearchResult(HashMap<String, String> key, HashMap<String, String> sort, String genomeId, int start,
+			int end) {
 
 		String sql = this.getSequenceFinderSearchSQL(key, sort, genomeId, "function");
 
@@ -588,12 +572,10 @@ public class DBSearch {
 	 * @param key filtering condition
 	 * @param sort sorting condition
 	 * @param start starting point of cursor in the result-set
-	 * @param end stopping point of cursor in the result-set. If <code>-1</code>
-	 * , returns all the results.
+	 * @param end stopping point of cursor in the result-set. If <code>-1</code> , returns all the results.
 	 * @return genome
 	 */
-	public ArrayList<ResultType> getGenomeFinderSearchResult(HashMap<String, String> key, HashMap<String, String> sort,
-			int start, int end) {
+	public ArrayList<ResultType> getGenomeFinderSearchResult(HashMap<String, String> key, HashMap<String, String> sort, int start, int end) {
 		String sql = this.getGenomeFinderSearchSQL(key, sort, "function");
 
 		Session session = factory.getCurrentSession();
@@ -649,8 +631,7 @@ public class DBSearch {
 		return results;
 	}
 
-	private String getSequenceFinderSearchSQL(HashMap<String, String> key, HashMap<String, String> sort,
-			String genomeId, String where) {
+	private String getSequenceFinderSearchSQL(HashMap<String, String> key, HashMap<String, String> sort, String genomeId, String where) {
 		String sql = "";
 
 		if (where.equals("count")) {
@@ -662,9 +643,9 @@ public class DBSearch {
 					+ "		si.sequence_type, si.topology, round(((nvl(ns.c_count,0)+nvl(ns.g_count,0))/ns.length*100),2) base_composition, ns.description, si.sequence_status_name_id  ";
 		}
 
-		sql += " from " + "	cas.genomeinfo gi, " + "	cas.sequenceinfo si, " + "	dots.nasequence ns, "
-				+ "	app.genomesummary gs " + "	where gi.genome_info_id = si.genome_info_id "
-				+ "	and gi.genome_info_id = gs.genome_info_id" + "	and si.na_sequence_id = ns.na_sequence_id";
+		sql += " from " + "	cas.genomeinfo gi, " + "	cas.sequenceinfo si, " + "	dots.nasequence ns, " + "	app.genomesummary gs "
+				+ "	where gi.genome_info_id = si.genome_info_id " + "	and gi.genome_info_id = gs.genome_info_id"
+				+ "	and si.na_sequence_id = ns.na_sequence_id";
 
 		if (key.containsKey("solrId") && !key.get("solrId").equalsIgnoreCase("")) {
 			List<?> lstGId = Arrays.asList(key.get("solrId").split(","));
@@ -706,8 +687,7 @@ public class DBSearch {
 		}
 		else {
 			sql += "select distinct gi.genome_info_id, gi.genome_name, gs.length, "
-					+ "	gs.chromosome, gs.plasmid, gs.contig, gs.rast_cds, gs.brc_cds, "
-					+ "	gs.refseq_cds, gs.complete";
+					+ "	gs.chromosome, gs.plasmid, gs.contig, gs.rast_cds, gs.brc_cds, " + "	gs.refseq_cds, gs.complete";
 		}
 		sql += "	from " + "		cas.genomeinfo gi, " + "		cas.sequenceinfo si, " + "		app.genomesummary gs "
 				+ "	where gi.genome_info_id = gs.genome_info_id " + "		and gi.genome_info_id = si.genome_info_id ";
@@ -749,20 +729,16 @@ public class DBSearch {
 		}
 		return q;
 	}
-	
+
 	// PROTEOMICS
-	
+
 	@SuppressWarnings("unchecked")
-	public JSONArray getProteomicsPeptides(String experiment_id, String na_feature_id){
-		
-		String sql = " SELECT pp.peptide_sequence " + 
-				" FROM proteomics.peptide pp, app.dnafeature df, app.patricuniprotmapping pum " +
-				" WHERE df.na_feature_id = ?" +
-				" AND pp.experiment_id = ?" +
-				" AND pum.na_feature_id = df.na_feature_id " + 
-				" AND pum.uniprotkb_accession = pp.protein_id";
-		
-				
+	public JSONArray getProteomicsPeptides(String experiment_id, String na_feature_id) {
+
+		String sql = " SELECT pp.peptide_sequence " + " FROM proteomics.peptide pp, app.dnafeature df, app.patricuniprotmapping pum "
+				+ " WHERE df.na_feature_id = ?" + " AND pp.experiment_id = ?" + " AND pum.na_feature_id = df.na_feature_id "
+				+ " AND pum.uniprotkb_accession = pp.protein_id";
+
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
@@ -813,13 +789,11 @@ public class DBSearch {
 				sql += " and lower(gs.go_term) like lower(:go_name) ";
 			}
 		} /*
-		 * else if (key.containsKey("search_on") &&
-		 * key.get("search_on").equalsIgnoreCase("Keyword") ) {
+		 * else if (key.containsKey("search_on") && key.get("search_on").equalsIgnoreCase("Keyword") ) {
 		 * 
 		 * String keyword = (String)key.get("keyword");
 		 * 
-		 * if(!keyword.equals("") && keyword !=null){ sql +=
-		 * " and contains(gs.keyword, lower(:keyword)) > 0"; }
+		 * if(!keyword.equals("") && keyword !=null){ sql += " and contains(gs.keyword, lower(:keyword)) > 0"; }
 		 * 
 		 * }
 		 */
@@ -872,14 +846,12 @@ public class DBSearch {
 		if (key.containsKey("genomeId") && key.get("genomeId").contains(",")) {
 
 		}
-		else if (key.containsKey("genomeId") && key.get("genomeId") != null
-				&& !key.get("genomeId").equalsIgnoreCase("")) {
+		else if (key.containsKey("genomeId") && key.get("genomeId") != null && !key.get("genomeId").equalsIgnoreCase("")) {
 
 			q.setString("genomeId", key.get("genomeId"));
 
 		}
-		else if (key.containsKey("taxonId") && !key.get("taxonId").equalsIgnoreCase("")
-				&& !key.get("taxonId").equalsIgnoreCase("")) {
+		else if (key.containsKey("taxonId") && !key.get("taxonId").equalsIgnoreCase("") && !key.get("taxonId").equalsIgnoreCase("")) {
 
 			q.setString("taxonId", key.get("taxonId"));
 
@@ -911,8 +883,7 @@ public class DBSearch {
 		}
 
 		/*
-		 * if (key.containsKey("search_on") &&
-		 * key.get("search_on").equalsIgnoreCase("Keyword") ) {
+		 * if (key.containsKey("search_on") && key.get("search_on").equalsIgnoreCase("Keyword") ) {
 		 * 
 		 * String keyword = ((String)key.get("keyword"));
 		 * 
@@ -958,8 +929,7 @@ public class DBSearch {
 	/**
 	 * Counts the result of GO Search in the go-term list mode.
 	 * @param key filtering condition
-	 * @param sort sorting condition [why we need a sorting condition for count
-	 * query?]
+	 * @param sort sorting condition [why we need a sorting condition for count query?]
 	 * @return count
 	 * @deprecated
 	 */
@@ -985,14 +955,12 @@ public class DBSearch {
 	 * @param key filtering condition
 	 * @param sort sorting condition
 	 * @param start starting point of cursor in the result-set
-	 * @param end stopping point of cursor in the result-set. If <code>-1</code>
-	 * , returns all the results.
+	 * @param end stopping point of cursor in the result-set. If <code>-1</code> , returns all the results.
 	 * @return go-term
 	 * @deprecated
 	 */
 	@Deprecated
-	public ArrayList<ResultType> getGOSearchList(HashMap<String, String> key, HashMap<String, String> sort, int start,
-			int end) {
+	public ArrayList<ResultType> getGOSearchList(HashMap<String, String> key, HashMap<String, String> sort, int start, int end) {
 		String sql;
 
 		sql = this.getGOSearchListSQL(key, "function");
@@ -1094,13 +1062,11 @@ public class DBSearch {
 			}
 
 		} /*
-		 * else if (key.containsKey("search_on") &&
-		 * key.get("search_on").equalsIgnoreCase("Keyword") ) {
+		 * else if (key.containsKey("search_on") && key.get("search_on").equalsIgnoreCase("Keyword") ) {
 		 * 
 		 * String keyword = ((String)key.get("keyword")).toLowerCase();
 		 * 
-		 * if(!keyword.equals("") && keyword !=null){ sql +=
-		 * " and contains(gs.keyword, lower(:keyword)) > 0"; }
+		 * if(!keyword.equals("") && keyword !=null){ sql += " and contains(gs.keyword, lower(:keyword)) > 0"; }
 		 * 
 		 * }
 		 */
@@ -1190,8 +1156,7 @@ public class DBSearch {
 	/**
 	 * Count the result of GO Search in the feature list mode.
 	 * @param key filtering condition
-	 * @param sort sorting condition [why we need a sorting condition for count
-	 * query?]
+	 * @param sort sorting condition [why we need a sorting condition for count query?]
 	 * @return count
 	 * @deprecated
 	 */
@@ -1218,14 +1183,12 @@ public class DBSearch {
 	 * @param key filtering condition
 	 * @param sort sorting condition
 	 * @param start starting point of cursor in the result-set
-	 * @param end stopping point of cursor in the result-set. If <code>-1</code>
-	 * , returns all the results.
+	 * @param end stopping point of cursor in the result-set. If <code>-1</code> , returns all the results.
 	 * @return feature
 	 * @deprecated
 	 */
 	@Deprecated
-	public ArrayList<ResultType> getGOFeatureSearchList(HashMap<String, String> key, HashMap<String, String> sort,
-			int start, int end) {
+	public ArrayList<ResultType> getGOFeatureSearchList(HashMap<String, String> key, HashMap<String, String> sort, int start, int end) {
 		String sql;
 
 		sql = this.getGOFeatureSearchListSQL(key, "function");
@@ -1395,13 +1358,11 @@ public class DBSearch {
 			}
 
 		} /*
-		 * else if (key.containsKey("search_on") &&
-		 * key.get("search_on").equalsIgnoreCase("Keyword") ) {
+		 * else if (key.containsKey("search_on") && key.get("search_on").equalsIgnoreCase("Keyword") ) {
 		 * 
 		 * String keyword = (String)key.get("keyword");
 		 * 
-		 * if(!keyword.equals("") && keyword !=null){ sql +=
-		 * " and contains(es.keyword, lower(:keyword)) > 0"; }
+		 * if(!keyword.equals("") && keyword !=null){ sql += " and contains(es.keyword, lower(:keyword)) > 0"; }
 		 * 
 		 * }
 		 */
@@ -1482,14 +1443,12 @@ public class DBSearch {
 		if (key.containsKey("genomeId") && key.get("genomeId").contains(",")) {
 
 		}
-		else if (key.containsKey("genomeId") && key.get("genomeId") != null
-				&& !key.get("genomeId").equalsIgnoreCase("")) {
+		else if (key.containsKey("genomeId") && key.get("genomeId") != null && !key.get("genomeId").equalsIgnoreCase("")) {
 
 			q.setString("genomeId", key.get("genomeId"));
 
 		}
-		else if (key.containsKey("taxonId") && !key.get("taxonId").equalsIgnoreCase("")
-				&& !key.get("taxonId").equalsIgnoreCase("")) {
+		else if (key.containsKey("taxonId") && !key.get("taxonId").equalsIgnoreCase("") && !key.get("taxonId").equalsIgnoreCase("")) {
 
 			q.setString("taxonId", key.get("taxonId"));
 
@@ -1519,8 +1478,7 @@ public class DBSearch {
 		}
 
 		/*
-		 * if (key.containsKey("search_on") &&
-		 * key.get("search_on").equalsIgnoreCase("Keyword") ) {
+		 * if (key.containsKey("search_on") && key.get("search_on").equalsIgnoreCase("Keyword") ) {
 		 * 
 		 * String keyword = ((String)key.get("keyword"));
 		 * 
@@ -1569,8 +1527,7 @@ public class DBSearch {
 	 * Count the result of EC Search in the EC list mode.
 	 * 
 	 * @param key filtering condition
-	 * @param sort sorting condition [why we need a sorting condition for count
-	 * query?]
+	 * @param sort sorting condition [why we need a sorting condition for count query?]
 	 * @return count
 	 * @deprecated
 	 */
@@ -1596,14 +1553,12 @@ public class DBSearch {
 	 * @param key filtering condition
 	 * @param sort sorting condition
 	 * @param start starting point of cursor in the result-set
-	 * @param end stopping point of cursor in the result-set. If <code>-1</code>
-	 * , returns all the results.
+	 * @param end stopping point of cursor in the result-set. If <code>-1</code> , returns all the results.
 	 * @return EC
 	 * @deprecated
 	 */
 	@Deprecated
-	public ArrayList<ResultType> getECSearchList(HashMap<String, String> key, HashMap<String, String> sort, int start,
-			int end) {
+	public ArrayList<ResultType> getECSearchList(HashMap<String, String> key, HashMap<String, String> sort, int start, int end) {
 		String sql;
 
 		sql = this.getECSearchListSQL(key, "function");
@@ -1849,7 +1804,43 @@ public class DBSearch {
 
 		if (key.containsKey("genomeId") && key.get("genomeId") != null && !key.get("genomeId").equals("")) {
 
-			sql += " and gi.genome_info_id in (" + key.get("genomeId") + ")";
+			List<?> lstGId = Arrays.asList(key.get("genomeId").split(","));
+
+			sql += " AND (gi.genome_info_id in (";
+
+			if (lstGId.size() > 500) {
+
+				sql += lstGId.get(0) + ",";
+
+				for (int i = 1; i < lstGId.size(); i++) {
+
+					if (i % 500 == 0) {
+
+						sql = sql.substring(0, sql.length() - 1);
+
+						sql += ") or gi.genome_info_id in (" + lstGId.get(i) + ",";
+
+					}
+					else {
+
+						sql += lstGId.get(i) + ",";
+
+					}
+
+				}
+
+				sql = sql.substring(0, sql.length() - 1);
+
+			}
+			else {
+
+				sql += key.get("genomeId");
+
+			}
+
+			sql += "))";
+
+			// sql += " and gi.genome_info_id in (" + key.get("genomeId") + ")";
 
 		}
 		else if (key.containsKey("taxonId") && key.get("taxonId") != null && !key.get("taxonId").equals("")) {
@@ -1977,7 +1968,8 @@ public class DBSearch {
 	 */
 	public ArrayList<ResultType> getIDTypes() {
 
-		String sql = " select distinct id_type ids from app.idmapping order by ids ";
+		// String sql = " select distinct id_type ids from app.idmapping order by ids ";
+		String sql = " select id_type ids from app.idtype order by ids ";
 
 		ArrayList<ResultType> results = new ArrayList<ResultType>();
 		Object obj = null;
@@ -2001,10 +1993,8 @@ public class DBSearch {
 				results.add(row);
 			}
 			/*
-			 * if (obj.toString().equals("UniProtKB-ID")){ row.put("id",
-			 * (Object)"UniProtKB AC/ID"); row.put("value",
-			 * (Object)"UniProtKB AC/ID"); row.put("group",
-			 * "Other Identifiers"); results.add(row); }
+			 * if (obj.toString().equals("UniProtKB-ID")){ row.put("id", (Object)"UniProtKB AC/ID"); row.put("value", (Object)"UniProtKB AC/ID");
+			 * row.put("group", "Other Identifiers"); results.add(row); }
 			 */
 		}
 		return results;
@@ -2012,8 +2002,7 @@ public class DBSearch {
 
 	// To be removed
 
-	public ArrayList<ResultType> getTaxonIdList(String cId, String cType, String genomeId, String algorithm,
-			String status) {
+	public ArrayList<ResultType> getTaxonIdList(String cId, String cType, String genomeId, String algorithm, String status) {
 
 		String sql = " select gi.genome_info_id as ids from app.genomesummary gi ";
 

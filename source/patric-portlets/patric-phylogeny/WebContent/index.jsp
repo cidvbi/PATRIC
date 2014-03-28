@@ -11,24 +11,25 @@ boolean hasMultipleOrders = false;
 
 if ((cType.equals("taxon") || cType.equals("genome")) && cId!=null) 
 {
-	int taxonId = -1;
+	String taxonId = "";
 	
 	if (cType.equals("genome")) {
 		DBShared conn_shared = new DBShared();
 		ResultType names = (ResultType) conn_shared.getNamesFromGenomeInfoId(cId);
-		taxonId = Integer.parseInt(names.get("ncbi_taxon_id"));
+		taxonId = names.get("ncbi_taxon_id");
 	} else {
-		taxonId = Integer.parseInt(cId);
+		taxonId = cId;
 	}
 	
 	DBSummary conn_summary = new DBSummary();
-	ArrayList<ResultType> items = (ArrayList<ResultType>) conn_summary.getOrderInTaxonomy(taxonId);
+	ArrayList<ResultType> items = (ArrayList<ResultType>) conn_summary.getOrderInTaxonomy(Integer.parseInt(taxonId));
 	ResultType item = null;
 	Iterator<ResultType> iter = null;
 	if (items.size() > 1) {
 		hasMultipleOrders = true;
 	}
 	%>
+	<!--[if IE]><script type="text/javascript" src="<%=request.getContextPath() %>/js/excanvas_r73.js"></script><![endif]-->
 	<script type="text/javascript" src="<%=request.getContextPath() %>/js/genomeMaps.js"></script>
 	<script type="text/javascript" src="<%=request.getContextPath() %>/js/TreeNav.js"></script>
 	

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,12 +15,9 @@
  ******************************************************************************/
 package edu.vt.vbi.patric.portlets;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -37,7 +34,6 @@ import javax.portlet.UnavailableException;
 import org.hibernate.jmx.StatisticsService;
 import org.json.simple.JSONArray;
 
-import edu.vt.vbi.patric.cache.DataLandingGenerator;
 import edu.vt.vbi.patric.cache.ENewsGenerator;
 import edu.vt.vbi.patric.common.OrganismTreeBuilder;
 import edu.vt.vbi.patric.dao.DBDisease;
@@ -55,8 +51,7 @@ public class BreadCrumb extends GenericPortlet {
 	private final boolean initCache = true;
 
 	/**
-	 * Initialize Database connections, build genome selector caches, and
-	 * generate static data feed for eNews and Watchlist
+	 * Initialize Database connections, build genome selector caches, and generate static data feed for eNews and Watchlist
 	 * 
 	 */
 	@Override
@@ -85,25 +80,8 @@ public class BreadCrumb extends GenericPortlet {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-/*
-		String resourceRoot = System.getProperty("web.resource", "/");
-		// File folder = new File(getPortletContext().getRealPath("/"));
-		// folder.mkdirs();
-		Path newLink = new File(getPortletContext().getRealPath(resourceRoot)).toPath();
-		Path target = new File(getPortletContext().getRealPath("/")).toPath();
 
-		// System.out.println("create link from ["+newLink.toString()+"] to ["+target.toString()+"]");
-		try {
-			Files.createSymbolicLink(newLink, target);
-		}
-		catch (IOException x) {
-			System.out.println(x);
-		}
-		catch (UnsupportedOperationException x) {
-			System.out.println(x);
-		}
-*/
-		// create cache for genome selector (all bacteria level)
+		// create cache for Genome Selector (all bacteria level)
 		try {
 			if (initCache) {
 				HashMap<String, String> key = new HashMap<String, String>();
@@ -111,17 +89,20 @@ public class BreadCrumb extends GenericPortlet {
 				JSONArray list = OrganismTreeBuilder.buildGenomeTree(key);
 
 				PrintWriter out = new PrintWriter(new FileWriter(getPortletContext().getRealPath("txtree-bacteria.js")));
-				out.println(list.toString());
+				list.writeJSONString(out);
+				//out.println(list.toString());
 				out.close();
 
 				list = OrganismTreeBuilder.buildGenomeList(key);
 				out = new PrintWriter(new FileWriter(getPortletContext().getRealPath("azlist-bacteria.js")));
-				out.println(list.toString());
+				list.writeJSONString(out);
+				//out.println(list.toString());
 				out.close();
 
 				list = OrganismTreeBuilder.buildTaxonGenomeMapping(key);
 				out = new PrintWriter(new FileWriter(getPortletContext().getRealPath("tgm-bacteria.js")));
-				out.println(list.toString());
+				list.writeJSONString(out);
+				//out.println(list.toString());
 				out.close();
 			}
 		}
@@ -144,32 +125,6 @@ public class BreadCrumb extends GenericPortlet {
 		catch (Exception ex) {
 			ex.printStackTrace();
 		}
-
-		// create cache for data-landing pages
-		try {
-			if (initCache) {
-				DataLandingGenerator cacheGen = new DataLandingGenerator();
-				boolean isSuccess = cacheGen.createCacheFileGenomes(getPortletContext().getRealPath(
-						"/data/genomeData.json"));
-				if (isSuccess) {
-					System.out.println("Genome Landing data is generated");
-				}
-				else {
-					System.out.println("failed");
-				}
-				isSuccess = false;
-				isSuccess = cacheGen.createCacheFileFigfam(getPortletContext().getRealPath("/data/figfamData.json"));
-				if (isSuccess) {
-					System.out.println("Figfam Landing data is generated");
-				}
-				else {
-					System.out.println("failed");
-				}
-			}
-		}
-		catch (Exception ex) {
-			ex.printStackTrace();
-		}
 	}
 
 	public void destroy() {
@@ -184,30 +139,33 @@ public class BreadCrumb extends GenericPortlet {
 		}
 	}
 
-	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException,
-			UnavailableException {
+	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException, UnavailableException {
 		response.setContentType("text/html");
 
 		String cType = request.getParameter("context_type");
+		// String cId = request.getParameter("context_id");
+		String bm = request.getParameter("breadcrumb_mode");
+		if (bm == null) {
+			bm = "";
+		}
 
 		String windowID = request.getWindowID();
+		// System.out.println("WindowID="+windowID+", bm="+bm);
 
-		if (windowID.indexOf("ECSearch") >= 1 || windowID.indexOf("GOSearch") >= 1
-				|| windowID.indexOf("GenomicFeature") >= 1 || windowID.indexOf("GenomeFinder") >= 1
-				|| windowID.indexOf("PathwayFinder") >= 1 || windowID.indexOf("Downloads") >= 1
+		if (windowID.indexOf("ECSearch") >= 1 || windowID.indexOf("GOSearch") >= 1 || windowID.indexOf("GenomicFeature") >= 1
+				|| windowID.indexOf("GenomeFinder") >= 1 || windowID.indexOf("PathwayFinder") >= 1 || windowID.indexOf("Downloads") >= 1
 				|| windowID.indexOf("IDMapping") >= 1 || windowID.indexOf("HPITool") >= 1
 				|| (windowID.indexOf("FIGfamSorter") >= 1 && windowID.indexOf("FIGfamSorterB") < 1)
 				|| (windowID.indexOf("FIGfamViewer") >= 1 && windowID.indexOf("FIGfamViewerB") < 1)
-				|| windowID.indexOf("ExperimentData") >= 1 || windowID.indexOf("GEO") >= 1
-				|| windowID.indexOf("ArrayExpress") >= 1 || windowID.indexOf("PRC") >= 1
-				|| windowID.indexOf("PRIDE") >= 1 || windowID.indexOf("Structure") >= 1
+				|| (windowID.indexOf("FIGfam") >= 1 && bm.equals("tool")) || (windowID.indexOf("SingleFIGfam") >= 1 && bm.equals("tool"))
+				|| windowID.indexOf("ExperimentData") >= 1 || windowID.indexOf("GEO") >= 1 || windowID.indexOf("ArrayExpress") >= 1
+				|| windowID.indexOf("PRC") >= 1 || windowID.indexOf("PRIDE") >= 1 || windowID.indexOf("Structure") >= 1
 				|| windowID.indexOf("IntAct") >= 1 || windowID.indexOf("RAST") >= 1 || windowID.indexOf("MGRAST") >= 1
 				|| windowID.indexOf("TranscriptomicsEnrichment") >= 1) {
 
 			request.setAttribute("WindowID", windowID);
 
-			PortletRequestDispatcher prd = getPortletContext().getRequestDispatcher(
-					"/WEB-INF/jsp/breadcrumb/other_tabs.jsp");
+			PortletRequestDispatcher prd = getPortletContext().getRequestDispatcher("/WEB-INF/jsp/breadcrumb/other_tabs.jsp");
 			prd.include(request, response);
 
 		}
@@ -220,21 +178,17 @@ public class BreadCrumb extends GenericPortlet {
 				writer.close();
 			}
 			else if (cType.equals("feature")) {
-				PortletRequestDispatcher prd = getPortletContext().getRequestDispatcher(
-						"/WEB-INF/jsp/breadcrumb/feature_tabs.jsp");
+				PortletRequestDispatcher prd = getPortletContext().getRequestDispatcher("/WEB-INF/jsp/breadcrumb/feature_tabs.jsp");
 				prd.include(request, response);
 			}
 			else if (cType.equals("genome")) {
-				PortletRequestDispatcher prd = getPortletContext().getRequestDispatcher(
-						"/WEB-INF/jsp/breadcrumb/genome_tabs.jsp");
+				PortletRequestDispatcher prd = getPortletContext().getRequestDispatcher("/WEB-INF/jsp/breadcrumb/genome_tabs.jsp");
 				prd.include(request, response);
 			}
 			else if (cType.equals("taxon")) {
-				PortletRequestDispatcher prd = getPortletContext().getRequestDispatcher(
-						"/WEB-INF/jsp/breadcrumb/taxon_tabs.jsp");
+				PortletRequestDispatcher prd = getPortletContext().getRequestDispatcher("/WEB-INF/jsp/breadcrumb/taxon_tabs.jsp");
 				prd.include(request, response);
 			}
-
 		}
 	}
 }

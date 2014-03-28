@@ -6,13 +6,11 @@ String _grTypeString = request.getParameter("group_type");
 
 if (_grIdxString != null) {
 %>
-<div id="ExplorerInfo" class="table-container">
-<table style="width:100%"><tr><td>
+<div id="ExplorerInfo">
 	The Group Explorer allows you to compare and contrast selected groups from within
-	 your Workspace using a Venn diagram-based interactive visualization.  
+	 your Workspace using a Venn diagram-based interactive visualization.
 	 To learn more see
-	<a href="http://enews.patricbrc.org/group-explorer-faqs/" target="_blank">Group Explorer FAQs</a>. 
-</td></tr></table>
+	<a href="http://enews.patricbrc.org/group-explorer-faqs/" target="_blank">Group Explorer FAQs</a>.
 </div>
 <div style="height:600px">
 	<object type="application/x-java-applet" height="95%" width="100%">
@@ -22,19 +20,8 @@ if (_grIdxString != null) {
 		<param name="groups_url" value="http://<%=hostName %>/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=GSESupport&action=groups&groupIds=<%=_grIdxString%>">
 		<param name="list_url" value="http://<%=hostName %>/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=GSESupport&action=group_list">
 		<param name="create_group_url" value="http://<%=hostName %>/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=groupAction&action=create&group_type=<%=_grTypeString%>">
-		Applet failed to run. No Java plug-in was found
+		Applet failed to run. No Java plug-in was found. You can download Java JRE from <a href="http://java.com/en/download/" target=_blank>here</a>
 	</object>
-<%-- 
-	<applet archive="/patric-common/applet/VennCompareApp.jar"
-	code="edu.vt.vbi.ci.app.vennCompare.VennCompareApp.class" 
-	width="100%" height="95%" MAYSCRIPT>
-		<param name="data_url"		value="http://<%=hostName %>/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=GSESupport&action=items&groupIds=<%=_grIdxString%>">
-		<param name="groups_url"	value="http://<%=hostName %>/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=GSESupport&action=groups&groupIds=<%=_grIdxString%>">
-		<param name="list_url"		value="http://<%=hostName %>/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=GSESupport&action=group_list">
-		<param name="create_group_url" value="http://<%=hostName %>/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=groupAction&action=create&group_type=<%=_grTypeString%>">
-	<!--	<param name="debug" value="true">  -->
-	</applet>
---%>
 </div>
 <% } else { %>
 <div></div>

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -159,8 +159,8 @@ public class DBDisease {
 
 			if (!id.equals("") && id != null) {
 
-				sql += " AND b.ncbi_tax_id in (select ncbi_tax_id " + "	from sres.taxon "
-						+ "	connect by prior taxon_id = parent_id " + "	start with ncbi_tax_id = :id )";
+				sql += " AND b.ncbi_tax_id in (select ncbi_tax_id " + "	from sres.taxon " + "	connect by prior taxon_id = parent_id "
+						+ "	start with ncbi_tax_id = :id )";
 
 			}
 		}
@@ -195,8 +195,8 @@ public class DBDisease {
 
 			if (id != null && !id.equals("")) {
 
-				sql += " AND b.ncbi_tax_id in (select ncbi_tax_id " + "	from sres.taxon "
-						+ "	connect by prior taxon_id = parent_id " + "	start with ncbi_tax_id = " + id + " )";
+				sql += " AND b.ncbi_tax_id in (select ncbi_tax_id " + "	from sres.taxon " + "	connect by prior taxon_id = parent_id "
+						+ "	start with ncbi_tax_id = " + id + " )";
 
 			}
 		}
@@ -213,8 +213,8 @@ public class DBDisease {
 
 				sql += " AND vfg_id in (";
 				sql += " SELECT distinct b.vfg_id from diseasedb.vf_summary b WHERE " + "	b.ncbi_tax_id in ( "
-						+ " select ncbi_tax_id  from sres.taxon  connect  by "
-						+ " prior taxon_id = parent_id  start with ncbi_tax_id = " + key.get("cId") + ") ";
+						+ " select ncbi_tax_id  from sres.taxon  connect  by " + " prior taxon_id = parent_id  start with ncbi_tax_id = "
+						+ key.get("cId") + ") ";
 
 				sql += ")";
 
@@ -335,8 +335,7 @@ public class DBDisease {
 
 	}
 
-	public ArrayList<ResultType> getVFDBList(HashMap<String, String> key, HashMap<String, String> sort, int start,
-			int end) {
+	public ArrayList<ResultType> getVFDBList(HashMap<String, String> key, HashMap<String, String> sort, int start, int end) {
 
 		String sql = "";
 
@@ -344,8 +343,7 @@ public class DBDisease {
 
 		sql += " GROUP BY vfg_id, gene_name, gene_product, vf_id, vf_name, vf_fullname, function ";
 
-		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction")
-				&& sort.get("direction") != null) {
+		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction") && sort.get("direction") != null) {
 
 			sql += " ORDER BY " + sort.get("field") + " " + sort.get("direction");
 
@@ -397,15 +395,13 @@ public class DBDisease {
 
 	}
 
-	public ArrayList<ResultType> getVFDBFeatureList(HashMap<String, String> key, HashMap<String, String> sort,
-			int start, int end) {
+	public ArrayList<ResultType> getVFDBFeatureList(HashMap<String, String> key, HashMap<String, String> sort, int start, int end) {
 
 		String sql = "";
 
 		sql += getVFDBFeatureSQL(key, "function");
 
-		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction")
-				&& sort.get("direction") != null) {
+		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction") && sort.get("direction") != null) {
 
 			sql += " ORDER BY " + sort.get("field") + " " + sort.get("direction");
 
@@ -487,8 +483,8 @@ public class DBDisease {
 
 				sql += " AND vfg_id in (";
 				sql += " SELECT distinct b.vfg_id from diseasedb.vf_summary b WHERE " + "	b.ncbi_tax_id in ( "
-						+ " select ncbi_tax_id  from sres.taxon  connect  by "
-						+ " prior taxon_id = parent_id  start with ncbi_tax_id = " + key.get("cId") + ") ";
+						+ " select ncbi_tax_id  from sres.taxon  connect  by " + " prior taxon_id = parent_id  start with ncbi_tax_id = "
+						+ key.get("cId") + ") ";
 
 				sql += ")";
 
@@ -547,8 +543,7 @@ public class DBDisease {
 
 				if (!name.equals("") && name != null) {
 
-					sql += " start with lower(disease_name) like lower(:name)"
-							+ " connect by prior tree_node=parent_node) c ";
+					sql += " start with lower(disease_name) like lower(:name)" + " connect by prior tree_node=parent_node) c ";
 
 				}
 			}
@@ -649,15 +644,13 @@ public class DBDisease {
 
 	}
 
-	public ArrayList<ResultType> getCTDList(HashMap<String, String> key, HashMap<String, String> sort, int start,
-			int end) {
+	public ArrayList<ResultType> getCTDList(HashMap<String, String> key, HashMap<String, String> sort, int start, int end) {
 
 		String sql = "";
 
 		sql += getCTDSQL(key, "function");
 
-		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction")
-				&& sort.get("direction") != null) {
+		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction") && sort.get("direction") != null) {
 
 			sql += " ORDER BY " + sort.get("field") + " " + sort.get("direction");
 
@@ -708,15 +701,13 @@ public class DBDisease {
 
 	}
 
-	public ArrayList<ResultType> getCTDGraphList(HashMap<String, String> key, HashMap<String, String> sort, int start,
-			int end) {
+	public ArrayList<ResultType> getCTDGraphList(HashMap<String, String> key, HashMap<String, String> sort, int start, int end) {
 
 		String sql = "";
 
 		sql += getCTDSQL(key, "graphlist");
 
-		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction")
-				&& sort.get("direction") != null) {
+		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction") && sort.get("direction") != null) {
 
 			sql += " ORDER BY " + sort.get("field") + " " + sort.get("direction");
 
@@ -789,8 +780,7 @@ public class DBDisease {
 
 		if (where.equals("function") || where.equals("count") || where.equals("breadcrumb")) {
 
-			sql += " from diseasedb.gad_summary gs, " + " (select distinct disease_name "
-					+ " from diseasedb.PATHOGEN_DISEASE d ";
+			sql += " from diseasedb.gad_summary gs, " + " (select distinct disease_name " + " from diseasedb.PATHOGEN_DISEASE d ";
 
 			if (key.containsKey("name")) {
 
@@ -798,8 +788,7 @@ public class DBDisease {
 
 				if (!name.equals("") && name != null) {
 
-					sql += " start with lower(disease_name) like lower(:name)"
-							+ " connect by prior tree_node=parent_node) c ";
+					sql += " start with lower(disease_name) like lower(:name)" + " connect by prior tree_node=parent_node) c ";
 
 				}
 			}
@@ -899,15 +888,13 @@ public class DBDisease {
 
 	}
 
-	public ArrayList<ResultType> getGADGraphList(HashMap<String, String> key, HashMap<String, String> sort, int start,
-			int end) {
+	public ArrayList<ResultType> getGADGraphList(HashMap<String, String> key, HashMap<String, String> sort, int start, int end) {
 
 		String sql = "";
 
 		sql += getGADSQL(key, "graphlist");
 
-		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction")
-				&& sort.get("direction") != null) {
+		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction") && sort.get("direction") != null) {
 
 			sql += " ORDER BY " + sort.get("field") + " " + sort.get("direction");
 
@@ -958,15 +945,13 @@ public class DBDisease {
 		return results;
 	}
 
-	public ArrayList<ResultType> getGADList(HashMap<String, String> key, HashMap<String, String> sort, int start,
-			int end) {
+	public ArrayList<ResultType> getGADList(HashMap<String, String> key, HashMap<String, String> sort, int start, int end) {
 
 		String sql = "";
 
 		sql += getGADSQL(key, "function");
 
-		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction")
-				&& sort.get("direction") != null) {
+		if (sort != null && sort.containsKey("field") && sort.get("field") != null && sort.containsKey("direction") && sort.get("direction") != null) {
 
 			sql += " ORDER BY " + sort.get("field") + " " + sort.get("direction");
 
@@ -1022,9 +1007,8 @@ public class DBDisease {
 		String sql = "";
 
 		sql = "select distinct t.ncbi_tax_id taxon_id, replace(replace(tn.name, '['), ']') organism_name, t.rank organism_rank"
-				+ "	from sres.taxon t, sres.taxonname tn"
-				+ "	where t.taxon_id = tn.taxon_id"
-				+ "	and t.ncbi_tax_id = ? " + "	and tn.name_class = 'scientific name'";
+				+ "	from sres.taxon t, sres.taxonname tn" + "	where t.taxon_id = tn.taxon_id" + "	and t.ncbi_tax_id = ? "
+				+ "	and tn.name_class = 'scientific name'";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -1126,9 +1110,7 @@ public class DBDisease {
 
 		sql = "select distinct z.gene_sym gene_sym, z.gene_name gene_name,  x.disease_id disease_id, z.pubmed_id pubmed "
 				+ " 	from (select distinct pd.disease_id disease_id, pd.disease_name disease_name "
-				+ "	from sres.taxon t, diseasedb.pathogen_disease pd "
-				+ "	where t.ncbi_tax_id = pd.taxon_id "
-				+ "	and t.taxon_id in  "
+				+ "	from sres.taxon t, diseasedb.pathogen_disease pd " + "	where t.ncbi_tax_id = pd.taxon_id " + "	and t.taxon_id in  "
 				+ "	(select distinct taxon_id from sres.taxon  connect by prior taxon_id = parent_id start with ncbi_tax_id = ?) "
 				+ "	) x, diseasedb.gad_summary z " + "	where x.disease_name = z.disease_name";
 
@@ -1203,14 +1185,10 @@ public class DBDisease {
 
 	public ArrayList<ResultType> getGenusInTaxonomy(String tid) {
 
-		String sql = "select lng.ncbi_tax_id, lng.name, cls.rank, cls.node_level "
-				+ "	from ( "
-				+ "		select a.taxon_id, a.ncbi_tax_id, b.name, a.parent_id "
-				+ "		from sres.taxon a, sres.taxonname b "
-				+ "		where a.taxon_id = b.taxon_id and b.name_class = 'scientific name' "
-				+ "	) lng, cas.ncbiclassification cls "
-				+ "	where lng.ncbi_tax_id = cls.ncbi_taxon_id "
-				+ "		and cls.rank = 'genus' "
+		String sql = "select lng.ncbi_tax_id, lng.name, cls.rank, cls.node_level " + "	from ( "
+				+ "		select a.taxon_id, a.ncbi_tax_id, b.name, a.parent_id " + "		from sres.taxon a, sres.taxonname b "
+				+ "		where a.taxon_id = b.taxon_id and b.name_class = 'scientific name' " + "	) lng, cas.ncbiclassification cls "
+				+ "	where lng.ncbi_tax_id = cls.ncbi_taxon_id " + "		and cls.rank = 'genus' "
 				+ "		and cls.ncbi_taxon_id in (1386,773,138,234,32008,194,83553,1485,776,943,561,262,209,1637,1763,780,590,620,1279,1301,662,629) "
 				+ "	connect by prior parent_id = taxon_id " + "	start with ncbi_tax_id = ?";
 
@@ -1219,8 +1197,7 @@ public class DBDisease {
 		SQLQuery q = session.createSQLQuery(sql);
 		q.setString(0, tid);
 
-		q.addScalar("ncbi_tax_id", Hibernate.INTEGER).addScalar("name", Hibernate.STRING)
-				.addScalar("rank", Hibernate.STRING);
+		q.addScalar("ncbi_tax_id", Hibernate.INTEGER).addScalar("name", Hibernate.STRING).addScalar("rank", Hibernate.STRING);
 		q.addScalar("node_level", Hibernate.INTEGER);
 		q.setCacheable(true);
 
@@ -1228,14 +1205,10 @@ public class DBDisease {
 		session.getTransaction().commit();
 
 		if (rset.size() == 0) {
-			sql = "select lng.ncbi_tax_id, lng.name, cls.rank, cls.node_level "
-					+ "	from ( "
-					+ "		select a.taxon_id, a.ncbi_tax_id, b.name, a.parent_id "
-					+ "		from sres.taxon a, sres.taxonname b "
-					+ "		where a.taxon_id = b.taxon_id and b.name_class = 'scientific name' "
-					+ "	) lng, cas.ncbiclassification cls "
-					+ "	where lng.ncbi_tax_id = cls.ncbi_taxon_id "
-					+ "		and cls.rank = 'genus' "
+			sql = "select lng.ncbi_tax_id, lng.name, cls.rank, cls.node_level " + "	from ( "
+					+ "		select a.taxon_id, a.ncbi_tax_id, b.name, a.parent_id " + "		from sres.taxon a, sres.taxonname b "
+					+ "		where a.taxon_id = b.taxon_id and b.name_class = 'scientific name' " + "	) lng, cas.ncbiclassification cls "
+					+ "	where lng.ncbi_tax_id = cls.ncbi_taxon_id " + "		and cls.rank = 'genus' "
 					+ "		and ncbi_tax_id in (1386,773,138,234,32008,194,83553,1485,776,943,561,262,209,1637,1763,780,590,620,1279,1301,662,629) "
 					+ "	connect by prior taxon_id = parent_id " + "	start with ncbi_tax_id = ? " + "	order by name";
 			session = factory.getCurrentSession();
@@ -1243,8 +1216,7 @@ public class DBDisease {
 			q = session.createSQLQuery(sql);
 			q.setString(0, tid);
 
-			q.addScalar("ncbi_tax_id", Hibernate.INTEGER).addScalar("name", Hibernate.STRING)
-					.addScalar("rank", Hibernate.STRING);
+			q.addScalar("ncbi_tax_id", Hibernate.INTEGER).addScalar("name", Hibernate.STRING).addScalar("rank", Hibernate.STRING);
 			q.addScalar("node_level", Hibernate.INTEGER);
 			q.setCacheable(true);
 

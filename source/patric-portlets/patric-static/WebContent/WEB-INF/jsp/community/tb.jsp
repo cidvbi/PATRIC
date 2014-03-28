@@ -260,12 +260,12 @@ function launchPFS() {
 
 function _launchPFS(idList) {
 	Ext.Ajax.request({
-		url: '/portal/portal/patric/FIGfamSorter/FigFamSorterWindow?action=b&cacheability=PAGE',
+		url: '/portal/portal/patric/FIGfam/FIGfamWindow?action=b&cacheability=PAGE',
 		method: 'POST',
 		timeout: 600000,
 		params: {callType: "toSorter", genomeIds: idList, keyword:""},
 		success: function(rs) {
-			document.location.href = "FIGfamSorter?dm=result&pk=" + rs.responseText + "#gs_0=0";
+			document.location.href = "FIGfam?bm=tool&dm=result&pk=" + rs.responseText + "#gs_0=0";
 		}
 	});
 }
@@ -292,6 +292,9 @@ function launchTranscriptomicsUploader() {
 						m.slideIn('l').ghost("l", {delay: 2000, remove: true});	
 						
 						updateCartInfo();
+					},
+					"params":{
+						"metaData":{"data_type":"Transcriptomics"}
 					}
 				}).show();
 			}
@@ -440,12 +443,12 @@ function launchTranscriptomicsUploader() {
 						<h4 class="left"><b>Browse</b> Expression Data&nbsp;&nbsp;</h4>
 						<div style="line-height:16px">(<%=cntExperiments %> experiments)</div>
 						<div class="clear"></div>
-						<div class="left" style="width:230px;padding:10px 0px;">
-							GSE13978: Cholesterol's effect on M. tuberculosis
+						<div class="left no-underline-links" style="width:230px;padding:10px 0px;">
+							<a href="SingleExperiment?cType=taxon&cId=1763&eid=356112">GSE13978: Cholesterol's effect on M. tuberculosis</a>
 							<hr/>
-							GSE11096: Role of M.tuberculsis dosS and dosT in CO sensing
+							<a href="SingleExperiment?cType=taxon&cId=1763&eid=471306">GSE11096: Role of M.tuberculsis dosS and dosT in CO sensing</a>
 							<hr/>
-							GSE7539: A PhoP point mutation discriminates between the virulent H37Rv and avirulent H37Ra strains of Mycobacterium tuberculosis
+							<a href="SingleExperiment?cType=taxon&cId=1763&eid=318920">GSE7539: A PhoP point mutation discriminates between the virulent H37Rv and avirulent H37Ra strains of Mycobacterium tuberculosis</a>
 						</div>
 						<img src="/patric/images/heatmap.png" alt="heatmap" class="right" style="padding-top:25px">
 						<div class="clear"></div>

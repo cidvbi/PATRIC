@@ -10,7 +10,7 @@ Random generator = new Random();
 int hash_key=0;
 String hash_key_others = "&amp;pS=20&amp;aP=1&amp;dir=ASC&amp;sort=genome_name";
 
-if (cType.equals("genome")) {
+if (cType != null && cType.equals("genome")) {
 
 	DBSummary conn_summary = new DBSummary();	
 	ResultType d = conn_summary.getGenomeSummary(cId);
@@ -21,8 +21,8 @@ if (cType.equals("genome")) {
 	<table class="basic stripe far2x" id="metadata-td">
 	<tbody>
 	<tr>
-		<th>Summary</th>
-		<td colspan="2">Length: <%=d.get("length") %>bp, Chromosomes: <%=d.get("chromosome") %>, Plasmids: <%=d.get("plasmid") %>, Contigs: <%=d.get("contig") %> </td>
+		<th scope="row" colspan="2">Summary</th>
+		<td>Length: <%=d.get("length") %>bp, Chromosomes: <%=d.get("chromosome") %>, Plasmids: <%=d.get("plasmid") %>, Contigs: <%=d.get("contig") %> </td>
 	</tr>
 	</tbody>
 	<tr>
@@ -30,7 +30,7 @@ if (cType.equals("genome")) {
 	</tr>
 	</table>
 <%
-} else if (cType.equals("taxon")) {
+} else if (cType != null && cType.equals("taxon")) {
 
 
 	DBSummary conn_summary = new DBSummary();
@@ -48,14 +48,14 @@ if (cType.equals("genome")) {
 	<thead>
 	<tr>
 		<th width="40%"></th>
-		<th width="20%">PATRIC</th>
-		<th width="20%">Legacy BRC</th>
-		<th width="20%">RefSeq</th>
+		<th scope="col" width="20%">PATRIC</th>
+		<th scope="col" width="20%">Legacy BRC</th>
+		<th scope="col" width="20%">RefSeq</th>
 	</tr>
 	</thead>
 	<tbody>
 	<tr class="alt">
-		<th>Number of genomes</th>
+		<th scope="row">Number of genomes</th>
 		<td class="right-align-text">
 			<% if ( !patric_counts.get("cnt_all").equals("0")) { 
 				//hash_key = generator.nextInt(10000) + 1;
@@ -68,21 +68,18 @@ if (cType.equals("genome")) {
 				//hash_key = generator.nextInt(10000) + 1;
 			%>
 				<a href="javascript:GenomeList('BRC', '');"><%=brc_counts.get("cnt_all") %></a>
-			
 			<% } else { %> 0 <% } %>
 		</td>
 		<td class="right-align-text last">
 			<% if ( !refseq_counts.get("cnt_all").equals("0")) {  
 				//hash_key = generator.nextInt(10000) + 1;
 			%>
-			    <a href="javascript:GenomeList('RefSeq', '');"><%=refseq_counts.get("cnt_all") %></a>
-				
-				
+				<a href="javascript:GenomeList('RefSeq', '');"><%=refseq_counts.get("cnt_all") %></a>
 			<% } else { %> 0 <% } %>
 		</td>
 	</tr>
 	<tr>
-		<th>Number of Complete genomes</th>
+		<th scope="row">Number of Complete genomes</th>
 		<td class="right-align-text">
 			<% if ( !patric_counts.get("cnt_complete").equals("0")) { 
 				//hash_key = generator.nextInt(10000) + 1;
@@ -106,7 +103,7 @@ if (cType.equals("genome")) {
 		</td>
 	</tr>
 	<tr class="alt">
-		<th>Number of WGS genomes</th>
+		<th scope="row">Number of WGS genomes</th>
 		<td class="right-align-text">
 			<% if ( !patric_counts.get("cnt_wgs").equals("0")) { 
 				//hash_key = generator.nextInt(10000) + 1;
@@ -131,7 +128,7 @@ if (cType.equals("genome")) {
 		</td>
 	</tr>
 	<tr>
-		<th>Number of Plasmid only genomes</th>
+		<th scope="row">Number of Plasmid only genomes</th>
 		<td class="right-align-text">
 			<% if ( !patric_counts.get("cnt_plasmid").equals("0")) { 
 				hash_key = generator.nextInt(10000) + 1;

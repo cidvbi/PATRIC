@@ -67,6 +67,7 @@
 <script type="text/javascript" src="/patric-common/js/grid/loadgrid.js"></script>
 <script type="text/javascript" src="/patric-searches-and-tools/js/solrKeyword.js"></script>
 <script type="text/javascript" src="/patric-searches-and-tools/js/json2.js" ></script>
+<script type="text/javascript" src="/patric-searches-and-tools/js/proteomics_list_grids.js" ></script>
 <script type="text/javascript">
 //<![CDATA[
            
@@ -88,7 +89,8 @@ Ext.onReady(function()
 				{header:'Project Name',				flex:1, dataIndex: 'project_name',			renderer:BasicRenderer},
 				{header:'Experiment Label',				flex:1, dataIndex: 'experiment_label',		renderer:BasicRenderer}, 
 				{header:'Experiment Title',				flex:2, dataIndex: 'experiment_title',		renderer:BasicRenderer}, 
-				{header:'Experiment Type',				flex:2, dataIndex: 'experiment_type',		renderer:BasicRenderer}, 
+				{header:'Experiment Type',				flex:2, dataIndex: 'experiment_type',		renderer:BasicRenderer},
+				{header:'Peptides',				flex:2, dataIndex: '',		renderer:renderPeptide},
 				{header:'Source',				flex:1, dataIndex: 'source',		renderer:BasicRenderer},
 				{header:'Contact Name',	flex:2, dataIndex: 'contact_name',		renderer:BasicRenderer},
 				{header:'Institution',	flex:2, dataIndex: 'institution',		renderer:BasicRenderer},
@@ -103,6 +105,7 @@ Ext.onReady(function()
 		hash:{
 			aP: [1]
 		},
+		border:true,
 		remoteSort:true,
 		current_hash: window.location.hash?window.location.hash.substring(1):"",
 		url: ['<portlet:resourceURL />'],

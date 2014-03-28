@@ -7,7 +7,7 @@ ResultType geneInfo = (ResultType) request.getAttribute("gene");
 <table class="basic far2x">
 <tbody>
 	<tr>
-		<th width="30%">Gene Symbol</th>
+		<th scope="row" width="30%">Gene Symbol</th>
 		<td><%=geneInfo.get("gene") %>&nbsp;</td>
 	</tr>
 </tbody>

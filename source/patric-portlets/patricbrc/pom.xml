@@ -3,7 +3,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>patricbrc</artifactId>
 	<packaging>ear</packaging>
-	<version>12.0-201303</version>
+	<version>14.0-201402</version>
 	<name>PATRICBRC EAR</name>
 	<parent>
 		<groupId>edu.vt.vbi.patric</groupId>
@@ -71,6 +71,12 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 							<artifactId>solr-solrj</artifactId>
 							<includeInApplicationXml>true</includeInApplicationXml>
 						</jarModule>
+						<jarModule>
+							<groupId>org.noggit</groupId>
+							<artifactId>noggit</artifactId>
+							<includeInApplicationXml>true</includeInApplicationXml>
+						</jarModule>
+
 						<!--  End of Solrj -->
 						<!-- polyomic -->
 						<jarModule>
@@ -157,7 +163,7 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 		</dependency>
 		<dependency>
 			<groupId>edu.vt.vbi.patric</groupId>
-			<artifactId>FigFamSorter</artifactId>
+			<artifactId>patric-proteinfamily</artifactId>
 			<version>${project.parent.version}</version>
 			<type>war</type>
 		</dependency>

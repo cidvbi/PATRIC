@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -125,6 +125,7 @@ public class GOSearch extends GenericPortlet {
 			String need = request.getParameter("need");
 
 			String facet = "", keyword = "", pk = "", state = "";
+			boolean hl = false;
 
 			PortletSession sess = request.getPortletSession();
 
@@ -139,10 +140,13 @@ public class GOSearch extends GenericPortlet {
 				pk = request.getParameter("pk");
 				keyword = request.getParameter("keyword");
 				facet = request.getParameter("facet");
+				String highlight = request.getParameter("highlight");
+				
+				hl = Boolean.parseBoolean(highlight);
 
 				if (sess.getAttribute("key" + pk, PortletSession.APPLICATION_SCOPE) == null) {
 
-					System.out.print("1go");
+					//System.out.print("1go");
 
 					key.put("facet", facet);
 					key.put("keyword", keyword);
@@ -152,7 +156,7 @@ public class GOSearch extends GenericPortlet {
 				}
 				else {
 
-					System.out.print("2go");
+					//System.out.print("2go");
 
 					key = (ResultType) sess.getAttribute("key" + pk, PortletSession.APPLICATION_SCOPE);
 					key.put("facet", facet);
@@ -177,7 +181,7 @@ public class GOSearch extends GenericPortlet {
 						for (int i = 1; i < sorter.size(); i++) {
 							sort_field += "," + ((JSONObject) sorter.get(i)).get("property").toString();
 						}
-						System.out.println(sort_field);
+						//System.out.println(sort_field);
 					}
 					catch (ParseException e) {
 						// TODO Auto-generated catch block
@@ -193,7 +197,7 @@ public class GOSearch extends GenericPortlet {
 
 				}
 
-				JSONObject object = solr.getData(key, sort, facet, start, end, true, true, false);
+				JSONObject object = solr.getData(key, sort, facet, start, end, true, hl, false);
 
 				JSONObject obj = (JSONObject) object.get("response");
 				JSONArray obj1 = (JSONArray) obj.get("docs");

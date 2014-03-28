@@ -29,7 +29,7 @@ function searchbykeyword(cId, cType) {
 		if (Ext.getDom("keyword").value == "" || Ext.getDom("keyword").value == "*") {
 			object["Keyword"] = "(*)";
 		} else {
-			object["Keyword"] = "(" + EncodeKeyword(Ext.getDom("keyword").value) + ")";
+			object["Keyword"] = "(" + ConvertNewlineforSolrQuery(EncodeKeyword(Ext.getDom("keyword").value)) + ")";
 		}
 
 	} else if (name == "GO" || name == "EC") {
@@ -45,7 +45,7 @@ function searchbykeyword(cId, cType) {
 		} else {
 
 			if (Ext.getDom("search_on").value == "Keyword")
-				object["Keyword"] = "(" + EncodeKeyword(Ext.getDom("keyword").value) + ")";
+				object["Keyword"] = "(" + ConvertNewlineforSolrQuery(EncodeKeyword(Ext.getDom("keyword").value)) + ")";
 			else {
 				object[Ext.getDom("search_on").value] = EncodeKeyword(Ext.getDom("keyword").value);
 				object["Keyword"] = "(*)";
@@ -62,9 +62,9 @@ function searchbykeyword(cId, cType) {
 
 		} else {
 
-			if (Ext.getDom("search_on").value == "Keyword")
-				object["Keyword"] = "(" + EncodeKeyword(Ext.getDom("keyword").value) + ")";
-			else {
+			if (Ext.getDom("search_on").value == "Keyword") {
+				object["Keyword"] = "(" + ConvertNewlineforSolrQuery(EncodeKeyword(Ext.getDom("keyword").value)) + ")";
+			} else {
 				object[Ext.getDom("search_on").value] = EncodeKeyword(Ext.getDom("keyword").value);
 				object["Keyword"] = "(*)";
 			}

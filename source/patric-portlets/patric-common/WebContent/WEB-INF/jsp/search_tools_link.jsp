@@ -26,7 +26,7 @@ if (cType!=null && cType.equals("taxon")) {
 		Comparative Pathway Tool</a>
 	</li>
 
-	<li><a href="FIGfamSorter<%=param%>" class="tools-icon icon-proteinfamily" 
+	<li><a href="FIGfam<%=param%>&amp;bm=tool" class="tools-icon icon-proteinfamily" 
 			title="Protein Family Sorter allows you to identify and filter sets of protein families associated with specified Phylum, Classes, Orders, Families, Genus, Species or Genomes.">
 		Protein Family Sorter</a>
 	</li>

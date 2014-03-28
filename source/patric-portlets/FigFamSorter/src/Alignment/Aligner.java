@@ -186,20 +186,7 @@ public class Aligner {
 		}
 		return tmpFaa;
 	}
-
-	/*
-	 * private void markProgress(String fileName, String text) { try { BufferedWriter writer = new BufferedWriter(new
-	 * FileWriter("/tmp/dbg_" + fileName)); writer.write(text); writer.newLine(); writer.close(); } catch (IOException
-	 * e) { e.printStackTrace(); } }
-	 * 
-	 * private void setParamFile() { try { BufferedWriter writer = new BufferedWriter(new FileWriter("/tmp/" + groupID +
-	 * ".txt")); writer.write("<param name='NEWICK' value='" + treeLines[0] + "'>\n"); int index = 0; for(int i = 0; i <
-	 * sequences.length; i++) { SequenceData next = sequences[i]; ++index; writer.write("<PARAM name='ALIGN" + index +
-	 * "' value='" + next.locus + "'>\n"); ++index; writer.write("<PARAM name='ALIGN" + index + "' value='" +
-	 * next.taxonName + "'>\n"); ++index; writer.write("<PARAM name='ALIGN" + index + "' value='" + next.aminos +
-	 * "'>\n"); } writer.close(); } catch (IOException e) { e.printStackTrace(); } }
-	 */
-
+	
 	public void runFastTree() {
 		if (trimAligned != null) {
 			CommandResults treeHold = ExecUtilities.exec("FastTree_LG -gamma -nosupport "
@@ -209,7 +196,7 @@ public class Aligner {
 				treeLines = treeHold.getStdout();
 			}
 
-			System.out.print(treeLines.length);
+			//System.out.print(treeLines.length);
 		}
 	}
 
@@ -298,7 +285,7 @@ public class Aligner {
 
 		gGetter = new BufferedImage(preferred.width, preferred.height, BufferedImage.TYPE_INT_RGB);
 
-		//Graphics2D g2 = treeForm.paint(gGetter);
+		treeForm.paint(gGetter);
 
 		File pngFile = new File(prefix + "png");
 		try {

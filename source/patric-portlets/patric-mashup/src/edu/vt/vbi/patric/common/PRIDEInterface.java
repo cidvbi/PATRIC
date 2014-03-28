@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -41,12 +41,9 @@ public class PRIDEInterface {
 				.append("<Query  virtualSchemaName = \"default\" formatter = \"TSV\" header=\"0\" uniqueRows=\"0\" count=\"\" datasetConfigVersion=\"0.6\" >");
 		xmlQueryString.append("<Dataset name=\"pride\" interface=\"default\" >");
 		xmlQueryString.append("<Filter name=\"species_filter\" value=\"" + species + "\" />");
-		xmlQueryString
-				.append("	<Attribute name = \"project_id\" /><Attribute name = \"project_name\" /><Attribute name = \"experiment_ac\" />");
-		xmlQueryString
-				.append("	<Attribute name = \"experiment_title\" /><Attribute name = \"experiment_short_title\" />");
-		xmlQueryString
-				.append("	<Attribute name = \"pubmed_id\" /><Attribute name = \"newt_name\" /><Attribute name = \"newt_ac\" />");
+		xmlQueryString.append("	<Attribute name = \"project_id\" /><Attribute name = \"project_name\" /><Attribute name = \"experiment_ac\" />");
+		xmlQueryString.append("	<Attribute name = \"experiment_title\" /><Attribute name = \"experiment_short_title\" />");
+		xmlQueryString.append("	<Attribute name = \"pubmed_id\" /><Attribute name = \"newt_name\" /><Attribute name = \"newt_ac\" />");
 		xmlQueryString.append("</Dataset>");
 		xmlQueryString.append("</Query>");
 	}
@@ -56,7 +53,7 @@ public class PRIDEInterface {
 		JSONObject result = new JSONObject();
 		result.put("hasData", false);
 		if (species.equals("")) {
-			System.out.println("PRIDE-query:No species name was given.");
+			// System.out.println("PRIDE-query:No species name was given");
 			JSONArray subList = new JSONArray();
 			result.put("results", subList);
 			result.put("total", subList.size());
@@ -67,7 +64,7 @@ public class PRIDEInterface {
 				setQueryString(species);
 				// setQueryString("Salmonella typhimurium");
 				String param = "query=" + xmlQueryString.toString();
-				System.out.println("PRIDE-query:" + xmlQueryString.toString());
+				// System.out.println("PRIDE-query:" + xmlQueryString.toString());
 
 				URL url = new URL(baseURL);
 				URLConnection conn = url.openConnection();
@@ -94,8 +91,7 @@ public class PRIDEInterface {
 						row.put("pubmed_id", columns[5]);
 						row.put("newt_name", columns[6]);
 						row.put("newt_ac", columns[7]);
-						row.put("link_data_file", "ftp://ftp.ebi.ac.uk/pub/databases/pride/PRIDE_Exp_Complete_Ac_"
-								+ columns[2] + ".xml.gz");
+						row.put("link_data_file", "ftp://ftp.ebi.ac.uk/pub/databases/pride/PRIDE_Exp_Complete_Ac_" + columns[2] + ".xml.gz");
 					}
 					catch (ArrayIndexOutOfBoundsException ex) {
 					}

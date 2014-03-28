@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="/patric-static/ibrc.css" type="text/css" />
 <div id="fp">
 	
-	<div>
+	<div class="far2x">
 		<h2>BioHealthBase</h2>
 	</div>
 	
@@ -15,54 +15,52 @@
 	</div>
 	
 	<div class="right" style="width:60%">
-		<div class="table-container with-border">
-			<h2>List of Genera</h2>
-			<table class="data-table">
-				<thead>
-				<tr>
-					<th width="80">Genus name</th>
-					<th width="25">Genomes from BRC</th>
-					<th width="70">Link</th>
-					<th>Description</th>
-				</tr>
-				</thead>
-				<tr>
-					<td>Francisella</td>
-					<td class="right">9</td>
-					<td>
-						<%=SiteHelper.getLinks("taxon_overview", "262")%>
-						<%=SiteHelper.getLinks("genome_list", "262")%>
-						<%=SiteHelper.getLinks("feature_table", "262")%>
-					</td>
-					<td><i>Francisella</i>, a gram-negative coccobacillus and the only genus within the family Francisellaceae, 
-						is a member of the phylum Proteobacteria. 
-						There are two species within the <i>Francisella</i> genus: <i>tularensis</i> and <i>philomiragia</i>.
-						<i>Francisella tularensis</i> is the causative agent of the zoonotic disease tularemia, also
-					  	known as rabbit fever or deer-fly fever.
-					</td>
-				</tr>
-				<tr>
-					<td>Mycobacterium</td>
-					<td class="right">19</td>
-					<td>
-						<%=SiteHelper.getLinks("taxon_overview", "1763")%>
-						<%=SiteHelper.getLinks("genome_list", "1763")%>
-						<%=SiteHelper.getLinks("feature_table", "1763")%>
-					</td>
-					<td><i>Mycobacterium</i>, a genus of Actinobacteria, are aerobic, nonmotile, and rod-shaped bacteria.
-						<i>Mycobacterium tuberculosis</i> is one of
-					  	most successful pathogens of mankind, infecting one-third of the global
-						population and claiming two million lives every year. The bacteria has the ability to persist
-						in the form of a long-term asymptomatic infection,
-						referred to as latent tuberculosis. Approximately eight million people
-						develop active tuberculosis (TB) every year, with two million dying from the
-						disease. In addition to this already huge burden of disease, it is estimated
-						that up to two billion people have been infected with the causative agent, <i>M. tuberculosis</i>.
-					</td>
-				</tr>
-			</table>
-		</div>
+		<table class="basic stripe">
+		<thead>
+			<tr>
+				<th scope="col" width="80">Genus name</th>
+				<th scope="col" width="25">Genomes from BRC</th>
+				<th scope="col" width="82">Link</th>
+				<th scope="col">Description</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>Francisella</td>
+				<td class="right">9</td>
+				<td>
+					<%=SiteHelper.getLinks("taxon_overview", "262")%>
+					<%=SiteHelper.getLinks("genome_list", "262")%>
+					<%=SiteHelper.getLinks("feature_table", "262")%>
+				</td>
+				<td><i>Francisella</i>, a gram-negative coccobacillus and the only genus within the family Francisellaceae, 
+					is a member of the phylum Proteobacteria. 
+					There are two species within the <i>Francisella</i> genus: <i>tularensis</i> and <i>philomiragia</i>.
+					<i>Francisella tularensis</i> is the causative agent of the zoonotic disease tularemia, also
+				  	known as rabbit fever or deer-fly fever.
+				</td>
+			</tr>
+			<tr>
+				<td>Mycobacterium</td>
+				<td class="right">19</td>
+				<td>
+					<%=SiteHelper.getLinks("taxon_overview", "1763")%>
+					<%=SiteHelper.getLinks("genome_list", "1763")%>
+					<%=SiteHelper.getLinks("feature_table", "1763")%>
+				</td>
+				<td><i>Mycobacterium</i>, a genus of Actinobacteria, are aerobic, nonmotile, and rod-shaped bacteria.
+					<i>Mycobacterium tuberculosis</i> is one of
+				  	most successful pathogens of mankind, infecting one-third of the global
+					population and claiming two million lives every year. The bacteria has the ability to persist
+					in the form of a long-term asymptomatic infection,
+					referred to as latent tuberculosis. Approximately eight million people
+					develop active tuberculosis (TB) every year, with two million dying from the
+					disease. In addition to this already huge burden of disease, it is estimated
+					that up to two billion people have been infected with the causative agent, <i>M. tuberculosis</i>.
+				</td>
+			</tr>
+		</tbody>
+		</table>
 	</div>
 	<div class="clear"></div>
 </div>
-<br/><br/>

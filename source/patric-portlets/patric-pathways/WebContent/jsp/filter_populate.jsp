@@ -53,6 +53,6 @@
 		items = conn_pathways.getListOfAlgorithmList(key);
 		json.put(need, items);
 	}
-	
-	out.println(json.toString());
+	json.writeJSONString(out);
+	//out.println(json.toString());
 %>

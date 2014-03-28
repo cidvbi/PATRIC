@@ -83,43 +83,20 @@ function renderAccession(value, metadata, record, rowIndex, colIndex, store) {
 
 function renderGenomeBrowserByFeature(value, metadata, record, rowIndex, colIndex, store) {
 	//metadata.tdAttr = 'data-qtip="Genome Browser" data-qclass="x-tip"';
-	var tracks = "DNA,", window_start = Math.max(0, (record.data.start_max - 1000)), window_end = parseInt(record.data.end_min) + 1000;
+	var tracks = "DNA,PATRICGenes,RefSeqGenes", window_start = Math.max(0, (record.data.start_max - 1000)), window_end = parseInt(record.data.end_min) + 1000;
 
-	if (record.data.feature_type != null && (record.data.feature_type == "CDS" || record.data.feature_type == "gene")) {
-		tracks += record.data.feature_type;
-	} else if (record.data.name != null && (record.data.name == "CDS" || record.data.name == "gene")) {
-		tracks += record.data.name;
-	} else if (record.data.feature_type != null && record.data.feature_type.indexOf(/.*RNA/) != -1) {
-		tracks += "RNA";
-	} else if (record.data.name != null && record.data.name.indexOf(/.*RNA/) != -1) {
-		tracks += "RNA";
-	} else {
-		tracks += "Misc";
-	}
-	if (record.data.annotation == "PATRIC") {
-		tracks += "(PATRIC)";
-	} else if (record.data.algorithm == "PATRIC") {
-		tracks += "(PATRIC)";
-	} else if (record.data.annotation == "Legacy BRC") {
-		tracks += "(BRC)";
-	} else if (record.data.algorithm == "Legacy BRC") {
-		tracks += "(BRC)";
-	} else {
-		tracks += "(RefSeq)";
-	}
-
-	return Ext.String.format('<a href="GenomeBrowser?cType=genome&cId={0}&loc={1}:{2}..{3}&tracks={4}"><img src="/patric/images/icon_genome_browser.gif"  alt="Genome Browser" style="margin:-4px" /></a>', (record.data.genome_info_id == null || record.data.genome_info_id == "") ? record.data.gid : record.data.genome_info_id, record.data.accession, window_start, window_end, tracks);
+	return Ext.String.format('<a href="GenomeBrowser?cType=feature&cId={0}&loc={2}..{3}&tracks={4}"><img src="/patric/images/icon_genome_browser.gif"  alt="Genome Browser" style="margin:-4px" /></a>', value, record.data.accession, window_start, window_end, tracks);
 }
 
-function renderGenomeBrowserBySequence(alue, metadata, record, rowIndex, colIndex, store) {
+function renderGenomeBrowserBySequence(value, metadata, record, rowIndex, colIndex, store) {
 	//metadata.tdAttr = 'data-qtip="Genome Browser" data-qclass="x-tip"';
-	var tracks = "DNA,CDS(PATRIC),RNA(PATRIC)";
-	return Ext.String.format('<a href="GenomeBrowser?cType=genome&cId={0}&loc={1}:{2}..{3}&tracks={4}"><img src="/patric/images/icon_genome_browser.gif" alt="Genome Browser" style="margin:-4px" /></a>', (record.data.genome_info_id == 0) ? record.data.gid : record.data.genome_info_id, record.data.accession, 0, 10000, tracks);
+	var tracks = "DNA,PATRICGenes,RefSeqGenes";
+	return Ext.String.format('<a href="GenomeBrowser?cType=genome&cId={0}&loc={1}:{2}..{3}&tracks={4}"><img src="/patric/images/icon_genome_browser.gif" alt="Genome Browser" style="margin:-4px" /></a>', (record.data.genome_info_id == 0) ? record.data.gid : record.data.genome_info_id, "sid|"+value+"|accn|"+record.data.accession, 0, 10000, tracks);
 }
 
 function renderGenomeBrowserByGenome(alue, metadata, record, rowIndex, colIndex, store) {
 	//metadata.tdAttr = 'data-qtip="Genome Browser" data-qclass="x-tip"';
-	var tracks = "DNA,CDS(PATRIC),RNA(PATRIC)";
+	var tracks = "DNA,PATRICGenes,RefSeqGenes";
 	return Ext.String.format('<a href="GenomeBrowser?cType=genome&cId={0}&loc={2}..{3}&tracks={4}"><img src="/patric/images/icon_genome_browser.gif" alt="Genome Browser" style="margin:-4px" /></a>', record.data.genome_info_id, '', 0, 10000, tracks);
 }
 
@@ -286,7 +263,8 @@ function DoMsa() {"use strict";
 
 	if (fids.length <= 262) {
 		Ext.Ajax.request({
-			url : "/portal/portal/patric/FIGfamSorter/FigFamSorterWindow?action=b&cacheability=PAGE",
+			//url : "/portal/portal/patric/FIGfamSorter/FigFamSorterWindow?action=b&cacheability=PAGE",
+			url : "/portal/portal/patric/FIGfam/FIGfamWindow?action=b&cacheability=PAGE",
 			method : 'POST',
 			params : {
 				featureIds : fids.join(","),
@@ -295,12 +273,15 @@ function DoMsa() {"use strict";
 			success : function(response, opts) {
 
 				if (Ext.getDom("pk") != null)
-					document.location.href = "TreeAligner?pk=" + response.responseText;
+					//document.location.href = "TreeAligner?pk=" + response.responseText;
+					document.location.href = "MSA?pk=" + response.responseText;
 				else {
 					if (Ext.getDom("cType") && Ext.getDom("cId")) {
-						document.location.href = "TreeAlignerB?cType=" + Ext.getDom("cType").value + "&cId=" + Ext.getDom("cId").value + "&pk=" + response.responseText;
+						//document.location.href = "TreeAlignerB?cType=" + Ext.getDom("cType").value + "&cId=" + Ext.getDom("cId").value + "&pk=" + response.responseText;
+						document.location.href = "MSA?cType=" + Ext.getDom("cType").value + "&cId=" + Ext.getDom("cId").value + "&pk=" + response.responseText;
 					} else {
-						document.location.href = "TreeAligner?pk=" + response.responseText;
+						//document.location.href = "TreeAligner?pk=" + response.responseText;
+						document.location.href = "MSA?pk=" + response.responseText;
 					}
 				}
 

@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -32,38 +32,31 @@ public class ImageBuilder {
 
 	Graphics2D g2d;
 
+	final String MAP_FILE_ROOT_DEV = "/home/oral/workspace/labs/patric-pathways/pathways";
+
+	final String MAP_FILE_ROOT_TEST = "/opt/jboss-patric/jboss-deploy/deploy/jboss-web.deployer/ROOT.war/patric/images/pathways";
+
+	final String MAP_FILE_ROOT_PROD = "/opt/jboss-home/jboss-patric/deploy/jboss-web.deployer/ROOT.war/patric/images/pathways";
+
 	public ImageBuilder(String map_id) {
 
 		try {
 
-			if ((new File(
-					"/opt/jboss-patric/jboss-deploy/deploy/jboss-web.deployer/ROOT.war/patric/images/pathways/map"
-							+ map_id + ".png")).exists()) {
+			if ((new File(MAP_FILE_ROOT_TEST + "/map" + map_id + ".png")).exists()) {
 
-				image = ImageIO.read(new File(
-						"/opt/jboss-patric/jboss-deploy/deploy/jboss-web.deployer/ROOT.war/patric/images/pathways/map"
-								+ map_id + ".png"));
-
+				image = ImageIO.read(new File(MAP_FILE_ROOT_TEST + "/map" + map_id + ".png"));
 			}
-			else if ((new File(
-					"/opt/jboss-home/jboss-patric/deploy/jboss-web.deployer/ROOT.war/patric/images/pathways/map"
-							+ map_id + ".png")).exists()) {
+			else if ((new File(MAP_FILE_ROOT_PROD + "/map" + map_id + ".png")).exists()) {
 
-				image = ImageIO.read(new File(
-						"/opt/jboss-home/jboss-patric/deploy/jboss-web.deployer/ROOT.war/patric/images/pathways/map"
-								+ map_id + ".png"));
-
+				image = ImageIO.read(new File(MAP_FILE_ROOT_PROD + "/map" + map_id + ".png"));
 			}
-			else if ((new File("/home/oral/workspace/labs/patric-pathways/pathways/map" + map_id + ".png")).exists()) {
+			else if ((new File(MAP_FILE_ROOT_DEV + "/map" + map_id + ".png")).exists()) {
 
-				image = ImageIO.read(new File("/home/oral/workspace/labs/patric-pathways/pathways/map" + map_id
-						+ ".png"));
-
+				image = ImageIO.read(new File(MAP_FILE_ROOT_DEV + "/map" + map_id + ".png"));
 			}
-
 		}
 		catch (Exception e) {
-			// System.out.println("Exception Occured="+e.toString());
+			e.printStackTrace();
 		}
 
 		this.w = image.getWidth();
@@ -79,9 +72,7 @@ public class ImageBuilder {
 				Float.parseFloat(colors[2].trim()) / 255));
 
 		if (type.equals("fill")) {
-
 			g2d.fillRect(left, top, width, height);
-
 		}
 		else if (type.equals("text")) {
 			g2d.setFont(new Font("Arial", Font.PLAIN, 9));

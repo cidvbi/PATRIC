@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -97,12 +97,20 @@ public class PubMedHelper {
 				int offset1 = feature.get("genome_name").toString().indexOf(" ");
 				int offset2 = feature.get("genome_name").toString().indexOf(" ", offset1 + 1);
 
-				String org = feature.get("genome_name").toString().substring(0, offset2);
+				// System.out.println("offset1: "+offset1+", offset2: "+offset2+", org: " + feature.get("genome_name"));
+				String org = "";
+				if (offset2 > 0) {
+					org = feature.get("genome_name").toString().substring(0, offset2);
+				}
+				else {
+					org = feature.get("genome_name").toString().substring(0, offset1);
+				}
 
-				// System.out.println("offset1: "+offset1+", offset2: "+offset2+", org: "+org);
+				title = "(\"" + org.toLowerCase() + "\") AND (\"" + feature.get("locus_tag");
 
-				title = "(\"" + org.toLowerCase() + "\") AND (\"" + feature.get("locus_tag") + "\" OR \""
-						+ feature.get("product").toString().toLowerCase() + "\"";
+				if (feature.containsKey("product")) {
+					title += "\" OR \"" + feature.get("product").toString().toLowerCase() + "\"";
+				}
 
 				if (feature.get("gene") != null) {
 					title += " OR \"" + feature.get("gene") + "\"";
@@ -117,21 +125,9 @@ public class PubMedHelper {
 				}
 
 				title += ")";
-
 			}
-
 			// System.out.println("qScore="+qScope+", title="+title);
-
 			// end of Solr query
-
-			/*
-			 * ResultType names = conn_shared.getNamesFromNaFeatureId(key.get("feature_id")); String organism_name =
-			 * names.get("organism_name"); String genome_name = names.get("genome_name"); String feature_name =
-			 * names.get("feature_name"); String qScope = key.get("scope");
-			 * 
-			 * if (qScope!=null && qScope.equals("o")) { title = organism_name; } else if (qScope!=null &&
-			 * qScope.equals("g")) { title = genome_name; } else { title = genome_name+" "+feature_name; }
-			 */
 		}
 		return title;
 	}

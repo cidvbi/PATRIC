@@ -20,6 +20,9 @@ function launchTranscriptomicsUploader() {
 					callback: function() {
 						// customize ending behavior either to refresh workspace or add message to the launch button
 						Ext.getCmp("expressionexperimenttoolbar").refreshWorkspaceViews();
+					},
+					"params":{
+						"metaData":{"data_type":"Transcriptomics"}
 					}
 				}).show();
 			}

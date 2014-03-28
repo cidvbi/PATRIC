@@ -18,38 +18,18 @@ String cType = request.getParameter("context_type");
 String cId = request.getParameter("context_id");
 
 System.out.print(resourceURL);
-String portlet_type = "";
-
-if(resourceURL.indexOf("FIGfamSorter") > 0) {
-	portlet_type = "figfam";
-}
 String expander = "";
+String taxonName = "";
 ArrayList<ResultType> ids = null;
-String idList = "";
 System.out.println("cId->"+cId);
+
 if (cType!=null && cId!=null && cType.equals("taxon")) {
 	ncbi_taxon_id = (cId.equals(""))?"2":cId;
 	key.put("ncbi_taxon_id", ncbi_taxon_id);
 	FigFam access = new FigFam();
-	String taxonName = access.getTaxonName(ncbi_taxon_id);
-	
-	ids = conn_shared.getGenomesBelowTaxon(ncbi_taxon_id);
-	ResultType row = ids.get(0);
-	idList = row.get("genome_info_id").toString();
-	
-	for(int i=1; i<ids.size(); i++){
-		row = ids.get(i);
-		idList += ","+row.get("genome_info_id").toString();
-	}
-	
-	expander = "<div style='float:right'><div class='searchtool-inside'>";
-	expander += (!taxonName.equals("Bacteria"))?"<h2 align='center'>Want to make comparisons not limited to " + taxonName + "?</h2><br />":""
-		+ "Use PATRIC's <a href='FIGfamSorter?cType=taxon&cId=&dm='>Protein Family Sorter</a> located in Searches & Tools.<br/>"
-		+ "<b><br/>* Any genome selections you have made will be discarded!<b/>"
-		+ "</div>"
-		+ "</div>";
+	taxonName = access.getTaxonName(ncbi_taxon_id);
 } 
-
+expander = ((!taxonName.equals("Bacteria"))?"<div style='float:right'><div class='searchtool-inside'><h2 align='center'>Want to make comparisons not limited to " + taxonName + "?</h2><br />Use PATRIC's <a href='FIGfamSorter?cType=taxon&cId=&dm='>Protein Family Sorter</a> located in Searches & Tools.<br/><b><br/>* Any genome selections you have made will be discarded!<b/></div></div>":"");
 String name = "";
 if(cId == null || cId.equals("")) {
 	name = "Bacteria";
@@ -69,10 +49,7 @@ if (request.getUserPrincipal() == null) {
 else {
 	loggedIn = true;
 }
-boolean filterpass = true;
 %>
-
-<input id = "portlet_type" name='portlet_type' type='hidden' value="<%=portlet_type %>" />
 
 <div style="padding: 5px;" >
 	<div id="intro" class="searchtool-intro">
@@ -139,11 +116,25 @@ function checkGenomes() {
 	var idList = tabs.getSelectedInString();
 	
 	if(idList == null || idList.length == 0 ) {
-		idList = '<%=idList%>';
+		
+		Ext.Ajax.request({
+			url : '<%=resourceURL%>',
+			method : 'GET',
+			timeout : 600000,
+			params : {
+				callType : "getTaxonIds",
+				taxonId : '<%=cId%>'
+			},
+			success : function(rs) {
+				idList = Ext.JSON.decode(rs.responseText);
+			}
+		});
+		
 	}
+	
 	var idCounter = idList.split(",");
 	if (Ext.getCmp("tb").getValue() == "") {
-		if (idCounter.length > 400) {
+		if (idCounter.length > 500) {
 			Ext.Msg.alert('More than 500 genomes selected!', 'Current resources can not handle more the 500 genomes with empty keyword.');
 		}
 		else {
@@ -151,25 +142,28 @@ function checkGenomes() {
 		}
 	}
 	else {
-		if (idCounter.length > 400 && <%=filterpass%>) {
-			submitToFigFamSorter(idList);
-		}
-		else{
-			submitToFigFamSorter(idList);
-		}
+		submitToFigFamSorter(idList);
 	}
 }
 
 function submitToFigFamSorter(idList) {
-	var keyword = Ext.getCmp("tb").getValue().toLowerCase().replace(/,/g,"~").replace(/\n/g,"~").split("~");
-	for (var i=0; i<keyword.length; i++) {
-		keyword[i] = "\""+keyword[i]+"\"";
+	
+	var value = Ext.getCmp("tb").getValue().trim().toLowerCase();
+	value = value.replace(/,/g,"~").replace(/\n/g,"~");
+	value = value.split("~");
+	
+	for(var i=0; i<value.length; i++){
+		value[i] = value[i].trim();
 	}
+	
+	/*for (var i=0; i<keyword.length; i++) {
+		keyword[i] = "\""+keyword[i]+"\"";
+	}*/
 	Ext.Ajax.request({
 		url: '<%=resourceURL%>',
 		method: 'POST',
 		timeout: 600000,
-		params: {callType: "toSorter", genomeIds: idList, keyword:EncodeKeyword(keyword.join(" OR "))},
+		params: {callType: "toSorter", genomeIds: idList, keyword:EncodeKeyword(value.join(" OR "))},
 		success: function(rs) {
 			document.location.href = "FIGfamSorter?dm=result&pk=" + rs.responseText + "#gs_0=0";
 		}

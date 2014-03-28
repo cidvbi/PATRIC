@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,8 +58,7 @@ public class ESearchHandler extends DefaultHandler {
 			sbQueryKey = new StringBuffer();
 			sbWebEnv = new StringBuffer();
 		}
-		else if (qName.equalsIgnoreCase("Count") || qName.equalsIgnoreCase("QueryKey")
-				|| qName.equalsIgnoreCase("WebEnv")) {
+		else if (qName.equalsIgnoreCase("Count") || qName.equalsIgnoreCase("QueryKey") || qName.equalsIgnoreCase("WebEnv")) {
 			currentElement = qName;
 		}
 		else if (qName.equalsIgnoreCase("TranslationStack")) {

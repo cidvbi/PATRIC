@@ -78,8 +78,7 @@ public class Sorter extends GenericPortlet {
 		String result = req.getParameter("genomeIds");
 		FigFam access = new FigFam();
 		if (result != null && !result.equals("")) {
-			key.put("keyword", "");
-			key.put("genomeIds", access.getGenomeIdsFromGenome(result));
+			key.put("genomeIds", result);
 		}
 		else {
 			String cType = req.getParameter("cType");
@@ -87,10 +86,6 @@ public class Sorter extends GenericPortlet {
 				String cId = req.getParameter("cId");
 				if (cId == null || cId.equals("")) {
 					cId = "2";
-				}
-				String keyword = req.getParameter("keyword");
-				if ((keyword != null) && (0 < keyword.length())) {
-					key.put("keyword", keyword);
 				}
 				result = access.getGenomeIdsForTaxon(cId);
 				key.put("genera", access.getTaxonName(cId));
@@ -130,14 +125,14 @@ public class Sorter extends GenericPortlet {
 		resp.setContentType("text/html");
 		String callType = req.getParameter("callType");
 
-		System.out.println(callType);
+		//System.out.println(callType);
 		if (callType != null) {
 			if (callType.equals("toSorter")) {
 				ResultType key = new ResultType();
 				// Added by OralDALAY
 
 				if (req.getParameter("keyword") != null && !req.getParameter("keyword").equals(""))
-					key.put("keyword_search", req.getParameter("keyword"));
+					key.put("keyword", req.getParameter("keyword"));
 
 				getGenomeIds(req, key);
 				Random g = new Random();
@@ -148,8 +143,14 @@ public class Sorter extends GenericPortlet {
 				writer.write("" + random);
 				writer.close();
 			}
+			else if (callType.equals("getGenomeDetails")) {
+				resp.setContentType("application/json");
+				PrintWriter writer = resp.getWriter();
+				FigFam access = new FigFam();
+				access.getGenomeDetails(req, writer);
+				writer.close();
+			}
 			else if (callType.equals("getTaxonIds")) {
-				
 				PrintWriter writer = resp.getWriter();
 				getTaxonIds(req, writer);
 				writer.close();
@@ -197,23 +198,15 @@ public class Sorter extends GenericPortlet {
 				resp.setContentType("application/json");
 				PrintWriter writer = resp.getWriter();
 				FigFam access = new FigFam();
-				access.getGroupStats(req, writer, req.getParameter("portlet_type"));
+				access.getGroupStats(req, writer);
 				writer.close();
 			}
 			else if (callType.equals("getLocusTags")) {
 				PrintWriter writer = resp.getWriter();
 				FigFam access = new FigFam();
-				access.getLocusTags(req, writer, req.getParameter("portlet_type"));
+				access.getLocusTags(req, writer);
 				writer.close();
-			}
-			else if (callType.equals("singleDetails")) {
-				PrintWriter writer = resp.getWriter();
-				writer.write(req.getParameter("description"));
-				FigFam access = new FigFam();
-				access.getDetails(req, writer, req.getParameter("portlet_type"));
-				writer.close();
-			}
-			else if (callType.equals("getSessionId")) {
+			}else if (callType.equals("getSessionId")) {
 				PrintWriter writer = resp.getWriter();
 				PortletSession sess = req.getPortletSession(true);
 				writer.write(sess.getId());
@@ -306,8 +299,11 @@ public class Sorter extends GenericPortlet {
 			else if (callType.equals("getSyntonyOrder")) {
 				PrintWriter writer = resp.getWriter();
 				FigFam access = new FigFam();
-				access.getSyntonyOrder(req, writer);
-				writer.close();
+				JSONArray json = access.getSyntonyOrder(req);
+				long start_ms = System.currentTimeMillis();
+				json.writeJSONString(writer);
+				long end_ms = System.currentTimeMillis();
+				System.out.println("Writing response time - "+ (end_ms - start_ms));
 			}
 			else {
 				PrintWriter writer = resp.getWriter();

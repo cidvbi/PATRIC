@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,9 +23,6 @@ import org.json.simple.JSONObject;
 
 public class CRTrack extends ArrayList<CRFeature> {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -7500241033679379068L;
 
 	private int rowID;
@@ -35,6 +32,7 @@ public class CRTrack extends ArrayList<CRFeature> {
 	private HashSet<String> featureIDs;
 
 	public CRTrack(JSONObject jsonTrack) {
+		// System.out.println(jsonTrack.toJSONString());
 		rowID = Integer.parseInt(jsonTrack.get("row_id").toString());
 		pin = jsonTrack.get("pin").toString();
 		genomeID = jsonTrack.get("genome_id").toString();

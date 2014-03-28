@@ -45,7 +45,7 @@ if(request.getUserPrincipal() == null){
 
 %>
 
-	<p>The Genome Finder allows you to search for all PATRIC genomes based on genome names and available metadata.  
+	<p>The Genome Finder allows you to search for all PATRIC genomes based on genome names and available metadata.
 		To learn more, see <a href="http://enews.patricbrc.org/genome-finder-faqs/" target="_blank">Genome Finder FAQs</a>.
 	</p>
 
@@ -56,23 +56,18 @@ if(request.getUserPrincipal() == null){
 	<div class="left" style="width:25px">&nbsp;</div>
 	<div class="left" style="width:375px">
 	
-		<h3><img src="/patric/images/number2.gif" alt="2" height="14" width="14" />
-		Enter keyword</h3><br />
+		<h3><img src="/patric/images/number2.gif" alt="2" height="14" width="14" /> Enter keyword</h3><br />
+
 		<form action="#" onsubmit="return false;">
-		<table class="far2x">
-		<tr>
-			<td style="vertical-align:top">
-				<select id="search_on" name="search_on" size="1" onchange="Combo_Change()" style="width:150px;"></select>
-			</td>
-			<td>
-				<div style="padding-left:5px;"><textarea id="keyword" name="keyword" rows="5" cols="30"><%=(key!=null && key.containsKey("keyword") && !key.get("keyword").equalsIgnoreCase(""))?key.get("keyword"):""%></textarea></div>
-			</td>
-		</tr>
-		<tr>
-			<td></td>
-		 	<td class="right"><div style="padding-left:5px;"><input class="button" type="submit" value="Search" onclick="searchbykeyword('<%=cId%>', '<%=cType %>')" /></div></td>
-		</tr>
-		</table>
+
+		<select class="left" id="search_on" name="search_on" size="1" onchange="Combo_Change()" style="width:150px;"></select>
+		<div class="right far2x">
+			<textarea id="keyword" name="keyword" rows="5" cols="30"><%=(key!=null && key.containsKey("keyword") && !key.get("keyword").equalsIgnoreCase(""))?key.get("keyword"):""%></textarea>
+			<br/>
+			<input class="button" type="submit" value="Search" onclick="searchbykeyword('<%=cId%>', '<%=cType %>')" />
+		</div>
+		<div class="clear"></div>
+
 		</form>
 		
 		<div class="callout" id='expander'></div>
@@ -80,9 +75,7 @@ if(request.getUserPrincipal() == null){
 	<div class="clear"></div>
 <script type="text/javascript" src="/patric-searches-and-tools/js/solrKeyword.js"></script>
 <script type="text/javascript" src="/patric-searches-and-tools/js/search_common.js"></script>
-
 <script type="text/javascript" src="/patric/js/vbi/AddToWorkspace.min.js"></script>
-
 <script type="text/javascript">
 //<![CDATA[
 var tabs = "";

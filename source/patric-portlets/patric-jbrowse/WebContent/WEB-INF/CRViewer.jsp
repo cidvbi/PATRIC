@@ -18,7 +18,8 @@ String param_crv = params + "&window="+_window+"&regions="+_regions;
 String urlRoot = "/patric-jbrowse/jbrowse/";
 %>
 <link rel="stylesheet" type="text/css" href="<%=urlRoot%>genome.css">
-<script type="text/javascript" src="<%=urlRoot%>src/dojo/dojo.js" data-dojo-config="async: 0"></script>
+<script type="text/javascript" src="<%=urlRoot%>src/dojo/dojo.js" data-dojo-config="async: 1, baseUrl: '/patric-jbrowse/jbrowse/src'"></script>
+<script type="text/javascript" src="<%=urlRoot%>src/JBrowse/init.js"></script>
 <script type="text/javascript">
 	window.onerror=function(msg){
 	if( document.body )
@@ -26,31 +27,19 @@ String urlRoot = "/patric-jbrowse/jbrowse/";
 	}
 
 	var JBrowse;
-	require({
-		baseUrl: '<%=urlRoot%>src',
-		packages: [ 'dojo', 'dijit', 'dojox', 'jszlib',
-			{ name: 'lazyload', main: 'lazyload' },
-			'dgrid', 'xstyle', 'put-selector',
-			{ name: 'jDataView', location: 'jDataView/src', main: 'jdataview' },
-			'JBrowse','FileSaver']
-		},
-		[ 'JBrowse/Browser', 'dojo/io-query', 'dojo/json' ],
-		function (Browser,ioQuery) {
+	require(['JBrowse/Browser', 'dojo/io-query', 'dojo/json' ],
+		function (Browser,ioQuery,JSON) {
 			var queryParams = ioQuery.queryToObject( window.location.search.slice(1) );
-			//var dataRoot = queryParams.data || 'data';
 			var dataRoot = queryParams.data || '/patric-jbrowse/data';
 			var config = {
 				containerID: "GenomeBrowser",
-				//refSeqs: dataRoot + "/seq/refSeqs.json",
 				refSeqs: "/portal/portal/patric/CompareRegionViewer/CRWindow?action=b&cacheability=PAGE&mode=getRefSeqs&<%=param_crv%>",
 				baseUrl: dataRoot + '/',
 				browserRoot: '<%=urlRoot%>',
 				include: [
 					'<%=urlRoot%>jbrowse_conf.json',
-					/*dataRoot + "/trackList.json"*/
 					'/portal/portal/patric/CompareRegionViewer/CRWindow?action=b&cacheability=PAGE&mode=getTrackList&<%=param_crv%>'
 				],
-				//nameUrl: dataRoot + "/names/root.json",
 				nameUrl: dataRoot + "/name.jsp",
 				/*defaultTracks: "",*/
 				queryParams: queryParams,
@@ -62,12 +51,6 @@ String urlRoot = "/patric-jbrowse/jbrowse/";
 				show_overview: queryParams.overview,
 				stores: { url: { type: "JBrowse/Store/SeqFeature/FromConfig", features: [] } },
 				makeFullViewURL: function( browser ) {
-					
-					// the URL for the 'Full view' link
-					// in embedded mode should be the current
-					// view URL, except with 'nav', 'tracklist',
-					// and 'overview' parameters forced to 1.
-					
 					return browser.makeCurrentViewURL({ nav: 1, tracklist: 1, overview: 1 });
 				},
 				updateBrowserURL: true
@@ -83,6 +66,13 @@ String urlRoot = "/patric-jbrowse/jbrowse/";
 			// configuration
 			if( queryParams.addTracks ) {
 				config.tracks = JSON.parse( queryParams.addTracks );
+			}
+			
+			// if there is ?addStores in the query params, add
+			// those store configurations to our initial
+			// configuration
+			if( queryParams.addStores ) {
+				config.stores = JSON.parse( queryParams.addStores );
 			}
 			
 			// create a JBrowse global variable holding the JBrowse instance
@@ -103,7 +93,7 @@ String urlRoot = "/patric-jbrowse/jbrowse/";
 	function updateCRV() {
 		var w = Ext.getDom("window_size").value;
 		var r = Ext.getDom("num_regions").value;
-		var p = "<%=params%>&window="+w+"&regions="+r+"&tracks=";
+		var p = "<%=params%>&window="+w+"&regions="+r+"&tracks=&loc=1.."+w;
 		window.location.href = "CompareRegionViewer?"+p;
 	}
 	
@@ -112,7 +102,7 @@ String urlRoot = "/patric-jbrowse/jbrowse/";
 		window.location.href= "/portal/portal/patric/CompareRegionViewer/CRWindow?action=b&cacheability=PAGE&mode=downloadInExcel&key="+dataKey;
 	}
 </script>
-	<div id="control" class="table-container">
+	<div id="control" class="center-text">
 		<form action="#" id="crv_control">
 			<label for="window_size">Window Size</label>
 			<select id="window_size" name="window_size">

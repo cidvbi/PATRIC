@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -40,8 +40,7 @@ public class TranscriptomicsUploader extends GenericPortlet {
 	String ENDPOINT = "http://dayhoff.vbi.vt.edu:8888";
 
 	@Override
-	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException,
-			UnavailableException {
+	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException, UnavailableException {
 		// do nothing
 	}
 
@@ -59,8 +58,7 @@ public class TranscriptomicsUploader extends GenericPortlet {
 
 			if (token == null) {
 				polyomic.authenticate(userName);
-				p_session.setAttribute("PolyomicAuthToken", polyomic.getAuthenticationToken(),
-						PortletSession.APPLICATION_SCOPE);
+				p_session.setAttribute("PolyomicAuthToken", polyomic.getAuthenticationToken(), PortletSession.APPLICATION_SCOPE);
 			}
 			else {
 				polyomic.setAuthenticationToken(token);
@@ -89,7 +87,7 @@ public class TranscriptomicsUploader extends GenericPortlet {
 				System.out.println("create_collection is called:" + json.toJSONString());
 
 				response.setContentType("application/json");
-				response.getWriter().write(json.toJSONString());
+				json.writeJSONString(response.getWriter());
 				response.getWriter().close();
 			}
 			else if (mode.equals("parse_collection")) {
@@ -98,14 +96,13 @@ public class TranscriptomicsUploader extends GenericPortlet {
 				String collectionId = request.getParameter("collectionId");
 				JSONObject snapshot = new JSONObject();
 
-				System.out.println("in parse_collection. collectionId:" + collectionId + ",token="
-						+ polyomic.getAuthenticationToken());
+				System.out.println("in parse_collection. collectionId:" + collectionId + ",token=" + polyomic.getAuthenticationToken());
 
 				if (collectionId != null) {
 
 					JSONObject config = polyomic.getExpressionDataFileReaderConfig(collectionId);
 
-					System.out.println("init reader: " + config.toJSONString());
+					// System.out.println("config: " + config.toJSONString());
 
 					ExpressionDataFileReader reader = new ExpressionDataFileReader(config);
 
@@ -131,7 +128,7 @@ public class TranscriptomicsUploader extends GenericPortlet {
 				}
 
 				response.setContentType("application/json");
-				response.getWriter().write(snapshot.toJSONString());
+				snapshot.writeJSONString(response.getWriter());
 				response.getWriter().close();
 			}
 			else if (mode.equals("map_genes")) {
@@ -147,15 +144,13 @@ public class TranscriptomicsUploader extends GenericPortlet {
 					JSONObject config = polyomic.getExpressionDataFileReaderConfig(collectionId);
 					config.put("idMappingType", geneIdType);
 
-					System.out.println("init reader: " + config.toJSONString());
+					// System.out.println("init reader: " + config.toJSONString());
 					ExpressionDataFileReader reader = new ExpressionDataFileReader(config);
 
 					if (reader.doRead()) {
 						reader.calculateExpStats();
 						reader.runIDMappingStatistics();
 
-						// polyomic.saveJSONFilesToCollection(collectionId,
-						// reader);
 						polyomic.saveJSONtoCollection(collectionId, PolyomicHandler.CONTENT_EXPRESSION + ".json",
 								reader.get(PolyomicHandler.CONTENT_EXPRESSION), PolyomicHandler.CONTENT_EXPRESSION);
 						polyomic.saveJSONtoCollection(collectionId, PolyomicHandler.CONTENT_MAPPING + ".json",
@@ -164,7 +159,6 @@ public class TranscriptomicsUploader extends GenericPortlet {
 					}
 				}
 
-				// System.out.println(mapping.toJSONString());
 				String cntMapped = ((JSONObject) mapping.get("mapping")).get("mapped_ids").toString();
 				String cntUnMapped = ((JSONObject) mapping.get("mapping")).get("unmapped_ids").toString();
 				int totalGenes = Integer.parseInt(cntMapped) + Integer.parseInt(cntUnMapped);
@@ -186,7 +180,7 @@ public class TranscriptomicsUploader extends GenericPortlet {
 				json.put("msg", msg);
 
 				response.setContentType("application/json");
-				response.getWriter().write(json.toJSONString());
+				json.writeJSONString(response.getWriter());
 				response.getWriter().close();
 			}
 			else if (mode.equals("save_experiment")) {
@@ -244,12 +238,8 @@ public class TranscriptomicsUploader extends GenericPortlet {
 				}
 				// organism, ncbi_taxon_id
 				/*
-				 * if (jsonOrganism != null) { if
-				 * (jsonOrganism.containsKey("display_name")) {
-				 * json.put("organism", jsonOrganism.get("display_name")); } if
-				 * (jsonOrganism.containsKey("ncbi_taxon_id")) {
-				 * json.put("ncbi_taxon_id", jsonOrganism.get("ncbi_taxon_id"));
-				 * } }
+				 * if (jsonOrganism != null) { if (jsonOrganism.containsKey("display_name")) { json.put("organism", jsonOrganism.get("display_name"));
+				 * } if (jsonOrganism.containsKey("ncbi_taxon_id")) { json.put("ncbi_taxon_id", jsonOrganism.get("ncbi_taxon_id")); } }
 				 */
 				// genes total, genes mapped
 				if (jsonMapping != null) {
@@ -268,8 +258,7 @@ public class TranscriptomicsUploader extends GenericPortlet {
 				json.put("cdate", timestamp);
 
 				if (json != null) {
-					polyomic.saveJSONtoCollection(collectionId, "experiment.json", json,
-							PolyomicHandler.CONTENT_EXPERIMENT);
+					polyomic.saveJSONtoCollection(collectionId, "experiment.json", json, PolyomicHandler.CONTENT_EXPERIMENT);
 
 					// save to workspace as well for better retrieval
 					// set status as "available" on the collection
@@ -278,39 +267,27 @@ public class TranscriptomicsUploader extends GenericPortlet {
 				}
 
 				response.setContentType("application/json; charset=UTF-8");
-				response.getWriter().write(json.toJSONString());
+				json.writeJSONString(response.getWriter());
 				response.getWriter().close();
 
 			}
 			/*
 			 * else if (mode.equals("test")) {
 			 * 
-			 * String requestOut = ""; String collectionId =
-			 * "ecbe6c2d-7aee-4138-88a1-d1b56e8c020b";
+			 * String requestOut = ""; String collectionId = "ecbe6c2d-7aee-4138-88a1-d1b56e8c020b";
 			 * 
-			 * JSONObject reqBody = new JSONObject();
-			 * polyomic.saveJSONtoCollection(collectionId, "test2.json",
-			 * reqBody, polyomic.CONTENT_SAMPLE);
+			 * JSONObject reqBody = new JSONObject(); polyomic.saveJSONtoCollection(collectionId, "test2.json", reqBody, polyomic.CONTENT_SAMPLE);
 			 * 
-			 * System.out.println("expression raw: "+polyomic.findRawFileUrl(
-			 * "expression", collectionId));
-			 * System.out.println("sample raw: "+polyomic
+			 * System.out.println("expression raw: "+polyomic.findRawFileUrl( "expression", collectionId)); System.out.println("sample raw: "+polyomic
 			 * .findRawFileUrl("sample", collectionId));
 			 * 
-			 * System.out.println("expression json: "+polyomic.findJSONUrl(
-			 * "expression", collectionId));
-			 * System.out.println("sample json: "+polyomic.findJSONUrl("sample",
-			 * collectionId));
-			 * System.out.println("idmapping json: "+polyomic.findJSONUrl
-			 * ("mapping", collectionId));
+			 * System.out.println("expression json: "+polyomic.findJSONUrl( "expression", collectionId));
+			 * System.out.println("sample json: "+polyomic.findJSONUrl("sample", collectionId));
+			 * System.out.println("idmapping json: "+polyomic.findJSONUrl ("mapping", collectionId));
 			 * 
-			 * requestOut =
-			 * "expression json: "+polyomic.findJSONUrl("expression",
-			 * collectionId);
+			 * requestOut = "expression json: "+polyomic.findJSONUrl("expression", collectionId);
 			 * 
-			 * response.setContentType("text/plain");
-			 * response.getWriter().write(requestOut);
-			 * response.getWriter().close(); }
+			 * response.setContentType("text/plain"); response.getWriter().write(requestOut); response.getWriter().close(); }
 			 */
 		}
 		else {
@@ -326,7 +303,7 @@ public class TranscriptomicsUploader extends GenericPortlet {
 				msg.put("mode", mode);
 			}
 			response.setContentType("application/json");
-			response.getWriter().write(msg.toJSONString());
+			msg.writeJSONString(response.getWriter());
 			response.getWriter().close();
 		}
 	}

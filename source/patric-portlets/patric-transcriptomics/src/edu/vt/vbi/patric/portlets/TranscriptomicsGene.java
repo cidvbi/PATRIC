@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -58,8 +58,7 @@ public class TranscriptomicsGene extends GenericPortlet {
 	 * @see javax.portlet.GenericPortlet#doView(javax.portlet.RenderRequest, javax.portlet.RenderResponse)
 	 */
 	@Override
-	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException,
-			UnavailableException {
+	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException, UnavailableException {
 
 		new SiteHelper().setHtmlMetaElements(request, response, "Transcriptomics Gene");
 
@@ -71,14 +70,10 @@ public class TranscriptomicsGene extends GenericPortlet {
 		PortletRequestDispatcher prd = null;
 
 		if (mode != null && mode.equals("result")) {
-
 			prd = getPortletContext().getRequestDispatcher("/WEB-INF/jsp/TranscriptomicsGene.jsp");
-
 		}
 		else {
-
 			prd = getPortletContext().getRequestDispatcher("/WEB-INF/jsp/tree.jsp");
-
 		}
 
 		prd.include(request, response);
@@ -90,8 +85,7 @@ public class TranscriptomicsGene extends GenericPortlet {
 		String callType = req.getParameter("callType");
 		PrintWriter writer = resp.getWriter();
 		JSONObject jsonResult = new JSONObject();
-		//DBTranscriptomics dbomics = new DBTranscriptomics();
-		
+
 		// need to handle polyomic token
 		String token = null;
 		if (req.getUserPrincipal() != null) {
@@ -105,37 +99,66 @@ public class TranscriptomicsGene extends GenericPortlet {
 				token = polyomic.getAuthenticationToken();
 				p_session.setAttribute("PolyomicAuthToken", token, PortletSession.APPLICATION_SCOPE);
 			}
-			System.out.println("userName:" + userName + ",token=" + token);
-
 		}
 
 		if (token == null) {
-			 token = "";
+			token = "";
 		}
 
 		// end of polyomic token handling. Added by Harry
 
 		if (callType != null) {
-			if (callType.equals("getTables")) {
+			if (callType.equals("saveParams")) {
+
+				ResultType key = new ResultType();
+				String keyword = req.getParameter("keyword");
+				SolrInterface solr = new SolrInterface();
+				String sId = solr.getTranscriptomicsSamplePIds(keyword);
+
+				if (!keyword.equals("")) {
+					key.put("keyword", keyword);
+				}
+
+				if (!sId.equals("")) {
+					key.put("sampleId", sId);
+					Random g = new Random();
+					int random = g.nextInt();
+
+					PortletSession sess = req.getPortletSession(true);
+					sess.setAttribute("key" + random, key, PortletSession.APPLICATION_SCOPE);
+
+					writer.write("" + random);
+				}
+				else {
+					writer.write("");
+				}
+				writer.close();
+
+			}
+			else if (callType.equals("getTables")) {
 
 				String expId = req.getParameter("expId");
 				String sampleId = req.getParameter("sampleId");
 				String colId = req.getParameter("colId");
 				String colsampleId = req.getParameter("colsampleId");
+				String keyword = req.getParameter("keyword");
 				SolrInterface solr = new SolrInterface();
 
+				JSONObject sample_obj = new JSONObject();
 				JSONArray sample = new JSONArray();
 
 				if ((sampleId != null && !sampleId.equals("")) || (expId != null && !expId.equals(""))) {
-					sample = solr.getTranscriptomicsSamples(sampleId, expId, "pid,expname,expmean,timepoint,mutant,strain,condition");
-					/*if(experimental != null && experimental.equals("true") || Boolean.parseBoolean(experimental) == true){
-						sample = solr.getTranscriptomicsSamples(sampleId, expId, "pid,expname,expmean,timepoint,mutant,strain,condition");
-					}else{
-						sample = dbomics.getSamples(sampleId, expId);
-					}*/
+					sample_obj = solr
+							.getTranscriptomicsSamples(sampleId, expId, "pid,expname,expmean,timepoint,mutant,strain,condition", 0, -1, null);
+					sample = (JSONArray) sample_obj.get("data");
+					/*
+					 * if(experimental != null && experimental.equals("true") || Boolean.parseBoolean(experimental) == true){ sample =
+					 * solr.getTranscriptomicsSamples(sampleId, expId, "pid,expname,expmean,timepoint,mutant,strain,condition"); }else{ sample =
+					 * dbomics.getSamples(sampleId, expId); }
+					 */
 				}
 
-				//System.out.println(sample.toString());
+				// System.out.println(sample.toString());
 
 				// Read from JSON if collection parameter is there
 				ExpressionDataCollection parser = null;
@@ -143,16 +166,15 @@ public class TranscriptomicsGene extends GenericPortlet {
 
 					parser = new ExpressionDataCollection(colId, token);
 					parser.read(ExpressionDataCollection.CONTENT_SAMPLE);
-					if (colsampleId != null && !colsampleId.equals(""))
+					if (colsampleId != null && !colsampleId.equals("")) {
 						parser.filter(colsampleId, ExpressionDataCollection.CONTENT_SAMPLE);
-
+					}
 					// Append samples from collection to samples from DB
 					sample = parser.append(sample, ExpressionDataCollection.CONTENT_SAMPLE);
 				}
 
 				// System.out.println(sample.toJSONString());
-				
-				
+
 				String sampleList = "";
 				sampleList += ((JSONObject) sample.get(0)).get("pid");
 
@@ -165,12 +187,11 @@ public class TranscriptomicsGene extends GenericPortlet {
 				JSONArray expression = new JSONArray();
 
 				if ((sampleId != null && !sampleId.equals("")) || (expId != null && !expId.equals(""))) {
-					expression = solr.getTranscriptomicsGenes(sampleId, expId);
-					/*if(experimental != null && experimental.equals("true") || Boolean.parseBoolean(experimental) == true){
-						expression = solr.getTranscriptomicsGenes(sampleId, expId);
-					}else{
-						expression = dbomics.getGenes(sampleId, expId);
-					}*/
+					expression = solr.getTranscriptomicsGenes(sampleId, expId, keyword);
+					/*
+					 * if(experimental != null && experimental.equals("true") || Boolean.parseBoolean(experimental) == true){ expression =
+					 * solr.getTranscriptomicsGenes(sampleId, expId); }else{ expression = dbomics.getGenes(sampleId, expId); }
+					 */
 				}
 
 				if (colId != null && !colId.equals("") && token != null) {
@@ -187,7 +208,7 @@ public class TranscriptomicsGene extends GenericPortlet {
 				jsonResult.put(ExpressionDataCollection.CONTENT_EXPRESSION + "Total", stats.size());
 				jsonResult.put(ExpressionDataCollection.CONTENT_EXPRESSION, stats);
 
-				//writer.write(jsonResult.toString());
+				// writer.write(jsonResult.toString());
 				resp.setContentType("application/json");
 				jsonResult.writeJSONString(writer);
 				writer.close();
@@ -299,7 +320,7 @@ public class TranscriptomicsGene extends GenericPortlet {
 						a.put("filterOffset", key.get("filterOffset"));
 					}
 					results.add(a);
-					//writer.write(results.toString());
+					// writer.write(results.toString());
 					resp.setContentType("application/json");
 					results.writeJSONString(writer);
 					writer.close();
@@ -308,14 +329,13 @@ public class TranscriptomicsGene extends GenericPortlet {
 		}
 	}
 
-	public JSONObject doCLustering(String filename, String outputfilename, String g, String e, String m, String ge)
-			throws IOException {
+	public JSONObject doCLustering(String filename, String outputfilename, String g, String e, String m, String ge) throws IOException {
 
 		boolean remove = true;
 		JSONObject output = new JSONObject();
 
-		String exec = "sh /opt/jboss-patric/runMicroArrayClustering.sh " + filename + " " + outputfilename + " "
-				+ ((g.equals("1")) ? ge : "0") + " " + ((e.equals("1")) ? ge : "0") + " " + m;
+		String exec = "sh /opt/jboss-patric/runMicroArrayClustering.sh " + filename + " " + outputfilename + " " + ((g.equals("1")) ? ge : "0") + " "
+				+ ((e.equals("1")) ? ge : "0") + " " + m;
 		System.out.print(exec);
 
 		CommandResults callClustering = ExecUtilities.exec(exec);
@@ -365,8 +385,8 @@ public class TranscriptomicsGene extends GenericPortlet {
 			JSONObject a = (JSONObject) sample_data.get(i);
 			sample.put(a.get("pid").toString(), a.get("expname").toString());
 		}
-		
-		//System.out.println(data.toJSONString());
+
+		// System.out.println(data.toJSONString());
 
 		for (int i = 0; i < data.size(); i++) {
 
@@ -422,10 +442,10 @@ public class TranscriptomicsGene extends GenericPortlet {
 		/**/
 
 		JSONObject a, b;
-		long start, end;
+		// long start, end;
 
 		// System.out.print(obj_array.size());
-		start = System.currentTimeMillis();
+		// start = System.currentTimeMillis();
 		for (int i = 0; i < obj_array.size(); i++) {
 			a = (JSONObject) obj_array.get(i);
 			b = (JSONObject) temp.get(a.get("na_feature_id").toString());
@@ -439,8 +459,8 @@ public class TranscriptomicsGene extends GenericPortlet {
 			b.put("gene", a.get("gene"));
 			results.add(b);
 		}
-		end = System.currentTimeMillis();
-		System.out.println("Processing time for getting feature attributes - "+(end-start));
+		// end = System.currentTimeMillis();
+		// System.out.println("Processing time for getting feature attributes - "+(end-start));
 
 		return results;
 	}

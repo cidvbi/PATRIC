@@ -150,7 +150,7 @@ function getOriginalKeyword(){
 }
 
 function returntoSearchPage(){
-	var key = DecodeKeyword('<%=exact_search_term%>');
+	var key = DecodeKeyword('<%=java.net.URLEncoder.encode(exact_search_term, "UTF-8") %>');
 	document.location.href = "GOSearch?cType="+Ext.getDom("cType").value+"&cId="+Ext.getDom("cId").value+"&dm=#keyword="+key+"&search_on=<%=search_on%>&annotation=<%=algorithm%>";
 }
 //]]>

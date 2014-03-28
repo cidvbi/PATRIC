@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -37,17 +37,10 @@ import edu.vt.vbi.patric.common.SolrInterface;
 
 public class TranscriptomicsGeneFeature extends GenericPortlet {
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see javax.portlet.GenericPortlet#doView(javax.portlet.RenderRequest, javax.portlet.RenderResponse)
-	 */
 	@Override
-	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException,
-			UnavailableException {
+	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException, UnavailableException {
 
 		response.setContentType("text/html");
-
 		response.setTitle("Transcriptomics Feature");
 
 		PortletRequestDispatcher prd = null;
@@ -55,9 +48,7 @@ public class TranscriptomicsGeneFeature extends GenericPortlet {
 		new SiteHelper().setHtmlMetaElements(request, response, "Transcriptomics Feature");
 
 		prd = getPortletContext().getRequestDispatcher("/WEB-INF/jsp/TranscriptomicsFeature.jsp");
-
 		prd.include(request, response);
-
 	}
 
 	@SuppressWarnings("unchecked")
@@ -69,7 +60,6 @@ public class TranscriptomicsGeneFeature extends GenericPortlet {
 		if (callType.equals("saveFeatureParams")) {
 
 			HashMap<String, String> key = new HashMap<String, String>();
-
 			key.put("feature_info_id", req.getParameter("feature_info_id"));
 
 			Random g = new Random();
@@ -81,7 +71,6 @@ public class TranscriptomicsGeneFeature extends GenericPortlet {
 			PrintWriter writer = resp.getWriter();
 			writer.write("" + random);
 			writer.close();
-
 		}
 		else if (callType.equals("getFeatureTable")) {
 
@@ -93,19 +82,7 @@ public class TranscriptomicsGeneFeature extends GenericPortlet {
 			int start = Integer.parseInt(start_id);
 			int end = Integer.parseInt(limit);
 
-			// sorting
-			/*
-			 * JSONParser a = new JSONParser(); JSONArray sorter; String sort_field = ""; String sort_dir = ""; try {
-			 * sorter = (JSONArray) a.parse(req.getParameter("sort").toString()); sort_field +=
-			 * ((JSONObject)sorter.get(0)).get("property").toString(); sort_dir +=
-			 * ((JSONObject)sorter.get(0)).get("direction").toString(); for(int i=1; i<sorter.size(); i++){ sort_field
-			 * += ","+((JSONObject)sorter.get(i)).get("property").toString(); }
-			 * 
-			 * } catch (ParseException e) { e.printStackTrace(); }
-			 */
-
-			HashMap<String, String> key = (HashMap<String, String>) sess.getAttribute("key" + pk,
-					PortletSession.APPLICATION_SCOPE);
+			HashMap<String, String> key = (HashMap<String, String>) sess.getAttribute("key" + pk, PortletSession.APPLICATION_SCOPE);
 
 			HashMap<String, String> condition = new HashMap<String, String>();
 			condition.put("na_feature_ids", key.get("feature_info_id"));
@@ -124,9 +101,6 @@ public class TranscriptomicsGeneFeature extends GenericPortlet {
 			PrintWriter writer = resp.getWriter();
 			writer.write(jsonResult.toString());
 			writer.close();
-
 		}
-
 	}
-
 }

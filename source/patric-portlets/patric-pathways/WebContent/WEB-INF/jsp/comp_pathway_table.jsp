@@ -68,8 +68,8 @@ if(algorithm != null && !algorithm.equals("")){
 </div>
 <div class="clear"></div>
 <div id="sample-layout"></div>
+<div id="PATRICGrid"></div>
 
-<div id="grid_result_summary">Loading...</div>
 
 <script type="text/javascript" src="/patric-common/js/ZeroClipboard.js"></script>
 <script type="text/javascript" src="/patric-common/js/grid/copybutton.js"></script>
@@ -105,6 +105,7 @@ Ext.onReady(function()
 		extraParams:getExtraParams,
 		callBackFn:CallBack,
 		remoteSort:true,
+		border: true, 
 		scm :[[checkbox, {header:'Pathway ID',			dataIndex:'pathway_id',		flex:1, renderer:BasicRenderer},
 						{header:'Pathway Name',			dataIndex:'pathway_name',	flex:2, renderer:renderPathwayName},
 						{header:'Pathway Class',		dataIndex:'pathway_class',	flex:2, renderer:BasicRenderer},

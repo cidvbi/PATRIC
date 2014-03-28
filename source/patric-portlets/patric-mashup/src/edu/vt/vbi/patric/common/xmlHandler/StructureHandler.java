@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -80,10 +80,8 @@ public class StructureHandler extends DefaultHandler {
 			docsum.put("PdbDescr", sbDesc.toString());
 			docsum.put("PdbDepositDate", sbDate.toString());
 			docsum.put("link_pdb", "http://www.pdb.org/pdb/explore/explore.do?structureId=" + docsum.get("PdbAcc"));
-			docsum.put("link_ncbi", "http://www.ncbi.nlm.nih.gov/sites/entrez?db=structure&cmd=DetailsSearch&term="
-					+ docsum.get("PdbAcc"));
-			docsum.put("link_jmol", "http://www.pdb.org/pdb/explore/jmol.do?structureId=" + docsum.get("PdbAcc")
-					+ "&bionumber=1");
+			docsum.put("link_ncbi", "http://www.ncbi.nlm.nih.gov/sites/entrez?db=structure&cmd=DetailsSearch&term=" + docsum.get("PdbAcc"));
+			docsum.put("link_jmol", "http://www.pdb.org/pdb/explore/jmol.do?structureId=" + docsum.get("PdbAcc") + "&bionumber=1");
 			list.add(docsum);
 			this.docsum = null;
 			this.sbMethod = null;

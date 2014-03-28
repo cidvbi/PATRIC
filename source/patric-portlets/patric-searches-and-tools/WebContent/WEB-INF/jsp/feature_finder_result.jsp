@@ -142,7 +142,7 @@ Ext.onReady(function()
 			{header:'Locus Tag',			dataIndex:'locus_tag', 			flex:2, renderer:renderLocusTag},
 			{header:'RefSeq Locus Tag',		dataIndex:'refseq_locus_tag', 	flex:2, renderer:renderLocusTag},
 			{header:'Gene Symbol',			dataIndex:'gene', 				flex:1, align:'center', renderer:BasicRenderer},
-			{header:'Genome Browser',		dataIndex:'',					flex:1, align:'center', hidden:true, renderer:renderGenomeBrowserByFeature},
+			{header:'Genome Browser',		dataIndex:'na_feature_id',		flex:1, align:'center', hidden:true, renderer:renderGenomeBrowserByFeature},
 			{header:'Annotation',			dataIndex:'annotation', 		flex:1, align:'center', hidden:true, renderer:BasicRenderer},
 			{header:'Feature Type',			dataIndex:'feature_type',		flex:1, align:'center', hidden:true, renderer:BasicRenderer},
 			{header:'Start',				dataIndex:'start_max',			flex:1, align:'center', hidden:true, renderer:BasicRenderer},
@@ -177,7 +177,7 @@ function getOriginalKeyword(){
 
 
 function returntoSearchPage(){
-	var key = DecodeKeyword('<%=exact_search_term%>');
+	var key = DecodeKeyword('<%=java.net.URLEncoder.encode(exact_search_term, "UTF-8") %>');
 	document.location.href = "GenomicFeature?cType=<%=cType%>&cId=<%=cId%>&dm=#feature_type=<%=feature_type%>&keyword="+key+"&annotation=<%=algorithm%>&feature_type=<%=feature_type%>";
 }
 

@@ -50,16 +50,16 @@ else {
 	<table class="basic far2x">
 	<thead>
 		<tr>
-			<th width="25%">Data Source</th>
-			<th width="38%"><a href="http://www.ebi.ac.uk/intact/" target="_blank"><img src="/patric/images/logo_intact.png" alt="IntAct" /></a>
+			<th scope="row" width="25%">Data Source</th>
+			<th scope="col" width="38%"><a href="http://www.ebi.ac.uk/intact/" target="_blank"><img src="/patric/images/logo_intact.png" alt="IntAct" /></a>
 				<br/><a href="http://www.ebi.ac.uk/intact/" target="_blank">IntAct</a></th>
-			<th width="37%"><a href="http://pathogenportal.net/portal/portal/PathPort/Data+Set+Summary/prc" target="_blank"><img src="/patric/images/logo_prc.png" alt="Proteomics Resource Center" /></a>
+			<th scope="col" width="37%"><a href="http://pathogenportal.net/portal/portal/PathPort/Data+Set+Summary/prc" target="_blank"><img src="/patric/images/logo_prc.png" alt="Proteomics Resource Center" /></a>
 				<br/><a href="http://pathogenportal.net/portal/portal/PathPort/Data+Set+Summary/prc" target="_blank">Proteomics Resource Center</a></th>
 		</tr>
 	</thead>
 	<tbody>
 		<tr>
-			<th>Taxonomy search</th>
+			<th scope="row">Taxonomy search</th>
 			<td class="right-align-text"><%
 				if (result.equals("-1")) {
 					%><%=errorMsg %><%

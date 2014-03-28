@@ -189,7 +189,7 @@ function renderProteins(value, metadata, record, rowIndex, colIndex, store) {
 
 function renderPeptide(value, metadata, record, rowIndex, colIndex, store){
 
-	return Ext.String.format("<a href=\"javascript:void(0);\" onclick=\"displayPeptide('" + record.data.experiment_id + "','" + record.data.na_feature_id + "');\"/>Peptides</a>");
+	return Ext.String.format("<a href=\"javascript:void(0);\" onclick=\"displayPeptide('" + record.data.experiment_id + "','" + (Ext.getDom("cType").value == "feature"?Ext.getDom("cId").value:record.data.na_feature_id) + "');\"/>Peptides</a>");
 
 }
 
@@ -198,12 +198,14 @@ function displayPeptide(experiment_id, na_feature_id){
 	if(!this.peptideWindow){
 		
 		var peptide_form = Ext.create('Ext.form.Panel', {
-			width : 388,
+			width : 448,
 			height : 258,
 			items : [{
-				width : 388,
-				height : 258,
-				html: '<div contenteditable=true id="peptide_text_area"></div>'
+				xtype: 'textareafield',
+	            grow: true,
+	            id: 'peptide_text_area',
+				width : 448,
+				height : 258
 			}],
 			buttons : [{
 				xtype : 'button',
@@ -217,7 +219,7 @@ function displayPeptide(experiment_id, na_feature_id){
 		this.peptideWindow = Ext.create('Ext.window.Window', {
 			title : 'Peptide Sequence',
 			height : 320,
-			width : 400,
+			width : 460,
 			layout : 'fit',
 			closeAction : 'hide',
 			items : [peptide_form]

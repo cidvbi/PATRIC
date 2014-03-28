@@ -1,6 +1,9 @@
 <%
 // process post params
 String dataUrl = request.getParameter("data_url");
+String fileType = request.getParameter("file_type");
+String fileFormat = request.getParameter("file_format");
+
 %>
 <script type="text/javascript" src="/patric/js/vbi/AddToWorkspace.min.js"></script>
 <script type="text/javascript" src="/patric/js/vbi/TranscriptomicsUpload.min.js"></script>
@@ -28,6 +31,9 @@ function launchTranscriptomicsUploader() {
 						m.slideIn('l').ghost("l", {delay: 2000, remove: true});	
 						
 						updateCartInfo();
+					},
+					"params":{
+						"metaData":{"data_type":"Transcriptomics"}
 					}
 				}).show();
 				
@@ -35,11 +41,20 @@ function launchTranscriptomicsUploader() {
 				if ("<%=dataUrl%>" != "null") {
 					uploader.child("#steps").child("#step01").getForm().findField("remoteData_1").setValue("<%=dataUrl%>");
 				}
+				if ("<%=fileType%>" != "null") {
+					uploader.child("#steps").child("#step01").getForm().findField("file0_type").setValue("<%=fileType%>");
+				}
+				if ("<%=fileFormat%>" != "null") {
+					uploader.child("#steps").child("#step01").getForm().findField("file0_format").setValue("<%=fileFormat%>");
+				}
 			}
 			else {
 				getLoginUpPopupWindow('Upload Transcriptomics Data to Workspace','Upload Transcriptomics Data<br/> to Workspace','Register @ PATRIC To Upload Your Transcriptomics Data');
 				PopupModalLoading = false;
 			}
+		},
+		failure: function(response) {
+			console.log("FAIL:", response);
 		}
 	});
 }
@@ -49,5 +64,4 @@ Ext.onReady(function () {
 });
 
 </script>
-<%=dataUrl %>
 <div id="atc-msg-div"></div>

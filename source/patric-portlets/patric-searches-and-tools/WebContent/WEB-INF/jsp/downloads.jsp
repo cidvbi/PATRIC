@@ -48,32 +48,6 @@ if(request.getUserPrincipal() == null){
 	loggedIn = true;
 }
 %>
-<style type="text/css" media="screen" scoped>
-	.querytable label {
-		display: block;
-		padding-left: 15px;
-		text-indent: -15px;
-		font-weight: normal;
-		text-align: left;
-	}
-	.querytable td {
-		vertical-align: top;
-	}
-	.queryForm label {
-		display: block;
-		text-align: left;
-	}
-	input {
-		padding: 0;
-		margin:0;
-		vertical-align: middle;
-		horizontal-align:left;
-		position: relative;
-		top: -1px;
-		*overflow: hidden;
-	}
-</style>
-
 	<div id="intro" class="searchtool-intro">
 		<p>To use PATRIC's download tool, select one or more genomes of interest, then one or more annotation sources, followed by the file types.
 		  For further explanation, please see <a href="http://enews.patricbrc.org/download-data-faqs/download-data-tool-faqs/" target="_blank">Download Data Tool FAQs</a>.</p>
@@ -87,8 +61,7 @@ if(request.getUserPrincipal() == null){
 		<h3><img src="/patric/images/number1.gif" alt="1" height="14" width="14" /> Select organism(s)</h3>
 		<%=OrganismTreeBuilder.buildOrganismTreeListView() %>
 	</div>
-	<div class="left" style="width:25px">&nbsp;</div>
-	<div class="left" style="width:450px">
+	<div class="left" style="padding-left: 25px">
 		<form id="searchForm" name="searchForm" action="#" method="post" onsubmit="return false;">
 		<input type="hidden" id="cType" name="cType" value="" />
 		<input type="hidden" id="cId" name="cId" value="" />
@@ -97,44 +70,34 @@ if(request.getUserPrincipal() == null){
 		<input type="hidden" id="finalfiletype" name="finalfiletype" value="" />
 		<input type="hidden" id="finalalgorithm" name="finalalgorithm" value="" />
 
-			<h3><img src="/patric/images/number2.gif" alt="2" height="14" width="14" />
-				Choose Annotation Source</h3>
-				
-			<div class="far"><label><input type="checkbox" name="algorithm" value=".PATRIC" checked="checked"/> PATRIC</label>
-			<br/><label><input type="checkbox" name="algorithm" value=".BRC"/> Legacy BRC</label>
-			<br/><label><input type="checkbox" name="algorithm" value=".RefSeq"/> RefSeq</label>
+			<h3><img src="/patric/images/number2.gif" alt="2" height="14" width="14" /> Choose Annotation Source</h3>
+			<div class="far queryblock">
+				<input id="annotation_patric" type="checkbox" name="algorithm" value=".PATRIC" checked="checked"/> <label for="annotation_patric">PATRIC</label>
+				<input id="annotation_brc" type="checkbox" name="algorithm" value=".BRC"/> <label for="annotation_brc">Legacy BRC</label>
+				<input id="annotation_refseq" type="checkbox" name="algorithm" value=".RefSeq"/> <label for="annotation_refseq">RefSeq</label>
 			</div>
 			
-			<h3><img src="/patric/images/number3.gif" alt="3" height="14" width="14" />
-				Choose File Type</h3>
-			
-			<table class="querytable">
-			<tr>
-				<td>
-					<label><input type="checkbox" name="filetype" value=".fna" id="fna" checked="checked"/> Genomic Sequences in FASTA (*.fna)</label>
-					<label><input type="checkbox" name="filetype" value=".faa" id="faa"/> Protein Sequences in FASTA (*.faa)</label>
-					<label><input type="checkbox" name="filetype" value=".gbf" id="gbf"/> All annotations in GenBank file format (*.gbf)</label>				
-				</td>
-				<td>
-					<label><input type="checkbox" name="filetype" value=".ffn" id="ffn"/> DNA Sequences of Protein Coding Genes (*.ffn)</label>
-					<label><input type="checkbox" name="filetype" value=".frn" id="frn"/> DNA Sequences of RNA Coding Genes (*.frn)</label>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label><input type="checkbox" name="filetype" value=".features.tab" id="features"/> All genomic features in tab-delimited format (*.features)</label>
-					<label><input type="checkbox" name="filetype" value=".cds.tab" id="cds"/> Protein coding genes in tab-delimited format (*.cds)</label>
-					<label><input type="checkbox" name="filetype" value=".rna.tab" id="rna"/> RNAs in tab-delimited format (*.rna)</label>		
-					<label><input type="checkbox" name="filetype" value=".figfam" id="figfam"/> FIGfam assignments in tab-delimited format (*.figfam)</label>				
-				</td>
-				<td>
-					<label><input type="checkbox" name="filetype" value=".go" id="go"/> GO function assignments in tab-delimited format (*.go)</label>
-					<label><input type="checkbox" name="filetype" value=".ec" id="ec"/> EC assignments in tab-delimited format (*.ec)</label>
-					<label><input type="checkbox" name="filetype" value=".path" id="path"/> Pathway assignments in tab-delimited format (*.path)</label>
-				</td>
-			</tr>
-			</table>
-			<p class="right-align-text small"><input type="submit" value="Download" onclick="download()" class="button" style="cursor:pointer" /></p>
+			<h3><img src="/patric/images/number3.gif" alt="3" height="14" width="14" /> Choose File Type</h3>
+			<div class="far">
+				<div class="left queryblock">
+					<input type="checkbox" name="filetype" value=".fna" id="filetype_fna" checked="checked"/> <label for="filetype_fna">Genomic Sequences in FASTA (*.fna)</label>
+					<input type="checkbox" name="filetype" value=".faa" id="filetype_faa"/> <label for="filetype_faa">Protein Sequences in FASTA (*.faa)</label>
+					<input type="checkbox" name="filetype" value=".gbf" id="filetype_gbf"/> <label for="filetype_gbf">All annotations in GenBank file format (*.gbf)</label>
+					<input type="checkbox" name="filetype" value=".features.tab" id="filetype_features"/> <label for="filetype_features">All genomic features in tab-delimited format (*.features)</label>
+					<input type="checkbox" name="filetype" value=".cds.tab" id="filetype_cds"/> <label for="filetype_cds">Protein coding genes in tab-delimited format (*.cds)</label>
+					<input type="checkbox" name="filetype" value=".rna.tab" id="filetype_rna"/> <label for="filetype_rna">RNAs in tab-delimited format (*.rna)</label>
+					<input type="checkbox" name="filetype" value=".figfam" id="filetype_figfam"/> <label for="filetype_figfam">FIGfam assignments in tab-delimited format (*.figfam)</label>
+				</div>
+				<div class="right queryblock">
+					<input type="checkbox" name="filetype" value=".ffn" id="filetype_ffn"/> <label for="filetype_ffn">DNA Sequences of Protein Coding Genes (*.ffn)</label>
+					<input type="checkbox" name="filetype" value=".frn" id="filetype_frn"/> <label for="filetype_frn">DNA Sequences of RNA Coding Genes (*.frn)</label>
+					<input type="checkbox" name="filetype" value=".go" id="filetype_go"/> <label for="filetype_go">GO function assignments in tab-delimited format (*.go)</label>
+					<input type="checkbox" name="filetype" value=".ec" id="filetype_ec"/> <label for="filetype_ec">EC assignments in tab-delimited format (*.ec)</label>
+					<input type="checkbox" name="filetype" value=".path" id="filetype_path"/> <label for="filetype_path">Pathway assignments in tab-delimited format (*.path)</label>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<input type="submit" value="Download" onclick="download()" class="button right" style="cursor:pointer" />
 		</form>
 	</div>
 	<div class="clear"></div>
@@ -155,24 +118,14 @@ Ext.onReady(function() {
 	});
 });
 
-function getSelectedFileTypes(){
-	var c_value = "";
-	for (var i=0; i < document.searchForm.filetype.length; i++){
-		if (document.searchForm.filetype[i].checked){
-			c_value = c_value + document.searchForm.filetype[i].value + ",";
+function getSelected(type){
+	var s = new Array();
+	for (var i=0; i < document.searchForm[type].length; i++) {
+		if (document.searchForm[type][i].checked){
+			s.push(document.searchForm[type][i].value);
 		}
 	}
-	return c_value;
-}
-
-function getSelectedAlgorithm(){
-	var c_value = "";
-	for (var i=0; i < document.searchForm.algorithm.length; i++){
-		if (document.searchForm.algorithm[i].checked){
-			c_value = c_value + document.searchForm.algorithm[i].value + ",";
-		}
-	}
-	return c_value;
+	return s.join(",");
 }
 
 function download() {
@@ -180,8 +133,8 @@ function download() {
 	var genomes, size;
 
 	Ext.getDom("searchForm").action = "/patric-searches-and-tools/jsp/filedownload.jsp";
-	Ext.getDom("finalfiletype").value = getSelectedFileTypes(); 
-	Ext.getDom("finalalgorithm").value = getSelectedAlgorithm();
+	Ext.getDom("finalfiletype").value = getSelected("filetype"); 
+	Ext.getDom("finalalgorithm").value = getSelected("algorithm");
 	Ext.getDom("searchForm").target = "";
 
 	if(!tabs.getSelectedInString()){
@@ -190,7 +143,7 @@ function download() {
 		Ext.Ajax.request({
 			url: "/patric-searches-and-tools/jsp/get_genome_count.jsp",
 			method: 'GET',
-			params: {taxonId:Ext.getDom("taxonId").value, data_source:getSelectedAlgorithm()},
+			params: {taxonId:Ext.getDom("taxonId").value, data_source:Ext.getDom("finalalgorithm").value},
 			success: function(response, opts) {
 				size = response.responseText;
 				if(size > 100){
@@ -211,7 +164,7 @@ function download() {
 			Ext.Ajax.request({
 				url: "/patric-searches-and-tools/jsp/get_genome_count.jsp",
 				method: 'GET',
-				params: {taxonId:Ext.getDom("taxonId").value, data_source:getSelectedAlgorithm()},
+				params: {taxonId:Ext.getDom("taxonId").value, data_source:Ext.getDom("finalalgorithm").value},
 				success: function(response, opts) {
 					size = response.responseText;
 					if(size > 100) {
@@ -222,7 +175,7 @@ function download() {
 							
 							Ext.Ajax.request({
 								url: "/patric-searches-and-tools/jsp/filedownload.jsp",
-								method: 'GET',
+								method: 'POST',
 								params: {genomeId:Ext.getDom("genomeId").value, taxonId:Ext.getDom("taxonId").value, finalfiletype:Ext.getDom("finalfiletype").value, finalalgorithm:Ext.getDom("finalalgorithm").value},
 								success: function(response, opts) {
 									alert(response.responseText);

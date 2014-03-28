@@ -1,5 +1,5 @@
 <p class="close">PATRIC includes a collaboration with the University of Chicago to provide an end-user genome annotation service using the RAST system.</p>
-<iframe id="iframe_rast" src="http://rast.nmpdr.org/" height="500" seamless></iframe>
+<iframe id="iframe_rast" src="http://rast.nmpdr.org/" height="500" title="RAST Service" seamless></iframe>
 
 <script type="text/javascript">
 Ext.onReady(function () {

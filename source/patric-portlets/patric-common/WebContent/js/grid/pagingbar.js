@@ -110,7 +110,8 @@ Ext.define('PATRICPagingToolbar', {
 				scope : me,
 				specialKey : function(field, e) {
 					if (e.getKey() == e.ENTER) {
-						var value = me.getPageSize(), valueIsNull = value === null;
+						var value = me.getPageSize(),
+							valueIsNull = value === null;
 
 						if (valueIsNull == false) {
 							me.updateStore();
@@ -245,7 +246,9 @@ Ext.define('PATRICPagingToolbar', {
 		}).show();
 	},
 	updateStore : function() {
-		var me = this, store = me.getStore(), pagesize = me.child("#pagesize").getValue();
+		var me = this,
+			store = me.getStore(),
+			pagesize = me.child("#pagesize").getValue();
 
 		if (pagesize > me.maxPageSize) {
 

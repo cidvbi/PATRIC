@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,6 +21,7 @@ import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.hibernate.Hibernate;
+import org.hibernate.NonUniqueResultException;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -28,8 +29,7 @@ import org.hibernate.lob.SerializableClob;
 
 /**
  * <p>
- * An interface class for database queries that can be shared across PATRIC
- * projects.
+ * An interface class for database queries that can be shared across PATRIC projects.
  * </p>
  * 
  * @author Harry Yoo (hyun@vbi.vt.edu)
@@ -38,8 +38,7 @@ public class DBShared {
 	protected static SessionFactory factory;
 
 	/**
-	 * Sets SessionFactory to internal variable so that each method can use
-	 * later.
+	 * Sets SessionFactory to internal variable so that each method can use later.
 	 * @param sf SessionFactory
 	 */
 	public static void setSessionFactory(SessionFactory sf) {
@@ -61,20 +60,16 @@ public class DBShared {
 	 * @return taxonomy lineage (ncbi_tax_id, name, rank, node_level)
 	 */
 	public ArrayList<ResultType> getTaxonParentTree(String id) {
-		String sql = "select lng.ncbi_tax_id, lng.name, cls.rank, cls.node_level "
-				+ "	from ( "
-				+ "		select a.taxon_id, a.ncbi_tax_id, b.name, a.parent_id "
-				+ "		from sres.taxon a, sres.taxonname b "
+		String sql = "select lng.ncbi_tax_id, lng.name, cls.rank, cls.node_level " + "	from ( "
+				+ "		select a.taxon_id, a.ncbi_tax_id, b.name, a.parent_id " + "		from sres.taxon a, sres.taxonname b "
 				+ "		where a.taxon_id = b.taxon_id and b.name_class = 'scientific name') lng, cas.ncbiclassification cls "
-				+ " 	where lng.ncbi_tax_id = cls.ncbi_taxon_id " + "	connect by prior parent_id = taxon_id "
-				+ "	start with ncbi_tax_id = ? ";
+				+ " 	where lng.ncbi_tax_id = cls.ncbi_taxon_id " + "	connect by prior parent_id = taxon_id " + "	start with ncbi_tax_id = ? ";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
 
-		q.addScalar("ncbi_tax_id", Hibernate.INTEGER).addScalar("name", Hibernate.STRING)
-				.addScalar("rank", Hibernate.STRING);
+		q.addScalar("ncbi_tax_id", Hibernate.INTEGER).addScalar("name", Hibernate.STRING).addScalar("rank", Hibernate.STRING);
 		q.addScalar("node_level", Hibernate.INTEGER);
 		q.setCacheable(true);
 
@@ -107,24 +102,20 @@ public class DBShared {
 	 * Retrieves taxonomy info of genus within ancestors.
 	 * 
 	 * @param ncbi_taxon_id Integer type of NCBI Taxnomy ID
-	 * @return taxonomy info of corresponding genus (ncbi_tax_id, name, rank,
-	 * node_level)
+	 * @return taxonomy info of corresponding genus (ncbi_tax_id, name, rank, node_level)
 	 */
 	public ArrayList<ResultType> getGenusInAncestors(int ncbi_taxon_id) {
-		String sql = "select lng.ncbi_tax_id, lng.name, cls.rank, cls.node_level "
-				+ "	from ( "
-				+ "		select a.taxon_id, a.ncbi_tax_id, b.name, a.parent_id "
-				+ "		from sres.taxon a, sres.taxonname b "
+		String sql = "select lng.ncbi_tax_id, lng.name, cls.rank, cls.node_level " + "	from ( "
+				+ "		select a.taxon_id, a.ncbi_tax_id, b.name, a.parent_id " + "		from sres.taxon a, sres.taxonname b "
 				+ "		where a.taxon_id = b.taxon_id and b.name_class = 'scientific name') lng, cas.ncbiclassification cls "
-				+ " 	where lng.ncbi_tax_id = cls.ncbi_taxon_id " + "		and rank = 'genus' "
-				+ "	connect by prior parent_id = taxon_id " + "	start with ncbi_tax_id = :ncbi_taxon_id ";
+				+ " 	where lng.ncbi_tax_id = cls.ncbi_taxon_id " + "		and rank = 'genus' " + "	connect by prior parent_id = taxon_id "
+				+ "	start with ncbi_tax_id = :ncbi_taxon_id ";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
 
-		q.addScalar("ncbi_tax_id", Hibernate.INTEGER).addScalar("name", Hibernate.STRING)
-				.addScalar("rank", Hibernate.STRING);
+		q.addScalar("ncbi_tax_id", Hibernate.INTEGER).addScalar("name", Hibernate.STRING).addScalar("rank", Hibernate.STRING);
 		q.addScalar("node_level", Hibernate.INTEGER);
 		q.setCacheable(true);
 
@@ -151,21 +142,18 @@ public class DBShared {
 	 * Retrieves taxonomy info of given taxon.
 	 * 
 	 * @param id ncbi_taxon_id
-	 * @return taxonomy info (ncbi_tax_id, name, unique_name_variant,
-	 * name_class, ncbi_genetic_code_id, ncbi_genetic_code_name)
+	 * @return taxonomy info (ncbi_tax_id, name, unique_name_variant, name_class, ncbi_genetic_code_id, ncbi_genetic_code_name)
 	 */
 	public ArrayList<ResultType> getTaxonNames(String id) {
 		String sql = "select tx.ncbi_tax_id, tx.rank, txname.name, txname.unique_name_variant, txname.name_class, "
 				+ " 		 gcd.ncbi_genetic_code_id, gcd.name as ncbi_genetic_code_name "
-				+ "	from sres.taxon tx, sres.taxonname txname, sres.geneticcode gcd "
-				+ "	where tx.taxon_id = txname.taxon_id " + "		and tx.genetic_code_id = gcd.genetic_code_id "
-				+ "		and tx.ncbi_tax_id = ? " + "	order by name_class";
+				+ "	from sres.taxon tx, sres.taxonname txname, sres.geneticcode gcd " + "	where tx.taxon_id = txname.taxon_id "
+				+ "		and tx.genetic_code_id = gcd.genetic_code_id " + "		and tx.ncbi_tax_id = ? " + "	order by name_class";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
-		q.addScalar("ncbi_tax_id", Hibernate.INTEGER).addScalar("rank", Hibernate.STRING)
-				.addScalar("name", Hibernate.STRING);
+		q.addScalar("ncbi_tax_id", Hibernate.INTEGER).addScalar("rank", Hibernate.STRING).addScalar("name", Hibernate.STRING);
 		q.addScalar("unique_name_variant", Hibernate.STRING).addScalar("name_class", Hibernate.STRING)
 				.addScalar("ncbi_genetic_code_id", Hibernate.INTEGER);
 		q.addScalar("ncbi_genetic_code_name", Hibernate.STRING);
@@ -194,9 +182,8 @@ public class DBShared {
 
 	public ArrayList<ResultType> getGenomesBelowTaxon(String ncbi_tax_id) {
 
-		String sql = "select genome_info_id, genome_name " + " from app.genomesummary where ncbi_tax_id in ( "
-				+ " select ncbi_tax_id " + " from sres.taxon "
-				+ " connect by prior taxon_id = parent_id start with ncbi_tax_id = ?) ";
+		String sql = "select genome_info_id, genome_name " + " from app.genomesummary where ncbi_tax_id in ( " + " select ncbi_tax_id "
+				+ " from sres.taxon " + " connect by prior taxon_id = parent_id start with ncbi_tax_id = ?) ";
 
 		Object[] obj = null;
 		ArrayList<ResultType> results = new ArrayList<ResultType>();
@@ -229,14 +216,13 @@ public class DBShared {
 	 */
 	public ResultType getNamesFromTaxonId(int ncbi_taxon_id) {
 		String sql = "select tx.ncbi_tax_id, tx.rank, txname.name, txname.unique_name_variant, txname.name_class "
-				+ "	from sres.taxon tx, sres.taxonname txname " + "	where tx.taxon_id = txname.taxon_id "
-				+ "		and tx.ncbi_tax_id = :ncbi_taxon_id " + "		and txname.name_class='scientific name' ";
+				+ "	from sres.taxon tx, sres.taxonname txname " + "	where tx.taxon_id = txname.taxon_id " + "		and tx.ncbi_tax_id = :ncbi_taxon_id "
+				+ "		and txname.name_class='scientific name' ";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
-		q.addScalar("ncbi_tax_id", Hibernate.INTEGER).addScalar("rank", Hibernate.STRING)
-				.addScalar("name", Hibernate.STRING);
+		q.addScalar("ncbi_tax_id", Hibernate.INTEGER).addScalar("rank", Hibernate.STRING).addScalar("name", Hibernate.STRING);
 		q.addScalar("unique_name_variant", Hibernate.STRING).addScalar("name_class", Hibernate.STRING);
 
 		q.setCacheable(true);
@@ -276,19 +262,17 @@ public class DBShared {
 	 * Retrieves attributes of a given genome
 	 * 
 	 * @param id genome_info_id
-	 * @return genome attributes (genome_name, display_name, common_name and
-	 * ncbi_taxon_id)
+	 * @return genome attributes (genome_name, display_name, common_name and ncbi_taxon_id)
 	 */
 	public ResultType getNamesFromGenomeInfoId(String id) {
 
-		String sql = "SELECT g.genome_name, g.display_name, g.ncbi_tax_id, g.common_name "
-				+ "FROM cas.genomeinfo g WHERE g.genome_info_id = ?";
+		String sql = "SELECT g.genome_name, g.display_name, g.ncbi_tax_id, g.common_name " + "FROM cas.genomeinfo g WHERE g.genome_info_id = ?";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		SQLQuery q = session.createSQLQuery(sql);
-		q.addScalar("genome_name", Hibernate.STRING).addScalar("display_name", Hibernate.STRING)
-				.addScalar("ncbi_tax_id", Hibernate.INTEGER).addScalar("common_name", Hibernate.STRING);
+		q.addScalar("genome_name", Hibernate.STRING).addScalar("display_name", Hibernate.STRING).addScalar("ncbi_tax_id", Hibernate.INTEGER)
+				.addScalar("common_name", Hibernate.STRING);
 		q.setCacheable(true);
 
 		q.setString(0, id);
@@ -315,53 +299,33 @@ public class DBShared {
 	 * @param id na_feature_id
 	 * @return genome and feature attributes
 	 * <dl>
-	 * <dd><code>genome_name</code> - name of the genome that this feature
-	 * belongs to</dd>
+	 * <dd><code>genome_name</code> - name of the genome that this feature belongs to</dd>
 	 * <dd><code>common_name</code> - common name is used for unix file name</dd>
-	 * <dd><code>display_name</code> - name for display on the web, which may
-	 * include html tags</dd>
-	 * <dd><code>genome_info_id</code> - internal id of genome that this feature
-	 * belongs to</dd>
-	 * <dd><code>ncbi_taxon_id</code> - ncbi_taxon_id of the genome that this
-	 * feature belongs to</dd>
+	 * <dd><code>display_name</code> - name for display on the web, which may include html tags</dd>
+	 * <dd><code>genome_info_id</code> - internal id of genome that this feature belongs to</dd>
+	 * <dd><code>ncbi_taxon_id</code> - ncbi_taxon_id of the genome that this feature belongs to</dd>
 	 * <dd><code>source_id</code> - locus tag</dd>
-	 * <dd><code>feature_type</code> - genomic feature type such as CDS, gene,
-	 * or rRNA</dd>
+	 * <dd><code>feature_type</code> - genomic feature type such as CDS, gene, or rRNA</dd>
 	 * <dd><code>feature_name</code> - product</dd>
-	 * <dd><code>annotation</code> - algorithm/annotation source such as RAST,
-	 * RefSeq, or Curation</dd>
+	 * <dd><code>annotation</code> - algorithm/annotation source such as RAST, RefSeq, or Curation</dd>
 	 * </dl>
 	 */
-	public ResultType getNamesFromNaFeatureId(String id) {
-		String sql = "SELECT gi.genome_name, gi.common_name, gi.display_name, gi.genome_info_id, gi.ncbi_tax_id, "
-				+ "			 nf.source_id, nf.name, nf.product, nf.algorithm "
-				+ "	FROM cas.genomeinfo gi, app.dnafeature nf " + "	WHERE gi.genome_info_id = nf.genome_info_id "
-				+ "		and nf.na_feature_id = ? ";
-
-		Session session = factory.getCurrentSession();
-		session.beginTransaction();
-		SQLQuery q = session.createSQLQuery(sql);
-		q.setString(0, id);
-		List<?> rset = q.list();
-		session.getTransaction().commit();
-
-		ResultType names = new ResultType();
-		Object[] obj = null;
-
-		for (Iterator<?> iter = rset.iterator(); iter.hasNext();) {
-			obj = (Object[]) iter.next();
-			names.put("genome_name", obj[0]);
-			names.put("common_name", obj[1]);
-			names.put("display_name", obj[2]);
-			names.put("genome_info_id", obj[3]);
-			names.put("ncbi_taxon_id", obj[4]);
-			names.put("source_id", obj[5]);
-			names.put("feature_type", obj[6]);
-			names.put("feature_name", obj[7]);
-			names.put("annotation", obj[8]);
-		}
-		return names;
-	}
+	/*
+	 * public ResultType getNamesFromNaFeatureId(String id) { String sql =
+	 * "SELECT gi.genome_name, gi.common_name, gi.display_name, gi.genome_info_id, gi.ncbi_tax_id, " +
+	 * "			 nf.source_id, nf.name, nf.product, nf.algorithm " + "	FROM cas.genomeinfo gi, app.dnafeature nf " +
+	 * "	WHERE gi.genome_info_id = nf.genome_info_id " + "		and nf.na_feature_id = ? ";
+	 * 
+	 * Session session = factory.getCurrentSession(); session.beginTransaction(); SQLQuery q = session.createSQLQuery(sql); q.setString(0, id);
+	 * List<?> rset = q.list(); session.getTransaction().commit();
+	 * 
+	 * ResultType names = new ResultType(); Object[] obj = null;
+	 * 
+	 * for (Iterator<?> iter = rset.iterator(); iter.hasNext();) { obj = (Object[]) iter.next(); names.put("genome_name", obj[0]);
+	 * names.put("common_name", obj[1]); names.put("display_name", obj[2]); names.put("genome_info_id", obj[3]); names.put("ncbi_taxon_id", obj[4]);
+	 * names.put("source_id", obj[5]); names.put("feature_type", obj[6]); names.put("feature_name", obj[7]); names.put("annotation", obj[8]); } return
+	 * names; }
+	 */
 
 	/**
 	 * Retrieves associated EC assignments for a given feature
@@ -393,16 +357,14 @@ public class DBShared {
 	}
 
 	/**
-	 * Retrieves feature attributes to construct FASTA identifiers. This is used
-	 * in {@link edu.vt.vbi.patric.common.FASTAHelper}
+	 * Retrieves feature attributes to construct FASTA identifiers. This is used in {@link edu.vt.vbi.patric.common.FASTAHelper}
 	 * 
 	 * @param id na_feature_id
-	 * @return feature attributes (na_feature_id, source_id, protein_id,
-	 * product, genome_name, accession)
+	 * @return feature attributes (na_feature_id, source_id, protein_id, product, genome_name, accession)
 	 */
 	public ResultType getFastaIdentifiers(String id) {
-		String sql = "select na_feature_id, source_id, protein_id, product, genome_name, accession "
-				+ "	from app.dnafeature " + "	where na_feature_id = ?";
+		String sql = "select na_feature_id, source_id, protein_id, product, genome_name, accession " + "	from app.dnafeature "
+				+ "	where na_feature_id = ?";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -434,9 +396,8 @@ public class DBShared {
 	public ArrayList<ResultType> getFastaNASequence(String id) {
 
 		String sql = "SELECT df.na_feature_id, df.start_max, df.end_min, df.is_reversed, "
-				+ "		substr(ns.sequence,df.start_max,df.na_length) as na_sequence "
-				+ "	from app.dnafeature df, dots.nasequence ns " + "	where df.na_sequence_id = ns.na_sequence_id "
-				+ "		and df.na_feature_id = ? " + "	order by df.na_feature_id, start_max";
+				+ "		substr(ns.sequence,df.start_max,df.na_length) as na_sequence " + "	from app.dnafeature df, dots.nasequence ns "
+				+ "	where df.na_sequence_id = ns.na_sequence_id " + "		and df.na_feature_id = ? " + "	order by df.na_feature_id, start_max";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -478,21 +439,38 @@ public class DBShared {
 	 * @return protein sequence string
 	 */
 	public String getFastaAASequence(String id) {
+		String strSequence = null;
+		SerializableClob clobSequence = null;
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
 		String sql = "select translation as aa_sequence from app.dnafeature where na_feature_id = ?";
 
 		SQLQuery q = session.createSQLQuery(sql);
 		q.setString(0, id);
-		Object obj = q.uniqueResult();
-		session.getTransaction().commit();
-
-		SerializableClob clobSequence = null;
-		String strSequence = null;
 
 		try {
+			Object obj = q.uniqueResult();
+			session.getTransaction().commit();
+
 			clobSequence = (SerializableClob) obj;
 			strSequence = IOUtils.toString(clobSequence.getAsciiStream(), "UTF-8");
+		}
+		catch (NullPointerException exNP) {
+			System.out.println("Error in Retrieving AASequence. na_feature_id: " + id);
+		}
+		catch (NonUniqueResultException exNU) {
+			List<?> rset = q.list();
+			session.getTransaction().commit();
+			Iterator<?> iter = rset.iterator();
+			if (iter.hasNext()) {
+				try {
+					clobSequence = (SerializableClob) iter.next();
+					strSequence = IOUtils.toString(clobSequence.getAsciiStream(), "UTF-8");
+				}
+				catch (Exception ex) {
+					ex.printStackTrace();
+				}
+			}
 		}
 		catch (Exception ex) {
 			ex.printStackTrace();
@@ -503,9 +481,8 @@ public class DBShared {
 
 	public String getFastaNTSequence(String id) {
 
-		String sql = "SELECT  substr(ns.sequence,df.start_max,df.na_length) as na_sequence "
-				+ "	from app.dnafeature df, dots.nasequence ns " + "	where df.na_sequence_id = ns.na_sequence_id "
-				+ "		and df.na_feature_id = ? ";
+		String sql = "SELECT  substr(ns.sequence,df.start_max,df.na_length) as na_sequence " + "	from app.dnafeature df, dots.nasequence ns "
+				+ "	where df.na_sequence_id = ns.na_sequence_id " + "		and df.na_feature_id = ? ";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -529,8 +506,7 @@ public class DBShared {
 	}
 
 	/**
-	 * Retrieves substring of nucleic acid (NA) sequence of a given sequence.
-	 * This is used by Genome Browser.
+	 * Retrieves substring of nucleic acid (NA) sequence of a given sequence. This is used by Genome Browser.
 	 * 
 	 * @param accession
 	 * @param start start position
@@ -573,14 +549,12 @@ public class DBShared {
 	/**
 	 * Retrieves sequence for a given accession
 	 * @param accession
-	 * @return sequence info (genome_name, sequence_info_id,
-	 * sequence_description)
+	 * @return sequence info (genome_name, sequence_info_id, sequence_description)
 	 */
 	public ResultType getSequenceInfoByAccession(String sid, String accession) {
 		String sql = "select gi.genome_name, si.sequence_info_id, ns.description "
-				+ "	from cas.genomeinfo gi, cas.sequenceinfo si, dots.nasequence ns "
-				+ "	where gi.genome_info_id = si.genome_info_id " + "		and si.na_sequence_id = ns.na_sequence_id "
-				+ "		and si.accession = ? and si.sequence_info_id = ? ";
+				+ "	from cas.genomeinfo gi, cas.sequenceinfo si, dots.nasequence ns " + "	where gi.genome_info_id = si.genome_info_id "
+				+ "		and si.na_sequence_id = ns.na_sequence_id " + "		and si.accession = ? and si.sequence_info_id = ? ";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -629,12 +603,10 @@ public class DBShared {
 	}
 
 	/**
-	 * Retrieves direct children of a given taxon. This used to feed Taxonomy
-	 * tab
+	 * Retrieves direct children of a given taxon. This used to feed Taxonomy tab
 	 * 
 	 * @param id ncbi_taxon_id
-	 * @return taxonomy info of children (node_level, node_left, rank,
-	 * class_name, node_count, ncbi_taxon_id, is_leaf, genome_below)
+	 * @return taxonomy info of children (node_level, node_left, rank, class_name, node_count, ncbi_taxon_id, is_leaf, genome_below)
 	 */
 	public ArrayList<ResultType> getTaxonomyChildren(String id) {
 		String sql = "SELECT node_level, node_left, node_right from cas.ncbiclassification where ncbi_taxon_id = ?";
@@ -658,13 +630,11 @@ public class DBShared {
 			node = (Object[]) nodeList.iterator().next();
 		}
 
-		sql = "SELECT distinct cls.node_level, cls.node_left, cls.rank, cls.class_name, cls.node_count, "
-				+ "		cls.ncbi_taxon_id, "
+		sql = "SELECT distinct cls.node_level, cls.node_left, cls.rank, cls.class_name, cls.node_count, " + "		cls.ncbi_taxon_id, "
 				+ "		decode(cls.node_right-cls.node_left,1,1,0) is_leaf, cls.node_count-cls.genome_count genome_below "
 				+ "	from cas.ncbiclassification cls, cas.genomeclassrelationship gr "
 				+ "	where node_left between ? and ? and (cls.node_count>0 or cls.genome_count>0) "
-				+ "		and cls.genome_classification_id = gr.genome_classification_id(+) " + "		and node_level = ? "
-				+ "	order by node_left";
+				+ "		and cls.genome_classification_id = gr.genome_classification_id(+) " + "		and node_level = ? " + "	order by node_left";
 
 		q = session.createSQLQuery(sql);
 		q.setString(0, node[1].toString());
@@ -700,9 +670,8 @@ public class DBShared {
 	}
 
 	/**
-	 * Retrieves unique database name that this class is connecting to. This is
-	 * useful to identify database under the failover (dataguard) configuration.
-	 * This is used for system management purpose.
+	 * Retrieves unique database name that this class is connecting to. This is useful to identify database under the failover (dataguard)
+	 * configuration. This is used for system management purpose.
 	 * 
 	 * @return database name
 	 */
@@ -717,8 +686,7 @@ public class DBShared {
 	}
 
 	/**
-	 * Retrieves organism name (taxon class name in this case) of a given taxon.
-	 * This is written specially for KLEIO
+	 * Retrieves organism name (taxon class name in this case) of a given taxon. This is written specially for KLEIO
 	 * 
 	 * @param id ncbi_taxon_id
 	 * @return taxon class name
@@ -742,8 +710,7 @@ public class DBShared {
 	}
 
 	/**
-	 * Retrieves feature product of a given feature. This is written specially
-	 * for KLEIO
+	 * Retrieves feature product of a given feature. This is written specially for KLEIO
 	 * 
 	 * @param id na_feature_id
 	 * @return feature product
@@ -791,20 +758,20 @@ public class DBShared {
 			return obj.toString();
 		}
 	}
-	
+
 	/*
 	 * Retrieves taxon ids below certain taxonomy id
 	 * 
 	 * @param id taxon_id
-	 * @return ArrayList of taxonids
 	 * 
+	 * @return ArrayList of taxonids
 	 */
-	
+
 	public ArrayList<ResultType> getTaxonIdsBelowTaxonIdForProteomics(String id) {
 
-		String sql = " select tx.ncbi_tax_id " +
-				 	 " from (select ncbi_tax_id from sres.taxon connect by prior taxon_id = parent_id start with ncbi_tax_id = ?) tx, " +
-				 	 " proteomics.experiment exp where tx.ncbi_tax_id = exp.taxon_id";
+		String sql = " select tx.ncbi_tax_id "
+				+ " from (select ncbi_tax_id from sres.taxon connect by prior taxon_id = parent_id start with ncbi_tax_id = ?) tx, "
+				+ " proteomics.experiment exp where tx.ncbi_tax_id = exp.taxon_id";
 
 		Session session = factory.getCurrentSession();
 		session.beginTransaction();
@@ -824,15 +791,15 @@ public class DBShared {
 		}
 		return results;
 	}
-	
+
 	/**
 	 * Retrieves ncbi taxon id of a given genome id
 	 * 
 	 * @param id genome_info_id
 	 * @return ncbi_tax_id
 	 */
-	public String getTaxonIdOfGenomeId(String id){
-		
+	public String getTaxonIdOfGenomeId(String id) {
+
 		String sql = "SELECT g.ncbi_tax_id " + "FROM cas.genomeinfo g WHERE g.genome_info_id = ?";
 
 		Session session = factory.getCurrentSession();
@@ -848,6 +815,6 @@ public class DBShared {
 		else {
 			return obj.toString();
 		}
-		
+
 	}
 }

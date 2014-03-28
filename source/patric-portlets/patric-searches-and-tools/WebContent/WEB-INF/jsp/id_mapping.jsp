@@ -27,9 +27,9 @@ if(pk != null){
 
 //System.out.print(request.getParameter("display_mode"));
 
-if (request.getParameter("display_mode").equals(""))
+if (request.getParameter("display_mode") != null && request.getParameter("display_mode").equals("")) {
 	keyword = "";
-
+}
 
 boolean loggedIn = false;
 if(request.getUserPrincipal() == null){
@@ -173,7 +173,7 @@ function searchbykeyword()
 		
 			Ext.Ajax.request({
 				url: '/portal/portal/patric/IDMapping/IDMappingWindow?action=b&cacheability=PAGE',
-				method: 'POST',
+				method: 'GET',
 				params: {cType: "taxon",
 					cId: "",
 					sraction: "save_params",

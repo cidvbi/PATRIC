@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -305,8 +305,7 @@ public class Workspace {
 	}
 
 	/**
-	 * Find a Track matches a given type and internal ID. Return -1 if no track
-	 * matches.
+	 * Find a Track matches a given type and internal ID. Return -1 if no track matches.
 	 * @param type
 	 * @param internalId
 	 * @return
@@ -413,8 +412,7 @@ public class Workspace {
 
 		for (Iterator<JSONObject> iter = mapping.iterator(); iter.hasNext();) {
 			JSONObject m = iter.next();
-			if (Integer.parseInt(m.get("tagId").toString()) == tagId
-					&& Integer.parseInt(m.get("trackId").toString()) == trackId) {
+			if (Integer.parseInt(m.get("tagId").toString()) == tagId && Integer.parseInt(m.get("trackId").toString()) == trackId) {
 				return true;
 			}
 		}

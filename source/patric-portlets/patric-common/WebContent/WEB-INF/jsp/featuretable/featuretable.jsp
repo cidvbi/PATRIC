@@ -11,7 +11,7 @@ String genome_info_id = null;//request.getParameter("genome_info_id");
 
 String cType = request.getParameter("context_type");
 String cId = request.getParameter("context_id");
-if (cType!=null && cType.equals("taxon")) {
+if (cType.equals("taxon")) {
 	ncbi_taxon_id = cId;
 } else if (cType.equals("genome")) {
 	genome_info_id = cId;
@@ -132,7 +132,7 @@ Ext.onReady(function()
 			{text:'Locus Tag',			dataIndex:'locus_tag',			orig_hidden_value: false,	flex:2, renderer:renderLocusTag},
 			{text:'RefSeq Locus Tag',	dataIndex:'refseq_locus_tag',	orig_hidden_value: false,	flex:2, renderer:BasicRenderer},
 			{text:'Gene Symbol',		dataIndex:'gene',				orig_hidden_value: false,	flex:1, renderer:BasicRenderer},
-			{text:'Genome Browser',		dataIndex:'',					orig_hidden_value: true,	hidden: true,	align:'center', flex:1, sortable: false, renderer:renderGenomeBrowserByFeature},
+			{text:'Genome Browser',		dataIndex:'na_feature_id',		orig_hidden_value: true,	hidden: true,	align:'center', flex:1, sortable: false, renderer:renderGenomeBrowserByFeature},
 			{text:'Annotation',			dataIndex:'annotation',			orig_hidden_value: true,	hidden: true,	flex:1, renderer:BasicRenderer},
 			{text:'Feature Type',		dataIndex:'feature_type',		orig_hidden_value: true,	hidden: true,	flex:1, renderer:BasicRenderer}, 
 			{text:'Start',				dataIndex:'start_max',			orig_hidden_value: true,	hidden: true,	flex:1, align:'right', renderer:BasicRenderer},
@@ -189,11 +189,11 @@ Ext.onReady(function()
 	
 	SetPageProperties(pageProperties),
 	$Page.checkbox = checkbox,
-	Ext.QuickTips.init();	
-	overrideButtonActions(),	
+	Ext.QuickTips.init();
+	overrideButtonActions(),
 	loadFBCD(),
 	$Page.doLayout(),
-	//SetIntervalOrAPI(),
+	SetIntervalOrAPI(),
 	createLoadComboBoxes();
 	if (Ext.get("tabs_featuretable")) {
 		Ext.get("tabs_featuretable").addCls("sel");

@@ -62,9 +62,9 @@ function setTable(){
 		text += '<tr class="alt">';
 		
 		if(order[i].field == 'accession'){
-			text += '<th class="first" width="20%">'+order[i].header+' - Release Date</th>';
+			text += '<th class="first" scope="row" width="20%">'+order[i].header+' - Release Date</th>';
 		}else{
-			text += '<th class="first" width="20%">'+order[i].header+'</th>';
+			text += '<th class="first" scope="row" width="20%">'+order[i].header+'</th>';
 		}
 		
 		if(summary[order[i].field]){	
@@ -164,6 +164,32 @@ function getExtraParams() {
 		callType : 'getTable'
 	};
 }
+
+function showExpDetail() {
+	var cType = Ext.getDom("cType") ? Ext.getDom("cType").value : "", cId = Ext.getDom("cId") ? Ext.getDom("cId").value : "", field = "pid", sampleId = "", countComparisons = 0, maxComparisons = 100, arrExpID = new Array(), Page = $Page, checkbox = Page.getCheckBox();
+
+	if (checkbox.getCount() > 0) {
+
+		countComparisons = checkbox.getCount();
+		
+		if (countComparisons >= maxComparisons) {
+			alert("You have exceeded the limit of comparisons. Please lower than " + maxComparisons);
+			return false;
+		}
+
+		Ext.Array.each(checkbox.getSelections(), function(obj) {
+			arrExpID.push(obj.get(field));
+		});
+		
+		sampleId = arrExpID.join(",");
+
+		document.location.href = "TranscriptomicsGene?cType=" + cType + "&cId=" + cId + "&dm=result&pk=&expId=&sampleId=" + sampleId + "&colId=&log_ratio=&zscore=";
+
+	} else {
+		alert("No comparison(s) are selected. To see associated gene(s), at least one comparison must be selected");
+	}
+}
+
 function DownloadFile() {"use strict";
 
 	var form = Ext.getDom("fTableForm");

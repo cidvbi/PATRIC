@@ -57,12 +57,12 @@ function createLayout(){
 	
 	Ext.create('Ext.panel.Panel', {
 		 id: 'tabLayout',
-		 border: true,
+		 border: false,
 		 autoScroll: false,
 		 items:[{
 			layout: 'fit',
 			region:'north',
-			border: false,
+			border: true,
 			height: 22,
 			xtype: 'tabpanel',
 			id: 'tabPanel',
@@ -84,23 +84,14 @@ function createLayout(){
 					}
 				}
 			},{
-				layout: 'fit',
 				region:'center',
 				id: 'centerPanel',
-			 	contentEl: 'grid_result_summary',
+			 	html: '<div id="grid_result_summary">Loading...</div>',
 				padding: '6 8',
 				style: 'background-color:#DDE8F4',
 				bodyStyle: 'background-color:#DDE8F4',
 				bodyCls: 'bold',
 				border: false
-			},{
-				layout:'fit',
-				region:'south',
-				id:'southPanel',
-				html:'<div id="PATRICGrid"></div>',
-				height:571,
-				border:false,
-				autoScroll:true
 			}
 		],
 		renderTo: 'sample-layout'
@@ -379,7 +370,7 @@ function loadCombo(id, need){
 	
 	Ext.Ajax.request({
 	    url: "/patric-pathways/jsp/filter_populate.jsp",
-	    method: 'GET',
+	    method: 'POST',
 	    params: {val:Ext.JSON.encode(obj)},
 	    success: function(response, opts){
 	    	var decoded = Ext.JSON.decode(response.responseText);

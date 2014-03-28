@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -68,27 +68,12 @@ public class ExpressionDataCollection {
 		mappingFileName = new ArrayList<String>();
 
 		for (int i = 0; i < collectionIds.length; i++) {
-
-			/*
-			 * expressionFileName.add(polyomic.findJSONUrl(CONTENT_EXPRESSION, collectionIds[i]));
-			 * sampleFileName.add(polyomic.findJSONUrl(CONTENT_SAMPLE, collectionIds[i]));
-			 * mappingFileName.add(polyomic.findJSONUrl(CONTENT_MAPPING, collectionIds[i]));
-			 */
-
 			collection = polyomic.getCollection(collectionIds[i], null);
+
 			expressionFileName.add(polyomic.findJSONUrl(collection, CONTENT_EXPRESSION));
 			sampleFileName.add(polyomic.findJSONUrl(collection, CONTENT_SAMPLE));
 			mappingFileName.add(polyomic.findJSONUrl(collection, CONTENT_MAPPING));
-
-			/*
-			 * expressionFileName.add("http://dev.patricbrc.org/patric/testfiles/expression.json");
-			 * sampleFileName.add("http://dev.patricbrc.org/patric/testfiles/sample.json");
-			 * mappingFileName.add("http://dev.patricbrc.org/patric/testfiles/mapping.json");
-			 */
-			// System.out.println("Sample URL - " + polyomic.findJSONUrl(collection, CONTENT_SAMPLE));
-			// System.out.println("Expression URL - " +polyomic.findJSONUrl(collection, CONTENT_EXPRESSION));
 		}
-
 	}
 
 	public InputStream getInputStreamReader(String path) {
@@ -108,10 +93,12 @@ public class ExpressionDataCollection {
 
 		ArrayList<String> temp = null;
 
-		if (input.equals(CONTENT_SAMPLE))
+		if (input.equals(CONTENT_SAMPLE)) {
 			temp = sampleFileName;
-		else if (input.equals(CONTENT_EXPRESSION))
+		}
+		else if (input.equals(CONTENT_EXPRESSION)) {
 			temp = expressionFileName;
+		}
 
 		InputStreamReader stream = null;
 		BufferedReader reader = null;
@@ -125,23 +112,20 @@ public class ExpressionDataCollection {
 
 			try {
 				while ((strLine = reader.readLine()) != null) {
-
 					try {
-
 						JSONObject tmp = (JSONObject) new JSONParser().parse(strLine);
 						AddToCurrentSet((JSONArray) tmp.get(input), input);
-
 					}
 					catch (ParseException e) {
 						e.printStackTrace();
 					}
 				}
+				inp.close();
 			}
 			catch (IOException e) {
 				e.printStackTrace();
 			}
 		}
-
 	}
 
 	public void filter(String item, String input) throws FileNotFoundException {
@@ -149,10 +133,12 @@ public class ExpressionDataCollection {
 		JSONArray temp = null;
 		String[] items = item.split(",");
 
-		if (input.equals(CONTENT_SAMPLE))
+		if (input.equals(CONTENT_SAMPLE)) {
 			temp = sample;
-		else if (input.equals(CONTENT_EXPRESSION))
+		}
+		else if (input.equals(CONTENT_EXPRESSION)) {
 			temp = expression;
+		}
 
 		JSONArray ret = new JSONArray();
 
@@ -167,44 +153,50 @@ public class ExpressionDataCollection {
 			}
 		}
 
-		if (input.equals(CONTENT_SAMPLE))
+		if (input.equals(CONTENT_SAMPLE)) {
 			sample = ret;
-		else if (input.equals(CONTENT_EXPRESSION))
+		}
+		else if (input.equals(CONTENT_EXPRESSION)) {
 			expression = ret;
+		}
 	}
 
 	public void AddToCurrentSet(JSONArray b, String type) {
 		for (int i = 0; i < b.size(); i++) {
 			JSONObject c = (JSONObject) b.get(i);
-			if (type.equals(CONTENT_SAMPLE))
+			if (type.equals(CONTENT_SAMPLE)) {
 				this.sample.add(c);
-			else if (type.equals(CONTENT_EXPRESSION))
+			}
+			else if (type.equals(CONTENT_EXPRESSION)) {
 				this.expression.add(c);
+			}
 		}
 	}
 
 	public JSONArray append(JSONArray a, String input) {
 		JSONArray b = null;
 
-		if (input.equals(CONTENT_SAMPLE))
+		if (input.equals(CONTENT_SAMPLE)) {
 			b = this.sample;
-		else if (input.equals(CONTENT_EXPRESSION))
+		}
+		else if (input.equals(CONTENT_EXPRESSION)) {
 			b = this.expression;
+		}
 
 		for (int i = 0; i < b.size(); i++) {
 			JSONObject c = (JSONObject) b.get(i);
 			a.add(c);
 		}
-
 		return a;
 	}
 
 	public JSONArray get(String type) {
-		if (type.equals(CONTENT_EXPRESSION))
+		if (type.equals(CONTENT_EXPRESSION)) {
 			return this.expression;
-		else if (type.equals(CONTENT_SAMPLE))
+		}
+		else if (type.equals(CONTENT_SAMPLE)) {
 			return this.sample;
+		}
 		return null;
 	}
-
 }

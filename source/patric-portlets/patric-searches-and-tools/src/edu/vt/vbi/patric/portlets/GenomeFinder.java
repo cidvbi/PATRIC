@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -143,6 +143,8 @@ public class GenomeFinder extends GenericPortlet {
 			String need = request.getParameter("need");
 
 			String facet = "", keyword = "", pk = "", state = "";
+			
+			boolean hl = false;
 
 			PortletSession sess = request.getPortletSession();
 
@@ -162,7 +164,7 @@ public class GenomeFinder extends GenericPortlet {
 
 				if (sess.getAttribute("key" + pk, PortletSession.APPLICATION_SCOPE) == null) {
 
-					System.out.print("1sequence");
+					//System.out.print("1sequence");
 
 					key.put("facet", facet);
 					key.put("keyword", keyword);
@@ -171,7 +173,7 @@ public class GenomeFinder extends GenericPortlet {
 
 				}
 				else {
-					System.out.print("2sequence");
+					//System.out.print("2sequence");
 
 					key = (ResultType) sess.getAttribute("key" + pk, PortletSession.APPLICATION_SCOPE);
 					key.put("facet", facet);
@@ -181,7 +183,7 @@ public class GenomeFinder extends GenericPortlet {
 
 				if (genomeId != null && !genomeId.equals("")) {
 
-					System.out.print("genomeId - " + genomeId);
+					//System.out.print("genomeId - " + genomeId);
 
 					key.put("keyword", solr.ConstructSequenceFinderKeyword(genomeId));
 
@@ -232,7 +234,7 @@ public class GenomeFinder extends GenericPortlet {
 						for (int i = 1; i < sorter.size(); i++) {
 							sort_field += "," + ((JSONObject) sorter.get(i)).get("property").toString();
 						}
-						System.out.println(sort_field);
+						//System.out.println(sort_field);
 					}
 					catch (ParseException e) {
 						e.printStackTrace();
@@ -282,10 +284,14 @@ public class GenomeFinder extends GenericPortlet {
 				pk = request.getParameter("pk");
 				keyword = request.getParameter("keyword");
 				facet = request.getParameter("facet");
-
+				
+				String highlight = request.getParameter("highlight");
+				
+				hl = Boolean.parseBoolean(highlight);				
+				
 				if (sess.getAttribute("key" + pk, PortletSession.APPLICATION_SCOPE) == null) {
 
-					System.out.print("1genome");
+					//System.out.print("1genome");
 
 					key.put("facet", facet);
 					key.put("keyword", keyword);
@@ -295,7 +301,7 @@ public class GenomeFinder extends GenericPortlet {
 				}
 				else {
 
-					System.out.print("2genome");
+					//System.out.print("2genome");
 
 					key = (ResultType) sess.getAttribute("key" + pk, PortletSession.APPLICATION_SCOPE);
 					key.put("facet", facet);
@@ -320,7 +326,7 @@ public class GenomeFinder extends GenericPortlet {
 						for (int i = 1; i < sorter.size(); i++) {
 							sort_field += "," + ((JSONObject) sorter.get(i)).get("property").toString();
 						}
-						System.out.println(sort_field);
+						//System.out.println(sort_field);
 					}
 					catch (ParseException e) {
 						e.printStackTrace();
@@ -334,7 +340,7 @@ public class GenomeFinder extends GenericPortlet {
 					}
 				}
 
-				JSONObject object = solr.getData(key, sort, facet, start, end, facet != null ? true : false, true,
+				JSONObject object = solr.getData(key, sort, facet, start, end, facet != null ? true : false, hl,
 						false);
 
 				JSONObject obj = (JSONObject) object.get("response");
@@ -405,7 +411,7 @@ public class GenomeFinder extends GenericPortlet {
 			}
 			else if (need.equals("tree_for_taxon")) {
 
-				long start_ms = System.currentTimeMillis();
+				//long start_ms = System.currentTimeMillis();
 				solr.setCurrentInstance("GenomeFinder");
 				pk = request.getParameter("pk");
 				facet = request.getParameter("facet");
@@ -413,8 +419,6 @@ public class GenomeFinder extends GenericPortlet {
 				state = request.getParameter("state");
 
 				if (sess.getAttribute("key" + pk, PortletSession.APPLICATION_SCOPE) == null) {
-
-					System.out.print("1tree");
 
 					key.put("facet", facet);
 					key.put("keyword", keyword);
@@ -425,15 +429,13 @@ public class GenomeFinder extends GenericPortlet {
 				}
 				else {
 
-					System.out.print("2tree");
-
 					key = (ResultType) sess.getAttribute("key" + pk, PortletSession.APPLICATION_SCOPE);
 					key.put("facet", facet);
 				}
 
 				HashMap<String, String> sort = null;
 
-				JSONObject object = solr.getData(key, sort, facet, 0, -1, true, true, false);
+				JSONObject object = solr.getData(key, sort, facet, 0, -1, true, false, false);
 
 				if (!key.containsKey("tree")) {
 
@@ -456,9 +458,9 @@ public class GenomeFinder extends GenericPortlet {
 				writer.write(jsonResult.get("results").toString());
 				writer.close();
 
-				long end_ms = System.currentTimeMillis();
+				//long end_ms = System.currentTimeMillis();
 
-				System.out.print("time passed " + (end_ms - start_ms));
+				//System.out.print("time passed " + (end_ms - start_ms));
 
 			}
 			else if (need.equals("from_genome")) {

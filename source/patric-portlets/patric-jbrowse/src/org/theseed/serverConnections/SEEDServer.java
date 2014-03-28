@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -102,8 +102,7 @@ public class SEEDServer implements Server {
 			}
 			else {
 				System.err.println("Sorry dude. The server at " + this.getUrl() + " did not understand " + method);
-				System.err.println("The server's response was :" + connection.getResponseCode() + " which means "
-						+ connection.getResponseMessage());
+				System.err.println("The server's response was :" + connection.getResponseCode() + " which means " + connection.getResponseMessage());
 				System.err.println("We wrote these options to the server: ");
 				System.err.println("function=" + method + "\n" + "&source=" + source + "\n" + "&email=" + email);
 				System.err.println("&encoding=" + encoding);
@@ -123,8 +122,8 @@ public class SEEDServer implements Server {
 	}
 
 	/**
-	 * Getter/Setter methods for the variables, url (the server URL), method (the function that is to be called),
-	 * encoding (json or yaml) and data (the key/value pairs of any data to be sent to the server.
+	 * Getter/Setter methods for the variables, url (the server URL), method (the function that is to be called), encoding (json or yaml) and data
+	 * (the key/value pairs of any data to be sent to the server.
 	 * 
 	 * You have to set the URL and the method before you can make a valid call!
 	 * 
@@ -214,8 +213,8 @@ public class SEEDServer implements Server {
 	}
 
 	/**
-	 * The password for your username. PLEASE NOTE: right now this is sent as cleartext!! Also, right now we don't use
-	 * usernames/passwords for very much (anything?)
+	 * The password for your username. PLEASE NOTE: right now this is sent as cleartext!! Also, right now we don't use usernames/passwords for very
+	 * much (anything?)
 	 * @param password the password to set
 	 */
 	public void setPassword(String password) {
@@ -238,8 +237,7 @@ public class SEEDServer implements Server {
 	}
 
 	/**
-	 * Reset the server connection. This resets the method and arguments passed to the server, but does not affect the
-	 * URL, email, or Source strings.
+	 * Reset the server connection. This resets the method and arguments passed to the server, but does not affect the URL, email, or Source strings.
 	 */
 	public void reset() {
 		data = new HashMap<String, Object>();

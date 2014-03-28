@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -34,7 +34,8 @@ public class ExpressionDataGene {
 	String na_feature_id = null;
 
 	public ExpressionDataGene(JSONObject data) {
-		this.refseq_locus_tag = (data.get("refseq_locus_tag") != null)?data.get("refseq_locus_tag").toString():data.get("exp_locus_tag").toString();
+		this.refseq_locus_tag = (data.get("refseq_locus_tag") != null) ? data.get("refseq_locus_tag").toString() : data.get("exp_locus_tag")
+				.toString();
 		this.na_feature_id = data.get("na_feature_id").toString();
 	}
 
@@ -48,16 +49,17 @@ public class ExpressionDataGene {
 		}
 		if (gene_data.get("log_ratio") != null) {
 			log_ratio = gene_data.get("log_ratio").toString();
-		}else{
-			//System.out.println(gene_data.get("na_feature_id"));
 		}
-		
+		else {
+			// System.out.println(gene_data.get("na_feature_id"));
+		}
+
 		if (!this.IsSamplePushed(sample)) {
 			JSONObject a = new JSONObject();
-			//a.put("id", sample);
+			// a.put("id", sample);
 			a.put("log_ratio", log_ratio);
 			a.put("z_score", z_score);
-			//a.put("description", sample_data.get(sample));
+			// a.put("description", sample_data.get(sample));
 
 			this.samples.put(sample, a);
 
@@ -94,11 +96,12 @@ public class ExpressionDataGene {
 					break;
 				}
 			}
-			if (flag)
+			if (flag) {
 				binary_order += "1";
-			else
+			}
+			else {
 				binary_order += "0";
-
+			}
 		}
 		this.sample_order_binary = binary_order;
 	}
@@ -112,16 +115,11 @@ public class ExpressionDataGene {
 			}
 		}
 		return count;
-
 	}
 
 	public String getRefSeqLocusTag() {
 		return this.refseq_locus_tag;
 	}
-
-	/*
-	 * public String getPatricLocusTag(){ return this.patric_locus_tag; }
-	 */
 
 	public String getNAFeatureID() {
 		return this.na_feature_id;
@@ -134,5 +132,4 @@ public class ExpressionDataGene {
 	public String getSampleBinary() {
 		return this.sample_order_binary;
 	}
-
 }

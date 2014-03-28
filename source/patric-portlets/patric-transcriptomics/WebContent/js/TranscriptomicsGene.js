@@ -1,13 +1,13 @@
 var rows = [], cols = [], giMax;
 
-function TranscriptomicsGeneStateObject(windowID, serveResource, getContextPath, cType, cId) {
+function TranscriptomicsGeneStateObject(windowID, serveResource, getContextPath, cType, cId, keyword) {
 	// save initial values
-	this.windowID = windowID, this.serveURL = serveResource, this.contextPath = getContextPath, this.cType = cType, this.cId = cId, this.duration = defaultDuration, this.expId = '', this.sampleId = '', this.colId = '', this.colsampleId = '', this.sampleFilter = '', this.samplePIds = [], this.filterOffset = 0, this.regex = '', this.regexGN = '', this.significantGenes = 'Y', this.upFold = 0, this.downFold = 0, this.upZscore = 0, this.downZscore = 0, this.ClusterRowOrder = [], this.ClusterColumnOrder = [], this.heatmapState = null, this.heatmapAxis = 'Transpose', this.colorScheme = 'rgb', this.messageWindow = null, this.clusterWindow = null;
+	this.windowID = windowID, this.serveURL = serveResource, this.contextPath = getContextPath, this.cType = cType, this.cId = cId, this.keyword = keyword, this.duration = defaultDuration, this.expId = '', this.sampleId = '', this.colId = '', this.colsampleId = '', this.sampleFilter = '', this.samplePIds = [], this.filterOffset = 0, this.regex = '', this.regexGN = '', this.significantGenes = 'Y', this.upFold = 0, this.downFold = 0, this.upZscore = 0, this.downZscore = 0, this.ClusterRowOrder = [], this.ClusterColumnOrder = [], this.heatmapState = null, this.heatmapAxis = 'Transpose', this.colorScheme = 'rgb', this.messageWindow = null, this.clusterWindow = null;
 }
 
-function TranscriptomicsGeneOnReady(windowID, resourceURL, contextPath, cType, cId, sampleId, expId, colId, log_ratio, zscore) {
+function TranscriptomicsGeneOnReady(windowID, resourceURL, contextPath, cType, cId, sampleId, expId, colId, log_ratio, zscore, keyword) {
 	addWindowID(windowID);
-	var stateObject = new TranscriptomicsGeneStateObject(windowID, resourceURL, contextPath, cType, cId);
+	var stateObject = new TranscriptomicsGeneStateObject(windowID, resourceURL, contextPath, cType, cId, keyword);
 	loadStateObject(windowID, stateObject);
 	idForHeatmap = windowID;
 	scanURL(stateObject, sampleId, expId, colId, log_ratio, zscore);
@@ -19,7 +19,7 @@ function TranscriptomicsGeneOnReady(windowID, resourceURL, contextPath, cType, c
 
 function createMainPanel(windowID, stateObject) {"use strict";
 
-	var leftHtml = "<div style=\"font-weight:bold;\"id=\"exp_sample_count_div\"></div><div id='" + windowID + "_4sample_grid'></div>" + "<div style=\"padding: 10px;\"><div style=\"float: left;\" id='gnchange'></div></br>" + "<div style='padding-top: 25px;'>Filter by one or more keywords or locus tags <br />" + "<FORM NAME='" + windowID + "_regexForm'" + "ONSUBMIT=\"haveFilterClick('" + windowID + "'); return false;\">" + "<div style=\"width: 98%; padding-top:10px;\" id=\"textbox_div\"></div>" + "<span class=\"hint\" style=\"color:black\">e.g. VBIEscCol129921_0001, Transcription factor</span>" + "</FORM></div>" + "<div style=\"padding-top: 15px;\"><div style=\"float: left;padding-top: 4px;\"></div><div style=\"float: left;\" id='foldchange'></div></div>" + "<div style=\"padding-top: 30px;\"><div style=\"float: left;padding-top: 4px;\"></div><div style=\"float: left;\" id='zscore'></div></div>" + "<br/><div style=\"padding-top:15px; float:right;\"><input type='button' class='button' style='padding: 2px 8px;' value='Filter' onclick=\"haveFilterClick('" + windowID + "');\"/></div>";
+	var leftHtml = "<div style=\"font-weight:bold;\"id=\"exp_sample_count_div\"></div><div id='" + windowID + "_4sample_grid'></div>" + "<div style=\"padding: 10px;\"><div style=\"float: left;\" id='gnchange'></div></br>" + "<div style='padding-top: 25px;'><label for=\"tb-inputEl\">Filter by one or more keywords or locus tags</label> <br />" + "<FORM NAME='" + windowID + "_regexForm'" + "ONSUBMIT=\"haveFilterClick('" + windowID + "'); return false;\">" + "<div style=\"width: 98%; padding-top:10px;\" id=\"textbox_div\"></div>" + "<span class=\"hint\" style=\"color:black\">e.g. VBIEscCol129921_0001, Transcription factor</span>" + "</FORM></div>" + "<div style=\"padding-top: 15px;\"><div style=\"float: left;padding-top: 4px;\"></div><div style=\"float: left;\" id='foldchange'></div></div>" + "<div style=\"padding-top: 30px;\"><div style=\"float: left;padding-top: 4px;\"></div><div style=\"float: left;\" id='zscore'></div></div>" + "<br/><div style=\"padding-top:15px; float:right;\"><input type='button' class='button' style='padding: 2px 8px;' value='Filter' onclick=\"haveFilterClick('" + windowID + "');\"/></div>";
 
 	Ext.getDom("information_panel").innerHTML = "<p> The gene list below provides details about gene regulation across a given set of experiments and comparisons. The gene list can be filtered based on regulation within each comparison as well as by locus tag and keyword. To learn more, see our " + "<a href='http://enews.patricbrc.org/faqs/'>Transcriptomics Gene List FAQs.</a></p>";
 
@@ -450,7 +450,8 @@ function loadTables(windowID) {"use strict";
 			expId : stateObject.expId,
 			colId : stateObject.colId,
 			colsampleId : stateObject.colsampleId,
-			windowID : windowID
+			windowID : windowID,
+			keyword: stateObject.keyword?stateObject.keyword:""
 		},
 		success : function(rs) {
 			decoded = Ext.JSON.decode(rs.responseText);
@@ -465,9 +466,12 @@ function loadTables(windowID) {"use strict";
 
 			Ext.getDom("exp_sample_count_div").innerHTML = infotext;
 			Ext.getStore('ds_sample').loadData(decoded.sample);
-
 			ids = Ext.getStore('ds_sample').data.items[0].id.split("-");
 			stateObject.filterOffset = ids[ids.length - 1];
+			
+			if(decoded.sample.length > 500){
+				Ext.getDom(windowID + "_4sample_grid").innerHTML = "<br/><br/><div>Our current resources cannot handle more than 500 comparisons.<br/><br/><br/></div>";
+			}
 
 			if (samplecount <= 5)
 				sample_grid.setHeight(170);
@@ -1091,7 +1095,16 @@ function TranscriptomicsSamplePresent(nextRow, index, windowID) {"use strict";
 
 function TranscriptomicsAdvancedFilter(nextRow, windowID) {"use strict";
 
-	var stateObject = getStateObject(windowID), nlocus_tag = nextRow.locus_tag.toLowerCase(), nelocus_tag = nextRow.refseq_locus_tag.toLowerCase(), patric_product = nextRow.patric_product.toLowerCase(), gene_sym = nextRow.gene?nextRow.gene.toLowerCase():"", genome_name = nextRow.genome_name.toLowerCase(), regex = stateObject.regex && stateObject.regex.toLowerCase().replace(/,/g, "~").replace(/\n/g, "~").replace(/ /g, "~").split("~"), regexGN = stateObject.regexGN && stateObject.regexGN.split(" (")[0].toLowerCase(), regexState = false, i, rgxi;
+	var stateObject = getStateObject(windowID),
+	nlocus_tag = nextRow.locus_tag?nextRow.locus_tag.toLowerCase():"",
+	nelocus_tag = nextRow.refseq_locus_tag?nextRow.refseq_locus_tag.toLowerCase():"",
+	patric_product = nextRow.patric_product?nextRow.patric_product.toLowerCase():"",
+	gene_sym = nextRow.gene?nextRow.gene.toLowerCase():"",
+	genome_name = nextRow.genome_name?nextRow.genome_name.toLowerCase():"",
+	regex = stateObject.regex && stateObject.regex.toLowerCase().replace(/,/g, "~").replace(/\n/g, "~").replace(/ /g, "~").split("~"),
+	regexGN = stateObject.regexGN && stateObject.regexGN.split(" (")[0].toLowerCase(),
+	regexState = false,
+	i, rgxi;
 
 	if (!regex && !regexGN) {
 		return true;
@@ -1134,7 +1147,7 @@ function DownloadTable(windowID, fileType) {"use strict";
 		d = Pi[k].data;
 		tP += d.genome_name + "\t";
 		tP += d.locus_tag + "\t";
-		tP += d.refseq_locus_tag + "\t";
+		tP += d.exp_locus_tag + "\t";
 		tP += d.gene + "\t";
 		tP += d.patric_product + "\t";
 		tP += d.sample_size + "\t";
@@ -1733,7 +1746,7 @@ function UpRRenderer(value, metadata, record, rowIndex, colIndex, store){
 		id = ids[ids.length -1],
 		Page = $Page,
 		property = Page.getPageProperties();
-	return '<input type=\"radio\" id=\"'+property.name+'_sc1'+record.id+'\" onclick=\"haveSampleCareClick(\''+property.name+'\', \''+id+'\', \'1\')\"/>';
+	return '<input title=\"Up regulated\" type=\"radio\" id=\"'+property.name+'_sc1'+record.id+'\" onclick=\"haveSampleCareClick(\''+property.name+'\', \''+id+'\', \'1\')\"/>';
 }
 
 function DownRRenderer(value, metadata, record, rowIndex, colIndex, store){
@@ -1741,7 +1754,7 @@ function DownRRenderer(value, metadata, record, rowIndex, colIndex, store){
 		id = ids[ids.length -1],
 		Page = $Page,
 		property = Page.getPageProperties();
-	return '<input type=\"radio\" id=\"'+property.name+'_sc0'+record.id+'\" onclick=\"haveSampleCareClick(\''+property.name+'\', \''+id+'\', \'0\')\"/>';
+	return '<input title=\"Down regulated\" type=\"radio\" id=\"'+property.name+'_sc0'+record.id+'\" onclick=\"haveSampleCareClick(\''+property.name+'\', \''+id+'\', \'0\')\"/>';
 }
 
 function NcRenderer(value, metadata, record, rowIndex, colIndex, store){
@@ -1749,7 +1762,7 @@ function NcRenderer(value, metadata, record, rowIndex, colIndex, store){
 	 	id = ids[ids.length -1],
 		Page = $Page,
 		property = Page.getPageProperties();
-	return '<input type=\"radio\" id=\"'+property.name+'_sc_'+record.id+'\" checked onclick=\"haveSampleCareClick(\''+property.name+'\', \''+id+'\', \'_\')\"/>';
+	return '<input title=\"Up or down regulated\" type=\"radio\" id=\"'+property.name+'_sc_'+record.id+'\" checked onclick=\"haveSampleCareClick(\''+property.name+'\', \''+id+'\', \'_\')\"/>';
 }
 
 

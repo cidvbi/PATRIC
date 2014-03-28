@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -42,8 +42,7 @@ public class PubMedPanel extends GenericPortlet {
 	 * @see javax.portlet.GenericPortlet#doView(javax.portlet.RenderRequest, javax.portlet.RenderResponse)
 	 */
 	@Override
-	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException,
-			UnavailableException {
+	protected void doView(RenderRequest request, RenderResponse response) throws PortletException, IOException, UnavailableException {
 		response.setContentType("text/html");
 
 		String cId = request.getParameter("context_id");
@@ -109,18 +108,16 @@ public class PubMedPanel extends GenericPortlet {
 
 		try {
 			String strPubmedQuery = PubMedHelper.getPubmedQueryString(key);
-			System.out.println("pubmedQuery: " + strPubmedQuery);
+			// System.out.println("pubmedQuery: " + strPubmedQuery);
 
 			EutilInterface eutil_api = new EutilInterface();
 
 			JSONObject jsonResult = new JSONObject();
 			if (db != null && db.equals("pmc")) {
-				jsonResult = eutil_api.getResults("pmc", strPubmedQuery, "&sort=pub+date",
-						"&sort=pub+date&retmode=xml", 0, 5);
+				jsonResult = eutil_api.getResults("pmc", strPubmedQuery, "&sort=pub+date", "&sort=pub+date&retmode=xml", 0, 5);
 			}
 			else {
-				jsonResult = eutil_api.getResults("pubmed", strPubmedQuery, "&sort=pub+date",
-						"&sort=pub+date&retmode=xml", 0, 5);
+				jsonResult = eutil_api.getResults("pubmed", strPubmedQuery, "&sort=pub+date", "&sort=pub+date&retmode=xml", 0, 5);
 			}
 
 			JSONArray results = (JSONArray) jsonResult.get("results");
@@ -135,8 +132,8 @@ public class PubMedPanel extends GenericPortlet {
 					sb.append("<div>" + row.get("PubDate") + "</div>");
 				}
 				if (row.containsKey("pubmed_id") == true && !row.get("pubmed_id").equals("")) {
-					sb.append("<div><a href=\"http://view.ncbi.nlm.nih.gov/pubmed/" + row.get("pubmed_id")
-							+ "\" target=\"_blank\">" + row.get("Title") + "</a></div>");
+					sb.append("<div><a href=\"http://view.ncbi.nlm.nih.gov/pubmed/" + row.get("pubmed_id") + "\" target=\"_blank\">"
+							+ row.get("Title") + "</a></div>");
 				}
 				else {
 					sb.append("<div>" + row.get("Title") + "</div>");
@@ -150,15 +147,12 @@ public class PubMedPanel extends GenericPortlet {
 				// sb.append("<div> No pubmed record is available.</div>");
 				sb.append("<div class=\"far\"> No pubmed record is available.</div>");
 				sb.append("<div> Please try ");
-				sb.append(" <a href=\"http://www.ncbi.nlm.nih.gov/pmc/?term=" + strPubmedQuery
-						+ "\" target=_blank>PMC</a>");
-				sb.append(" or <a href=\"http://scholar.google.com/scholar?q=" + strPubmedQuery
-						+ "\" target=_blank>Google Scholar</a>");
+				sb.append(" <a href=\"http://www.ncbi.nlm.nih.gov/pmc/?term=" + strPubmedQuery + "\" target=_blank>PMC</a>");
+				sb.append(" or <a href=\"http://scholar.google.com/scholar?q=" + strPubmedQuery + "\" target=_blank>Google Scholar</a>");
 				sb.append("</div>");
 			}
 			else {
-				sb.append("<div class=\"left\"><a class=\"double-arrow-link\" href=\"Literature?" + contextLink
-						+ "\">more</a></div>");
+				sb.append("<div class=\"left\"><a class=\"double-arrow-link\" href=\"Literature?" + contextLink + "\">more</a></div>");
 			}
 			sb.append("</ul>");
 

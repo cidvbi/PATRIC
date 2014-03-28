@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2013 Virginia Polytechnic Institute and State University
+ * Copyright 2014 Virginia Polytechnic Institute and State University
  * 
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -31,12 +31,11 @@ import org.theseed.json.JSONTokener;
 
 /**
  * @author Rob Edwards
- * @version 0.1 The SeverConnectJson class uses JSON, the <a href="http://www.json.org">Javascript Object Notation</a>
- * to transmit data to and from the server. This is another lightweight markup language similar to YAML (used by the
- * original ServerConnect class). However, JSON is tightly integrated into Javascript, and so is receiving wide support.
+ * @version 0.1 The SeverConnectJson class uses JSON, the <a href="http://www.json.org">Javascript Object Notation</a> to transmit data to and from
+ * the server. This is another lightweight markup language similar to YAML (used by the original ServerConnect class). However, JSON is tightly
+ * integrated into Javascript, and so is receiving wide support.
  * 
- * To use this class, you will also need to download the JSON classes from <a href="http://www.json.org/java/">JSON
- * Java</a>
+ * To use this class, you will also need to download the JSON classes from <a href="http://www.json.org/java/">JSON Java</a>
  */
 
 public class ServerConnectJson extends SEEDServer implements ServerConnection {
@@ -94,8 +93,8 @@ public class ServerConnectJson extends SEEDServer implements ServerConnection {
 	}
 
 	/**
-	 * This method is provided as a convenience. If you have a call that simply returns an array, then use this and it
-	 * will return the items as an array of strings.
+	 * This method is provided as a convenience. If you have a call that simply returns an array, then use this and it will return the items as an
+	 * array of strings.
 	 * 
 	 * @return the results as a simple String[] array
 	 */
@@ -159,8 +158,8 @@ public class ServerConnectJson extends SEEDServer implements ServerConnection {
 	}
 
 	/**
-	 * Return the results as a HashMap<String, ArrayList<String>>. This is probably the most common method for getting
-	 * the results back from the server
+	 * Return the results as a HashMap<String, ArrayList<String>>. This is probably the most common method for getting the results back from the
+	 * server
 	 * 
 	 * @return the results from the server.
 	 */

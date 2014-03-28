@@ -476,7 +476,7 @@ Ext.onReady(function(){
 					refreshHeatmap("RefSeq"); 
 				} 
 			}]
-		},{
+		}, {xtype: 'tbspacer', width: 30}, {
 			text : "Flip Axis",
 			handler : function() {
 				if(axis == "Transpose"){
@@ -706,7 +706,7 @@ function refreshHeatmap(that){
 	if(algo != that){
 		panel.getDockedItems()[1].items.items[1].btnEl.dom.childNodes[0].childNodes[0].innerHTML = that;
 		Ext.getDom("algorithm").value = getAlgorithm(that, true),
-		Ext.getCmp('heatmap-panel').getDockedItems()[1].items.items[3].el.dom.innerHTML = 'Total # of Genomes : <b>'+Ext.getDom("taxongenomecount_"+getAlgorithm(that).toLowerCase()).value+'</b>';
+		Ext.getCmp('heatmap-panel').getDockedItems()[1].items.items[5].el.dom.innerHTML = 'Total # of Genomes : <b>'+Ext.getDom("taxongenomecount_"+getAlgorithm(that).toLowerCase()).value+'</b>';
 		loadGrid("refresh");
 	}
 	

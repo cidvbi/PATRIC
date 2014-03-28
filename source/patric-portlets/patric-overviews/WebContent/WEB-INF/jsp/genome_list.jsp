@@ -18,29 +18,22 @@
 		status = "";
 	if (algorithm == null)
 		algorithm = "";
-	DBSearch db_search = new DBSearch();	
+	DBSearch db_search = new DBSearch();
 	
 	String keyword = "(*)";
 	String gid = "NA";	
-	if(cId.equals("2") && algorithm.equals("")){
-		
+	if(cId.equals("2") && (algorithm != null && algorithm.equals(""))){
 		keyword= "(*)";
 		gid = "";
-		
-	}else{
-				
+	} else {
 		ArrayList<ResultType> items = db_search.getTaxonIdList(cId, cType, "", "", "");
 
 		if(items.size() > 0){
-		
 			gid = items.get(0).get("id");
-		
 			for (int i = 1; i < items.size(); i++) {
 				gid += "##" + items.get(i).get("id");
 			}
-			
 		}
-		
 	}
 
 %>
@@ -82,7 +75,7 @@
 <script type="text/javascript" src="/patric-common/js/grid/toolbar.js"></script>
 <script type="text/javascript" src="/patric-common/js/grid/gridoptions.js"></script>
 <script type="text/javascript" src="/patric-common/js/grid/PATRICSelectionModel.js"></script>
-<script type="text/javascript" src="/patric-common/js/grid/PATRICGrid.js"></script>    
+<script type="text/javascript" src="/patric-common/js/grid/PATRICGrid.js"></script>
 <script type="text/javascript" src="/patric-common/js/grid/table_checkboxes.js"></script>
 <script type="text/javascript" src="/patric-common/js/grid/loadgrid.js"></script>
 <script type="text/javascript" src="/patric/js/vbi/AddToWorkspace.min.js"></script>
@@ -107,9 +100,9 @@ Ext.onReady(function () {
 		cartType: '',
 		scm: [[checkbox,
 			{header:'Organism Name',		dataIndex:'genome_name',		flex:2, renderer:renderGenomeName}, 
-			{header:'NCBI Taxon Id',	dataIndex:'ncbi_tax_id',		flex:1, hidden:true, align:'right'},
+			{header:'NCBI Taxon ID',		dataIndex:'ncbi_tax_id',		flex:1, hidden:true, align:'right'},
 			{header:'Genome Status',		dataIndex:'genome_status',		flex:1, align:'center'}, 
-			{header:'Genome Browser',		dataIndex:'genome_browser', 	flex:1,	align:'center', hidden:true, sortable:false, renderer:renderGenomeBrowserByGenome},
+			{header:'Genome Browser',		dataIndex:'genome_browser', 	flex:1,	align:'center', sortable:false, renderer:renderGenomeBrowserByGenome},
 			{header:'Size',					dataIndex:'genome_length',		flex:1, align:'right',  hidden:true},
 			{header:'Chromosome',			dataIndex:'chromosomes',		flex:1, align:'center', hidden:true},
 			{header:'Plasmids',				dataIndex:'plasmids',			flex:1, align:'center', hidden:true},
@@ -118,13 +111,13 @@ Ext.onReady(function () {
 			{header:'PATRIC CDS',			dataIndex:'rast_cds',			flex:1, align:'center', renderer:renderCDS_Count_RAST},
 			{header:'Legacy BRC CDS',		dataIndex:'brc_cds',			flex:1, align:'center', hidden:true, renderer:renderCDS_Count_BRC},
 			{header:'RefSeq CDS',			dataIndex:'refseq_cds',			flex:1, align:'center', hidden:true, renderer:renderCDS_Count_RefSeq},
-			{header:'Isolation Country',	dataIndex:'isolation_country', 	flex:1, align:'center'}, 
-			{header:'Host Name',			dataIndex:'host_name',			flex:1, align:'center'}, 
-			{header:'Disease', 				dataIndex:'disease',			flex:1, align:'center'}, 
+			{header:'Isolation Country',	dataIndex:'isolation_country', 	flex:1, align:'center'},
+			{header:'Host Name',			dataIndex:'host_name',			flex:1, align:'center'},
+			{header:'Disease', 				dataIndex:'disease',			flex:1, align:'center'},
 			{header:'Collection Date', 		dataIndex:'collection_date', 	flex:1, align:'center'},
 			{header:'Completion Date', 		dataIndex:'completion_date', 	flex:1, align:'center', renderer:renderCompletionDate},
 			{header:'MLST', 				dataIndex:'mlst', 				flex:1, align:'center', renderer:BasicRenderer, hidden:true},
-			{header:'Strain',				dataIndex:'strain', 			flex:1, align:'center', hidden:true},      
+			{header:'Strain',				dataIndex:'strain', 			flex:1, align:'center', hidden:true},
 			{header:'Serovar',				dataIndex:'serovar',			flex:1, align:'center', hidden:true},
 			{header:'Biovar',				dataIndex:'biovar',				flex:1, align:'center', hidden:true},
 			{header:'Pathovar',				dataIndex:'pathovar',			flex:1, align:'center', hidden:true},
@@ -134,9 +127,9 @@ Ext.onReady(function () {
 			{header:'Availability', 		dataIndex:'availability', 		flex:1, align:'center', hidden:true},
 			{header:'Sequencing Center',	dataIndex:'sequencing_centers', flex:1, align:'center', hidden:true},
 			{header:'Publication', 			dataIndex:'publication',		flex:1, align:'center', hidden:true},
-			{header:'NCBI Project Id', 		dataIndex:'ncbi_project_id',	flex:1, align:'center', hidden:true},
-			{header:'RefSeq Project Id',	dataIndex:'refseq_project_id',	flex:1, align:'center', hidden:true},
-			{header:'Genbank Accessions',	dataIndex:'genbank_accessions',	flex:1, align:'center', hidden:true},
+			{header:'NCBI Project ID', 		dataIndex:'ncbi_project_id',	flex:1, align:'center', hidden:true},
+			{header:'RefSeq Project ID',	dataIndex:'refseq_project_id',	flex:1, align:'center', hidden:true},
+			{header:'GenBank Accessions',	dataIndex:'genbank_accessions',	flex:1, align:'center', hidden:true},
 			{header:'RefSeq Accessions',	dataIndex:'refseq_accessions',	flex:1, align:'center', hidden:true},
 			{header:'Sequencing Platform',	dataIndex:'sequencing_platform',flex:1, align:'center', hidden:true},
 			{header:'Sequencing Depth',		dataIndex:'sequencing_depth',	flex:1, align:'center', hidden:true},
@@ -168,7 +161,7 @@ Ext.onReady(function () {
 			[checkbox,
 			{text:"Genome Name",		dataIndex:'genome_name', 		flex:3, renderer:renderGenomeName},
 			{text:"Accession",			dataIndex:'accession',			flex:1, renderer:renderAccession},
-			{text:"Genome Browser",		dataIndex:'genome_browser', 	flex:1, align:'center', sortable:false, renderer:renderGenomeBrowserBySequence},
+			{text:"Genome Browser",		dataIndex:'sid',				flex:1, align:'center', sortable:false, renderer:renderGenomeBrowserBySequence},
 			{text:"Length (bp)",		dataIndex:'length', 			flex:1, align:'right', renderer:BasicRenderer},
 			{text:"Sequence Type",		dataIndex:'sequence_type',		flex:1, align:'center', renderer:BasicRenderer},
 			{text:"GC Content (%)",		dataIndex:'gc_content',			flex:1, align:'center', renderer:BasicRenderer},
@@ -192,7 +185,7 @@ Ext.onReady(function () {
 			cwG: false,
 			gId: "",
 			gName: "",
-			kW:"<%=kw%>"
+			kW:'<%=kw%>'
 		},
 		remoteSort:true,
 		model:["Genome", "Sequence"],
@@ -208,7 +201,7 @@ Ext.onReady(function () {
 		maxPageSize: 500
 	};
 	
-	if('<%=gid%>' == 'NA'){		
+	if('<%=gid%>' == 'NA'){
 		Ext.getDom("grid_result_summary").innerHTML = "<b>No genomes found.</b>";
 	}else{
 		
@@ -249,7 +242,6 @@ Ext.onReady(function () {
 		if (Ext.get("tabs_genomelist"))
 			Ext.get("tabs_genomelist").addCls("sel");
 	}
-	
 });
 
 function getOriginalKeyword(hash){
