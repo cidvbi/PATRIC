@@ -6,7 +6,7 @@ Ext.define('VBI.Workspace.model.ExpressionExperiment', {
 		'expid', 'genes', 'institution', 'mutant', 'organism',
 		'pi', {name:'platforms', type:'int'}, 'pmid', 'release_date', {name:'samples', type:'int'},
 		'strain', 'timeseries', 'title',
-		'source', 'origFileName', 'desc', 'cdate', 'mdate'
+		'source', 'origFileName', 'desc', 'cdate', 'mdate', 'data_type'
 	]
 });
 Ext.define('VBI.Workspace.model.ExpressionSample', {
@@ -162,6 +162,7 @@ Ext.define('VBI.Workspace.view.columns.ExpressionExperiment', {
 	},
 	items: [
 		{text:'Source',			itemId:'Experiment_source',		dataIndex:'source',		flex:1, align:'left'}, 
+		{text:'Data Type',		itemId:'Experiment_datatype',	dataIndex:'data_type',	flex:1, align:'left'},
 		{text:'Title',			itemId:'Experiment_title',		dataIndex:'title',		flex:4, align:'left', renderer:renderExperimentTitle}, 
 		{text:'Comparisons',	itemId:'Experiment_samples',	dataIndex:'samples',	flex:1},
 		{text:'Genes',			itemId:'Experiment_genes',		dataIndex:'genes',		flex:1, renderer:renderGeneCount}, 
@@ -525,8 +526,16 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionSample', {
 		align: 'stretch'
 	},
 	items: [{
+			xtype: 'button',
+			scale: 'small',
+			iconAlign: 'left',
+			text: '<< Experiment list',
+			handler: function(btn, e) {
+				this.fireEvent('viewExpList');
+			}
+		}, {
 			xtype: 'tbspacer',
-			width: 220
+			width: 112
 		}, {
 			title: 'View',
 			xtype: 'buttongroup',
@@ -551,14 +560,6 @@ Ext.define('VBI.Workspace.view.toolbar.ExpressionSample', {
 						//console.log(param);
 						this.fireEvent('runGeneList', param);
 					}
-				}
-			}, {
-				xtype: 'button',
-				scale: 'small',
-				iconAlign: 'left',
-				text: 'Experiment list',
-				handler: function(btn, e) {
-					this.fireEvent('viewExpList');
 				}
 			}]
 		}, {
@@ -991,9 +992,9 @@ Ext.define('VBI.Workspace.view.Toolbar.buttongroup.Help', {
 	alias: 'widget.tbar_btngrp_help',
 	title: 'Help',
 	items: [{
-		scale: 'large',
-		text: 'FAQs',
-		icon: '/patric/images/toolbar_faq.png',
+		scale: 'small',
+		text: 'PATRIC FAQs',
+		icon: '/patric/images/toolbar_faq_small.png',
 		handler: function() {
 			window.open("http://enews.patricbrc.org/faqs/", "_new", "menubar=1,resizable=1,scrollbars=1, fullscreen=1, toolbar=1,titlebar=1,status=1");
 		}

@@ -1,4 +1,5 @@
 Ext.BLANK_IMAGE_URL = 'http://cdn.sencha.io/ext-4.1.1-gpl/resources/themes/images/default/tree/s.gif';
+Ext.Ajax.timeout = 300000;
 
 /* = Get Abstract w/ ajax and toggle layer 
 -------------------------------------------------*/
@@ -109,6 +110,31 @@ function EncodeKeyword(data) {
 function DecodeKeyword(data) {
         return data.replace(/%22/g, "\"").replace(/%2F/g, "/").replace(/%27/g, "'").trim().replace(/\\:/g, ":").replace(/\\\(/g, "(").replace(/\\\)/g, ")").replace(/\\\[/g, "[").replace(/\\\]/g, "]").replace(/\\\{/g, "{").replace(/\\\}/g, "}");
 };
+
+ConvertNewlineforSolrQuery = function(str) {
+    if (str.search(/(\r\n|\r|\n)/gm) > 0) {
+        var newStr = "";
+        var pos = 0, isFirst = true;
+        do {
+            pos = str.search(/(\r\n|\r|\n)/gm);
+            if (isFirst == false) {
+                newStr += " OR ";
+            }
+            if (pos > 0) {
+				newStr += "(" + str.substr(0, pos) + ")";
+			} else {
+				newStr += "(" + str + ")";
+			}
+			str = str.substr(pos+1,str.length);
+			isFirst = false;
+        } while (pos > 0)
+		return newStr;
+    }
+    else {
+        return str;
+    }
+}
+
 
 /** end of global search **/
 

@@ -3,24 +3,28 @@
 var scrollToInit = function() {
 	$('.scrollTo').click(function(event) {
 		event.preventDefault();
-		$.scrollTo(".data-tab[id='" + $(this).data('tab-target') + "']", 800, {
-			// need to conditionally set offset here
-			// because of sticky bar
-			offset: -50
+		var tabId = $(this).data('tab-target');
+		
+		$.scrollTo(".data-tab[id='" + tabId + "']", 800, {
+			onAfter: function() {
+				if (tabId == 'tab1') {
+					$.scrollTo(".data-tab[id='tab1']", 800, {offset:-120});
+				} else {
+					$.scrollTo(".data-tab[id='" + tabId + "']", 800, {offset:-50});
+				}
+			}
 		});
-
-		// $('.scrollTo').removeClass('active');
-		// $(this).addClass('active');
 	});
 };
 
 var waypointInit = function() {
-	$('.data-tab').waypoint(function() {
-		// alert($(this).attr('id'));
+	$('.data-tab').waypoint(function(direction) {
+		var tabId = $(this).attr('id');
 		$('.scrollTo').removeClass('active');
-		$(".scrollTo[data-tab-target='" + $(this).attr('id') + "']").addClass('active');
+		$(".scrollTo[data-tab-target='" + tabId + "']").addClass('active');
+		$.waypoints('refresh');
 	}, {
-		offset: 'bottom-in-view'
+		offset: 50
 	});
 };
 
@@ -29,19 +33,15 @@ var waypointInit = function() {
  * sticky toolbars - bar sticks to top after user has scrolled past it
  */
 var stickyRelocate = function() {
-
 	if ($('#sticky-anchor').length) {
+		var window_top = $(window).scrollTop();
+		var div_top = $('#sticky-anchor').offset().top;
 
-	var window_top = $(window).scrollTop();
-	var div_top = $('#sticky-anchor').offset().top;
-
-	if (window_top > div_top)
-		$('.sticky').addClass('active')
-	else
-		$('.sticky').removeClass('active');
-	
+		if (window_top > div_top)
+			$('.sticky').addClass('active')
+		else
+			$('.sticky').removeClass('active');
 	}
-
 };
 
 $(function() {

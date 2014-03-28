@@ -48,7 +48,7 @@ Ext.define('VBI.Structure.LigandsPanel', {
 		listeners: {
 			scope: this,
 			itemclick: function (grd, record, item, index, e, eOpts) {
-				document.appMain.script(getJmolDecoration("ligand", record.getId()));
+				document.getElementById('appMain').script(getJmolDecoration("ligand", record.getId()));
 				Ext.getCmp('structure_detail_panel').update("ligand", record.data);
 				resetApperanceControls(false);
 			}
@@ -63,7 +63,7 @@ Ext.define('VBI.Structure.LigandsPanel', {
 				if (t==null) {
 					alert("Please select a ligand to display first.");
 				} else {
-					document.appMain.script(getJmolDecoration("pocket", t.getId()));
+					document.getElementById('appMain').script(getJmolDecoration("pocket", t.getId()));
 					resetApperanceControls(false);
 				}
 			}
@@ -103,7 +103,7 @@ Ext.define('VBI.Structure.ChainPanel', {
 		listeners: {
 			scope: this,
 			itemclick: function (grd, record, item, index, e, eOpts) {
-				document.appMain.script(getJmolDecoration("chain", record.getId() ));
+				document.getElementById('appMain').script(getJmolDecoration("chain", record.getId() ));
 				resetApperanceControls(false);
 			}
 		}
@@ -163,7 +163,7 @@ Ext.define('VBI.Structure.AnnotationPanel', {
 			itemclick: function (grd, record, item, index, e, eOpts) {
 				Ext.getCmp('structure_detail_panel').update("annotation", record.data);
 				domain = record.get("START")+"-"+record.get("END")+":"+Ext.getCmp("annotation_chain").getValue();
-				document.appMain.script(getJmolDecoration("domain", domain));
+				document.getElementById('appMain').script(getJmolDecoration("domain", domain));
 				resetApperanceControls(false);
 				
 			}

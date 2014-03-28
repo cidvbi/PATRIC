@@ -1,0 +1,477 @@
+.svgChartContainer {
+  display: block;
+}
+svg.definitions {
+  height: 1px;
+  width: 1px;
+  position: absolute;
+  left: -99999em;
+}
+svg.definitions #tile1 rect.function {
+  fill: #cfdde6;
+}
+svg.definitions #tile1 line.function {
+  stroke: #c0ced8;
+  stroke-width: 1px;
+}
+
+.chart {
+  height: 272px;
+  width: 100%;}
+
+.data-tooltip {
+  background-color: #dae1e6;
+  border: 1px #aac0d0 solid;
+  color: #346a8f;
+  padding: 4px 2px;
+  position: absolute;
+  /* Make sure we don't add space to any container we add. */
+  line-height: 1.1;
+  text-align: center;
+  pointer-events: none; /* Don't get mouse events. */
+  font-size: 11px;
+  overflow: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* general chart style */
+.axis path {
+  stroke: #300;
+  stroke-width: 1px;
+  fill: none;
+  width: 1px;
+  shape-rendering: crispEdges;
+}
+.axis .tick {
+  stroke: #000;
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
+}
+.axis text {
+  font-size: 11px;
+}
+
+
+/* DLP Genomes */
+#dlp-genomes-genomeStatus .gsc_bar span {
+  display: block;
+  padding-left: 8px;
+  color: #fff;
+  text-shadow: 2px 2px 5px #000000;
+  font-size: 12px;
+  font-weight: bold;
+}
+#dlp-genomes-genomeStatus .gsc_bar .value {
+  padding-top: 5px;
+}
+#dlp-genomes-genomeStatus .gsc_bar.gsc_shotgun_sequence {
+  background-color: blue;
+  background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iNTAlIiB4Mj0iMTAwJSIgeTI9IjUwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzZjOGQzZiIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2E1Yzk2MCIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+  background: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #6c8d3f), color-stop(100%, #a5c960));
+  background: -webkit-linear-gradient(left, #6c8d3f 0%, #a5c960 100%);
+  background: -moz-linear-gradient(left, #6c8d3f 0%, #a5c960 100%);
+  background: -o-linear-gradient(left, #6c8d3f 0%, #a5c960 100%);
+  background: linear-gradient(to right, #6c8d3f 0%, #a5c960 100%);
+}
+#dlp-genomes-genomeStatus .gsc_bar.gsc_shotgun_sequence .value {
+    font-size: 20px;
+}
+#dlp-genomes-genomeStatus .gsc_bar.gsc_complete {
+  background-color: orange;
+  background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iNTAlIiB4Mj0iMTAwJSIgeTI9IjUwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzkzYjVkMCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iI2NiZGNlOSIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+  background: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #93b5d0), color-stop(100%, #cbdce9));
+  background: -webkit-linear-gradient(left, #93b5d0 0%, #cbdce9 100%);
+  background: -moz-linear-gradient(right, #93b5d0 0%, #cbdce9 100%);
+  background: -o-linear-gradient(right, #93b5d0 0%, #cbdce9 100%);
+  background: linear-gradient(to right, #93b5d0 0%, #cbdce9 100%);
+}
+#dlp-genomes-genomeStatus .gsc_bar.gsc_plasmid {
+  background-color: green;
+  background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iNTAlIiB4Mj0iMTAwJSIgeTI9IjUwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iIzUwNzE4OCIvPjxzdG9wIG9mZnNldD0iMTAwJSIgc3RvcC1jb2xvcj0iIzdhYWNjNiIvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JhZCkiIC8+PC9zdmc+IA==');
+  background: -webkit-gradient(linear, 0% 50%, 100% 50%, color-stop(0%, #507188), color-stop(100%, #7aacc6));
+  background: -webkit-linear-gradient(left, #507188 0%, #7aacc6 100%);
+  background: -moz-linear-gradient(right, #507188 0%, #7aacc6 100%);
+  background: -o-linear-gradient(right, #507188 0%, #7aacc6 100%);
+  background: linear-gradient(to right, #507188 0%, #7aacc6 100%);
+}
+
+#dlp-genomes-numberGenomes path.line {
+  fill: none;
+  stroke-width: 1px;
+  stroke: #ccc;
+}
+#dlp-genomes-numberGenomes path.line.sequenced {
+  stroke: #627b47;
+  stroke-width: 3px;
+}
+#dlp-genomes-numberGenomes path.line.total {
+  stroke: #41647c;
+  stroke-width: 3px;
+}
+#dlp-genomes-numberGenomes .point-sequenced {
+  fill: #627b47;
+}
+#dlp-genomes-numberGenomes .point-total {
+  fill: #41647c;
+}
+#dlp-genomes-numberGenomes .axis .domain {
+  fill: none;
+  stroke-width: 0px;
+}
+#dlp-genomes-numberGenomes .axis text {
+  fill: #3e3e3e;
+  font-size: 11px;
+}
+#dlp-genomes-numberGenomes .chart-background {
+  fill: #fff;
+  stroke: #afafaf;
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
+}
+#dlp-genomes-numberGenomes .tick {
+  stroke: #f0f0f0;
+}
+#dlp-genomes-numberGenomes .data-tooltip.point-sequenced {
+  color: #627b47;
+  border-color: #627b47;
+}
+#dlp-genomes-numberGenomes .data-tooltip.point-total {
+  color: #41647c;
+  border-color: #41647c;
+}
+#dlp-genomes-chart-tab1 .top-5, #dlp-genomes-chart-tab2 .top-5 {
+  shape-rendering: crispEdges; 
+}
+#dlp-genomes-chart-tab1 .top-5 .chart, #dlp-genomes-chart-tab2 .top-5 .chart {
+  height: 232px;
+}
+#dlp-genomes-chart-tab1 .top-5 .label, #dlp-genomes-chart-tab2 .top-5 .label {
+  font-size: 18px;
+  color: #555555;
+  fill: #555555;
+}
+#dlp-genomes-chart-tab1 .top-5 .label.label-0, #dlp-genomes-chart-tab2 .top-5 .label.label-0 {
+  font-size: 150%;
+}
+#dlp-genomes-chart-tab1 .top-5 rect, text, #dlp-genomes-chart-tab1 .top-5 rect, text {
+  cursor: pointer;
+}
+
+#dlp-genomes-chart-tab1 .bar-0, #dlp-genomes-chart-tab2 .bar-0 {
+  fill: url(#bar-0);
+}
+#dlp-genomes-chart-tab1 .bar-1, #dlp-genomes-chart-tab2 .bar-1 {
+  fill: url(#bar-1);
+}
+#dlp-genomes-chart-tab1 .bar-2, #dlp-genomes-chart-tab2 .bar-2 {
+  fill: url(#bar-2);
+}
+#dlp-genomes-chart-tab1 .bar-3, #dlp-genomes-chart-tab2 .bar-3 {
+  fill: url(#bar-3);
+}
+#dlp-genomes-chart-tab1 .bar-4, #dlp-genomes-chart-tab2 .bar-4 {
+  fill: url(#bar-4);
+}
+#dlp-genomes-chart-tab1 .sawtooth, #dlp-genomes-chart-tab2 .sawtooth {
+  fill: #f4f4f4;
+}
+
+/* DLP Protein Families */
+#dlp-proteinfamilies-dist-genera {
+  position: relative;
+}
+#dlp-proteinfamilies-dist-genera .chart-wrapper {
+  padding-top: 80px;
+  background-color: #f5f5f5;
+  background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjUwJSIgeTE9IjAlIiB4Mj0iNTAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2EyYTJhMiIvPjxzdG9wIG9mZnNldD0iMSUiIHN0b3AtY29sb3I9IiNlYWVhZWEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #a2a2a2), color-stop(1%, #eaeaea), color-stop(100%, #ffffff));
+  background: -webkit-linear-gradient(top, #a2a2a2, #eaeaea 1%, #ffffff 100%);
+  background: -moz-linear-gradient(top, #a2a2a2, #eaeaea 1%, #ffffff 100%);
+  background: -o-linear-gradient(top, #a2a2a2, #eaeaea 1%, #ffffff 100%);
+  background: linear-gradient(top, #a2a2a2, #eaeaea 1%, #ffffff 100%);
+}
+#dlp-proteinfamilies-dist-genera .chart {
+  height: 400px;
+}
+#dlp-proteinfamilies-dist-genera .chart .svgChartContainer {
+  border-bottom: 1px silver solid;
+}
+#dlp-proteinfamilies-dist-genera .y.axis path {
+  display: none;
+}
+#dlp-proteinfamilies-dist-genera .legend {
+  padding-left: 2px;
+  color: #3e3e3e;
+}
+#dlp-proteinfamilies-dist-genera .legend svg {
+  position: relative;
+  top: 8px;
+  margin-left: 14px;
+  margin-right: 4px;
+}
+#dlp-proteinfamilies-dist-genera .legend svg .bar1-sample {
+  fill: url(#tile1);
+}
+#dlp-proteinfamilies-dist-genera .legend svg .bar2-sample {
+  fill: #9ac85c;
+}
+#dlp-proteinfamilies-dist-genera rect {
+  strokes-width: 0px;
+  shape-rendering: crispEdges;
+  fill: #000;
+}
+#dlp-proteinfamilies-dist-genera rect.block-0 {
+  fill: url(#tile1) #990000;
+  stroke: #a1c1d6;
+}
+#dlp-proteinfamilies-dist-genera rect.block-1 {
+  fill: #9ac85c;
+  stroke: #7aa93a;
+  stroke-width: 5px 6px 3px 2px;
+}
+#dlp-proteinfamilies-dist-genera rect.block-2 {
+  fill: #00f;
+}
+#dlp-proteinfamilies-dist-genera rect.block-3 {
+  fill: #f0f;
+}
+#dlp-proteinfamilies-dist-genera text {
+  font-size: 13px;
+  fill: #346a8f;
+  pointer-events: none; /* Don't get mouse events. */ 
+}
+#dlp-proteinfamilies-dist-genera nav {
+  position: absolute;
+  left: 15px;
+  top: 16px;
+}
+#dlp-proteinfamilies-dist-genera nav span.label {
+  display: block;
+  float: left;
+  font-size: 12px;
+  color: #3e3e3e;
+  height: 2em;
+  margin-right: 8px;
+}
+#dlp-proteinfamilies-dist-genera nav ul {
+  margin: 1px 0;
+  padding: 0;
+  list-style: none;
+  float: left;
+  position: relative;
+  top: -3px;
+}
+#dlp-proteinfamilies-dist-genera nav li {
+  margin: 0 1em 0 0;
+  padding: 4px 6px;
+  list-style: none;
+  font-size: 12px;
+  color: #346a8f;
+  background-image: none;
+}
+#dlp-proteinfamilies-dist-genera nav li:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+#dlp-proteinfamilies-dist-genera nav li.active {
+  background-color: #346a8f;
+  color: #fff;
+}
+#dlp-proteinfamilies-dist-genera nav li.head {
+  color: #3b3b3b;
+}
+#dlp-proteinfamilies-dist-genera nav li.head:hover {
+  text-decoration: none;
+  cursor: text;
+}
+#dlp-proteinfamilies-dist-genera nav li {
+  margin-right: 1em; 
+}
+
+#dlp-proteinfamilies-dist-genus .bar {
+  fill: #9ac85c;
+  stroke: #7aa93a;
+}
+  
+/* DLP Pathways */
+#dlp-pathways-conservation {
+  position: relative;
+}
+#dlp-pathways-conservation .chart-wrapper {
+  padding-top: 80px;
+  background-color: #f5f5f5;
+  background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4gPHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PGxpbmVhckdyYWRpZW50IGlkPSJncmFkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjUwJSIgeTE9IjAlIiB4Mj0iNTAlIiB5Mj0iMTAwJSI+PHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2EyYTJhMiIvPjxzdG9wIG9mZnNldD0iMSUiIHN0b3AtY29sb3I9IiNlYWVhZWEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyYWQpIiAvPjwvc3ZnPiA=');
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #a2a2a2), color-stop(1%, #eaeaea), color-stop(100%, #ffffff));
+  background: -webkit-linear-gradient(top, #a2a2a2, #eaeaea 1%, #ffffff 100%);
+  background: -moz-linear-gradient(top, #a2a2a2, #eaeaea 1%, #ffffff 100%);
+  background: -o-linear-gradient(top, #a2a2a2, #eaeaea 1%, #ffffff 100%);
+  background: linear-gradient(top, #a2a2a2, #eaeaea 1%, #ffffff 100%);
+}
+#dlp-pathways-conservation .chart {
+  height: 400px;
+}
+#dlp-pathways-conservation .chart .svgChartContainer {
+  border-bottom: 1px silver solid;
+}
+#dlp-pathways-conservation .y.axis path {
+  display: none;
+}
+#dlp-pathways-conservation .legend {
+  padding-left: 2px;
+  color: #3e3e3e;
+}
+#dlp-pathways-conservation .legend svg {
+  position: relative;
+  top: 8px;
+  margin-left: 14px;
+  margin-right: 4px;
+}
+#dlp-pathways-conservation .legend svg .bar1-sample {
+  fill: #1f497d;
+}
+#dlp-pathways-conservation .legend svg .bar2-sample {
+  fill: #4f81bd;
+}
+#dlp-pathways-conservation .legend svg .bar3-sample {
+  fill: #4bacc6;
+}
+#dlp-pathways-conservation .legend svg .bar4-sample {
+  fill: #f79646;
+}
+#dlp-pathways-conservation .legend svg .bar5-sample {
+  fill: #9bbb59;
+}
+#dlp-pathways-conservation rect {
+  strokes-width: 0;
+  shape-rendering: crispEdges;
+  fill: #000;
+}
+#dlp-pathways-conservation rect.block-0 {
+  fill: #1f497d;
+  stroke: #1f497d;
+}
+#dlp-pathways-conservation rect.block-1 {
+  fill: #4f81bd;
+  stroke: #4f81bd;
+}
+#dlp-pathways-conservation rect.block-2 {
+  fill: #4bacc6;
+  stroke: #4bacc6;
+}
+#dlp-pathways-conservation rect.block-3 {
+  fill: #f79646;
+  stroke: #f79646;
+}
+#dlp-pathways-conservation rect.block-4 {
+  fill: #9bbb59;
+  stroke: #9bbb59;
+}
+#dlp-pathways-conservation .axis text {
+  fill: #346a8f;
+}
+#dlp-pathways-conservation text {
+  font-size: 13px;
+  fill: #ebebeb;
+  pointer-events: none;
+}
+#dlp-pathways-conservation nav {
+  position: absolute;
+  left: 15px;
+  top: 16px;
+}
+#dlp-pathways-conservation nav span.label {
+  display: block;
+  float: left;
+  font-size: 12px;
+  color: #3e3e3e;
+  height: 2em;
+  margin-right: 8px;
+}
+#dlp-pathways-conservation nav ul {
+  margin: 1px 0;
+  padding: 0;
+  list-style: none;
+  float: left;
+  position: relative;
+  top: -3px;
+}
+#dlp-pathways-conservation nav li {
+  margin: 0 1em 0 0;
+  padding: 4px 6px;
+  list-style: none;
+  font-size: 12px;
+  color: #346a8f;
+  background-image: none;
+}
+#dlp-pathways-conservation nav li:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+#dlp-pathways-conservation nav li.active {
+  background-color: #346a8f;
+  color: #fff;
+}
+#dlp-pathways-conservation nav li.head {
+  color: #3b3b3b;
+}
+#dlp-pathways-conservation nav li.head:hover {
+  text-decoration: none;
+  cursor: text;
+}
+#dlp-pathways-conservation nav li {
+  margin-right: 1em;
+}
+
+/* DLP Transcriptomics */
+#dlp-transcriptomics-top-species {
+  width: 450px
+}
+#dlp-transcriptomics-top-species .label1 {
+  font-weight:bold;
+  fill: #fbfbfb;
+  text-shadow: 2px 2px 5px #000
+}
+#dlp-transcriptomics-top-species .label2 {
+  font-size: 11px;
+  fill: #fbfbfb;
+  text-shadow: 2px 2px 5px #000
+}
+#dlp-transcriptomics-top-species .bar-0 {
+  fill: url(#bar-0);
+}
+#dlp-transcriptomics-top-species .bar-1 {
+  fill: url(#bar-1);
+}
+#dlp-transcriptomics-top-species .bar-2 {
+  fill: url(#bar-2);
+}
+#dlp-transcriptomics-top-species .bar-3 {
+  fill: url(#bar-3);
+}
+#dlp-transcriptomics-top-species .bar-4 {
+  fill: url(#bar-4);
+}
+
+#dlp-transcriptomics-top-mutants .bar {
+  fill: #4f81bd;
+  stroke: #4f81bd;
+}
+#dlp-transcriptomics-top-mutants .label {
+  fill: #ebebeb;
+  font-weight: normal;
+}
+#dlp-transcriptomics-top-mutants rect, text {
+  cursor: pointer;
+}
+#dlp-transcriptomics-top-conditions .bar {
+  fill: #9bbb59;
+  stroke: #9bbb59;
+}
+#dlp-transcriptomics-top-conditions .label {
+  fill: #ebebeb;
+  font-weight: normal;
+}
+#dlp-transcriptomics-top-conditions rect, text {
+  cursor: pointer;
+}

@@ -56,8 +56,6 @@ function DecideToShowPopup(workspace_type){
 
 function saveToGroup(fid, type) {
 	var form = Ext.getCmp("ATGform");
-	//Ext.getCmp('group_name').setValue(Ext.getCmp('group_name_textfield').getValue());
-	//Ext.getDom('group_members').value = fid;
 	
 	popup.hide();
 	
@@ -68,7 +66,8 @@ function saveToGroup(fid, type) {
 			group_desc: form.child('#groupDesc').getValue(),
 			group_type: type,
 			tracks: fid,
-			tags: form.child('#groupTag').getValue()
+			tags: form.child('#groupTag').getValue(),
+			group_element: form.child("#groupElement").getValue()
 		},
 		url: '/portal/portal/patric/BreadCrumb/WorkspaceWindow?action=b&cacheability=PAGE&action_type=groupAction&action=create',
 		success: function(response, opts) {
@@ -116,6 +115,39 @@ Ext.define('AddToWorkspace', {
 		anchor: '100%'
 	},
 	items: [{
+		xtype: 'radiogroup',
+		itemId: 'groupElement',
+		columns: 2,
+		vertical: false,
+		hidden: true,
+		items: [{
+			boxLabel: 'Save as Feature Group', name: 'groupElement', inputValue: 'Feature', checked: true,
+			listeners: {
+				focus: {
+					fn: function(me, e, eopts) {
+						// read existing feature groups
+						var form = me.up("form");
+						var atg = form.child("#atg");
+						atg.getStore().group_type = "Feature";
+						atg.getStore().load();
+					}
+				}
+			}
+		}, {
+			boxLabel: 'Save as Genome Group', name: 'groupElement', inputValue: 'Genome',
+			listeners: {
+				focus: {
+					fn: function(me, e, eopts) {
+						// read existing genome groups
+						var form = me.up("form");
+						var atg = form.child("#atg");
+						atg.getStore().group_type = "Genome";
+						atg.getStore().load();
+					}
+				}
+			}
+		}]
+	}, {
 		xtype:'combobox',
 		itemId: 'atg',
 		fieldLabel: 'Add to group',
@@ -219,6 +251,11 @@ function getCartWindow(workspace_type) {
 		}],
 		workspace_type: workspace_type
 	});
+	
+	// when feature is added, check whether user want to save as genomes
+	if (workspace_type == "Feature") {
+		popup.child("#ATGform").child("#groupElement").setVisible(true);
+	}
 	
 	return popup;
 }

@@ -2680,12 +2680,12 @@ Ext.define('VBI.Workspace.view.toolbar.Feature', {
 					me.showMenu();
 				}
 			}
-		}, {
+		}/*, {
 			xtype: 'tbar_btn_resetcolumnstate',
 			handler: function(me) {
 				this.fireEvent("resetColumnState");
 			}
-		}]
+		}*/]
 	}, '->', '-',
 	{
 		xtype: 'tbar_btngrp_help'
@@ -2908,12 +2908,12 @@ Ext.define('VBI.Workspace.view.toolbar.Genome', {
 					me.showMenu();
 				}
 			}
-		}, {
+		}/*, {
 			xtype: 'tbar_btn_resetcolumnstate',
 			handler: function(me) {
 				this.fireEvent("resetColumnState");
 			}
-		}]
+		}*/]
 	}, '->', '-',
 	{
 		xtype: 'tbar_btngrp_help'
@@ -3150,7 +3150,7 @@ Ext.define('VBI.Workspace.view.toolbar.Global', {
 	alias: 'widget.patricpagingtoolbar',
 	beforePageSizeText: 'Show',
 	afterPageSizeText: 'per page',
-	displayMsg : 'Displaying record {0} - {1} of {2}',
+	displayMsg: 'Displaying record {0} - {1} of {2}',
 	displayInfo: true,
 	maxPageSize: 5000,
 	maskOnDisable: true,
@@ -3164,7 +3164,7 @@ Ext.define('VBI.Workspace.view.toolbar.Global', {
 			disabled: true,
 			handler: me.moveFirst,
 			scope: me
-		},{
+		}, {
 			itemId: 'prev',
 			tooltip: me.prevText,
 			overflowText: me.prevText,
@@ -3172,10 +3172,8 @@ Ext.define('VBI.Workspace.view.toolbar.Global', {
 			disabled: true,
 			handler: me.movePrevious,
 			scope: me
-		},
-		'-',
-		me.beforePageText,
-		{
+		}, '-',
+		me.beforePageText, {
 			xtype: 'numberfield',
 			itemId: 'inputItem',
 			name: 'inputItem',
@@ -3194,13 +3192,11 @@ Ext.define('VBI.Workspace.view.toolbar.Global', {
 				keydown: me.onPagingKeyDown,
 				blur: me.onPagingBlur
 			}
-		},{
+		}, {
 			xtype: 'tbtext',
 			itemId: 'afterTextItem',
 			text: Ext.String.format(me.afterPageText, 1)
-		},
-		'-',
-		{
+		}, '-', {
 			itemId: 'next',
 			tooltip: me.nextText,
 			overflowText: me.nextText,
@@ -3208,7 +3204,7 @@ Ext.define('VBI.Workspace.view.toolbar.Global', {
 			disabled: true,
 			handler: me.moveNext,
 			scope: me
-		},{
+		}, {
 			itemId: 'last',
 			tooltip: me.lastText,
 			overflowText: me.lastText,
@@ -3216,11 +3212,8 @@ Ext.define('VBI.Workspace.view.toolbar.Global', {
 			disabled: true,
 			handler: me.moveLast,
 			scope: me
-		},
-		'->','-', 
-		/* modification start */
-		me.beforePageSizeText,
-		{
+		}, '->', '-', /* modification start */
+		me.beforePageSizeText, {
 			xtype: 'numberfield',
 			itemId: 'pagesize',
 			cls: Ext.baseCSSPrefix + 'tbar-page-number',
@@ -3247,7 +3240,7 @@ Ext.define('VBI.Workspace.view.toolbar.Global', {
 					}
 				}
 			},
-			initComponent: function () {
+			initComponent: function() {
 				var me = this;
 				if (me.allowOnlyWhitespace === false) {
 					me.allowBlank = false;
@@ -3259,14 +3252,14 @@ Ext.define('VBI.Workspace.view.toolbar.Global', {
 				if (Ext.state.Manager.get("pagesize") == undefined || Ext.state.Manager.get("pagesize").value == undefined) {
 					me.setValue(20);
 				}
-		    },
+			},
 			listeners: {
 				scope: me,
 				specialKey: function(field, e) {
 					if (e.getKey() == e.ENTER) {
-						var	value = field.getValue(),
+						var value = field.getValue(),
 							valueIsNull = value === null;
-					
+
 						if (valueIsNull == false) {
 							me.updateStore();
 						}
@@ -3274,43 +3267,33 @@ Ext.define('VBI.Workspace.view.toolbar.Global', {
 				}
 			}
 		},
-		me.afterPageSizeText,
-		{
+		me.afterPageSizeText, {
 			itemId: 'refresh',
 			text: 'Apply',
 			style: {
-				'border-color':'#81a4d0',
-				'background-color':'#dbeeff',
-				'background-image':'-webkit-linear-gradient(top,#dbeeff,#d0e7ff 48%,#bbd2f0 52%,#bed6f5)'
+				'border-color': '#81a4d0',
+				'background-color': '#dbeeff',
+				'background-image': '-webkit-linear-gradient(top,#dbeeff,#d0e7ff 48%,#bbd2f0 52%,#bed6f5)'
 			},
-			handler: function(){
+			handler: function() {
 				me.updateStore();
 			},
 			scope: me
-		},
-		'-', 
-		{
+		}, '-', {
 			itemId: 'saveState',
 			text: 'Apply to ALL tables',
 			style: {
-				'border-color':'#81a4d0',
-				'background-color':'#dbeeff',
-				'background-image':'-webkit-linear-gradient(top,#dbeeff,#d0e7ff 48%,#bbd2f0 52%,#bed6f5)'
+				'border-color': '#81a4d0',
+				'background-color': '#dbeeff',
+				'background-image': '-webkit-linear-gradient(top,#dbeeff,#d0e7ff 48%,#bbd2f0 52%,#bed6f5)'
 			},
-			handler: function(){
+			handler: function() {
 				if (me.updateStore() != false) {
-					
 					me.child('#pagesize').fireEvent('savePageSize');
-					
-					var dt = new Date();
-					dt.setTime(dt.getTime() + 1000);
-					while (new Date().getTime() < dt.getTime());
 				}
 			},
 			scope: me
-		},
-		'-'
-		];
+		}, '-'];
 	},
 	showMessageTip: function(title, msg) {
 		var me = this,
@@ -3358,7 +3341,7 @@ Ext.define('VBI.Workspace.view.toolbar.Global', {
 			}
 		}
 		this.callParent();
-	},
+	}/*,
 	listeners: {
 		afterlayout: function(me, e) {
 			var pgsize = me.child('#pagesize'),
@@ -3370,8 +3353,9 @@ Ext.define('VBI.Workspace.view.toolbar.Global', {
 				}
 			}
 		}
-	}
-});Ext.define('VBI.Workspace.view.ColumnBrowser', {
+	}*/
+});
+Ext.define('VBI.Workspace.view.ColumnBrowser', {
 	extend: 'Ext.panel.Panel',
 	alias: 'widget.columnbrowser',
 	border: false,
@@ -4097,7 +4081,7 @@ Ext.define('VBI.Workspace.controller.Experiment', {
 		});
 	},
 	runGeneList: function(param) {
-		document.location.href = "/portal/portal/patric/TranscriptomicsGene?cType=&cId=&dm=result&log_ratio=&zscore="+param;
+		document.location.href = "/portal/portal/patric/TranscriptomicsGene?cType=&cId=&dm=result&log_ratio=&zscore=&pk="+param;
 	},
 	toggleEditorFields: function(button, event, options) {
 		var target = button.findParentByType('experimentinfoeditor');

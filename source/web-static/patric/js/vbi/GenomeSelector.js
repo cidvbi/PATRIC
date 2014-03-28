@@ -360,7 +360,7 @@ Ext.define('VBI.GenomeSelector.Panel', {
 					}
 					Ext.get('mygroup_tree_panel-body').addCls('x-docked-noborder-top');
 					
-					if(window.location.href.indexOf("FIGfamSorter") > 0){
+					if(window.location.href.indexOf("FIGfam") > 0){
 						if(this.parentTaxon == '2' && this.storeMy.getRootNode().childNodes.length == 0){
 							Ext.getCmp('myGroupPanelNorth').body.dom.innerHTML = "<div style=\"padding-left: 5px;font-size: 14px;\">Select genomes from 'Taxonomy Tree' or 'A-Z List' tab<br/><span style=\"padding-left:15px;\"><img src=\"/patric/images/horizonal_rule_OR_302x9.png\"></span><br/> Create custom Genome Groups using <a href=\"GenomeFinder?cType=taxon&cId=&dm=\">Genome Finder</a></div>";	
 						}else if(this.parentTaxon == '2' && this.storeMy.getRootNode().childNodes.length > 0){

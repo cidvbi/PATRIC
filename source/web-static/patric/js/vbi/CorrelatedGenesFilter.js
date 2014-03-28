@@ -3,6 +3,7 @@ Ext.onReady(function () {
 		bodyPadding: 5,
 		layout: 'hbox',
 		renderTo: 'PATRICGridFilter',
+		id: 'PATRICGridFilterPanel',
 		items: [
 			{
 				xtype: 'tbspacer',
@@ -60,18 +61,15 @@ Ext.onReady(function () {
 				xtype: 'button',
 				text: 'Filter',
 				handler: function() {
-					var Page = $Page,
-            property = Page.getPageProperties(),
-            hash = property.hash;
-						hash.cutoffValue	= this.ownerCt.getComponent("cutoffValue").getValue(), 
-						hash.cutoffDir	= this.ownerCt.getComponent("cutoffDir").getValue(),
-						hash.cutoffValue *= (hash.cutoffDir=="positive")?1:-1,
-						Page = $Page,
-						property = Page.getPageProperties(),
-						hash = property.hash,
-						hash.sort[0] = 'correlation',
-						hash.dir[0] = (cutoffDir=="positive")?'DESC':'ASC',
-						createURL();
+					var property = $Page.getPageProperties();
+
+					property.hash.cutoffValue	= this.ownerCt.getComponent("cutoffValue").getValue();
+					property.hash.cutoffDir	= this.ownerCt.getComponent("cutoffDir").getValue();
+					property.hash.cutoffValue *= (property.hash.cutoffDir=="positive")?1:-1;
+
+					property.sort[0][0].property = 'correlation',
+					property.sort[0][0].direction = (cutoffDir=="positive")?'DESC':'ASC';
+					createURL();
 				}
 			}
 		]

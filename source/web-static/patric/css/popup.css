@@ -1,183 +1,119 @@
-/* @group global layout rules */
+/* group global layout rules */
 
 #header:after, #subheader:after,
 #toppage:after, #bottompage:after,
 #footer:after, .block:after,
 .block-content:after
 {
-	content:  ".";
-	display: block;
-	height: 0;
-	clear: both;
-	visibility: hidden;
+  content:  ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
 }
 
 .constrain {
-	width: 956px;
-	margin: 0 auto;
-	position: relative;
+  width: 956px;
+  margin: 0 auto;
+  position: relative;
 }
 
 .on-left {
-	float: left;
+  float: left;
 }
 
 .on-right {
-	float: right;
+  float: right;
 }
 
 input[type="button"],
 input[type="submit"] {
-	background-color: #0a4773;
-	border: 1px #000 solid;
-	border-left-color: #4e7b9a;
-	border-right-color: #153953;
-	border-bottom-color: #031e31;
-	border-top-color: #89a9c0;	
-	color: #fff;
-	font-weight: bold;
-	padding: 5px 12px 5px 6px;
-	background: #0a4773 url('/patric/images/arrow-white-right.gif') scroll no-repeat right 50%;
+  background-color: #0a4773;
+  border: 1px #000 solid;
+  border-left-color: #4e7b9a;
+  border-right-color: #153953;
+  border-bottom-color: #031e31;
+  border-top-color: #89a9c0;	
+  color: #fff;
+  font-weight: bold;
+  padding: 5px 12px 5px 6px;
+  background: #0a4773 url(/patric/images/arrow-white-right.gif) scroll no-repeat right 50%;
 }
 
 form .options-link {
-	font-size: 1em;
-	color: #08466f;
-	text-decoration: none;
-	margin-left: 1em;
+  font-size: 1em;
+  color: #08466f;
+  text-decoration: none;
+  margin-left: 1em;
 }
 
-/* @end global layout rules */
-
-/* @group color bands */
+/* color bands */
 
 body {
-	margin: 0;
-	padding: 0;
-	background-color: #32688D;
+  margin: 0;
+  padding: 0;
+  background-color: #32688D;
 }
 
 #header {
-	background-color: #fff;
-	border-bottom: 5px #0f4a73 solid;
+  background-color: #fff;
+  border-bottom: 5px #0f4a73 solid;
 }
 
 #toppage {
-	background-color: #f4f4f4;
-	border-bottom: 1px #fff solid;
-	padding-bottom: 2em;
+  background-color: #f4f4f4;
+  border-bottom: 1px #fff solid;
+  padding-bottom: 2em;
 }
 
 #footer {
-	padding-top: 15px;
-	padding-bottom: 15px;
-	background-color: #32688D;
-	/* background gradient for capable browsers */
-	background-image: -moz-linear-gradient(-90deg, #09456f 0%, #32688D 100%);
-	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#09456f), to(#32688D));
-	color: #fff;
+  background: #34698e;
+  background-image: linear-gradient(#09456f, #34698e);
+  border-top: #227194;
+  padding: 12px 0 30px 0;
 }
 
-/* @end color bands */
-
-/* @group header styles */
+/* group header styles */
 
 #header {
-	position: relative;
-	height: 75px;
-	z-index: 200;
-	padding: 0 14px;
+  position: relative;
+  height: 75px;
+  z-index: 200;
+  padding: 0 14px;
 }
-
-/* My Comment */
 
 #masthead a {
-	position: absolute;
-	background: transparent url('/patric/images/logo-patric-small.png') scroll no-repeat top left;
-	width: 243px;
-	height: 50px;
-	top: 13px;
-	text-indent: -9999em;
+  position: absolute;
+  background: transparent url(/patric/images/logo-patric-small.png) scroll no-repeat top left;
+  width: 243px;
+  height: 50px;
+  top: 13px;
+  text-indent: -9999em;
 }
 
-/* @end header styles */
-
-/* @group toppage */
+/* group toppage */
 
 #toppage .content {
-	padding: 14px;
-	min-height: 100px;
+  padding: 14px;
+  min-height: 100px;
 }
-
-/* @end toppage styles */
-
-/* @group footer styles */
-
-#footer a:link {
-	color: #fff;
-	text-decoration: none;
-}
-
-#footer a:hover {
-	text-decoration: underline;
-}
-
-#footer p {
-	line-height: 1.5;
-}
-
-#footer a {
-	color: #fff;
-}
-
-#footer a#linkNIH,
-#footer a#linkNIAID
-{
-	margin-top: 4px;
-	margin-right: 7px;
-	display: block;
-	float: left;
-	width: 41px;
-	height: 41px;
-}
-
-#footer a#linkNIH span,
-#footer a#linkNIAID span {
-	display: block;
-	text-indent: -9999em;
-}
-
-#footer a#linkNIH {
-	background: url('/patric/images/logo-nih.png') scroll no-repeat top left;
-}
-
-#footer a#linkNIAID {
-	background: url('/patric/images/logo-niaid.png') scroll no-repeat top left;
-}
-
-/* @end footer styles */
 
 .fixed-width-font {
-	font-family:  'Courier New', Courier, monospace;
-}
-
-pre {
-	//font-size: 1.1em;
+  font-family:  'Courier New', Courier, monospace;
 }
 
 .back-to-top {
-	font-family: Arial, Verdana, sans-serif;
-	margin: 25px 0px 0px;
-	padding: 15px 0px 10px;
-	text-align: center;
-	border-top: 1px solid #a6abb5;
+  font-family: Arial, Verdana, sans-serif;
+  margin: 25px 0px 0px;
+  padding: 15px 0px 10px;
+  text-align: center;
+  border-top: 1px solid #a6abb5;
 }
 
 .back-to-top a:link, .back-to-top a:visited, .back-to-top a:active {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 .back-to-top a:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
-
